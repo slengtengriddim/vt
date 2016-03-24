@@ -1,5 +1,5 @@
 <template name="nav">
-  
+
   <div class="container">
     <!-- <div class="header item"><img alt="UserAccounts" width="25" height="25" src="/imgs/ua-logo.png"></div>
     <a class="{{isActiveRoute regex='home'}} item" href="{{pathFor 'home'}}">Home</a>
@@ -8,7 +8,7 @@
       {{> atNavButton}}
     </div> -->
     <div class="row">
-      {{> atNavButton}}
+      {{> atNavButton}} Logged in as: {{#if currentUser}} {{userMail}} {{/if}}
     </div>
     <div class="row">
       <ul class="nav nav-tabs">
