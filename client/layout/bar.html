@@ -1,0 +1,11 @@
+<template name="bar">
+<a href="{{#if getSession "attentionMode"}}/low{{else}}{{getSession "lastPath"}}{{/if}}">
+  <nav class="navbar navbar-default navbar-fixed-top {{#if getSession "attentionMode"}}alert-success{{else}}alert-info{{/if}} text-center attention-mode">
+    <div class="container">
+
+        <h1>{{#if getSession "attentionMode"}}<i class="fa fa-eye"></i> Attention mode on{{else}} <i class="fa fa-eye-slash"></i> Attention mode off{{/if}} </h1>
+
+    </div>
+  </nav>
+</a>
+</template>

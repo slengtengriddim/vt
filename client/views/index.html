@@ -1,0 +1,27 @@
+<template name="index">
+
+  <div class="container">
+    <h1>VT - Vokabeltrainer</h1>
+    {{#if getSession "attentionMode"}}
+    <div class="well well-sm alert-success">
+      <h1>High Attention UI</h1>
+    </div>
+    {{else}}
+    <div class="well well-sm alert-info">
+      <h1>Low Attention UI</h1>
+    </div>
+    {{/if}}
+    <p>
+      {{getSession "lastPath"}}
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+      sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+      sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+    </p>
+  </div>
+
+</template>
