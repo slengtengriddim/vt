@@ -1,5 +1,5 @@
 <template name="bar">
-<a href="{{#if getSession "attentionMode"}}/low{{else}}{{getSession "lastPath"}}{{/if}}">
+<a href="{{#if getSession "attentionMode"}}{{getSession "lastPath"}}{{else}}/low{{/if}}">
   <nav class="navbar navbar-default navbar-fixed-top {{#if getSession "attentionMode"}}alert-success{{else}}alert-info{{/if}} text-center attention-mode">
     <div class="container">
 
