@@ -11,16 +11,13 @@ session                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
 
-standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 reactive-var
 
-logging
-reload
-random
-ejson
-spacebars
+kadira:blaze-layout
+kadira:flow-router
+
 check
 
 anti:fake
@@ -34,8 +31,7 @@ zimme:active-route
 useraccounts:flow-routing
 arillo:flow-router-helpers
 
-kadira:blaze-layout
-kadira:flow-router
+
 
 aldeed:collection2
 aldeed:autoform
@@ -45,3 +41,5 @@ chrismbeckett:toastr
 fortawesome:fontawesome
 
 ramda:ramda
+standard-minifier-css
+standard-minifier-js
