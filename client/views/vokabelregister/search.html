@@ -6,29 +6,83 @@
     </div>
   </div>
 
+    {{#unless isAlphabetic}}
+    <p class="alert alert-warning">Der Suchbegriff darf nur Zeichen des Alphabets (a - Z) und Leerzeichen enthalten.</p>
+    {{/unless}}
+    {{#unless isLength64}}
+    <p class="alert alert-warning">Der Suchbegriff darf nicht mehr als 64 Zeichen enthalten.</p>
+    {{/unless}}
+
+  {{#if query}}
+
   <ul class="list-group">
-    {{#if searching}}
-      {{> loading}}
-    {{else}}
-      <!-- {{#each vocabulary}}
-        <li class="list-group-item clearfix">
-          <span class="pull-left"><strong>{{term}}</strong></span>
-          <span class="pull-right">{{description}}</span>
-        </li>
-      {{else}}
-        <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ". Sorry!</p>
-      {{/each}} -->
-      {{#each vocabulary}}
-      <h3>{{letter}}</h3>
-      {{#each entries}}
-        <li class="list-group-item clearfix">
-          <span class="pull-left"><strong>{{term}}</strong></span>
-          <span class="pull-right">{{description}}</span>
-        </li>
-        {{/each}}
-      {{else}}
-        <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ". Sorry!</p>
-      {{/each}}
-    {{/if}}
+    {{#if searching}} {{> loading}} {{else}} {{#each vocabulary}}
+    <h3>{{letter}}</h3> {{#each entries}}
+    <li class="list-group-item clearfix">
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">{{term}}</h4> {{description}}
+        </div>
+        <div class="media-right media-middle btn-fav">
+          <h4>{{#if isFavourite this._id}}
+            <i class="fa fa-heart fa-2x"></i>
+            {{else}}
+            <i class="fa fa-heart-o fa-2x"></i>
+            {{/if}}
+          </h4>
+
+        </div>
+      </div>
+      <!-- <span class="pull-left"><strong>{{term}}</strong></span>
+      <span class="pull-right">{{description}}</span> -->
+    </li>
+    {{/each}} {{else}}
+    <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ".</p>
+    {{/each}} {{/if}}
   </ul>
+
+  {{else}}
+
+  <div class="panel-group" id="accordion">
+    {{#each vocabulary}}
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{letter}}">
+        <h4 class="panel-title">
+          {{letter}}
+        </h4>
+        </a>
+      </div>
+
+      <div id="collapse{{letter}}" class="panel-collapse collapse">
+        <div class="panel-body">
+
+          {{#each entries}}
+          <li class="list-group-item clearfix">
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading">{{term}}</h4> {{description}}
+              </div>
+              <div class="media-right media-middle btn-fav">
+                <h4>{{#if isFavourite this._id}}
+                  <i class="fa fa-heart fa-2x"></i>
+                  {{else}}
+                  <i class="fa fa-heart-o fa-2x"></i>
+                  {{/if}}
+                </h4>
+
+              </div>
+            </div>
+          </li>
+          {{/each}}
+
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  {{/if}}
+
 </template>

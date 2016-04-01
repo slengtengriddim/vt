@@ -25,3 +25,22 @@ Meteor.publish('vocabularyRegister', function(search) {
 
 	return Vocabulary.find(query, projection);
 });
+
+Meteor.publish("vocabularyAll", function() {
+	let data = Vocabulary.find({});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+
+Meteor.publish("ownedFavourites", function() {
+	let currentUserId = this.userId;
+	let data = Favourites.find({
+		userId: currentUserId
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});

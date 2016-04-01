@@ -39,16 +39,6 @@ basicRoutes.route('/', {
 		});
 	}
 });
-basicRoutes.route('/listen', {
-	name: "listen",
-	action: function(params, queryParams) {
-		BlazeLayout.render('basicLayout', {
-			bar: "bar",
-			nav: "nav",
-			main: "listen"
-		});
-	}
-});
 basicRoutes.route('/favouriten', {
 	name: "favouriten",
 	action: function(params, queryParams) {
@@ -56,6 +46,16 @@ basicRoutes.route('/favouriten', {
 			bar: "bar",
 			nav: "nav",
 			main: "favouriten"
+		});
+	}
+});
+basicRoutes.route('/trainer', {
+	name: "trainer",
+	action: function(params, queryParams) {
+		BlazeLayout.render('basicLayout', {
+			bar: "bar",
+			nav: "nav",
+			main: "trainer"
 		});
 	}
 });

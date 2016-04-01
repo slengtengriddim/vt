@@ -1,0 +1,32 @@
+<template name="favouriten">
+
+  <div class="container">
+    <div class="page-header clearfix">
+      <h4 class="pull-left">Favouriten</h4>
+      <div class="pull-right"></div>
+    </div>
+
+    <ul class="list-group">
+      {{#if favourites}}
+        {{#each favourites}}
+          <li class="list-group-item clearfix">
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading">{{term}}</h4>
+                {{description}}
+                {{createdAt}}
+              </div>
+              <div class="media-right media-middle btn-delete">
+                <h4><i class="fa fa-trash-o fa-2x"></i></h4>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      {{else}}
+      <p class="alert alert-warning">Keine Favouriten bisher gespeichert. Zum favourisieren von Begriffen klicke auf das Herz-Symbol neben dem jeweiligen Begriff.</p>
+      {{/if}}
+    </ul>
+
+  </div>
+
+</template>

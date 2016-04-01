@@ -26,7 +26,7 @@ let VocabularySchema = new SimpleSchema({
 	},
 	description: {
 		type: String,
-		regEx: /[a-zA-Z ]+/
+		regEx: /^[A-Za-z\s]+$/
 	}
 });
 
