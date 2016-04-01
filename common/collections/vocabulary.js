@@ -21,12 +21,10 @@ Vocabulary.deny({
 
 let VocabularySchema = new SimpleSchema({
 	term: {
-		type: String,
-		regEx: /^[a-zA-Z]+$/
+		type: String
 	},
 	description: {
-		type: String,
-		regEx: /^[A-Za-z\s]+$/
+		type: String
 	}
 });
 
