@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"lesen\");\nTemplate[\"lesen\"] = new Template(\"Template.lesen\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

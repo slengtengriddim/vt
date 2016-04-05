@@ -103,5 +103,30 @@ Template.search.events({
 
 	'click .btn-fav' (event, template) {
 		Meteor.call('toggleFavourite', this._id);
+
+		// TODO DRY  
+		if (Favourites.find({
+				vocabularyId: this._id
+			}).count() === 0) {
+				// add to favourites
+				if (Session.get(RANDOM_NOT_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {
+					let val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);
+					Session.set(COUNT_VIEWED, val);
+				}
+				if ((Session.get(LENGTH_NOT_FAV) === 1)) {
+					Session.set(RANDOM_FAV, true);
+					Session.set(RANDOM_NOT_FAV, false);
+				}
+		} else {
+			// remove from favourites
+			if (Session.get(RANDOM_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {
+				let val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);
+				Session.set(COUNT_VIEWED, val);
+			}
+			if ((Session.get(LENGTH_FAV) === 1)) {
+				Session.set(RANDOM_FAV, false);
+				Session.set(RANDOM_NOT_FAV, true);
+			}
+		}
 	}
 });

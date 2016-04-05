@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"trainerEingabe\");\nTemplate[\"trainerEingabe\"] = new Template(\"Template.trainerEingabe\", (function() {\n  var view = this;\n  return HTML.Raw(\"<h1>Eingabe</h1>\");\n}));\n","bodyAttrs":{}}

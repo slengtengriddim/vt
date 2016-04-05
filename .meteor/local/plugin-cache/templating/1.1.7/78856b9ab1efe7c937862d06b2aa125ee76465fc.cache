@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"abfrageMitEingabe\");\nTemplate[\"abfrageMitEingabe\"] = new Template(\"Template.abfrageMitEingabe\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

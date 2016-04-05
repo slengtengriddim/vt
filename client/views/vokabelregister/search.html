@@ -1,9 +1,8 @@
 <template name="search">
   <div class="page-header clearfix">
-    <h4 class="pull-left">Vokabelregister A - Z</h4>
-    <div class="pull-right">
+
       <input type="text" name="search" class="form-control" width="300px" placeholder="Finde einen Begriff...">
-    </div>
+
   </div>
 
     {{#unless isAlphabetic}}
@@ -13,36 +12,35 @@
     <p class="alert alert-warning">Der Suchbegriff darf nicht mehr als 64 Zeichen enthalten.</p>
     {{/unless}}
 
+{{#if Template.subscriptionsReady}}
   {{#if query}}
-
   <ul class="list-group">
     {{#if searching}} {{> loading}} {{else}} {{#each vocabulary}}
     <h3>{{letter}}</h3> {{#each entries}}
     <li class="list-group-item clearfix">
       <div class="media">
         <div class="media-body">
-          <h4 class="media-heading">{{term}}</h4> {{description}}
+          <a href="/vokabelregister/{{_id}}">
+            <h4 class="media-heading">{{term}}</h4> {{description}}
+          </a>
         </div>
         <div class="media-right media-middle btn-fav">
-          <h4>{{#if isFavourite this._id}}
-            <i class="fa fa-heart fa-2x"></i>
+          {{#if isFavourite this._id}}
+            <i class="fa fa-heart fa-4x"></i>
             {{else}}
-            <i class="fa fa-heart-o fa-2x"></i>
-            {{/if}}
-          </h4>
+            <i class="fa fa-heart-o fa-4x"></i>
+          {{/if}}
+
 
         </div>
       </div>
-      <!-- <span class="pull-left"><strong>{{term}}</strong></span>
-      <span class="pull-right">{{description}}</span> -->
     </li>
+
     {{/each}} {{else}}
     <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ".</p>
     {{/each}} {{/if}}
   </ul>
-
   {{else}}
-
   <div class="panel-group" id="accordion">
     {{#each vocabulary}}
     <div class="panel panel-default">
@@ -62,15 +60,16 @@
           <li class="list-group-item clearfix">
             <div class="media">
               <div class="media-body">
-                <h4 class="media-heading">{{term}}</h4> {{description}}
+                <a href="/vokabelregister/{{_id}}">
+                  <h4 class="media-heading">{{term}}</h4> {{description}}
+                </a>
               </div>
               <div class="media-right media-middle btn-fav">
-                <h4>{{#if isFavourite this._id}}
-                  <i class="fa fa-heart fa-2x"></i>
+                {{#if isFavourite this._id}}
+                  <i class="fa fa-heart fa-4x"></i>
                   {{else}}
-                  <i class="fa fa-heart-o fa-2x"></i>
-                  {{/if}}
-                </h4>
+                  <i class="fa fa-heart-o fa-4x"></i>
+                {{/if}}
 
               </div>
             </div>
@@ -82,7 +81,8 @@
     </div>
     {{/each}}
   </div>
-
   {{/if}}
-
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>

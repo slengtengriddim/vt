@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"trainerBedeutung\");\nTemplate[\"trainerBedeutung\"] = new Template(\"Template.trainerBedeutung\", (function() {\n  var view = this;\n  return HTML.Raw('<div class=\"row\">\\n\t\t<h1>Bedeutung</h1>\\n\t</div>');\n}));\n","bodyAttrs":{}}

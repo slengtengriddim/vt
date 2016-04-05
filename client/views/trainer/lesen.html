@@ -1,0 +1,67 @@
+<template name="trainerLesen">
+
+	<div class="container">
+		<div class="media">
+
+			{{#if lengthIsOne}}
+			<div class="media-left media-middle">
+				<i class="fa fa-ban fa-4x"></i>
+			</div>
+			{{else}}
+			<div class="media-left media-middle btn-backward">
+				<i class="fa fa-chevron-left fa-4x"></i>
+			</div>
+			{{/if}}
+
+			<div class="media-body">
+				{{#if Template.subscriptionsReady}}
+				<div class="jumbotron">
+					{{#with entry}}
+					<h2>{{ term }} {{#if lengthIsOne}}<span class="label label-info">Letzter Eintrag</span>{{/if}}
+						{{#if getSession "randomFavourites"}}
+							<div class="btn-delete">
+								<i class="fa fa-trash-o fa-2x"></i>
+							</div>
+						{{else}}
+							<div class="btn-fav">
+								{{#if isFavourite this._id}}
+									<i class="fa fa-heart fa-2x"></i>
+									{{else}}
+									<i class="fa fa-heart-o fa-2x"></i>
+								{{/if}}
+							</div>
+						{{/if}}
+				</h2>
+					<h3>
+						<ol>
+							<li>{{ description }}</li>
+						</ol>
+					</h3>
+					<hr>
+				{{/with}}
+				</div>
+				{{else}}
+					{{> loading}}
+				{{/if}}
+			</div>
+
+			{{#if lengthIsOne}}
+			<div class="media-right media-middle">
+				<i class="fa fa-ban fa-4x"></i>
+			</div>
+			{{else}}
+			<div class="media-right media-middle btn-forward">
+				<i class="fa fa-chevron-right fa-4x"></i>
+			</div>
+			{{/if}}
+		</div>
+		<p>
+			countViewed: {{ countViewed }}
+		</p>
+		<p>
+			mod: {{ mod }}
+		</p>
+
+	</div>
+	<br>
+</template>

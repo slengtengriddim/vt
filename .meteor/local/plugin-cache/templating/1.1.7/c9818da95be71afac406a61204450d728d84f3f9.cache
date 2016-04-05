@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"trainerLesen\");\nTemplate[\"trainerLesen\"] = new Template(\"Template.trainerLesen\", (function() {\n  var view = this;\n  return HTML.Raw('<div class=\"container\">\\n\t\t<div class=\"jumbotron text-center\">\\n\t\t\t<h1>Lesen</h1>\\n\t\t</div>\\n\t</div>');\n}));\n","bodyAttrs":{}}

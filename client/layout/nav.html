@@ -1,23 +1,15 @@
 <template name="nav">
 
   <div class="container">
-    <!-- <div class="header item"><img alt="UserAccounts" width="25" height="25" src="/imgs/ua-logo.png"></div>
-    <a class="{{isActiveRoute regex='home'}} item" href="{{pathFor 'home'}}">Home</a>
-    <a class="{{isActiveRoute regex='lists'}} item" href="{{pathFor 'lists'}}">Listen</a>
-    <div class="right menu">
-      {{> atNavButton}}
-    </div> -->
     <div class="row">
       {{> atNavButton}} Logged in as: {{#if currentUser}} {{userMail}} {{/if}}
     </div>
     <div class="row">
-      <ul class="nav nav-tabs">
-
+      <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
         <li role="presentation" class="{{isActiveRoute regex='trainer'}}"><a href="{{pathFor 'trainer'}}">Trainer</a></li>
         <li role="presentation" class="{{isActiveRoute regex='favouriten'}}"><a href="{{pathFor 'favouriten'}}">Favouriten</a></li>
         <li role="presentation" class="{{isActiveRoute regex='vokabelregister'}}"><a href="{{pathFor 'vokabelregister'}}">Vokabelregister</a></li>
-
       </ul>
     </div>
   </div>

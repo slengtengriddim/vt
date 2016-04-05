@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"loading\");\nTemplate[\"loading\"] = new Template(\"Template.loading\", (function() {\n  var view = this;\n  return HTML.Raw('<div class=\"alert alert-warning\" role=\"alert\">Lade...\\n</div>');\n}));\n","bodyAttrs":{}}

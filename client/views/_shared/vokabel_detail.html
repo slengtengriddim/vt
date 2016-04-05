@@ -1,0 +1,23 @@
+<template name="vokabelDetail">
+	<div class="container">
+		{{#if Template.subscriptionsReady}}
+		    {{#with entry}}
+		      <h3>{{term}}</h3>
+		      <p>{{description}}</p>
+		    {{/with}}
+		  {{else}}
+		      {{> loading}}
+		  {{/if}}
+
+			<p>
+				noch weitere Details.
+				<ul>
+					<li>Fav button</li>
+					<li>Beispielsatz</li>
+					<li>Synonym</li>
+				</ul>
+			</p>
+
+	</div>
+
+</template>

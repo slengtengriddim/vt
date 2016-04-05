@@ -1,0 +1,30 @@
+<template name="navRandom">
+
+	<div class="container">
+		<div class="row text-center">
+			<div class="btn-group btn-group-justified" role="group">
+				{{#if lengthFav}}
+				<div class="btn-group" role="group">
+					<button type="button" class="btn {{#if getSession "randomFavourites"}}btn-success{{else}}btn-default{{/if}} btn-lg btn-favourites">
+						<i class="fa fa-random fa-2x"></i> <i class="fa fa-heart fa-2x"></i>
+						<p>
+							Zufaelliger Favorit <span class="label label-default">{{lengthFav}}</span>
+						</p>
+					</button>
+				</div>
+				{{/if}}
+				{{#if lengthNotFav}}
+				<div class="btn-group" role="group">
+					<button type="button" class="btn {{#unless getSession "randomFavourites"}}btn-success{{else}}btn-default{{/unless}} btn-lg  btn-not-favourites">
+						<i class="fa fa-random fa-2x"></i> <i class="fa fa-list fa-2x"></i>
+						<p>
+							Zufaelliger Registereintrag <span class="label label-default">{{lengthNotFav}}</span>
+						</p>
+					</button>
+				</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+</template>

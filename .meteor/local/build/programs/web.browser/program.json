@@ -780,11 +780,11 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=c7861932eb8cceda366f29e3a1977e77f82112d5",
+      "url": "/app/app.js?hash=ca1166b89abe48b7f9325da2ad8a0f8241b6c93c",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/c7861932eb8cceda366f29e3a1977e77f82112d5.map",
-      "size": 133004,
-      "hash": "c7861932eb8cceda366f29e3a1977e77f82112d5"
+      "sourceMapUrl": "/app/ca1166b89abe48b7f9325da2ad8a0f8241b6c93c.map",
+      "size": 227849,
+      "hash": "ca1166b89abe48b7f9325da2ad8a0f8241b6c93c"
     },
     {
       "path": "packages/mdg_validation-error.js",
@@ -802,11 +802,11 @@
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/merged-stylesheets.css?hash=1329f916f7464ff1dcfb1773b936360ebcfcb250",
+      "url": "/merged-stylesheets.css?hash=b2593457230178807e6d735e5124aa3fc23df7b8",
       "sourceMap": "merged-stylesheets.css.map",
-      "sourceMapUrl": "/1329f916f7464ff1dcfb1773b936360ebcfcb250.map",
-      "size": 192387,
-      "hash": "1329f916f7464ff1dcfb1773b936360ebcfcb250"
+      "sourceMapUrl": "/b2593457230178807e6d735e5124aa3fc23df7b8.map",
+      "size": 192867,
+      "hash": "b2593457230178807e6d735e5124aa3fc23df7b8"
     },
     {
       "path": "packages/twbs_bootstrap/dist/fonts/glyphicons-halflings-regular.eot",
@@ -908,28 +908,37 @@
       "hash": "42c179eef588854b5ec151bcf6a3f58aa8b79b11"
     },
     {
-      "path": "app/imgs/bg_india.png",
+      "path": "app/img/bg_india.png",
       "where": "client",
       "type": "asset",
       "cacheable": false,
-      "url": "/imgs/bg_india.png",
+      "url": "/img/bg_india.png",
       "size": 19189,
       "hash": "6d35a6022cf5db2bc6a83aac5f30119cdd321ed6"
     },
     {
-      "path": "app/imgs/bg_paper.png",
+      "path": "app/img/bg_paper.png",
       "where": "client",
       "type": "asset",
       "cacheable": false,
-      "url": "/imgs/bg_paper.png",
+      "url": "/img/bg_paper.png",
       "size": 33145,
       "hash": "bc338e270da39d833d1e430970df7ba09cba096b"
+    },
+    {
+      "path": "app/svg/spin.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/svg/spin.svg",
+      "size": 3060,
+      "hash": "81ca47ab64da75d6bbc5f1b6215e2757f8750837"
     },
     {
       "path": "head.html",
       "where": "internal",
       "type": "head",
-      "hash": "8dc6d193e35c0c12a7881c9ac34fe7773b44011a"
+      "hash": "848f9015ab94cd6e047e17678bcbd18e2c5bcfca"
     }
   ]
 }

@@ -1,0 +1,16 @@
+<template name="navTrainer">
+	<br>
+	<br>
+	<div class="container">
+		<div class="row text-center">
+			<div class="btn-group btn-group-justified" role="group" aria-label="Large button group">
+				<a class="btn btn-lg btn-default {{isActiveRoute regex='trainerLesen'}}" href="{{pathFor 'trainerLesen'}}">Lesen</a>
+				<a class="btn btn-lg btn-default {{isActiveRoute regex='trainerEingabe'}}" href="{{pathFor 'trainerEingabe'}}">Eingabe</a>
+				<a class="btn btn-lg btn-default {{isActiveRoute regex='trainerWort'}}" href="{{pathFor 'trainerWort'}}">Wort</a>
+				<a class="btn btn-lg btn-default {{isActiveRoute regex='trainerBedeutung'}}" href="{{pathFor 'trainerBedeutung'}}">Bedeutung</a>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</template>
