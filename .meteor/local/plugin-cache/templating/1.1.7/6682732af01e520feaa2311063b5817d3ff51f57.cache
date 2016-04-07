@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"vokabelTrainer\");\nTemplate[\"vokabelTrainer\"] = new Template(\"Template.vokabelTrainer\", (function() {\n  var view = this;\n  return Blaze.View(\"lookup:term\", function() {\n    return Spacebars.mustache(view.lookup(\"term\"));\n  });\n}));\n","bodyAttrs":{}}

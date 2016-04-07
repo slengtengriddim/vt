@@ -2,7 +2,6 @@
 
 	<div class="container">
 		<div class="media">
-
 			{{#if lengthIsOne}}
 			<div class="media-left media-middle">
 				<i class="fa fa-ban fa-4x"></i>
@@ -15,9 +14,11 @@
 
 			<div class="media-body">
 				{{#if Template.subscriptionsReady}}
-				<div class="jumbotron">
 					{{#with entry}}
-					<h2>{{ term }} {{#if lengthIsOne}}<span class="label label-info">Letzter Eintrag</span>{{/if}}
+
+					<div class="jumbotron">
+						{{#if lengthIsOne}}<span class="label label-warning">Letzter Eintrag</span>{{/if}}
+						<h2>{{ term }}
 						{{#if getSession "randomFavourites"}}
 							<div class="btn-delete">
 								<i class="fa fa-trash-o fa-2x"></i>
@@ -31,15 +32,18 @@
 								{{/if}}
 							</div>
 						{{/if}}
-				</h2>
-					<h3>
+						</h2>
+
+						<hr>
+
+						<h3>
 						<ol>
 							<li>{{ description }}</li>
 						</ol>
 					</h3>
-					<hr>
-				{{/with}}
-				</div>
+					</div>
+
+					{{/with}}
 				{{else}}
 					{{> loading}}
 				{{/if}}
@@ -55,13 +59,8 @@
 			</div>
 			{{/if}}
 		</div>
-		<p>
-			countViewed: {{ countViewed }}
-		</p>
-		<p>
-			mod: {{ mod }}
-		</p>
-
 	</div>
+
 	<br>
+
 </template>

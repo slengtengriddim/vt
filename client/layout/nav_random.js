@@ -8,6 +8,10 @@ Template.navRandom.events({
 			let val = (Session.get(COUNT_VIEWED)) % Session.get(LENGTH_FAV);
 			Session.set('countViewed', val);
 		}
+
+		if (Session.get(REVEALED)) {
+			Session.set(REVEALED, false);
+		}
 	},
 	'click .btn-not-favourites' () {
 		if (!Session.get(RANDOM_NOT_FAV) && Session.get(RANDOM_FAV)) {
@@ -15,6 +19,10 @@ Template.navRandom.events({
 			Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV))
 			let val = (Session.get(COUNT_VIEWED)) % Session.get(LENGTH_NOT_FAV);
 			Session.set('countViewed', val);
+		}
+
+		if (Session.get(REVEALED)) {
+			Session.set(REVEALED, false);
 		}
 	}
 });

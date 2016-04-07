@@ -13,7 +13,12 @@ checkAttentionModeOn = () => {
 }
 
 setTrainerPath = () => {
-	Session.set('lastPathTrainer', FlowRouter.current().route.path)
+	Session.set(LAST_PATH_TRAINER, FlowRouter.current().route.path)
+}
+
+resetSession = () => {
+	Session.set(REVEALED, false);
+	Session.set(TERM_WRONG, false);
 }
 
 FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);
@@ -34,7 +39,7 @@ let basicRoutes = FlowRouter.group({
 basicRoutes.trainerRoutes = FlowRouter.group({
 	name: "trainer",
 	triggersEnter: [setTrainerPath],
-	triggersExit: []
+	triggersExit: [resetSession]
 });
 
 // *** ROUTES

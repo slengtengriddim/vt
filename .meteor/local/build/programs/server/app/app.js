@@ -225,7 +225,7 @@ Meteor.startup(function () {                                                    
 })(this.Aux = {});                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
 
-},"validation.js":function(){
+},"validation.js":function(require,exports){
 
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
@@ -233,20 +233,22 @@ Meteor.startup(function () {                                                    
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
                                                                                     //
-isAlphabetic = function isAlphabetic(value) {                                       // 1
-  var filter = /^[A-Za-z\s]+$/;                                                     // 2
-  if (filter.test(value)) {                                                         // 3
-    return true;                                                                    // 4
-  }                                                                                 //
-  return false;                                                                     // 6
-};                                                                                  //
+(function (exports) {                                                               // 1
+	exports.isAlphabetic = function (value) {                                          // 2
+		var filter = /^[a-zA-Z]+$/;                                                       // 3
+		if (filter.test(value)) {                                                         // 4
+			return true;                                                                     // 5
+		}                                                                                 //
+		return false;                                                                     // 7
+	};                                                                                 //
                                                                                     //
-isLength64 = function isLength64(value) {                                           // 9
-  if (value.length < 65) {                                                          // 10
-    return true;                                                                    // 11
-  }                                                                                 //
-  return false;                                                                     // 13
-};                                                                                  //
+	exports.isLength64 = function (value) {                                            // 10
+		if (value.length < 65) {                                                          // 11
+			return true;                                                                     // 12
+		}                                                                                 //
+		return false;                                                                     // 14
+	};                                                                                 //
+})(this.Validate = {});                                                             //
 //////////////////////////////////////////////////////////////////////////////////////
 
 }},"collections":{"favourites.js":function(){
@@ -509,158 +511,133 @@ checkAttentionModeOn = function checkAttentionModeOn() {                        
 };                                                                                  //
                                                                                     //
 setTrainerPath = function setTrainerPath() {                                        // 15
-	Session.set('lastPathTrainer', FlowRouter.current().route.path);                   // 16
+	Session.set(LAST_PATH_TRAINER, FlowRouter.current().route.path);                   // 16
 };                                                                                  //
                                                                                     //
-FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                      // 19
+resetSession = function resetSession() {                                            // 19
+	Session.set(REVEALED, false);                                                      // 20
+	Session.set(TERM_WRONG, false);                                                    // 21
+};                                                                                  //
+                                                                                    //
+FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                      // 24
                                                                                     //
 // *** ROUTE GROUPS                                                                 //
                                                                                     //
-var lowRoutes = FlowRouter.group({                                                  // 23
-	name: "low",                                                                       // 24
-	triggersEnter: [checkAttentionModeOn],                                             // 25
-	triggersExit: []                                                                   // 26
-});                                                                                 //
-var basicRoutes = FlowRouter.group({                                                // 28
-	name: "basic",                                                                     // 29
-	triggersEnter: [checkAttentionModeOff],                                            // 30
+var lowRoutes = FlowRouter.group({                                                  // 28
+	name: "low",                                                                       // 29
+	triggersEnter: [checkAttentionModeOn],                                             // 30
 	triggersExit: []                                                                   // 31
 });                                                                                 //
+var basicRoutes = FlowRouter.group({                                                // 33
+	name: "basic",                                                                     // 34
+	triggersEnter: [checkAttentionModeOff],                                            // 35
+	triggersExit: []                                                                   // 36
+});                                                                                 //
                                                                                     //
-basicRoutes.trainerRoutes = FlowRouter.group({                                      // 34
-	name: "trainer",                                                                   // 35
-	triggersEnter: [setTrainerPath],                                                   // 36
-	triggersExit: []                                                                   // 37
+basicRoutes.trainerRoutes = FlowRouter.group({                                      // 39
+	name: "trainer",                                                                   // 40
+	triggersEnter: [setTrainerPath],                                                   // 41
+	triggersExit: [resetSession]                                                       // 42
 });                                                                                 //
                                                                                     //
 // *** ROUTES                                                                       //
                                                                                     //
-basicRoutes.route('/', {                                                            // 42
-	name: "index",                                                                     // 43
-	action: function () {                                                              // 44
-		function action(params, queryParams) {                                            // 44
-			BlazeLayout.render('layoutBasic', {                                              // 45
-				bar: "bar",                                                                     // 46
-				nav: "nav",                                                                     // 47
-				main: "index"                                                                   // 48
+basicRoutes.route('/', {                                                            // 47
+	name: "index",                                                                     // 48
+	action: function () {                                                              // 49
+		function action(params, queryParams) {                                            // 49
+			BlazeLayout.render('layoutBasic', {                                              // 50
+				bar: "bar",                                                                     // 51
+				nav: "nav",                                                                     // 52
+				main: "index"                                                                   // 53
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.route('/favouriten', {                                                  // 52
-	name: "favouriten",                                                                // 53
-	action: function () {                                                              // 54
-		function action(params, queryParams) {                                            // 54
-			BlazeLayout.render('layoutBasic', {                                              // 55
-				bar: "bar",                                                                     // 56
-				nav: "nav",                                                                     // 57
-				main: "favouriten"                                                              // 58
+basicRoutes.route('/favouriten', {                                                  // 57
+	name: "favouriten",                                                                // 58
+	action: function () {                                                              // 59
+		function action(params, queryParams) {                                            // 59
+			BlazeLayout.render('layoutBasic', {                                              // 60
+				bar: "bar",                                                                     // 61
+				nav: "nav",                                                                     // 62
+				main: "favouriten"                                                              // 63
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.route('/trainer', {                                                     // 62
-	name: "trainer",                                                                   // 63
-	action: function () {                                                              // 64
-		function action(params, queryParams) {                                            // 64
-			FlowRouter.go(Session.get('lastPathTrainer'));                                   // 65
+basicRoutes.route('/trainer', {                                                     // 67
+	name: "trainer",                                                                   // 68
+	action: function () {                                                              // 69
+		function action(params, queryParams) {                                            // 69
+			FlowRouter.go(Session.get('lastPathTrainer'));                                   // 70
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/lesen', {                                 // 68
-	name: "trainerLesen",                                                              // 69
-	action: function () {                                                              // 70
-		function action(params, queryParams) {                                            // 70
-			BlazeLayout.render('layoutTrainer', {                                            // 71
-				bar: "bar",                                                                     // 72
-				nav: "nav",                                                                     // 73
-				navTrainer: "navTrainer",                                                       // 74
-				main: "trainerLesen",                                                           // 75
-				navRandom: "navRandom"                                                          // 76
+basicRoutes.trainerRoutes.route('/trainer/lesen', {                                 // 73
+	name: "trainerLesen",                                                              // 74
+	action: function () {                                                              // 75
+		function action(params, queryParams) {                                            // 75
+			BlazeLayout.render('layoutTrainer', {                                            // 76
+				bar: "bar",                                                                     // 77
+				nav: "nav",                                                                     // 78
+				navTrainer: "navTrainer",                                                       // 79
+				main: "trainerLesen",                                                           // 80
+				navRandom: "navRandom"                                                          // 81
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/eingabe', {                               // 80
-	name: "trainerEingabe",                                                            // 81
-	action: function () {                                                              // 82
-		function action(params, queryParams) {                                            // 82
-			BlazeLayout.render('layoutTrainer', {                                            // 83
-				bar: "bar",                                                                     // 84
-				nav: "nav",                                                                     // 85
-				navTrainer: "navTrainer",                                                       // 86
-				main: "trainerEingabe",                                                         // 87
-				navRandom: "navRandom"                                                          // 88
+basicRoutes.trainerRoutes.route('/trainer/eingabe', {                               // 85
+	name: "trainerEingabe",                                                            // 86
+	action: function () {                                                              // 87
+		function action(params, queryParams) {                                            // 87
+			BlazeLayout.render('layoutTrainer', {                                            // 88
+				bar: "bar",                                                                     // 89
+				nav: "nav",                                                                     // 90
+				navTrainer: "navTrainer",                                                       // 91
+				main: "trainerEingabe",                                                         // 92
+				navRandom: "navRandom"                                                          // 93
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/wort', {                                  // 92
-	name: "trainerWort",                                                               // 93
-	action: function () {                                                              // 94
-		function action(params, queryParams) {                                            // 94
-			BlazeLayout.render('layoutTrainer', {                                            // 95
-				bar: "bar",                                                                     // 96
-				nav: "nav",                                                                     // 97
-				navTrainer: "navTrainer",                                                       // 98
-				main: "trainerWort",                                                            // 99
-				navRandom: "navRandom"                                                          // 100
+basicRoutes.trainerRoutes.route('/trainer/wort', {                                  // 97
+	name: "trainerWort",                                                               // 98
+	action: function () {                                                              // 99
+		function action(params, queryParams) {                                            // 99
+			BlazeLayout.render('layoutTrainer', {                                            // 100
+				bar: "bar",                                                                     // 101
+				nav: "nav",                                                                     // 102
+				navTrainer: "navTrainer",                                                       // 103
+				main: "trainerWort",                                                            // 104
+				navRandom: "navRandom"                                                          // 105
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/bedeutung', {                             // 104
-	name: "trainerBedeutung",                                                          // 105
-	action: function () {                                                              // 106
-		function action(params, queryParams) {                                            // 106
-			BlazeLayout.render('layoutTrainer', {                                            // 107
-				bar: "bar",                                                                     // 108
-				nav: "nav",                                                                     // 109
-				navTrainer: "navTrainer",                                                       // 110
-				main: "trainerBedeutung",                                                       // 111
-				navRandom: "navRandom"                                                          // 112
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-                                                                                    //
-basicRoutes.route('/vokabelregister', {                                             // 117
-	name: "vokabelregister",                                                           // 118
-	action: function () {                                                              // 119
-		function action(params, queryParams) {                                            // 119
-			BlazeLayout.render('layoutBasic', {                                              // 120
-				bar: "bar",                                                                     // 121
-				nav: "nav",                                                                     // 122
-				main: "vokabelregister"                                                         // 123
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-basicRoutes.route('/vokabelregister/:id', {                                         // 127
-	name: "vokabelDetail",                                                             // 128
-	action: function () {                                                              // 129
-		function action(params, queryParams) {                                            // 129
-			console.log(params);                                                             // 130
-			BlazeLayout.render('layoutBasic', {                                              // 131
-				bar: "bar",                                                                     // 132
-				nav: "nav",                                                                     // 133
-				main: "vokabelDetail"                                                           // 134
+basicRoutes.trainerRoutes.route('/trainer/bedeutung', {                             // 109
+	name: "trainerBedeutung",                                                          // 110
+	action: function () {                                                              // 111
+		function action(params, queryParams) {                                            // 111
+			BlazeLayout.render('layoutTrainer', {                                            // 112
+				bar: "bar",                                                                     // 113
+				nav: "nav",                                                                     // 114
+				navTrainer: "navTrainer",                                                       // 115
+				main: "trainerBedeutung",                                                       // 116
+				navRandom: "navRandom"                                                          // 117
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -668,27 +645,57 @@ basicRoutes.route('/vokabelregister/:id', {                                     
 	}()                                                                                //
 });                                                                                 //
                                                                                     //
-lowRoutes.route('/low', {                                                           // 140
-	name: "indexLow",                                                                  // 141
-	action: function () {                                                              // 142
-		function action(params, queryParams) {                                            // 142
-			BlazeLayout.render('layoutBasic', {                                              // 143
-				bar: "bar",                                                                     // 144
-				main: "indexLow"                                                                // 145
+basicRoutes.route('/vokabelregister', {                                             // 122
+	name: "vokabelregister",                                                           // 123
+	action: function () {                                                              // 124
+		function action(params, queryParams) {                                            // 124
+			BlazeLayout.render('layoutBasic', {                                              // 125
+				bar: "bar",                                                                     // 126
+				nav: "nav",                                                                     // 127
+				main: "vokabelregister"                                                         // 128
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return action;                                                                    //
+	}()                                                                                //
+});                                                                                 //
+basicRoutes.route('/vokabelregister/:id', {                                         // 132
+	name: "vokabelDetail",                                                             // 133
+	action: function () {                                                              // 134
+		function action(params, queryParams) {                                            // 134
+			console.log(params);                                                             // 135
+			BlazeLayout.render('layoutBasic', {                                              // 136
+				bar: "bar",                                                                     // 137
+				nav: "nav",                                                                     // 138
+				main: "vokabelDetail"                                                           // 139
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return action;                                                                    //
+	}()                                                                                //
+});                                                                                 //
+                                                                                    //
+lowRoutes.route('/low', {                                                           // 145
+	name: "indexLow",                                                                  // 146
+	action: function () {                                                              // 147
+		function action(params, queryParams) {                                            // 147
+			BlazeLayout.render('layoutBasic', {                                              // 148
+				bar: "bar",                                                                     // 149
+				main: "indexLow"                                                                // 150
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}(),                                                                               //
-	triggersEnter: [function (context, redirect) {}]                                   // 148
+	triggersEnter: [function (context, redirect) {}]                                   // 153
 });                                                                                 //
                                                                                     //
-FlowRouter.notFound = {                                                             // 151
-	action: function () {                                                              // 152
-		function action() {                                                               // 152
-			BlazeLayout.render('layoutSlim', {                                               // 153
-				footer: "footer",                                                               // 154
-				main: "pageNotFound"                                                            // 155
+FlowRouter.notFound = {                                                             // 156
+	action: function () {                                                              // 157
+		function action() {                                                               // 157
+			BlazeLayout.render('layoutSlim', {                                               // 158
+				footer: "footer",                                                               // 159
+				main: "pageNotFound"                                                            // 160
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -697,11 +704,11 @@ FlowRouter.notFound = {                                                         
 };                                                                                  //
                                                                                     //
 //Routes                                                                            //
-AccountsTemplates.configureRoute('changePwd');                                      // 162
+AccountsTemplates.configureRoute('changePwd');                                      // 167
 // AccountsTemplates.configureRoute('forgotPwd');                                   //
-AccountsTemplates.configureRoute('resetPwd');                                       // 164
-AccountsTemplates.configureRoute('signIn');                                         // 165
-AccountsTemplates.configureRoute('signUp');                                         // 166
+AccountsTemplates.configureRoute('resetPwd');                                       // 169
+AccountsTemplates.configureRoute('signIn');                                         // 170
+AccountsTemplates.configureRoute('signUp');                                         // 171
 // AccountsTemplates.configureRoute('verifyEmail');                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 

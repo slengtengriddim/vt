@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"modusBedeutung\");\nTemplate[\"modusBedeutung\"] = new Template(\"Template.modusBedeutung\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

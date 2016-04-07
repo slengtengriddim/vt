@@ -71,16 +71,16 @@ Template.search.helpers({
 
 Template.search.events({
 	'keyup [name="search"]' (event, template) {
-		let value = event.target.value.trim();
-
+		let value = event.target.value;
+console.log(value);
 		if (value !== '') {
 			// check if string is valid
-			if (isAlphabetic(value)) {
+			if (Validate.isAlphabetic(value)) {
 				template.isAlphabetic.set(true);
 			} else {
 				template.isAlphabetic.set(false);
 			}
-			if (isLength64(value)) {
+			if (Validate.isLength64(value)) {
 				template.isLength64.set(true);
 			} else {
 				template.isLength64.set(false);
@@ -104,7 +104,7 @@ Template.search.events({
 	'click .btn-fav' (event, template) {
 		Meteor.call('toggleFavourite', this._id);
 
-		// TODO DRY  
+		// TODO DRY
 		if (Favourites.find({
 				vocabularyId: this._id
 			}).count() === 0) {

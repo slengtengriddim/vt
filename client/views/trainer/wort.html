@@ -1,7 +1,43 @@
 <template name="trainerWort">
+
 	<div class="container">
-		<div class="row">
-			<h1>Wort</h1>
+		<div class="media">
+			{{#if lengthIsOne}}
+			<div class="media-left media-middle">
+				<i class="fa fa-ban fa-4x"></i>
+			</div>
+			{{else}}
+			<div class="media-left media-middle btn-backward">
+				<i class="fa fa-chevron-left fa-4x"></i>
+			</div>
+			{{/if}}
+
+			<div class="media-body">
+				{{#if Template.subscriptionsReady}}
+					{{#with entry}}
+						{{#if getSession 'termMode'}}
+							{{> modusWort}}
+						{{else}}
+							{{> modusBedeutung}}
+						{{/if}}
+					{{/with}}
+				{{else}}
+					{{> loading}}
+				{{/if}}
+			</div>
+
+			{{#if lengthIsOne}}
+			<div class="media-right media-middle">
+				<i class="fa fa-ban fa-4x"></i>
+			</div>
+			{{else}}
+			<div class="media-right media-middle btn-forward">
+				<i class="fa fa-chevron-right fa-4x"></i>
+			</div>
+			{{/if}}
 		</div>
 	</div>
+
+	<br>
+
 </template>
