@@ -22,6 +22,7 @@ FlowRouter = Package['kadira:flow-router'].FlowRouter;
 AutoForm = Package['aldeed:autoform'].AutoForm;
 FastClick = Package.fastclick.FastClick;
 R = Package['ramda:ramda'].R;
+nv = Package['nvd3:nvd3'].nv;
 Meteor = Package.meteor.Meteor;
 global = Package.meteor.global;
 meteorEnv = Package.meteor.meteorEnv;

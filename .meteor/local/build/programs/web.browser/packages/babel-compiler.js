@@ -7,9 +7,6 @@ var meteorEnv = Package.meteor.meteorEnv;
 var check = Package.check.check;
 var Match = Package.check.Match;
 
-/* Package-scope variables */
-var BabelCompiler, Babel;
-
 
 
 /* Exports */

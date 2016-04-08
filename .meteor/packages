@@ -47,4 +47,5 @@ ramda:ramda
 standard-minifier-css
 standard-minifier-js
 
-# bojicas:bootstrap-alerts
+d3js:d3
+nvd3:nvd3

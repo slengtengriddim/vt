@@ -13,6 +13,9 @@ Template.search.onCreated(() => {
 			}, 300);
 		});
 		template.subscribe('ownedFavourites');
+
+		Session.set(LENGTH_FAV, Favourites.find().count());
+		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());
 	});
 });
 

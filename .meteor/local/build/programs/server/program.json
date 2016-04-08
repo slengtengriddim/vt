@@ -304,6 +304,12 @@
       "path": "packages/standard-minifier-js.js"
     },
     {
+      "path": "packages/d3js_d3.js"
+    },
+    {
+      "path": "packages/nvd3_nvd3.js"
+    },
+    {
       "path": "packages/livedata.js"
     },
     {

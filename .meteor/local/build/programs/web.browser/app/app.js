@@ -935,81 +935,84 @@ Template.search.onCreated(function () {                                         
 			}, 300);                                                                                                            //
 		});                                                                                                                  //
 		template.subscribe('ownedFavourites');                                                                               // 15
+                                                                                                                       //
+		Session.set(LENGTH_FAV, Favourites.find().count());                                                                  // 17
+		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());                                  // 18
 	});                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.registerHelper("isFavourite", function (vocabularyId) {                                                       // 19
+Template.registerHelper("isFavourite", function (vocabularyId) {                                                       // 22
 	// console.log(vocabularyId);                                                                                         //
-	var favEntry = Favourites.findOne({                                                                                   // 21
-		vocabularyId: vocabularyId                                                                                           // 22
+	var favEntry = Favourites.findOne({                                                                                   // 24
+		vocabularyId: vocabularyId                                                                                           // 25
 	});                                                                                                                   //
-	if (favEntry) {                                                                                                       // 24
-		return true;                                                                                                         // 25
+	if (favEntry) {                                                                                                       // 27
+		return true;                                                                                                         // 28
 	}                                                                                                                     //
 });                                                                                                                    //
                                                                                                                        //
-Template.search.helpers({                                                                                              // 29
-	searching: function () {                                                                                              // 30
+Template.search.helpers({                                                                                              // 32
+	searching: function () {                                                                                              // 33
 		function searching() {                                                                                               //
-			return Template.instance().searching.get();                                                                         // 31
+			return Template.instance().searching.get();                                                                         // 34
 		}                                                                                                                    //
                                                                                                                        //
 		return searching;                                                                                                    //
 	}(),                                                                                                                  //
-	query: function () {                                                                                                  // 33
+	query: function () {                                                                                                  // 36
 		function query() {                                                                                                   //
-			return Template.instance().searchQuery.get();                                                                       // 34
+			return Template.instance().searchQuery.get();                                                                       // 37
 		}                                                                                                                    //
                                                                                                                        //
 		return query;                                                                                                        //
 	}(),                                                                                                                  //
-	isAlphabetic: function () {                                                                                           // 36
+	isAlphabetic: function () {                                                                                           // 39
 		function isAlphabetic() {                                                                                            //
-			return Template.instance().isAlphabetic.get();                                                                      // 37
+			return Template.instance().isAlphabetic.get();                                                                      // 40
 		}                                                                                                                    //
                                                                                                                        //
 		return isAlphabetic;                                                                                                 //
 	}(),                                                                                                                  //
-	isLength64: function () {                                                                                             // 39
+	isLength64: function () {                                                                                             // 42
 		function isLength64() {                                                                                              //
-			return Template.instance().isLength64.get();                                                                        // 40
+			return Template.instance().isLength64.get();                                                                        // 43
 		}                                                                                                                    //
                                                                                                                        //
 		return isLength64;                                                                                                   //
 	}(),                                                                                                                  //
-	vocabulary: function () {                                                                                             // 42
+	vocabulary: function () {                                                                                             // 45
 		function vocabulary() {                                                                                              //
 			// Sort and group entries by letter and create a new array of iterable objects for cascaded template iteration      //
-			var vocabularyIndexed = [];                                                                                         // 44
-			var alphabet = R.split('', 'abcdefghijklmnopqrstuvwxyz'.toUpperCase());                                             // 45
-			var regex = function () {                                                                                           // 46
-				function regex(letter) {                                                                                           // 46
+			var vocabularyIndexed = [];                                                                                         // 47
+			var alphabet = R.split('', 'abcdefghijklmnopqrstuvwxyz'.toUpperCase());                                             // 48
+			var regex = function () {                                                                                           // 49
+				function regex(letter) {                                                                                           // 49
 					return new RegExp("^" + letter, "i");                                                                             //
 				}                                                                                                                  //
                                                                                                                        //
 				return regex;                                                                                                      //
 			}();                                                                                                                //
                                                                                                                        //
-			alphabet.forEach(function (entry) {                                                                                 // 48
-				var array = Vocabulary.find({                                                                                      // 49
-					term: {                                                                                                           // 50
-						$in: [regex(entry)]                                                                                              // 51
+			alphabet.forEach(function (entry) {                                                                                 // 51
+				var array = Vocabulary.find({                                                                                      // 52
+					term: {                                                                                                           // 53
+						$in: [regex(entry)]                                                                                              // 54
 					}                                                                                                                 //
 				}, {                                                                                                               //
-					sort: {                                                                                                           // 54
-						term: 1                                                                                                          // 55
+					sort: {                                                                                                           // 57
+						term: 1                                                                                                          // 58
 					}                                                                                                                 //
 				});                                                                                                                //
-				if (array.count() !== 0) {                                                                                         // 58
-					vocabularyIndexed.push({                                                                                          // 59
-						'letter': entry,                                                                                                 // 60
-						'entries': array                                                                                                 // 61
+				if (array.count() !== 0) {                                                                                         // 61
+					vocabularyIndexed.push({                                                                                          // 62
+						'letter': entry,                                                                                                 // 63
+						'entries': array                                                                                                 // 64
 					});                                                                                                               //
 				}                                                                                                                  //
 			});                                                                                                                 //
                                                                                                                        //
-			if (vocabularyIndexed) {                                                                                            // 66
-				return vocabularyIndexed;                                                                                          // 67
+			if (vocabularyIndexed) {                                                                                            // 69
+				return vocabularyIndexed;                                                                                          // 70
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -1017,67 +1020,67 @@ Template.search.helpers({                                                       
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.search.events({                                                                                               // 72
-	'keyup [name="search"]': function () {                                                                                // 73
+Template.search.events({                                                                                               // 75
+	'keyup [name="search"]': function () {                                                                                // 76
 		function keyupNameSearch(event, template) {                                                                          //
-			var value = event.target.value;                                                                                     // 74
-			console.log(value);                                                                                                 // 75
-			if (value !== '') {                                                                                                 // 76
+			var value = event.target.value;                                                                                     // 77
+			console.log(value);                                                                                                 // 78
+			if (value !== '') {                                                                                                 // 79
 				// check if string is valid                                                                                        //
-				if (Validate.isAlphabetic(value)) {                                                                                // 78
-					template.isAlphabetic.set(true);                                                                                  // 79
+				if (Validate.isAlphabetic(value)) {                                                                                // 81
+					template.isAlphabetic.set(true);                                                                                  // 82
 				} else {                                                                                                           //
-					template.isAlphabetic.set(false);                                                                                 // 81
+					template.isAlphabetic.set(false);                                                                                 // 84
 				}                                                                                                                  //
-				if (Validate.isLength64(value)) {                                                                                  // 83
-					template.isLength64.set(true);                                                                                    // 84
+				if (Validate.isLength64(value)) {                                                                                  // 86
+					template.isLength64.set(true);                                                                                    // 87
 				} else {                                                                                                           //
-					template.isLength64.set(false);                                                                                   // 86
+					template.isLength64.set(false);                                                                                   // 89
 				}                                                                                                                  //
 			}                                                                                                                   //
                                                                                                                        //
-			if (value !== '' && event.keyCode === 13) {                                                                         // 90
-				if (template.isAlphabetic.get() && template.isLength64.get()) {                                                    // 91
-					template.searchQuery.set(value);                                                                                  // 92
-					template.searching.set(true);                                                                                     // 93
+			if (value !== '' && event.keyCode === 13) {                                                                         // 93
+				if (template.isAlphabetic.get() && template.isLength64.get()) {                                                    // 94
+					template.searchQuery.set(value);                                                                                  // 95
+					template.searching.set(true);                                                                                     // 96
 				}                                                                                                                  //
 			}                                                                                                                   //
                                                                                                                        //
-			if (value === '') {                                                                                                 // 97
-				template.searchQuery.set(value);                                                                                   // 98
-				template.isAlphabetic.set(true);                                                                                   // 99
-				template.isLength64.set(true);                                                                                     // 100
+			if (value === '') {                                                                                                 // 100
+				template.searchQuery.set(value);                                                                                   // 101
+				template.isAlphabetic.set(true);                                                                                   // 102
+				template.isLength64.set(true);                                                                                     // 103
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return keyupNameSearch;                                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-fav': function () {                                                                                       // 104
+	'click .btn-fav': function () {                                                                                       // 107
 		function clickBtnFav(event, template) {                                                                              //
-			Meteor.call('toggleFavourite', this._id);                                                                           // 105
+			Meteor.call('toggleFavourite', this._id);                                                                           // 108
                                                                                                                        //
 			// TODO DRY                                                                                                         //
-			if (Favourites.find({                                                                                               // 104
-				vocabularyId: this._id                                                                                             // 109
+			if (Favourites.find({                                                                                               // 107
+				vocabularyId: this._id                                                                                             // 112
 			}).count() === 0) {                                                                                                 //
 				// add to favourites                                                                                               //
-				if (Session.get(RANDOM_NOT_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                 // 112
-					var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                          // 113
-					Session.set(COUNT_VIEWED, val);                                                                                   // 114
+				if (Session.get(RANDOM_NOT_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                 // 115
+					var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                          // 116
+					Session.set(COUNT_VIEWED, val);                                                                                   // 117
 				}                                                                                                                  //
-				if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                           // 116
-					Session.set(RANDOM_FAV, true);                                                                                    // 117
-					Session.set(RANDOM_NOT_FAV, false);                                                                               // 118
+				if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                           // 119
+					Session.set(RANDOM_FAV, true);                                                                                    // 120
+					Session.set(RANDOM_NOT_FAV, false);                                                                               // 121
 				}                                                                                                                  //
 			} else {                                                                                                            //
 				// remove from favourites                                                                                          //
-				if (Session.get(RANDOM_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                         // 122
-					var _val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                             // 123
-					Session.set(COUNT_VIEWED, _val);                                                                                  // 124
+				if (Session.get(RANDOM_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                         // 125
+					var _val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                             // 126
+					Session.set(COUNT_VIEWED, _val);                                                                                  // 127
 				}                                                                                                                  //
-				if (Session.get(LENGTH_FAV) === 1) {                                                                               // 126
-					Session.set(RANDOM_FAV, false);                                                                                   // 127
-					Session.set(RANDOM_NOT_FAV, true);                                                                                // 128
+				if (Session.get(LENGTH_FAV) === 1) {                                                                               // 129
+					Session.set(RANDOM_FAV, false);                                                                                   // 130
+					Session.set(RANDOM_NOT_FAV, true);                                                                                // 131
 				}                                                                                                                  //
 			}                                                                                                                   //
 		}                                                                                                                    //

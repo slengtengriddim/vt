@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"vokabelregister\");\nTemplate[\"vokabelregister\"] = new Template(\"Template.vokabelregister\", (function() {\n  var view = this;\n  return HTML.DIV({\n    \"class\": \"container\"\n  }, \"\\n\\n    \", Spacebars.include(view.lookupTemplate(\"search\")), \"\\n\\n  \");\n}));\n","bodyAttrs":{}}
