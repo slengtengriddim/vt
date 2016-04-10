@@ -17,7 +17,7 @@
 					{{#with entry}}
 
 					<div class="jumbotron">
-						{{#if lengthIsOne}}<span class="label label-warning">Letzter Eintrag</span>{{/if}}
+						{{#if lengthIsOne}}<span class="label label-warning">Letzter Eintrag in {{#if getSession "randomFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
 						<h2>{{ term }}
 						{{#if getSession "randomFavourites"}}
 							<div class="btn-delete">

@@ -35,8 +35,8 @@ Template.trainerEingabe.events({
 		}
 
 		// TODO exclude spaces
-
-		if (value !== '' && event.keyCode === 13) {
+// && event.keyCode === 13
+		if (value !== '') {
 			if (template.isAlphabetic.get() && template.isLength64.get()) {
 				let term = this.term.toLowerCase();
 
@@ -91,6 +91,13 @@ Template.trainerEingabe.events({
 		if (value === '') {
 			template.isAlphabetic.set(true);
 			template.isLength64.set(true);
+
+			let cheese = '';
+			while (cheese.length < this.term.length) {
+				cheese = R.append('_', cheese);
+			}
+			cheese = R.join(' ', cheese);
+			Session.set(TERM_CACHE, cheese);
 		}
 	}
 });

@@ -499,54 +499,60 @@ Template["trainerLesen"] = new Template("Template.trainerLesen", (function() {  
       }, function() {                                                                                                  // 35
         return HTML.SPAN({                                                                                             // 36
           "class": "label label-warning"                                                                               // 37
-        }, "Letzter Eintrag");                                                                                         // 38
-      }), "\n						", HTML.H2(Blaze.View("lookup:term", function() {                                                   // 39
-        return Spacebars.mustache(view.lookup("term"));                                                                // 40
-      }), "\n						", Blaze.If(function() {                                                                            // 41
-        return Spacebars.dataMustache(view.lookup("getSession"), "randomFavourites");                                  // 42
-      }, function() {                                                                                                  // 43
-        return [ "\n							", HTML.DIV({                                                                               // 44
-          "class": "btn-delete"                                                                                        // 45
-        }, "\n								", HTML.I({                                                                                      // 46
-          "class": "fa fa-trash-o fa-2x"                                                                               // 47
-        }), "\n							"), "\n						" ];                                                                                // 48
+        }, "Letzter Eintrag in ", Blaze.If(function() {                                                                // 38
+          return Spacebars.dataMustache(view.lookup("getSession"), "randomFavourites");                                // 39
+        }, function() {                                                                                                // 40
+          return "Favoriten";                                                                                          // 41
+        }, function() {                                                                                                // 42
+          return "Nicht-Favoriten";                                                                                    // 43
+        }));                                                                                                           // 44
+      }), "\n						", HTML.H2(Blaze.View("lookup:term", function() {                                                   // 45
+        return Spacebars.mustache(view.lookup("term"));                                                                // 46
+      }), "\n						", Blaze.If(function() {                                                                            // 47
+        return Spacebars.dataMustache(view.lookup("getSession"), "randomFavourites");                                  // 48
       }, function() {                                                                                                  // 49
         return [ "\n							", HTML.DIV({                                                                               // 50
-          "class": "btn-fav"                                                                                           // 51
-        }, "\n								", Blaze.If(function() {                                                                         // 52
-          return Spacebars.dataMustache(view.lookup("isFavourite"), Spacebars.dot(view.lookup("."), "_id"));           // 53
-        }, function() {                                                                                                // 54
-          return [ "\n									", HTML.I({                                                                             // 55
-            "class": "fa fa-heart fa-2x"                                                                               // 56
-          }), "\n									" ];                                                                                         // 57
-        }, function() {                                                                                                // 58
-          return [ "\n									", HTML.I({                                                                             // 59
-            "class": "fa fa-heart-o fa-2x"                                                                             // 60
-          }), "\n								" ];                                                                                          // 61
-        }), "\n							"), "\n						" ];                                                                                // 62
+          "class": "btn-delete"                                                                                        // 51
+        }, "\n								", HTML.I({                                                                                      // 52
+          "class": "fa fa-trash-o fa-2x"                                                                               // 53
+        }), "\n							"), "\n						" ];                                                                                // 54
+      }, function() {                                                                                                  // 55
+        return [ "\n							", HTML.DIV({                                                                               // 56
+          "class": "btn-fav"                                                                                           // 57
+        }, "\n								", Blaze.If(function() {                                                                         // 58
+          return Spacebars.dataMustache(view.lookup("isFavourite"), Spacebars.dot(view.lookup("."), "_id"));           // 59
+        }, function() {                                                                                                // 60
+          return [ "\n									", HTML.I({                                                                             // 61
+            "class": "fa fa-heart fa-2x"                                                                               // 62
+          }), "\n									" ];                                                                                         // 63
+        }, function() {                                                                                                // 64
+          return [ "\n									", HTML.I({                                                                             // 65
+            "class": "fa fa-heart-o fa-2x"                                                                             // 66
+          }), "\n								" ];                                                                                          // 67
+        }), "\n							"), "\n						" ];                                                                                // 68
       }), "\n						"), "\n\n						", HTML.HR(), "\n\n						", HTML.H3("\n						", HTML.OL("\n							", HTML.LI(Blaze.View("lookup:description", function() {
-        return Spacebars.mustache(view.lookup("description"));                                                         // 64
-      })), "\n						"), "\n					"), "\n					"), "\n\n					" ];                                                         // 65
-    }), "\n				" ];                                                                                                    // 66
-  }, function() {                                                                                                      // 67
-    return [ "\n					", Spacebars.include(view.lookupTemplate("loading")), "\n				" ];                                 // 68
-  }), "\n			"), "\n\n			", Blaze.If(function() {                                                                       // 69
-    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 70
-  }, function() {                                                                                                      // 71
-    return [ "\n			", HTML.DIV({                                                                                       // 72
-      "class": "media-right media-middle"                                                                              // 73
-    }, "\n				", HTML.I({                                                                                              // 74
-      "class": "fa fa-ban fa-4x"                                                                                       // 75
-    }), "\n			"), "\n			" ];                                                                                           // 76
+        return Spacebars.mustache(view.lookup("description"));                                                         // 70
+      })), "\n						"), "\n					"), "\n					"), "\n\n					" ];                                                         // 71
+    }), "\n				" ];                                                                                                    // 72
+  }, function() {                                                                                                      // 73
+    return [ "\n					", Spacebars.include(view.lookupTemplate("loading")), "\n				" ];                                 // 74
+  }), "\n			"), "\n\n			", Blaze.If(function() {                                                                       // 75
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 76
   }, function() {                                                                                                      // 77
     return [ "\n			", HTML.DIV({                                                                                       // 78
-      "class": "media-right media-middle btn-forward"                                                                  // 79
+      "class": "media-right media-middle"                                                                              // 79
     }, "\n				", HTML.I({                                                                                              // 80
-      "class": "fa fa-chevron-right fa-4x"                                                                             // 81
+      "class": "fa fa-ban fa-4x"                                                                                       // 81
     }), "\n			"), "\n			" ];                                                                                           // 82
-  }), "\n		"), "\n	"), HTML.Raw("\n\n	<br>") ];                                                                        // 83
-}));                                                                                                                   // 84
-                                                                                                                       // 85
+  }, function() {                                                                                                      // 83
+    return [ "\n			", HTML.DIV({                                                                                       // 84
+      "class": "media-right media-middle btn-forward"                                                                  // 85
+    }, "\n				", HTML.I({                                                                                              // 86
+      "class": "fa fa-chevron-right fa-4x"                                                                             // 87
+    }), "\n			"), "\n			" ];                                                                                           // 88
+  }), "\n		"), "\n	"), HTML.Raw("\n\n	<br>") ];                                                                        // 89
+}));                                                                                                                   // 90
+                                                                                                                       // 91
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"wort.html":function(){
@@ -674,8 +680,8 @@ Template.trainerEingabe.events({                                                
 			}                                                                                                                   //
                                                                                                                        //
 			// TODO exclude spaces                                                                                              //
-                                                                                                                       //
-			if (value !== '' && event.keyCode === 13) {                                                                         // 20
+			// && event.keyCode === 13                                                                                          //
+			if (value !== '') {                                                                                                 // 20
 				if (template.isAlphabetic.get() && template.isLength64.get()) {                                                    // 40
 					var term = this.term.toLowerCase();                                                                               // 41
                                                                                                                        //
@@ -732,6 +738,13 @@ Template.trainerEingabe.events({                                                
 			if (value === '') {                                                                                                 // 91
 				template.isAlphabetic.set(true);                                                                                   // 92
 				template.isLength64.set(true);                                                                                     // 93
+                                                                                                                       //
+				var _cheese = '';                                                                                                  // 95
+				while (_cheese.length < this.term.length) {                                                                        // 96
+					_cheese = R.append('_', _cheese);                                                                                 // 97
+				}                                                                                                                  //
+				_cheese = R.join(' ', _cheese);                                                                                    // 99
+				Session.set(TERM_CACHE, _cheese);                                                                                  // 100
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -1441,43 +1454,39 @@ Template["navRandom"] = new Template("Template.navRandom", (function() {        
         }), " btn-lg btn-favourites" ];                                                                                // 27
       }                                                                                                                // 28
     }, "\n						", HTML.I({                                                                                            // 29
-      "class": "fa fa-random fa-2x"                                                                                    // 30
-    }), " ", HTML.I({                                                                                                  // 31
-      "class": "fa fa-heart fa-2x"                                                                                     // 32
-    }), "\n						", HTML.P("\n							Zufaelliger Favorit ", HTML.SPAN({                                                // 33
-      "class": "label label-default"                                                                                   // 34
-    }, Blaze.View("lookup:lengthFav", function() {                                                                     // 35
-      return Spacebars.mustache(view.lookup("lengthFav"));                                                             // 36
-    })), "\n						"), "\n					"), "\n				"), "\n				" ];                                                               // 37
-  }), "\n				", Blaze.If(function() {                                                                                  // 38
-    return Spacebars.call(view.lookup("lengthNotFav"));                                                                // 39
-  }, function() {                                                                                                      // 40
-    return [ "\n				", HTML.DIV({                                                                                      // 41
-      "class": "btn-group",                                                                                            // 42
-      role: "group"                                                                                                    // 43
-    }, "\n					", HTML.BUTTON({                                                                                        // 44
-      type: "button",                                                                                                  // 45
-      "class": function() {                                                                                            // 46
-        return [ "btn ", Blaze.Unless(function() {                                                                     // 47
-          return Spacebars.dataMustache(view.lookup("getSession"), "randomFavourites");                                // 48
+      "class": "fa fa-heart fa-2x"                                                                                     // 30
+    }), "\n						", HTML.P("\n							Woerter aus Favoriten ", HTML.SPAN({                                              // 31
+      "class": "label label-default"                                                                                   // 32
+    }, Blaze.View("lookup:lengthFav", function() {                                                                     // 33
+      return Spacebars.mustache(view.lookup("lengthFav"));                                                             // 34
+    })), "\n						"), "\n					"), "\n				"), "\n				" ];                                                               // 35
+  }), "\n				", Blaze.If(function() {                                                                                  // 36
+    return Spacebars.call(view.lookup("lengthNotFav"));                                                                // 37
+  }, function() {                                                                                                      // 38
+    return [ "\n				", HTML.DIV({                                                                                      // 39
+      "class": "btn-group",                                                                                            // 40
+      role: "group"                                                                                                    // 41
+    }, "\n					", HTML.BUTTON({                                                                                        // 42
+      type: "button",                                                                                                  // 43
+      "class": function() {                                                                                            // 44
+        return [ "btn ", Blaze.Unless(function() {                                                                     // 45
+          return Spacebars.dataMustache(view.lookup("getSession"), "randomFavourites");                                // 46
+        }, function() {                                                                                                // 47
+          return "btn-success";                                                                                        // 48
         }, function() {                                                                                                // 49
-          return "btn-success";                                                                                        // 50
-        }, function() {                                                                                                // 51
-          return "btn-default";                                                                                        // 52
-        }), " btn-lg  btn-not-favourites" ];                                                                           // 53
-      }                                                                                                                // 54
-    }, "\n						", HTML.I({                                                                                            // 55
-      "class": "fa fa-random fa-2x"                                                                                    // 56
-    }), " ", HTML.I({                                                                                                  // 57
-      "class": "fa fa-list fa-2x"                                                                                      // 58
-    }), "\n						", HTML.P("\n							Zufaelliger Registereintrag ", HTML.SPAN({                                        // 59
-      "class": "label label-default"                                                                                   // 60
-    }, Blaze.View("lookup:lengthNotFav", function() {                                                                  // 61
-      return Spacebars.mustache(view.lookup("lengthNotFav"));                                                          // 62
-    })), "\n						"), "\n					"), "\n				"), "\n				" ];                                                               // 63
-  }), "\n			"), "\n		"), "\n	");                                                                                       // 64
-}));                                                                                                                   // 65
-                                                                                                                       // 66
+          return "btn-default";                                                                                        // 50
+        }), " btn-lg  btn-not-favourites" ];                                                                           // 51
+      }                                                                                                                // 52
+    }, "\n						", HTML.I({                                                                                            // 53
+      "class": "fa fa-list fa-2x"                                                                                      // 54
+    }), "\n						", HTML.P("\n							Woerter aus Nicht-Favouriten ", HTML.SPAN({                                       // 55
+      "class": "label label-default"                                                                                   // 56
+    }, Blaze.View("lookup:lengthNotFav", function() {                                                                  // 57
+      return Spacebars.mustache(view.lookup("lengthNotFav"));                                                          // 58
+    })), "\n						"), "\n					"), "\n				"), "\n				" ];                                                               // 59
+  }), "\n			"), "\n		"), "\n	");                                                                                       // 60
+}));                                                                                                                   // 61
+                                                                                                                       // 62
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nav_trainer.html":function(){
@@ -1509,7 +1518,7 @@ Template["navTrainer"] = new Template("Template.navTrainer", (function() {      
     href: function() {                                                                                                 // 19
       return Spacebars.mustache(view.lookup("pathFor"), "trainerLesen");                                               // 20
     }                                                                                                                  // 21
-  }, "Lesen"), "\n				", HTML.A({                                                                                      // 22
+  }, HTML.Raw("Lesen &amp; Aussuchen")), "\n				", HTML.A({                                                            // 22
     "class": function() {                                                                                              // 23
       return [ "btn btn-lg btn-default ", Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({              // 24
         regex: "trainerEingabe"                                                                                        // 25
@@ -1679,101 +1688,107 @@ Template.layoutTrainer.events({                                                 
 			if (!Session.get(REVEALED)) {                                                                                       // 10
 				Session.set(REVEALED, true);                                                                                       // 11
 			}                                                                                                                   //
+			if (document.getElementById("term").disabled === false) {                                                           // 13
+				document.getElementById("term").disabled = true;                                                                   // 14
+			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnReveal;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-switch': function () {                                                                                    // 15
+	'click .btn-switch': function () {                                                                                    // 18
 		function clickBtnSwitch(event, template) {                                                                           //
-			var oldValue = Session.get(TERM_MODE) || false;                                                                     // 16
-			Session.set(TERM_MODE, !oldValue);                                                                                  // 17
+			var oldValue = Session.get(TERM_MODE) || false;                                                                     // 19
+			Session.set(TERM_MODE, !oldValue);                                                                                  // 20
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnSwitch;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-forward, click .btn-backward': function () {                                                              // 20
+	'click .btn-forward, click .btn-backward': function () {                                                              // 23
 		function clickBtnForwardClickBtnBackward(event, template) {                                                          //
-			if (Session.get(REVEALED)) {                                                                                        // 21
-				Session.set(REVEALED, false);                                                                                      // 22
+			if (Session.get(REVEALED)) {                                                                                        // 24
+				Session.set(REVEALED, false);                                                                                      // 25
 			}                                                                                                                   //
-			if (Session.get(TERM_WRONG)) {                                                                                      // 24
-				Session.set(TERM_WRONG, false);                                                                                    // 25
+			if (Session.get(TERM_WRONG)) {                                                                                      // 27
+				Session.set(TERM_WRONG, false);                                                                                    // 28
 			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 27
-				document.getElementById("term").value = '';                                                                        // 28
+			if (document.getElementById("term")) {                                                                              // 30
+				document.getElementById("term").value = '';                                                                        // 31
+				if (document.getElementById("term").disabled === true) {                                                           // 32
+					document.getElementById("term").disabled = false;                                                                 // 33
+				}                                                                                                                  //
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForwardClickBtnBackward;                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-backward': function () {                                                                                  // 32
+	'click .btn-backward': function () {                                                                                  // 38
 		function clickBtnBackward(event, template) {                                                                         //
-			var val = 0;                                                                                                        // 33
-			if (Session.get(RANDOM_FAV)) {                                                                                      // 34
+			var val = 0;                                                                                                        // 39
+			if (Session.get(RANDOM_FAV)) {                                                                                      // 40
 				// to avoid going into negative numbers and be able to circle backwards                                            //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 36
-					val = Session.get(LENGTH_FAV) - 1;                                                                                // 37
-					Session.set(COUNT_VIEWED, val);                                                                                   // 38
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 42
+					val = Session.get(LENGTH_FAV) - 1;                                                                                // 43
+					Session.set(COUNT_VIEWED, val);                                                                                   // 44
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 40
-					Session.set(COUNT_VIEWED, val);                                                                                   // 41
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 46
+					Session.set(COUNT_VIEWED, val);                                                                                   // 47
 				}                                                                                                                  //
 			} else {                                                                                                            //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 44
-					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 45
-					Session.set(COUNT_VIEWED, val);                                                                                   // 46
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 50
+					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 51
+					Session.set(COUNT_VIEWED, val);                                                                                   // 52
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 48
-					Session.set(COUNT_VIEWED, val);                                                                                   // 49
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 54
+					Session.set(COUNT_VIEWED, val);                                                                                   // 55
 				}                                                                                                                  //
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnBackward;                                                                                             //
 	}(),                                                                                                                  //
-	'click .btn-forward': function () {                                                                                   // 54
+	'click .btn-forward': function () {                                                                                   // 60
 		function clickBtnForward(event, template) {                                                                          //
-			var val = 0;                                                                                                        // 55
-			if (Session.get(RANDOM_FAV)) {                                                                                      // 56
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 57
-				Session.set(COUNT_VIEWED, val);                                                                                    // 58
+			var val = 0;                                                                                                        // 61
+			if (Session.get(RANDOM_FAV)) {                                                                                      // 62
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 63
+				Session.set(COUNT_VIEWED, val);                                                                                    // 64
 			} else {                                                                                                            //
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 60
-				Session.set(COUNT_VIEWED, val);                                                                                    // 61
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 66
+				Session.set(COUNT_VIEWED, val);                                                                                    // 67
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForward;                                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-fav': function () {                                                                                       // 65
+	'click .btn-fav': function () {                                                                                       // 71
 		function clickBtnFav(event, template) {                                                                              //
-			Meteor.call('toggleFavourite', this._id);                                                                           // 66
+			Meteor.call('toggleFavourite', this._id);                                                                           // 72
                                                                                                                        //
 			// reset the COUNT VIEW when a list entry has been removed                                                          //
-			if (Session.get(RANDOM_NOT_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                  // 65
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 70
-				Session.set(COUNT_VIEWED, val);                                                                                    // 71
+			if (Session.get(RANDOM_NOT_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                  // 71
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 76
+				Session.set(COUNT_VIEWED, val);                                                                                    // 77
 			}                                                                                                                   //
                                                                                                                        //
-			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 74
-				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 75
-				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 76
+			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 80
+				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 81
+				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 82
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnFav;                                                                                                  //
 	}(),                                                                                                                  //
-	'click .btn-delete': function () {                                                                                    // 80
+	'click .btn-delete': function () {                                                                                    // 86
 		function clickBtnDelete(event, template) {                                                                           //
-			Meteor.call('deleteFavourite', this._id);                                                                           // 81
+			Meteor.call('deleteFavourite', this._id);                                                                           // 87
                                                                                                                        //
-			if (Session.get(RANDOM_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 83
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 84
-				Session.set(COUNT_VIEWED, val);                                                                                    // 85
+			if (Session.get(RANDOM_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 89
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 90
+				Session.set(COUNT_VIEWED, val);                                                                                    // 91
 			}                                                                                                                   //
-			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 87
-				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 88
-				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 89
+			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 93
+				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 94
+				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 95
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -1791,35 +1806,45 @@ Template.layoutTrainer.events({                                                 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
 Template.navRandom.events({                                                                                            // 1
-	'click .btn-favourites': function () {                                                                                // 2
-		function clickBtnFavourites() {                                                                                      //
-			if (!Session.get(RANDOM_FAV) && Session.get(RANDOM_NOT_FAV)) {                                                      // 3
-				// set values so that each button has its own responsibility                                                       //
-				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 5
-				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 6
-				// reset counter range when switching between fav and not-fav                                                      //
-				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                     // 3
-				Session.set('countViewed', val);                                                                                   // 9
+	'click .btn-favourites, click .btn-not-favourites': function () {                                                     // 2
+		function clickBtnFavouritesClickBtnNotFavourites() {                                                                 //
+			if (Session.get(REVEALED)) {                                                                                        // 3
+				Session.set(REVEALED, false);                                                                                      // 4
 			}                                                                                                                   //
+			if (Session.get(TERM_WRONG)) {                                                                                      // 6
+				Session.set(TERM_WRONG, false);                                                                                    // 7
+			}                                                                                                                   //
+			if (document.getElementById("term")) {                                                                              // 9
+				document.getElementById("term").value = '';                                                                        // 10
+				if (document.getElementById("term").disabled === true) {                                                           // 11
+					document.getElementById("term").disabled = false;                                                                 // 12
+				}                                                                                                                  //
+			}                                                                                                                   //
+		}                                                                                                                    //
                                                                                                                        //
-			if (Session.get(REVEALED)) {                                                                                        // 12
-				Session.set(REVEALED, false);                                                                                      // 13
+		return clickBtnFavouritesClickBtnNotFavourites;                                                                      //
+	}(),                                                                                                                  //
+	'click .btn-favourites': function () {                                                                                // 16
+		function clickBtnFavourites() {                                                                                      //
+			if (!Session.get(RANDOM_FAV) && Session.get(RANDOM_NOT_FAV)) {                                                      // 17
+				// set values so that each button has its own responsibility                                                       //
+				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 19
+				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 20
+				// reset counter range when switching between fav and not-fav                                                      //
+				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                     // 17
+				Session.set('countViewed', val);                                                                                   // 23
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnFavourites;                                                                                           //
 	}(),                                                                                                                  //
-	'click .btn-not-favourites': function () {                                                                            // 16
+	'click .btn-not-favourites': function () {                                                                            // 26
 		function clickBtnNotFavourites() {                                                                                   //
-			if (!Session.get(RANDOM_NOT_FAV) && Session.get(RANDOM_FAV)) {                                                      // 17
-				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 18
-				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 19
-				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                 // 20
-				Session.set('countViewed', val);                                                                                   // 21
-			}                                                                                                                   //
-                                                                                                                       //
-			if (Session.get(REVEALED)) {                                                                                        // 24
-				Session.set(REVEALED, false);                                                                                      // 25
+			if (!Session.get(RANDOM_NOT_FAV) && Session.get(RANDOM_FAV)) {                                                      // 27
+				Session.set(RANDOM_NOT_FAV, !Session.get(RANDOM_NOT_FAV));                                                         // 28
+				Session.set(RANDOM_FAV, !Session.get(RANDOM_FAV));                                                                 // 29
+				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                 // 30
+				Session.set('countViewed', val);                                                                                   // 31
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -1827,17 +1852,17 @@ Template.navRandom.events({                                                     
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.navRandom.helpers({                                                                                           // 30
-	lengthFav: function () {                                                                                              // 31
+Template.navRandom.helpers({                                                                                           // 36
+	lengthFav: function () {                                                                                              // 37
 		function lengthFav() {                                                                                               //
-			return Session.get(LENGTH_FAV);                                                                                     // 32
+			return Session.get(LENGTH_FAV);                                                                                     // 38
 		}                                                                                                                    //
                                                                                                                        //
 		return lengthFav;                                                                                                    //
 	}(),                                                                                                                  //
-	lengthNotFav: function () {                                                                                           // 34
+	lengthNotFav: function () {                                                                                           // 40
 		function lengthNotFav() {                                                                                            //
-			return Session.get(LENGTH_NOT_FAV);                                                                                 // 35
+			return Session.get(LENGTH_NOT_FAV);                                                                                 // 41
 		}                                                                                                                    //
                                                                                                                        //
 		return lengthNotFav;                                                                                                 //

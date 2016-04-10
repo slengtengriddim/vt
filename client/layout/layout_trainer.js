@@ -10,6 +10,9 @@ Template.layoutTrainer.events({
 		if (!Session.get(REVEALED)) {
 			Session.set(REVEALED, true);
 		}
+		if (document.getElementById("term").disabled === false) {
+			document.getElementById("term").disabled = true;
+		}
 	},
 
 	'click .btn-switch' (event, template) {
@@ -26,6 +29,9 @@ Template.layoutTrainer.events({
 		}
 		if (document.getElementById("term")) {
 			document.getElementById("term").value = '';
+			if (document.getElementById("term").disabled === true) {
+				document.getElementById("term").disabled = false;
+			}
 		}
 	},
 

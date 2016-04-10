@@ -16,12 +16,6 @@ var global = Package.meteor.global;
 var meteorEnv = Package.meteor.meteorEnv;
 var Tracker = Package.tracker.Tracker;
 var Deps = Package.tracker.Deps;
-var Blaze = Package.ui.Blaze;
-var UI = Package.ui.UI;
-var Handlebars = Package.ui.Handlebars;
-var Spacebars = Package.spacebars.Spacebars;
-var Template = Package.templating.Template;
-var HTML = Package.htmljs.HTML;
 
 /* Package-scope variables */
 var __coffeescriptShare, T9n;
@@ -39,9 +33,9 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
                                                                                                                        //
 Meteor.startup(function() {                                                                                            // 1
   if (Meteor.isClient) {                                                                                               // 2
-    return Template.registerHelper('t9n', function(x, params) {                                                        //
+    return typeof Template !== "undefined" && Template !== null ? Template.registerHelper('t9n', function(x, params) {
       return T9n.get(x, true, params.hash);                                                                            //
-    });                                                                                                                //
+    }) : void 0;                                                                                                       //
   }                                                                                                                    //
 });                                                                                                                    // 1
                                                                                                                        //
@@ -70,8 +64,8 @@ T9n = (function() {                                                             
     return this.dep.changed();                                                                                         //
   };                                                                                                                   //
                                                                                                                        //
-  T9n.get = function(label, markIfMissing, args) {                                                                     // 9
-    var ref, ref1, ret;                                                                                                // 24
+  T9n.get = function(label, markIfMissing, args, language) {                                                           // 9
+    var index, parent, ref, ref1, ret;                                                                                 // 24
     if (markIfMissing == null) {                                                                                       //
       markIfMissing = true;                                                                                            //
     }                                                                                                                  //
@@ -81,10 +75,32 @@ T9n = (function() {                                                             
     this.dep.depend();                                                                                                 // 24
     this.depLanguage.depend();                                                                                         // 24
     if (typeof label !== 'string') {                                                                                   // 26
-      return '';                                                                                                       // 27
+      return '';                                                                                                       // 26
     }                                                                                                                  //
-    ret = ((ref = this.maps[this.language]) != null ? ref[label] : void 0) || ((ref1 = this.maps[this.defaultLanguage]) != null ? ref1[label] : void 0) || (markIfMissing ? this.missingPrefix + label + this.missingPostfix : label);
-    if (Object.keys(args).length === 0) {                                                                              // 31
+    if (language == null) {                                                                                            //
+      language = this.language;                                                                                        //
+    }                                                                                                                  //
+    ret = (ref = this.maps[language]) != null ? ref[label] : void 0;                                                   // 24
+    if (!ret) {                                                                                                        // 29
+      index = language.lastIndexOf('_');                                                                               // 30
+      if (index) {                                                                                                     // 31
+        parent = language.substring(0, index);                                                                         // 32
+        if (parent) {                                                                                                  // 33
+          return this.get(label, markIfMissing, args, parent);                                                         // 34
+        }                                                                                                              //
+      }                                                                                                                //
+    }                                                                                                                  //
+    if (!ret) {                                                                                                        // 35
+      ret = (ref1 = this.maps[this.defaultLanguage]) != null ? ref1[label] : void 0;                                   // 36
+    }                                                                                                                  //
+    if (!ret) {                                                                                                        // 37
+      if (markIfMissing) {                                                                                             // 38
+        return this.missingPrefix + label + this.missingPostfix;                                                       //
+      } else {                                                                                                         //
+        return label;                                                                                                  //
+      }                                                                                                                //
+    }                                                                                                                  //
+    if (Object.keys(args).length === 0) {                                                                              // 39
       return ret;                                                                                                      //
     } else {                                                                                                           //
       return this.replaceParams(ret, args);                                                                            //
@@ -92,47 +108,70 @@ T9n = (function() {                                                             
   };                                                                                                                   //
                                                                                                                        //
   T9n.registerMap = function(language, prefix, dot, map) {                                                             // 9
-    var key, results, value;                                                                                           // 34
-    if (typeof map === 'string') {                                                                                     // 34
+    var key, results, value;                                                                                           // 42
+    if (typeof map === 'string') {                                                                                     // 42
       return this.maps[language][prefix] = map;                                                                        //
     } else if (typeof map === 'object') {                                                                              //
-      if (dot) {                                                                                                       // 37
-        prefix = prefix + '.';                                                                                         // 38
+      if (dot) {                                                                                                       // 45
+        prefix = prefix + '.';                                                                                         // 46
       }                                                                                                                //
-      results = [];                                                                                                    // 39
+      results = [];                                                                                                    // 47
       for (key in map) {                                                                                               //
         value = map[key];                                                                                              //
-        results.push(this.registerMap(language, prefix + key, true, value));                                           // 40
-      }                                                                                                                // 39
+        results.push(this.registerMap(language, prefix + key, true, value));                                           // 48
+      }                                                                                                                // 47
       return results;                                                                                                  //
     }                                                                                                                  //
   };                                                                                                                   //
                                                                                                                        //
   T9n.getLanguage = function() {                                                                                       // 9
-    this.depLanguage.depend();                                                                                         // 43
-    return this.language;                                                                                              // 44
+    this.depLanguage.depend();                                                                                         // 51
+    return this.language;                                                                                              // 52
   };                                                                                                                   //
                                                                                                                        //
   T9n.getLanguages = function() {                                                                                      // 9
-    this.dep.depend();                                                                                                 // 47
-    return Object.keys(this.maps).sort();                                                                              // 48
+    this.dep.depend();                                                                                                 // 55
+    return Object.keys(this.maps).sort();                                                                              // 56
+  };                                                                                                                   //
+                                                                                                                       //
+  T9n.getLanguageInfo = function() {                                                                                   // 9
+    var i, k, keys, len, results;                                                                                      // 59
+    this.dep.depend();                                                                                                 // 59
+    keys = Object.keys(this.maps).sort();                                                                              // 59
+    results = [];                                                                                                      // 61
+    for (i = 0, len = keys.length; i < len; i++) {                                                                     //
+      k = keys[i];                                                                                                     //
+      results.push({                                                                                                   // 62
+        name: this.maps[k]['t9Name'],                                                                                  // 62
+        code: k                                                                                                        // 62
+      });                                                                                                              //
+    }                                                                                                                  // 61
+    return results;                                                                                                    //
   };                                                                                                                   //
                                                                                                                        //
   T9n.setLanguage = function(language) {                                                                               // 9
-    if (!this.maps[language] || this.language === language) {                                                          // 51
-      return;                                                                                                          // 52
+    if (this.language === language) {                                                                                  // 65
+      return;                                                                                                          // 65
     }                                                                                                                  //
-    this.language = language;                                                                                          // 51
+    language = language.replace(new RegExp('-', 'g'), '_');                                                            // 65
+    if (!this.maps[language]) {                                                                                        // 67
+      if (language.indexOf('_') > 1) {                                                                                 // 68
+        return this.setLanguage(language.substring(0, language.lastIndexOf('_')));                                     //
+      } else {                                                                                                         //
+        throw Error("language " + language + " does not exist");                                                       // 71
+      }                                                                                                                //
+    }                                                                                                                  //
+    this.language = language;                                                                                          // 65
     return this.depLanguage.changed();                                                                                 //
   };                                                                                                                   //
                                                                                                                        //
   T9n.replaceParams = function(str, args) {                                                                            // 9
-    var key, re, value;                                                                                                // 57
-    for (key in args) {                                                                                                // 57
+    var key, re, value;                                                                                                // 76
+    for (key in args) {                                                                                                // 76
       value = args[key];                                                                                               //
-      re = new RegExp("@{" + key + "}", 'g');                                                                          // 58
-      str = str.replace(re, value);                                                                                    // 58
-    }                                                                                                                  // 57
+      re = new RegExp("@{" + key + "}", 'g');                                                                          // 77
+      str = str.replace(re, value);                                                                                    // 77
+    }                                                                                                                  // 76
     return str;                                                                                                        //
   };                                                                                                                   //
                                                                                                                        //
@@ -144,7 +183,7 @@ this.T9n = T9n;                                                                 
                                                                                                                        //
 this.t9n = function(x, includePrefix, params) {                                                                        // 1
   return T9n.get(x);                                                                                                   //
-};                                                                                                                     // 64
+};                                                                                                                     // 83
                                                                                                                        //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -277,6 +316,7 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var ca;                                                                                                                // 4
                                                                                                                        //
 ca = {                                                                                                                 // 4
+  t9Name: 'Català',                                                                                                    // 6
   add: "afegir",                                                                                                       // 6
   and: "i",                                                                                                            // 6
   back: "enrere",                                                                                                      // 6
@@ -286,10 +326,10 @@ ca = {                                                                          
   configure: "Disposició",                                                                                             // 6
   createAccount: "Crear compte",                                                                                       // 6
   currentPassword: "Contrasenya actual",                                                                               // 6
-  dontHaveAnAccount: "No tens un compte?",                                                                             // 6
+  dontHaveAnAccount: "No tens compte?",                                                                                // 6
   email: "Correu",                                                                                                     // 6
   emailAddress: "Adreça de correu",                                                                                    // 6
-  emailResetLink: "Reiniciar correu",                                                                                  // 6
+  emailResetLink: "Restablir correu",                                                                                  // 6
   forgotPassword: "Has oblidat la contrasenya?",                                                                       // 6
   ifYouAlreadyHaveAnAccount: "Si ja tens un compte",                                                                   // 6
   newPassword: "Nova contrasenya",                                                                                     // 6
@@ -300,54 +340,75 @@ ca = {                                                                          
   passwordAgain: "Contrasenya (repetir)",                                                                              // 6
   privacyPolicy: "Política de Privacitat",                                                                             // 6
   remove: "eliminar",                                                                                                  // 6
-  resetYourPassword: "Resetejar la teva contrasenya",                                                                  // 6
+  resetYourPassword: "Restablir la teva contrasenya",                                                                  // 6
   setPassword: "Definir contrasenya",                                                                                  // 6
-  sign: "Signar",                                                                                                      // 6
-  signIn: "Entrar",                                                                                                    // 6
-  signin: "entrar",                                                                                                    // 6
-  signOut: "Sortir",                                                                                                   // 6
-  signUp: "Subscriure",                                                                                                // 6
+  sign: "Entra",                                                                                                       // 6
+  signIn: "Entra",                                                                                                     // 6
+  signin: "entra",                                                                                                     // 6
+  signOut: "Surt",                                                                                                     // 6
+  signUp: "Subscriure's",                                                                                              // 6
   signupCode: "Còdi de subscripció",                                                                                   // 6
-  signUpWithYourEmailAddress: "Subscriure amb el teu correu",                                                          // 6
+  signUpWithYourEmailAddress: "Subscriure-te amb el correu",                                                           // 6
   terms: "Termes d'ús",                                                                                                // 6
   updateYourPassword: "Actualitzar la teva contrasenya",                                                               // 6
   username: "Usuari",                                                                                                  // 6
   usernameOrEmail: "Usuari o correu",                                                                                  // 6
   "with": "amb",                                                                                                       // 6
+  maxAllowedLength: "Longitud màxima permesa",                                                                         // 6
+  minRequiredLength: "Longitud mínima requerida",                                                                      // 6
+  resendVerificationEmail: "Envia el correu de nou",                                                                   // 6
+  resendVerificationEmailLink_pre: "Correu de verificació perdut?",                                                    // 6
+  resendVerificationEmailLink_link: "Envia de nou",                                                                    // 6
   info: {                                                                                                              // 6
-    emailSent: "Correu enviat",                                                                                        // 45
-    emailVerified: "Correu verificat",                                                                                 // 45
-    passwordChanged: "Contrasenya canviada",                                                                           // 45
-    passwordReset: "Reiniciar contrasenya"                                                                             // 45
+    emailSent: "Correu enviat",                                                                                        // 52
+    emailVerified: "Correu verificat",                                                                                 // 52
+    passwordChanged: "Contrasenya canviada",                                                                           // 52
+    passwordReset: "Restablir contrasenya"                                                                             // 52
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "Es requereix el correu.",                                                                          // 51
-    minChar: "7 caràcters mínim.",                                                                                     // 51
-    pwdsDontMatch: "Les contrasenyes no coincideixen",                                                                 // 51
-    pwOneDigit: "mínim un dígit.",                                                                                     // 51
-    pwOneLetter: "mínim una lletra.",                                                                                  // 51
-    signInRequired: "Has d'iniciar sessió per a fer això.",                                                            // 51
-    signupCodeIncorrect: "El còdi de subscripció no coincideix.",                                                      // 51
-    signupCodeRequired: "Es requereix el còdi de subscripció.",                                                        // 51
-    usernameIsEmail: "L'usuari no pot ser el correu.",                                                                 // 51
-    usernameRequired: "Es requereix un usuari.",                                                                       // 51
-    accounts: {                                                                                                        // 51
-      "Email already exists.": "El correu ja existeix.",                                                               // 68
-      "Email doesn't match the criteria.": "El correu no coincideix amb els criteris.",                                // 68
-      "User validation failed": "No s'ha pogut validar l'usuari",                                                      // 68
-      "Username already exists.": "L'usuari ja existeix.",                                                             // 68
+    emailRequired: "Es requereix el correu.",                                                                          // 58
+    minChar: "7 caràcters mínim.",                                                                                     // 58
+    pwdsDontMatch: "Les contrasenyes no coincideixen",                                                                 // 58
+    pwOneDigit: "mínim un dígit.",                                                                                     // 58
+    pwOneLetter: "mínim una lletra.",                                                                                  // 58
+    signInRequired: "Has d'iniciar sessió per a fer això.",                                                            // 58
+    signupCodeIncorrect: "El còdi de subscripció no coincideix.",                                                      // 58
+    signupCodeRequired: "Es requereix el còdi de subscripció.",                                                        // 58
+    usernameIsEmail: "L'usuari no pot ser el correu.",                                                                 // 58
+    usernameRequired: "Es requereix un usuari.",                                                                       // 58
+    accounts: {                                                                                                        // 58
+      "Email already exists.": "El correu ja existeix.",                                                               // 75
+      "Email doesn't match the criteria.": "El correu no coincideix amb els criteris.",                                // 75
+      "Invalid login token": "Token d'entrada invàlid",                                                                // 75
+      "Login forbidden": "No es permet entrar en aquests moments",                                                     // 75
+      "Service unknown": "Servei desconegut",                                                                          // 75
+      "Unrecognized options for login request": "Opcions desconegudes per la petició d'entrada",                       // 75
+      "User validation failed": "No s'ha pogut validar l'usuari",                                                      // 75
+      "Username already exists.": "L'usuari ja existeix.",                                                             // 75
+      "You are not logged in.": "No has iniciat sessió",                                                               // 75
       "You've been logged out by the server. Please log in again.": "Has estat desconnectat pel servidor. Si us plau, entra de nou.",
-      "Your session has expired. Please log in again.": "La teva sessió ha expirat. Si us plau, entra de nou.",        // 68
-      "Incorrect password": "Contrasenya invàlida",                                                                    // 68
-      "Must be logged in": "Has d'entrar",                                                                             // 68
-      "Need to set a username or email": "Has d'especificar un usuari o un correu",                                    // 68
-      "Signups forbidden": "Registre prohibit",                                                                        // 68
-      "Token expired": "Token expirat",                                                                                // 68
-      "Token has invalid email address": "Token conté un correu invàlid",                                              // 68
-      "User has no password set": "Usuari no té contrasenya",                                                          // 68
-      "User not found": "Usuari no trobat",                                                                            // 68
-      "Verify email link expired": "L'enllaç per a verificar el correu ha expirat",                                    // 68
-      "Verify email link is for unknown address": "L'enllaç per a verificar el correu conté una adreça desconeguda"    // 68
+      "Your session has expired. Please log in again.": "La teva sessió ha expirat. Si us plau, entra de nou.",        // 75
+      "Already verified": "Ja està verificat",                                                                         // 75
+      "No matching login attempt found": "No s'ha trobat un intent de login vàlid",                                    // 75
+      "Password is old. Please reset your password.": "La contrasenya és antiga, si us plau, restableix una contrasenya nova",
+      "Incorrect password": "Contrasenya invàlida",                                                                    // 75
+      "Invalid email": "Correu invàlid",                                                                               // 75
+      "Must be logged in": "Has d'iniciar sessió",                                                                     // 75
+      "Need to set a username or email": "Has d'especificar un usuari o un correu",                                    // 75
+      "old password format": "Format de contrasenya antic",                                                            // 75
+      "Password may not be empty": "La contrasenya no pot ser buida",                                                  // 75
+      "Signups forbidden": "Subscripció no permesa en aquest moment",                                                  // 75
+      "Token expired": "Token expirat",                                                                                // 75
+      "Token has invalid email address": "El token conté un correu invàlid",                                           // 75
+      "User has no password set": "Usuari no té contrasenya",                                                          // 75
+      "User not found": "Usuari no trobat",                                                                            // 75
+      "Verify email link expired": "L'enllaç per a verificar el correu ha expirat",                                    // 75
+      "Verify email link is for unknown address": "L'enllaç per a verificar el correu conté una adreça desconeguda",   // 75
+      "At least 1 digit, 1 lowercase and 1 uppercase": "Al menys 1 dígit, 1 lletra minúscula i 1 majúscula",           // 75
+      "Please verify your email first. Check the email and follow the link!": "Si us plau, verifica el teu correu primer. Comprova el correu i segueix l'enllaç que conté!",
+      "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "Un nou correu ha estat enviat a la teva bústia. Si no reps el correu assegura't de comprovar la bústia de correu no desitjat.",
+      "Match failed": "Comprovació fallida",                                                                           // 75
+      "Unknown error": "Error desconegut"                                                                              // 75
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -596,12 +657,13 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var de;                                                                                                                // 4
                                                                                                                        //
 de = {                                                                                                                 // 4
+  t9Name: 'Deutsch',                                                                                                   // 6
   add: "hinzufügen",                                                                                                   // 6
   and: "und",                                                                                                          // 6
   back: "zurück",                                                                                                      // 6
   changePassword: "Passwort ändern",                                                                                   // 6
   choosePassword: "Passwort auswählen",                                                                                // 6
-  clickAgree: "Durch die Registrierung akzeptieren Sie unsere",                                                        // 6
+  clickAgree: "Die Registrierung impliziert die Akzeptanz unserer",                                                    // 6
   configure: "Konfigurieren",                                                                                          // 6
   createAccount: "Konto erstellen",                                                                                    // 6
   currentPassword: "Aktuelles Passwort",                                                                               // 6
@@ -610,7 +672,7 @@ de = {                                                                          
   emailAddress: "E-Mail Adresse",                                                                                      // 6
   emailResetLink: "Senden",                                                                                            // 6
   forgotPassword: "Passwort vergessen?",                                                                               // 6
-  ifYouAlreadyHaveAnAccount: "Falls Sie ein Konto haben, bitte hier",                                                  // 6
+  ifYouAlreadyHaveAnAccount: "Falls bereits ein Konto existiert, bitte hier",                                          // 6
   newPassword: "Neues Passwort",                                                                                       // 6
   newPasswordAgain: "Neues Passwort (wiederholen)",                                                                    // 6
   optional: "Optional",                                                                                                // 6
@@ -634,55 +696,55 @@ de = {                                                                          
   usernameOrEmail: "Benutzername oder E-Mail",                                                                         // 6
   "with": "mit",                                                                                                       // 6
   info: {                                                                                                              // 6
-    emailSent: "E-Mail gesendet",                                                                                      // 46
-    emailVerified: "E-Mail verifiziert",                                                                               // 46
-    PasswordChanged: "Passwort geändert",                                                                              // 46
-    PasswordReset: "Passwort zurückgesetzt"                                                                            // 46
+    emailSent: "E-Mail gesendet",                                                                                      // 48
+    emailVerified: "E-Mail verifiziert",                                                                               // 48
+    PasswordChanged: "Passwort geändert",                                                                              // 48
+    PasswordReset: "Passwort zurückgesetzt"                                                                            // 48
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "E-Mail benötigt.",                                                                                 // 53
-    minChar: "Passwort muss mindestens 7 Zeichen lang sein.",                                                          // 53
-    pwdsDontMatch: "Passwörter stimmen nicht überein.",                                                                // 53
-    pwOneDigit: "Passwort muss mindestens eine Ziffer enthalten.",                                                     // 53
-    pwOneLetter: "Passwort muss mindestens einen Buchstaben enthalten.",                                               // 53
-    signInRequired: "Sie müssen sich anmelden.",                                                                       // 53
-    signupCodeIncorrect: "Registrierungscode ungültig.",                                                               // 53
-    signupCodeRequired: "Registrierungscode benötigt.",                                                                // 53
-    usernameIsEmail: "Benutzername darf keine E-Mail Adresse sein.",                                                   // 53
-    usernameRequired: "Benutzername benötigt.",                                                                        // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "Die E-Mail Adresse wird bereits verwendet.",                                           // 70
-      "Email doesn't match the criteria.": "E-Mail Adresse erfüllt die Anforderungen nicht.",                          // 70
-      "Invalid login token": "Ungültiger Login-Token",                                                                 // 70
-      "Login forbidden": "Anmeldedaten ungültig",                                                                      // 70
-      "Service unknown": "Dienst unbekannt",                                                                           // 70
-      "Unrecognized options for login request": "Unbekannte Optionen für Login Request",                               // 70
-      "User validation failed": "Die Benutzerdaten sind nicht korrekt",                                                // 70
-      "Username already exists.": "Der Benutzer existiert bereits.",                                                   // 70
-      "You are not logged in.": "Sie sind nicht eingeloggt.",                                                          // 70
-      "You've been logged out by the server. Please log in again.": "Der Server hat Dich ausgeloggt. Bitte melde Dich erneut an.",
-      "Your session has expired. Please log in again.": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
-      "No matching login attempt found": "Kein passender Loginversuch gefunden.",                                      // 70
-      "Password is old. Please reset your password.": "Passwort ist abgelaufen. Bitte setzen Sie es zurück.",          // 70
-      "Incorrect password": "Falsches Passwort",                                                                       // 70
-      "Invalid email": "Ungültige E-Mail Adresse",                                                                     // 70
-      "Must be logged in": "Sie müssen sich anmelden",                                                                 // 70
-      "Need to set a username or email": "Benutzername oder E-Mail Adresse müssen angegeben werden",                   // 70
-      "Password may not be empty": "Das Passwort darf nicht leer sein",                                                // 70
-      "Signups forbidden": "Anmeldungen sind nicht erlaubt",                                                           // 70
-      "Token expired": "Token ist abgelaufen",                                                                         // 70
-      "Token has invalid email address": "E-Mail Adresse passt nicht zum Token",                                       // 70
-      "User has no password set": "Kein Passwort für den Benutzer angegeben",                                          // 70
-      "User not found": "Benutzer nicht gefunden",                                                                     // 70
-      "Verify email link expired": "Link zur E-Mail Verifizierung ist abgelaufen",                                     // 70
-      "Verify email link is for unknown address": "Link zur Verifizierung ist für eine unbekannte E-Mail Adresse",     // 70
-      "Verification email lost?": "Verifizierungsemail verloren?",                                                     // 70
-      "Send again": "Erneut senden",                                                                                   // 70
-      "Send the verification email again": "Verifizierungsemail erneut senden",                                        // 70
-      "Send email again": "Email erneut senden",                                                                       // 70
-      "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "Eine neue Email wurde an Sie verschickt. Sollte sich die Email nicht in Ihrem Posteingang befinden, prüfen Sie bitten Ihren Spamordner.",
-      "Match failed": "Abgleich fehlgeschlagen",                                                                       // 70
-      "Unknown error": "Unbekannter Fehler"                                                                            // 70
+    emailRequired: "E-Mail benötigt.",                                                                                 // 55
+    minChar: "Passwort muss mindestens 7 Zeichen lang sein.",                                                          // 55
+    pwdsDontMatch: "Passwörter stimmen nicht überein.",                                                                // 55
+    pwOneDigit: "Passwort muss mindestens eine Ziffer enthalten.",                                                     // 55
+    pwOneLetter: "Passwort muss mindestens einen Buchstaben enthalten.",                                               // 55
+    signInRequired: "Ein Anmeldung ist erforderlich.",                                                                 // 55
+    signupCodeIncorrect: "Registrierungscode ungültig.",                                                               // 55
+    signupCodeRequired: "Registrierungscode benötigt.",                                                                // 55
+    usernameIsEmail: "Benutzername darf keine E-Mail Adresse sein.",                                                   // 55
+    usernameRequired: "Benutzername benötigt.",                                                                        // 55
+    accounts: {                                                                                                        // 55
+      "Email already exists.": "Die E-Mail Adresse wird bereits verwendet.",                                           // 72
+      "Email doesn't match the criteria.": "E-Mail Adresse erfüllt die Anforderungen nicht.",                          // 72
+      "Invalid login token": "Ungültiger Login-Token",                                                                 // 72
+      "Login forbidden": "Anmeldedaten ungültig",                                                                      // 72
+      "Service unknown": "Dienst unbekannt",                                                                           // 72
+      "Unrecognized options for login request": "Unbekannte Optionen für Login Request",                               // 72
+      "User validation failed": "Die Benutzerdaten sind nicht korrekt",                                                // 72
+      "Username already exists.": "Der Benutzer existiert bereits.",                                                   // 72
+      "You are not logged in.": "Eine Anmeldung ist erforderlich.",                                                    // 72
+      "You've been logged out by the server. Please log in again.": "Die Sitzung ist abgelaufen, eine neue Anmeldung ist nötig.",
+      "Your session has expired. Please log in again.": "Die Sitzung ist abgelaufen, eine neue Anmeldung ist nötig.",  // 72
+      "No matching login attempt found": "Kein passender Loginversuch gefunden.",                                      // 72
+      "Password is old. Please reset your password.": "Das Passwort ist abgelaufen, ein Zurücksetzen ist erforderlich.",
+      "Incorrect password": "Falsches Passwort",                                                                       // 72
+      "Invalid email": "Ungültige E-Mail Adresse",                                                                     // 72
+      "Must be logged in": "Ein Anmeldung ist erforderlich",                                                           // 72
+      "Need to set a username or email": "Benutzername oder E-Mail Adresse müssen angegeben werden",                   // 72
+      "Password may not be empty": "Das Passwort darf nicht leer sein",                                                // 72
+      "Signups forbidden": "Anmeldungen sind nicht erlaubt",                                                           // 72
+      "Token expired": "Token ist abgelaufen",                                                                         // 72
+      "Token has invalid email address": "E-Mail Adresse passt nicht zum Token",                                       // 72
+      "User has no password set": "Kein Passwort für den Benutzer angegeben",                                          // 72
+      "User not found": "Benutzer nicht gefunden",                                                                     // 72
+      "Verify email link expired": "Link zur E-Mail Verifizierung ist abgelaufen",                                     // 72
+      "Verify email link is for unknown address": "Link zur Verifizierung ist für eine unbekannte E-Mail Adresse",     // 72
+      "Verification email lost?": "Verifizierungsemail verloren?",                                                     // 72
+      "Send again": "Erneut senden",                                                                                   // 72
+      "Send the verification email again": "Verifizierungsemail erneut senden",                                        // 72
+      "Send email again": "Email erneut senden",                                                                       // 72
+      "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "Eine neue Email wurde verschickt. Sollte sich die Email nicht im Posteingang befinden, empfiehlt es sich, den Spamordner zu überprüfen.",
+      "Match failed": "Abgleich fehlgeschlagen",                                                                       // 72
+      "Unknown error": "Unbekannter Fehler"                                                                            // 72
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -817,97 +879,117 @@ T9n.map("el", el);                                                              
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
 __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptShare : {}; var share = __coffeescriptShare;
-var en;                                                                                                                // 4
+var en;                                                                                                                // 3
                                                                                                                        //
-en = {                                                                                                                 // 4
-  add: "add",                                                                                                          // 6
-  and: "and",                                                                                                          // 6
-  back: "back",                                                                                                        // 6
-  changePassword: "Change Password",                                                                                   // 6
-  choosePassword: "Choose a Password",                                                                                 // 6
-  clickAgree: "By clicking Register, you agree to our",                                                                // 6
-  configure: "Configure",                                                                                              // 6
-  createAccount: "Create an Account",                                                                                  // 6
-  currentPassword: "Current Password",                                                                                 // 6
-  dontHaveAnAccount: "Don't have an account?",                                                                         // 6
-  email: "Email",                                                                                                      // 6
-  emailAddress: "Email Address",                                                                                       // 6
-  emailResetLink: "Email Reset Link",                                                                                  // 6
-  forgotPassword: "Forgot your password?",                                                                             // 6
-  ifYouAlreadyHaveAnAccount: "If you already have an account",                                                         // 6
-  newPassword: "New Password",                                                                                         // 6
-  newPasswordAgain: "New Password (again)",                                                                            // 6
-  optional: "Optional",                                                                                                // 6
-  OR: "OR",                                                                                                            // 6
-  password: "Password",                                                                                                // 6
-  passwordAgain: "Password (again)",                                                                                   // 6
-  privacyPolicy: "Privacy Policy",                                                                                     // 6
-  remove: "remove",                                                                                                    // 6
-  resetYourPassword: "Reset your password",                                                                            // 6
-  setPassword: "Set Password",                                                                                         // 6
-  sign: "Sign",                                                                                                        // 6
-  signIn: "Sign In",                                                                                                   // 6
-  signin: "sign in",                                                                                                   // 6
-  signOut: "Sign Out",                                                                                                 // 6
-  signUp: "Register",                                                                                                  // 6
-  signupCode: "Registration Code",                                                                                     // 6
-  signUpWithYourEmailAddress: "Register with your email address",                                                      // 6
-  terms: "Terms of Use",                                                                                               // 6
-  updateYourPassword: "Update your password",                                                                          // 6
-  username: "Username",                                                                                                // 6
-  usernameOrEmail: "Username or email",                                                                                // 6
-  "with": "with",                                                                                                      // 6
-  info: {                                                                                                              // 6
-    emailSent: "Email sent",                                                                                           // 46
-    emailVerified: "Email verified",                                                                                   // 46
-    passwordChanged: "Password changed",                                                                               // 46
-    passwordReset: "Password reset"                                                                                    // 46
+en = {                                                                                                                 // 3
+  t9Name: 'English',                                                                                                   // 5
+  add: "add",                                                                                                          // 5
+  and: "and",                                                                                                          // 5
+  back: "back",                                                                                                        // 5
+  cancel: "Cancel",                                                                                                    // 5
+  changePassword: "Change Password",                                                                                   // 5
+  choosePassword: "Choose a Password",                                                                                 // 5
+  clickAgree: "By clicking Register, you agree to our",                                                                // 5
+  configure: "Configure",                                                                                              // 5
+  createAccount: "Create an Account",                                                                                  // 5
+  currentPassword: "Current Password",                                                                                 // 5
+  dontHaveAnAccount: "Don't have an account?",                                                                         // 5
+  email: "Email",                                                                                                      // 5
+  emailAddress: "Email Address",                                                                                       // 5
+  emailResetLink: "Email Reset Link",                                                                                  // 5
+  forgotPassword: "Forgot your password?",                                                                             // 5
+  ifYouAlreadyHaveAnAccount: "If you already have an account",                                                         // 5
+  newPassword: "New Password",                                                                                         // 5
+  newPasswordAgain: "New Password (again)",                                                                            // 5
+  optional: "Optional",                                                                                                // 5
+  OR: "OR",                                                                                                            // 5
+  password: "Password",                                                                                                // 5
+  passwordAgain: "Password (again)",                                                                                   // 5
+  privacyPolicy: "Privacy Policy",                                                                                     // 5
+  remove: "remove",                                                                                                    // 5
+  resetYourPassword: "Reset your password",                                                                            // 5
+  setPassword: "Set Password",                                                                                         // 5
+  sign: "Sign",                                                                                                        // 5
+  signIn: "Sign In",                                                                                                   // 5
+  signin: "sign in",                                                                                                   // 5
+  signOut: "Sign Out",                                                                                                 // 5
+  signUp: "Register",                                                                                                  // 5
+  signupCode: "Registration Code",                                                                                     // 5
+  signUpWithYourEmailAddress: "Register with your email address",                                                      // 5
+  terms: "Terms of Use",                                                                                               // 5
+  updateYourPassword: "Update your password",                                                                          // 5
+  username: "Username",                                                                                                // 5
+  usernameOrEmail: "Username or email",                                                                                // 5
+  "with": "with",                                                                                                      // 5
+  maxAllowedLength: "Maximum allowed length",                                                                          // 5
+  minRequiredLength: "Minimum required length",                                                                        // 5
+  resendVerificationEmail: "Send email again",                                                                         // 5
+  resendVerificationEmailLink_pre: "Verification email lost?",                                                         // 5
+  resendVerificationEmailLink_link: "Send again",                                                                      // 5
+  enterPassword: "Enter password",                                                                                     // 5
+  enterNewPassword: "Enter new password",                                                                              // 5
+  enterEmail: "Enter email",                                                                                           // 5
+  enterUsername: "Enter username",                                                                                     // 5
+  enterUsernameOrEmail: "Enter username or email",                                                                     // 5
+  orUse: "Or use",                                                                                                     // 5
+  info: {                                                                                                              // 5
+    emailSent: "Email sent",                                                                                           // 58
+    emailVerified: "Email verified",                                                                                   // 58
+    passwordChanged: "Password changed",                                                                               // 58
+    passwordReset: "Password reset"                                                                                    // 58
   },                                                                                                                   //
-  error: {                                                                                                             // 6
-    emailRequired: "Email is required.",                                                                               // 53
-    minChar: "7 character minimum password.",                                                                          // 53
-    pwdsDontMatch: "Passwords don't match",                                                                            // 53
-    pwOneDigit: "Password must have at least one digit.",                                                              // 53
-    pwOneLetter: "Password requires 1 letter.",                                                                        // 53
-    signInRequired: "You must be signed in to do that.",                                                               // 53
-    signupCodeIncorrect: "Registration code is incorrect.",                                                            // 53
-    signupCodeRequired: "Registration code is required.",                                                              // 53
-    usernameIsEmail: "Username cannot be an email address.",                                                           // 53
-    usernameRequired: "Username is required.",                                                                         // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "Email already exists.",                                                                // 70
-      "Email doesn't match the criteria.": "Email doesn't match the criteria.",                                        // 70
-      "Invalid login token": "Invalid login token",                                                                    // 70
-      "Login forbidden": "Login forbidden",                                                                            // 70
-      "Service unknown": "Service unknown",                                                                            // 70
-      "Unrecognized options for login request": "Unrecognized options for login request",                              // 70
-      "User validation failed": "User validation failed",                                                              // 70
-      "Username already exists.": "Username already exists.",                                                          // 70
-      "You are not logged in.": "You are not logged in.",                                                              // 70
+  error: {                                                                                                             // 5
+    emailRequired: "Email is required.",                                                                               // 65
+    minChar: "7 character minimum password.",                                                                          // 65
+    pwdsDontMatch: "Passwords don't match",                                                                            // 65
+    pwOneDigit: "Password must have at least one digit.",                                                              // 65
+    pwOneLetter: "Password requires 1 letter.",                                                                        // 65
+    signInRequired: "You must be signed in to do that.",                                                               // 65
+    signupCodeIncorrect: "Registration code is incorrect.",                                                            // 65
+    signupCodeRequired: "Registration code is required.",                                                              // 65
+    usernameIsEmail: "Username cannot be an email address.",                                                           // 65
+    usernameRequired: "Username is required.",                                                                         // 65
+    accounts: {                                                                                                        // 65
+      "Email already exists.": "Email already exists.",                                                                // 81
+      "Email doesn't match the criteria.": "Email doesn't match the criteria.",                                        // 81
+      "Invalid login token": "Invalid login token",                                                                    // 81
+      "Login forbidden": "Login forbidden",                                                                            // 81
+      "Service unknown": "Service unknown",                                                                            // 81
+      "Unrecognized options for login request": "Unrecognized options for login request",                              // 81
+      "User validation failed": "User validation failed",                                                              // 81
+      "Username already exists.": "Username already exists.",                                                          // 81
+      "You are not logged in.": "You are not logged in.",                                                              // 81
       "You've been logged out by the server. Please log in again.": "You've been logged out by the server. Please log in again.",
-      "Your session has expired. Please log in again.": "Your session has expired. Please log in again.",              // 70
-      "No matching login attempt found": "No matching login attempt found",                                            // 70
-      "Password is old. Please reset your password.": "Password is old. Please reset your password.",                  // 70
-      "Incorrect password": "Incorrect password",                                                                      // 70
-      "Invalid email": "Invalid email",                                                                                // 70
-      "Must be logged in": "Must be logged in",                                                                        // 70
-      "Need to set a username or email": "Need to set a username or email",                                            // 70
-      "old password format": "old password format",                                                                    // 70
-      "Password may not be empty": "Password may not be empty",                                                        // 70
-      "Signups forbidden": "Signups forbidden",                                                                        // 70
-      "Token expired": "Token expired",                                                                                // 70
-      "Token has invalid email address": "Token has invalid email address",                                            // 70
-      "User has no password set": "User has no password set",                                                          // 70
-      "User not found": "User not found",                                                                              // 70
-      "Verify email link expired": "Verify email link expired",                                                        // 70
-      "Verify email link is for unknown address": "Verify email link is for unknown address",                          // 70
-      "Match failed": "Match failed",                                                                                  // 70
-      "Unknown error": "Unknown error"                                                                                 // 70
+      "Your session has expired. Please log in again.": "Your session has expired. Please log in again.",              // 81
+      "Already verified": "Already verified",                                                                          // 81
+      "Invalid email or username": "Invalid email or username",                                                        // 81
+      "Internal server error": "Internal server error",                                                                // 81
+      "undefined": "Somthing went wrong",                                                                              // 81
+      "No matching login attempt found": "No matching login attempt found",                                            // 81
+      "Password is old. Please reset your password.": "Password is old. Please reset your password.",                  // 81
+      "Incorrect password": "Incorrect password",                                                                      // 81
+      "Invalid email": "Invalid email",                                                                                // 81
+      "Must be logged in": "Must be logged in",                                                                        // 81
+      "Need to set a username or email": "Need to set a username or email",                                            // 81
+      "old password format": "old password format",                                                                    // 81
+      "Password may not be empty": "Password may not be empty",                                                        // 81
+      "Signups forbidden": "Signups forbidden",                                                                        // 81
+      "Token expired": "Token expired",                                                                                // 81
+      "Token has invalid email address": "Token has invalid email address",                                            // 81
+      "User has no password set": "User has no password set",                                                          // 81
+      "User not found": "User not found",                                                                              // 81
+      "Verify email link expired": "Verify email link expired",                                                        // 81
+      "Verify email link is for unknown address": "Verify email link is for unknown address",                          // 81
+      "At least 1 digit, 1 lowercase and 1 uppercase": "At least 1 digit, 1 lowercase and 1 uppercase",                // 81
+      "Please verify your email first. Check the email and follow the link!": "Please verify your email first. Check the email and follow the link!",
+      "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.",
+      "Match failed": "Match failed",                                                                                  // 81
+      "Unknown error": "Unknown error"                                                                                 // 81
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
                                                                                                                        //
-T9n.map("en", en);                                                                                                     // 4
+T9n.map("en", en);                                                                                                     // 3
                                                                                                                        //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -930,6 +1012,7 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var es;                                                                                                                // 4
                                                                                                                        //
 es = {                                                                                                                 // 4
+  t9Name: 'Español',                                                                                                   // 6
   add: "agregar",                                                                                                      // 6
   and: "y",                                                                                                            // 6
   back: "atrás",                                                                                                       // 6
@@ -968,38 +1051,38 @@ es = {                                                                          
   usernameOrEmail: "Usuario o email",                                                                                  // 6
   "with": "con",                                                                                                       // 6
   info: {                                                                                                              // 6
-    emailSent: "Email enviado",                                                                                        // 45
-    emailVerified: "Email verificado",                                                                                 // 45
-    passwordChanged: "Contraseña cambiada",                                                                            // 45
-    passwordReset: "Resetear contraseña"                                                                               // 45
+    emailSent: "Email enviado",                                                                                        // 47
+    emailVerified: "Email verificado",                                                                                 // 47
+    passwordChanged: "Contraseña cambiada",                                                                            // 47
+    passwordReset: "Resetear contraseña"                                                                               // 47
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "El email es requerido.",                                                                           // 51
-    minChar: "7 caracteres mínimo.",                                                                                   // 51
-    pwdsDontMatch: "Las contraseñas no coinciden",                                                                     // 51
-    pwOneDigit: "mínimo un dígito.",                                                                                   // 51
-    pwOneLetter: "mínimo una letra.",                                                                                  // 51
-    signInRequired: "Debes iniciar sesión para hacer eso.",                                                            // 51
-    signupCodeIncorrect: "El código de suscripción no coincide.",                                                      // 51
-    signupCodeRequired: "Se requiere el código de suscripción.",                                                       // 51
-    usernameIsEmail: "El usuario no puede ser el email.",                                                              // 51
-    usernameRequired: "Se requiere un usuario.",                                                                       // 51
-    accounts: {                                                                                                        // 51
-      "Email already exists.": "El email ya existe.",                                                                  // 68
-      "Email doesn't match the criteria.": "El email no coincide con los criterios.",                                  // 68
-      "User validation failed": "No se ha podido validar el usuario",                                                  // 68
-      "Username already exists.": "El usuario ya existe.",                                                             // 68
+    emailRequired: "El email es requerido.",                                                                           // 53
+    minChar: "7 caracteres mínimo.",                                                                                   // 53
+    pwdsDontMatch: "Las contraseñas no coinciden",                                                                     // 53
+    pwOneDigit: "mínimo un dígito.",                                                                                   // 53
+    pwOneLetter: "mínimo una letra.",                                                                                  // 53
+    signInRequired: "Debes iniciar sesión para hacer eso.",                                                            // 53
+    signupCodeIncorrect: "El código de suscripción no coincide.",                                                      // 53
+    signupCodeRequired: "Se requiere el código de suscripción.",                                                       // 53
+    usernameIsEmail: "El usuario no puede ser el email.",                                                              // 53
+    usernameRequired: "Se requiere un usuario.",                                                                       // 53
+    accounts: {                                                                                                        // 53
+      "Email already exists.": "El email ya existe.",                                                                  // 70
+      "Email doesn't match the criteria.": "El email no coincide con los criterios.",                                  // 70
+      "User validation failed": "No se ha podido validar el usuario",                                                  // 70
+      "Username already exists.": "El usuario ya existe.",                                                             // 70
       "You've been logged out by the server. Please log in again.": "Has sido desconectado por el servidor. Por favor ingresa de nuevo.",
-      "Your session has expired. Please log in again.": "Tu sesión ha expirado. Por favor ingresa de nuevo.",          // 68
-      "Incorrect password": "Contraseña inválida",                                                                     // 68
-      "Must be logged in": "Debes ingresar",                                                                           // 68
-      "Need to set a username or email": "Tienes que especificar un usuario o un email",                               // 68
-      "Signups forbidden": "Registro prohibido",                                                                       // 68
-      "Token expired": "Token expirado",                                                                               // 68
-      "Token has invalid email address": "Token contiene un email inválido",                                           // 68
-      "User has no password set": "Usuario no tiene contraseña",                                                       // 68
-      "User not found": "Usuario no encontrado",                                                                       // 68
-      "Verify email link expired": "El enlace para verificar el email ha expirado",                                    // 68
+      "Your session has expired. Please log in again.": "Tu sesión ha expirado. Por favor ingresa de nuevo.",          // 70
+      "Incorrect password": "Contraseña inválida",                                                                     // 70
+      "Must be logged in": "Debes ingresar",                                                                           // 70
+      "Need to set a username or email": "Tienes que especificar un usuario o un email",                               // 70
+      "Signups forbidden": "Registro prohibido",                                                                       // 70
+      "Token expired": "Token expirado",                                                                               // 70
+      "Token has invalid email address": "Token contiene un email inválido",                                           // 70
+      "User has no password set": "Usuario no tiene contraseña",                                                       // 70
+      "User not found": "Usuario no encontrado",                                                                       // 70
+      "Verify email link expired": "El enlace para verificar el email ha expirado",                                    // 70
       "Verify email link is for unknown address": "El enlace para verificar el email contiene una dirección desconocida"
     }                                                                                                                  //
   }                                                                                                                    //
@@ -1238,6 +1321,7 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var fr;                                                                                                                // 4
                                                                                                                        //
 fr = {                                                                                                                 // 4
+  t9Name: 'Français',                                                                                                  // 6
   add: "Ajouter",                                                                                                      // 6
   and: "et",                                                                                                           // 6
   back: "retour",                                                                                                      // 6
@@ -1276,51 +1360,51 @@ fr = {                                                                          
   usernameOrEmail: "Nom d'utilisateur ou email",                                                                       // 6
   "with": "avec",                                                                                                      // 6
   info: {                                                                                                              // 6
-    emailSent: "Email envoyé",                                                                                         // 46
-    emailVerified: "Email verifié",                                                                                    // 46
-    passwordChanged: "Mot de passe modifié",                                                                           // 46
-    passwordReset: "Mot de passe réinitialisé"                                                                         // 46
+    emailSent: "Email envoyé",                                                                                         // 48
+    emailVerified: "Email verifié",                                                                                    // 48
+    passwordChanged: "Mot de passe modifié",                                                                           // 48
+    passwordReset: "Mot de passe réinitialisé"                                                                         // 48
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "Un email est requis.",                                                                             // 53
-    minChar: "Votre mot de passe doit contenir au minimum 7 caractères.",                                              // 53
-    pwdsDontMatch: "Les mots de passe ne correspondent pas",                                                           // 53
-    pwOneDigit: "Votre mot de passe doit contenir au moins un chiffre.",                                               // 53
-    pwOneLetter: "Votre mot de passe doit contenir au moins une lettre.",                                              // 53
-    signInRequired: "Vous devez être connecté pour continuer.",                                                        // 53
-    signupCodeIncorrect: "Le code d'enregistrement est incorrect.",                                                    // 53
-    signupCodeRequired: "Un code d'inscription est requis.",                                                           // 53
-    usernameIsEmail: "Le nom d'utilisateur ne peut être le même que l'adresse email.",                                 // 53
-    usernameRequired: "Un nom d'utilisateur est requis.",                                                              // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "Adresse email déjà utilisée.",                                                         // 70
-      "Email doesn't match the criteria.": "Adresse email ne correspond pas aux critères.",                            // 70
-      "Invalid login token": "Jeton d'authentification invalide",                                                      // 70
-      "Login forbidden": "Authentification interdite",                                                                 // 70
-      "Service unknown": "Service inconnu",                                                                            // 70
-      "Unrecognized options for login request": "Options inconnues pour la requête d'authentification",                // 70
-      "User validation failed": "Echec de la validation de l'utilisateur",                                             // 70
-      "Username already exists.": "Nom d'utilisateur déjà utilisé.",                                                   // 70
-      "You are not logged in.": "Vous n'êtes pas authentifié.",                                                        // 70
+    emailRequired: "Un email est requis.",                                                                             // 55
+    minChar: "Votre mot de passe doit contenir au minimum 7 caractères.",                                              // 55
+    pwdsDontMatch: "Les mots de passe ne correspondent pas",                                                           // 55
+    pwOneDigit: "Votre mot de passe doit contenir au moins un chiffre.",                                               // 55
+    pwOneLetter: "Votre mot de passe doit contenir au moins une lettre.",                                              // 55
+    signInRequired: "Vous devez être connecté pour continuer.",                                                        // 55
+    signupCodeIncorrect: "Le code d'enregistrement est incorrect.",                                                    // 55
+    signupCodeRequired: "Un code d'inscription est requis.",                                                           // 55
+    usernameIsEmail: "Le nom d'utilisateur ne peut être le même que l'adresse email.",                                 // 55
+    usernameRequired: "Un nom d'utilisateur est requis.",                                                              // 55
+    accounts: {                                                                                                        // 55
+      "Email already exists.": "Adresse email déjà utilisée.",                                                         // 72
+      "Email doesn't match the criteria.": "Adresse email ne correspond pas aux critères.",                            // 72
+      "Invalid login token": "Jeton d'authentification invalide",                                                      // 72
+      "Login forbidden": "Authentification interdite",                                                                 // 72
+      "Service unknown": "Service inconnu",                                                                            // 72
+      "Unrecognized options for login request": "Options inconnues pour la requête d'authentification",                // 72
+      "User validation failed": "Echec de la validation de l'utilisateur",                                             // 72
+      "Username already exists.": "Nom d'utilisateur déjà utilisé.",                                                   // 72
+      "You are not logged in.": "Vous n'êtes pas authentifié.",                                                        // 72
       "You've been logged out by the server. Please log in again.": "Vous avez été déconnecté par le serveur. Veuillez vous reconnecter.",
-      "Your session has expired. Please log in again.": "Votre session a expiré. Veuillez vous reconnecter.",          // 70
-      "No matching login attempt found": "Aucune tentative d'authentification ne correspond",                          // 70
-      "Password is old. Please reset your password.": "Votre mot de passe est trop ancien. Veuillez le modifier.",     // 70
-      "Incorrect password": "Mot de passe incorrect",                                                                  // 70
-      "Invalid email": "Email invalide",                                                                               // 70
-      "Must be logged in": "Vous devez être connecté",                                                                 // 70
-      "Need to set a username or email": "Vous devez renseigner un nom d'utilisateur ou une adresse email",            // 70
-      "old password format": "Ancien format de mot de passe",                                                          // 70
-      "Password may not be empty": "Le mot de passe ne peut être vide",                                                // 70
-      "Signups forbidden": "La création de compte est interdite",                                                      // 70
-      "Token expired": "Jeton expiré",                                                                                 // 70
-      "Token has invalid email address": "Le jeton contient une adresse email invalide",                               // 70
-      "User has no password set": "L'utilisateur n'a pas de mot de passe",                                             // 70
-      "User not found": "Utilisateur inconnu",                                                                         // 70
-      "Verify email link expired": "Lien de vérification d'email expiré",                                              // 70
-      "Verify email link is for unknown address": "Le lien de vérification d'email réfère à une adresse inconnue",     // 70
-      "Match failed": "La correspondance a échoué",                                                                    // 70
-      "Unknown error": "Erreur inconnue"                                                                               // 70
+      "Your session has expired. Please log in again.": "Votre session a expiré. Veuillez vous reconnecter.",          // 72
+      "No matching login attempt found": "Aucune tentative d'authentification ne correspond",                          // 72
+      "Password is old. Please reset your password.": "Votre mot de passe est trop ancien. Veuillez le modifier.",     // 72
+      "Incorrect password": "Mot de passe incorrect",                                                                  // 72
+      "Invalid email": "Email invalide",                                                                               // 72
+      "Must be logged in": "Vous devez être connecté",                                                                 // 72
+      "Need to set a username or email": "Vous devez renseigner un nom d'utilisateur ou une adresse email",            // 72
+      "old password format": "Ancien format de mot de passe",                                                          // 72
+      "Password may not be empty": "Le mot de passe ne peut être vide",                                                // 72
+      "Signups forbidden": "La création de compte est interdite",                                                      // 72
+      "Token expired": "Jeton expiré",                                                                                 // 72
+      "Token has invalid email address": "Le jeton contient une adresse email invalide",                               // 72
+      "User has no password set": "L'utilisateur n'a pas de mot de passe",                                             // 72
+      "User not found": "Utilisateur inconnu",                                                                         // 72
+      "Verify email link expired": "Lien de vérification d'email expiré",                                              // 72
+      "Verify email link is for unknown address": "Le lien de vérification d'email réfère à une adresse inconnue",     // 72
+      "Match failed": "La correspondance a échoué",                                                                    // 72
+      "Unknown error": "Erreur inconnue"                                                                               // 72
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -1787,6 +1871,7 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var it;                                                                                                                // 4
                                                                                                                        //
 it = {                                                                                                                 // 4
+  t9Name: 'Italiano',                                                                                                  // 6
   add: "aggiungi",                                                                                                     // 6
   and: "e",                                                                                                            // 6
   back: "indietro",                                                                                                    // 6
@@ -1824,52 +1909,61 @@ it = {                                                                          
   username: "Username",                                                                                                // 6
   usernameOrEmail: "Nome utente o email",                                                                              // 6
   "with": "con",                                                                                                       // 6
+  "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "Ti è stata inviata una nuova email. Se non trovi l' email nella tua posta in arrivo controllate che non sia stata spostata nella cartella SPAM.",
+  "Already verified": "Gi\à verificato",                                                                               // 6
+  "At least 1 digit, 1 lowercase and 1 uppercase": "Almeno 1 numero, 1 carattere minuscolo e 1 maiuscolo",             // 6
+  "Invalid email": "Email non valida",                                                                                 // 6
+  "Please verify your email first. Check the email and follow the link!": "Per favore, verifica prima la tua email. Controlla la tua email e segui il collegamento che ti è stato inviato.",
+  "Required Field": "Campo richiesto",                                                                                 // 6
+  "Send again": "Invia di nuovo",                                                                                      // 6
+  "Send email again": "Invia di nuovo l' email",                                                                       // 6
+  "Send the verification email again": "Invia di nuovo l' email di verifica",                                          // 6
+  "Verification email lost?": "Hai smarrito l' email di verifica?",                                                    // 6
   info: {                                                                                                              // 6
-    emailSent: "Email inviata",                                                                                        // 46
-    emailVerified: "Email verificata",                                                                                 // 46
-    passwordChanged: "Password cambiata",                                                                              // 46
-    passwordReset: "Password reimpostata"                                                                              // 46
+    emailSent: "Email inviata",                                                                                        // 58
+    emailVerified: "Email verificata",                                                                                 // 58
+    passwordChanged: "Password cambiata",                                                                              // 58
+    passwordReset: "Password reimpostata"                                                                              // 58
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "L'Email è obbligatoria.",                                                                          // 53
-    minChar: "La Password deve essere di almeno 7 caratteri.",                                                         // 53
-    pwdsDontMatch: "Le Password non corrispondono",                                                                    // 53
-    pwOneDigit: "La Password deve contenere almeno un numero.",                                                        // 53
-    pwOneLetter: "La Password deve contenere 1 lettera.",                                                              // 53
-    signInRequired: "Per fare questo devi accedere.",                                                                  // 53
-    signupCodeIncorrect: "Codice di Registrazione errato.",                                                            // 53
-    signupCodeRequired: "Il Codice di Registrazione è obbligatorio.",                                                  // 53
-    usernameIsEmail: "Il Nome Utente non può essere un indirizzo email.",                                              // 53
-    usernameRequired: "Il Nome utente è obbligatorio.",                                                                // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "Indirizzo email già esistente.",                                                       // 70
-      "Email doesn't match the criteria.": "L'indirizzo email non soddisfa i requisiti.",                              // 70
-      "Invalid login token": "Codice di accesso non valido",                                                           // 70
-      "Login forbidden": "Accesso non consentito",                                                                     // 70
-      "Service unknown": "Servizio sconosciuto",                                                                       // 70
-      "Unrecognized options for login request": "Opzioni per la richiesta di accesso non ricunosciute",                // 70
-      "User validation failed": "Validazione utente fallita",                                                          // 70
-      "Username already exists.": "Nome utente già esistente.",                                                        // 70
-      "You are not logged in.": "Non hai effettuato l'accesso.",                                                       // 70
+    emailRequired: "L'Email è obbligatoria.",                                                                          // 64
+    minChar: "La Password deve essere di almeno 7 caratteri.",                                                         // 64
+    pwdsDontMatch: "Le Password non corrispondono",                                                                    // 64
+    pwOneDigit: "La Password deve contenere almeno un numero.",                                                        // 64
+    pwOneLetter: "La Password deve contenere 1 lettera.",                                                              // 64
+    signInRequired: "Per fare questo devi accedere.",                                                                  // 64
+    signupCodeIncorrect: "Codice di Registrazione errato.",                                                            // 64
+    signupCodeRequired: "Il Codice di Registrazione è obbligatorio.",                                                  // 64
+    usernameIsEmail: "Il Nome Utente non può essere un indirizzo email.",                                              // 64
+    usernameRequired: "Il Nome utente è obbligatorio.",                                                                // 64
+    accounts: {                                                                                                        // 64
+      "Email already exists.": "Indirizzo email già esistente.",                                                       // 80
+      "Email doesn't match the criteria.": "L'indirizzo email non soddisfa i requisiti.",                              // 80
+      "Invalid login token": "Codice di accesso non valido",                                                           // 80
+      "Login forbidden": "Accesso non consentito",                                                                     // 80
+      "Service unknown": "Servizio sconosciuto",                                                                       // 80
+      "Unrecognized options for login request": "Opzioni per la richiesta di accesso non ricunosciute",                // 80
+      "User validation failed": "Validazione utente fallita",                                                          // 80
+      "Username already exists.": "Nome utente già esistente.",                                                        // 80
+      "You are not logged in.": "Non hai effettuato l'accesso.",                                                       // 80
       "You've been logged out by the server. Please log in again.": "Sei stato disconnesso dal server. Per favore accedi di nuovo.",
-      "Your session has expired. Please log in again.": "La tua sessione è scaduta. Per favore accedi di nuovo.",      // 70
-      "No matching login attempt found": "Tentativo di accesso corrispondente non trovato",                            // 70
-      "Password is old. Please reset your password.": "La password è vecchia. Per favore reimposta la tua password.",  // 70
-      "Incorrect password": "Password non corretta",                                                                   // 70
-      "Invalid email": "Email non valida",                                                                             // 70
-      "Must be logged in": "Devi aver eseguito l'accesso",                                                             // 70
-      "Need to set a username or email": "È necessario specificare un nome utente o un indirizzo email",               // 70
-      "old password format": "vecchio formato password",                                                               // 70
-      "Password may not be empty": "La password non può essere vuota",                                                 // 70
-      "Signups forbidden": "Registrazioni non consentite",                                                             // 70
-      "Token expired": "Codice scaduto",                                                                               // 70
-      "Token has invalid email address": "Il codice ha un indirizzo email non valido",                                 // 70
-      "User has no password set": "L'utente non ha una password impostata",                                            // 70
-      "User not found": "Utente non trovato",                                                                          // 70
-      "Verify email link expired": "Link per la verifica dell'email scaduto",                                          // 70
+      "Your session has expired. Please log in again.": "La tua sessione è scaduta. Per favore accedi di nuovo.",      // 80
+      "No matching login attempt found": "Tentativo di accesso corrispondente non trovato",                            // 80
+      "Password is old. Please reset your password.": "La password è vecchia. Per favore reimposta la tua password.",  // 80
+      "Incorrect password": "Password non corretta",                                                                   // 80
+      "Must be logged in": "Devi aver eseguito l'accesso",                                                             // 80
+      "Need to set a username or email": "È necessario specificare un nome utente o un indirizzo email",               // 80
+      "old password format": "vecchio formato password",                                                               // 80
+      "Password may not be empty": "La password non può essere vuota",                                                 // 80
+      "Signups forbidden": "Registrazioni non consentite",                                                             // 80
+      "Token expired": "Codice scaduto",                                                                               // 80
+      "Token has invalid email address": "Il codice ha un indirizzo email non valido",                                 // 80
+      "User has no password set": "L'utente non ha una password impostata",                                            // 80
+      "User not found": "Utente non trovato",                                                                          // 80
+      "Verify email link expired": "Link per la verifica dell'email scaduto",                                          // 80
       "Verify email link is for unknown address": "Il link per la verifica dell'email fa riferimento ad un indirizzo sconosciuto",
-      "Match failed": "Riscontro fallito",                                                                             // 70
-      "Unknown error": "Errore Sconosciuto"                                                                            // 70
+      "Match failed": "Riscontro fallito",                                                                             // 80
+      "Unknown error": "Errore Sconosciuto"                                                                            // 80
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -1897,89 +1991,100 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var ja;                                                                                                                // 4
                                                                                                                        //
 ja = {                                                                                                                 // 4
-  add: "足す",                                                                                                           // 6
+  t9Name: '日本語',                                                                                                       // 6
+  add: "アカウント連携：",                                                                                                     // 6
   and: "と",                                                                                                            // 6
   back: "戻る",                                                                                                          // 6
   changePassword: "パスワードを変更する",                                                                                        // 6
   choosePassword: "パスワードを選ぶ",                                                                                          // 6
-  clickAgree: "「登録」をクリックすると同意したことになります",                                                                               // 6
+  clickAgree: "アカウント登録をクリックすると、次の内容に同意したことになります。",                                                                     // 6
   configure: "設定する",                                                                                                   // 6
-  createAccount: "アカウントを作る",                                                                                           // 6
+  createAccount: "新しいアカウントの登録",                                                                                        // 6
   currentPassword: "現在のパスワード",                                                                                         // 6
-  dontHaveAnAccount: "アカウントをお持ちでは無いですか？",                                                                              // 6
-  email: "Eメール",                                                                                                       // 6
-  emailAddress: "Eメールアドレス",                                                                                            // 6
-  emailResetLink: "Eメールリセットリンク",                                                                                       // 6
+  dontHaveAnAccount: "まだアカウントをお持ちでない場合は",                                                                              // 6
+  Email: "メールアドレス",                                                                                                    // 6
+  email: "メールアドレス",                                                                                                    // 6
+  emailAddress: "メールアドレス",                                                                                             // 6
+  emailResetLink: "パスワードリセットのメールを送る",                                                                                  // 6
   forgotPassword: "パスワードをお忘れですか？",                                                                                     // 6
-  ifYouAlreadyHaveAnAccount: "もしも既にアカウントをお持ちなら",                                                                       // 6
-  newPassword: "新パスワード",                                                                                               // 6
-  newPasswordAgain: "新パスワード(確認)",                                                                                      // 6
+  ifYouAlreadyHaveAnAccount: "既にアカウントをお持ちの場合は",                                                                        // 6
+  newPassword: "新しいパスワード",                                                                                             // 6
+  newPasswordAgain: "新しいパスワード（確認）",                                                                                    // 6
   optional: "オプション",                                                                                                   // 6
   OR: "または",                                                                                                           // 6
   password: "パスワード",                                                                                                   // 6
-  passwordAgain: "パスワード(確認)",                                                                                          // 6
+  passwordAgain: "パスワード（確認）",                                                                                          // 6
   privacyPolicy: "プライバシーポリシー",                                                                                         // 6
-  remove: "削除する",                                                                                                      // 6
-  resetYourPassword: "パスワードをリセットする",                                                                                   // 6
+  remove: "連携の解除：",                                                                                                    // 6
+  resetYourPassword: "パスワードのリセット",                                                                                     // 6
   setPassword: "パスワードを設定する",                                                                                           // 6
-  sign: "サイン",                                                                                                         // 6
-  signIn: "サインインする",                                                                                                   // 6
-  signin: "サインイン",                                                                                                     // 6
-  signOut: "サインアウトする",                                                                                                 // 6
-  signUp: "登録する",                                                                                                      // 6
-  signupCode: "レジストレーションコード",                                                                                          // 6
-  signUpWithYourEmailAddress: "Eメールアドレスで登録する",                                                                         // 6
-  terms: "利用条件",                                                                                                       // 6
-  updateYourPassword: "パスワードを更新する",                                                                                    // 6
+  sign: "署名",                                                                                                          // 6
+  signIn: "ログイン",                                                                                                      // 6
+  signin: "ログイン",                                                                                                      // 6
+  signOut: "ログアウト",                                                                                                    // 6
+  signUp: "アカウント登録",                                                                                                   // 6
+  signupCode: "登録用コード",                                                                                                // 6
+  signUpWithYourEmailAddress: "メールアドレスで登録する",                                                                          // 6
+  terms: "利用規約",                                                                                                       // 6
+  updateYourPassword: "パスワードを変更する",                                                                                    // 6
   username: "ユーザー名",                                                                                                   // 6
-  usernameOrEmail: "ユーザー名またはEメール",                                                                                     // 6
-  "with": "with",                                                                                                      // 6
+  usernameOrEmail: "ユーザー名またはメールアドレス",                                                                                  // 6
+  "with": "：",                                                                                                         // 6
+  maxAllowedLength: "最大文字数",                                                                                           // 6
+  minRequiredLength: "最低文字数",                                                                                          // 6
+  resendVerificationEmail: "認証メールの再送",                                                                                 // 6
+  resendVerificationEmailLink_pre: "認証メールが届いていない場合は",                                                                  // 6
+  resendVerificationEmailLink_link: "再送",                                                                              // 6
   info: {                                                                                                              // 6
-    emailSent: "Eメールを送りました",                                                                                           // 46
-    emailVerified: "Eメールが確認されました",                                                                                     // 46
-    passwordChanged: "パスワードが変更されました",                                                                                  // 46
-    passwordReset: "パスワードがリセットされました"                                                                                   // 46
+    emailSent: "メールを送りました",                                                                                            // 53
+    emailVerified: "メールアドレスを確認しました",                                                                                   // 53
+    passwordChanged: "パスワードを変更しました",                                                                                   // 53
+    passwordReset: "パスワードをリセットしました"                                                                                    // 53
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "Eメールが必要です",                                                                                        // 53
-    minChar: "パスワードには最低7文字必要です",                                                                                       // 53
-    pwdsDontMatch: "パスワードが違います",                                                                                       // 53
-    pwOneDigit: "パスワードは少なくとも1つ数字を含む必要があります",                                                                           // 53
-    pwOneLetter: "パスワードは少なく遠m1つアルファベットを含む必要があります",                                                                     // 53
-    signInRequired: "その操作にはサインインが必要です",                                                                                // 53
-    signupCodeIncorrect: "レジストレーションコードが間違っています",                                                                       // 53
-    signupCodeRequired: "レジストレーションコードが必要です",                                                                           // 53
-    usernameIsEmail: "ユーザー名にEメールアドレスは使えません",                                                                           // 53
-    usernameRequired: "ユーザー名が必要です",                                                                                    // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "そのEメールは既に登録されています",                                                                    // 70
-      "Email doesn't match the criteria.": "Eメールが基準を満たしていません",                                                         // 70
-      "Invalid login token": "無効なログイントークンです",                                                                          // 70
-      "Login forbidden": "ログインが許可されません",                                                                               // 70
-      "Service unknown": "サービスが不明です",                                                                                  // 70
-      "Unrecognized options for login request": "ログインリクエストのオプションが認識できません",                                             // 70
-      "User validation failed": "ユーザー確認できません",                                                                         // 70
-      "Username already exists.": "そのユーザー名は既に使われています",                                                                 // 70
-      "You are not logged in.": "ログインしていません",                                                                          // 70
-      "You've been logged out by the server. Please log in again.": "ログアウトされました。再度ログインしてください",                         // 70
-      "Your session has expired. Please log in again.": "セッションが切れました。再度ログインしてください",                                    // 70
-      "No matching login attempt found": "対応のログイン試行が見つかりません",                                                          // 70
-      "Password is old. Please reset your password.": "パスワードが古くなりました。パスワードをリセットしてください",                                // 70
-      "Incorrect password": "パスワードが正しくありません",                                                                          // 70
-      "Invalid email": "Eメールが無効です",                                                                                    // 70
-      "Must be logged in": "ログインが必要です",                                                                                // 70
-      "Need to set a username or email": "ユーザー名かEメールを設定する必要があります",                                                     // 70
-      "old password format": "パスワード形式が古いものです",                                                                         // 70
-      "Password may not be empty": "パスワードが入力されていないようです",                                                               // 70
-      "Signups forbidden": "サインアップが禁止されています",                                                                          // 70
-      "Token expired": "トークンが切れました",                                                                                   // 70
-      "Token has invalid email address": "トークンが無効なEメールアドレスを含んでいます",                                                    // 70
-      "User has no password set": "パスワードが設定されていません",                                                                   // 70
-      "User not found": "ユーザーが見つかりません",                                                                                // 70
-      "Verify email link expired": "Eメールリンクが切れたか確認する",                                                                 // 70
-      "Verify email link is for unknown address": "Eメールリンクが不明なアドレス用か確認する",                                             // 70
-      "Match failed": "一致しませんでした",                                                                                     // 70
-      "Unknown error": "不明なエラー"                                                                                        // 70
+    emailRequired: "メールアドレスを入力してください。",                                                                                // 60
+    minChar: "パスワードの文字数が足りません。",                                                                                       // 60
+    pwdsDontMatch: "パスワードが一致しません。",                                                                                    // 60
+    pwOneDigit: "パスワードに1文字以上の数字を含めてください。",                                                                             // 60
+    pwOneLetter: "パスワードに1文字以上のアルファベットを含めてください。",                                                                       // 60
+    signInRequired: "その操作にはログインが必要です。",                                                                                // 60
+    signupCodeIncorrect: "登録用コードが間違っています。",                                                                            // 60
+    signupCodeRequired: "登録用コードが必要です。",                                                                                // 60
+    usernameIsEmail: "ユーザー名にメールアドレスは使えません。",                                                                           // 60
+    usernameRequired: "ユーザー名が必要です。",                                                                                   // 60
+    accounts: {                                                                                                        // 60
+      "Email already exists.": "そのメールアドレスは既に登録されています。",                                                                // 76
+      "Email doesn't match the criteria.": "正しいメールアドレスを入力してください。",                                                     // 76
+      "Invalid login token": "無効なログイントークンです。",                                                                         // 76
+      "Login forbidden": "ログインできません。",                                                                                 // 76
+      "Service unknown": "不明なサービスです",                                                                                  // 76
+      "Unrecognized options for login request": "不明なログインオプションです",                                                      // 76
+      "User validation failed": "ユーザ認証に失敗しました",                                                                        // 76
+      "Username already exists.": "そのユーザー名は既に使われています。",                                                                // 76
+      "You are not logged in.": "ログインしていません。",                                                                         // 76
+      "You've been logged out by the server. Please log in again.": "既にログアウトしています。再度ログインしてください。",                      // 76
+      "Your session has expired. Please log in again.": "セッションが切れました。再度ログインしてください。",                                   // 76
+      "Already verified": "認証済です",                                                                                     // 76
+      "No matching login attempt found": "対応するログイン試行が見つかりません",                                                         // 76
+      "Password is old. Please reset your password.": "古いパスワードです。パスワードをリセットしてください。",                                   // 76
+      "Incorrect password": "パスワードが正しくありません",                                                                          // 76
+      "Invalid email": "無効なメールアドレスです",                                                                                 // 76
+      "Must be logged in": "ログインが必要です",                                                                                // 76
+      "Need to set a username or email": "ユーザー名かメールアドレスを入力してください",                                                     // 76
+      "old password format": "古いパスワード形式です",                                                                            // 76
+      "Password may not be empty": "パスワードを入力してください",                                                                   // 76
+      "Signups forbidden": "アカウントを登録できません",                                                                            // 76
+      "Token expired": "無効なトークンです",                                                                                    // 76
+      "Token has invalid email address": "トークンに無効なメールアドレスが含まれています",                                                    // 76
+      "User has no password set": "パスワードが設定されていません",                                                                   // 76
+      "User not found": "ユーザー名が見つかりません",                                                                               // 76
+      "Verify email link expired": "期限の切れた認証メールのリンクです",                                                                // 76
+      "Verify email link is for unknown address": "不明なメールアドレスに対する認証メールのリンクです",                                         // 76
+      "At least 1 digit, 1 lowercase and 1 uppercase": "数字、小文字、大文字をそれぞれ1文字以上入力してください",                                 // 76
+      "Please verify your email first. Check the email and follow the link!": "まず認証メールが届いているか確認して、リンクを押してください！",       // 76
+      "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.": "新しいメールを送信しました。もしメールが届いていなければ、迷惑メールに分類されていないか確認してください。",
+      "Match failed": "一致しません",                                                                                        // 76
+      "Unknown error": "不明なエラー"                                                                                        // 76
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -2558,6 +2663,7 @@ __coffeescriptShare = typeof __coffeescriptShare === 'object' ? __coffeescriptSh
 var pt;                                                                                                                // 4
                                                                                                                        //
 pt = {                                                                                                                 // 4
+  t9Name: 'Português',                                                                                                 // 6
   add: "Adicionar",                                                                                                    // 6
   and: "e",                                                                                                            // 6
   back: "Voltar",                                                                                                      // 6
@@ -2595,54 +2701,56 @@ pt = {                                                                          
   username: "Nome de usuário",                                                                                         // 6
   usernameOrEmail: "Usuário ou e-mail",                                                                                // 6
   "with": "com",                                                                                                       // 6
+  "Send the verification email again": "Reenviar e-mail de verificação",                                               // 6
+  "Send email again": "Reenviar e-mail",                                                                               // 6
   info: {                                                                                                              // 6
-    emailSent: "E-mail enviado",                                                                                       // 46
-    emailVerified: "E-mail verificado",                                                                                // 46
-    passwordChanged: "Senha atualizada",                                                                               // 46
-    passwordReset: "Senha alterada"                                                                                    // 46
+    emailSent: "E-mail enviado",                                                                                       // 50
+    emailVerified: "E-mail verificado",                                                                                // 50
+    passwordChanged: "Senha atualizada",                                                                               // 50
+    passwordReset: "Senha alterada"                                                                                    // 50
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "E-mail é obrigatório.",                                                                            // 53
-    minChar: "Senha requer um mínimo de 7 caracteres.",                                                                // 53
-    pwdsDontMatch: "Senhas não coincidem",                                                                             // 53
-    pwOneDigit: "A Senha deve conter pelo menos um dígito.",                                                           // 53
-    pwOneLetter: "A Senha deve conter pelo menos uma letra.",                                                          // 53
-    signInRequired: "Você precisa estar logado para fazer isso.",                                                      // 53
-    signupCodeIncorrect: "Código de acesso incorreto.",                                                                // 53
-    signupCodeRequired: "É necessário um código de acesso.",                                                           // 53
-    usernameIsEmail: "Nome de usuário não pode ser um endereço de e-mail.",                                            // 53
-    usernameRequired: "Nome de usuário é obrigatório.",                                                                // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "E-mail já existe.",                                                                    // 70
-      "Email doesn't match the criteria.": "E-mail inválido.",                                                         // 70
-      "Invalid login token": "Token de login inválido",                                                                // 70
-      "Login forbidden": "Login não permitido",                                                                        // 70
-      "Service unknown": "Serviço desconhecido",                                                                       // 70
-      "Unrecognized options for login request": "Opções desconhecidas para solicitação de login",                      // 70
-      "User validation failed": "Validação de usuário falhou",                                                         // 70
-      "Username already exists.": "Nome de usuário já existe.",                                                        // 70
-      "You are not logged in.": "Você não está logado.",                                                               // 70
+    emailRequired: "E-mail é obrigatório.",                                                                            // 57
+    minChar: "Senha requer um mínimo de 7 caracteres.",                                                                // 57
+    pwdsDontMatch: "Senhas não coincidem",                                                                             // 57
+    pwOneDigit: "A Senha deve conter pelo menos um dígito.",                                                           // 57
+    pwOneLetter: "A Senha deve conter pelo menos uma letra.",                                                          // 57
+    signInRequired: "Você precisa estar logado para fazer isso.",                                                      // 57
+    signupCodeIncorrect: "Código de acesso incorreto.",                                                                // 57
+    signupCodeRequired: "É necessário um código de acesso.",                                                           // 57
+    usernameIsEmail: "Nome de usuário não pode ser um endereço de e-mail.",                                            // 57
+    usernameRequired: "Nome de usuário é obrigatório.",                                                                // 57
+    accounts: {                                                                                                        // 57
+      "Email already exists.": "E-mail já existe.",                                                                    // 74
+      "Email doesn't match the criteria.": "E-mail inválido.",                                                         // 74
+      "Invalid login token": "Token de login inválido",                                                                // 74
+      "Login forbidden": "Login não permitido",                                                                        // 74
+      "Service unknown": "Serviço desconhecido",                                                                       // 74
+      "Unrecognized options for login request": "Opções desconhecidas para solicitação de login",                      // 74
+      "User validation failed": "Validação de usuário falhou",                                                         // 74
+      "Username already exists.": "Nome de usuário já existe.",                                                        // 74
+      "You are not logged in.": "Você não está logado.",                                                               // 74
       "You've been logged out by the server. Please log in again.": "Você foi desconectado pelo servidor. Por favor, efetue login novamente.",
-      "Your session has expired. Please log in again.": "Sua sessão expirou. Por favor, efetue login novamente.",      // 70
-      "No matching login attempt found": "Não foi encontrada nenhuma tentativa de login que coincida.",                // 70
-      "Password is old. Please reset your password.": "Senha expirou. Por favor, cadastre uma nova senha.",            // 70
-      "Incorrect password": "Senha incorreta",                                                                         // 70
-      "Invalid email": "E-mail inválido",                                                                              // 70
-      "Must be logged in": "É necessário efetuar login",                                                               // 70
-      "Need to set a username or email": "É necessário configurar um Nome de Usuário ou E-mail",                       // 70
-      "old password format": "Formato de senha antigo",                                                                // 70
-      "Password may not be empty": "Senha não pode estar em branco",                                                   // 70
-      "Signups forbidden": "Não permitido Criar Conta",                                                                // 70
-      "Token expired": "Token expirou",                                                                                // 70
-      "Token has invalid email address": "Token tem endereço de e-mail inválido",                                      // 70
-      "User has no password set": "Usuário não possui senha cadastrada",                                               // 70
-      "User not found": "Usuário não encontrado",                                                                      // 70
-      "Verify email link expired": "O link de verificação de e-mail expirou",                                          // 70
+      "Your session has expired. Please log in again.": "Sua sessão expirou. Por favor, efetue login novamente.",      // 74
+      "No matching login attempt found": "Não foi encontrada nenhuma tentativa de login que coincida.",                // 74
+      "Password is old. Please reset your password.": "Senha expirou. Por favor, cadastre uma nova senha.",            // 74
+      "Incorrect password": "Senha incorreta",                                                                         // 74
+      "Invalid email": "E-mail inválido",                                                                              // 74
+      "Must be logged in": "É necessário efetuar login",                                                               // 74
+      "Need to set a username or email": "É necessário configurar um Nome de Usuário ou E-mail",                       // 74
+      "old password format": "Formato de senha antigo",                                                                // 74
+      "Password may not be empty": "Senha não pode estar em branco",                                                   // 74
+      "Signups forbidden": "Não permitido Criar Conta",                                                                // 74
+      "Token expired": "Token expirou",                                                                                // 74
+      "Token has invalid email address": "Token tem endereço de e-mail inválido",                                      // 74
+      "User has no password set": "Usuário não possui senha cadastrada",                                               // 74
+      "User not found": "Usuário não encontrado",                                                                      // 74
+      "Verify email link expired": "O link de verificação de e-mail expirou",                                          // 74
       "Verify email link is for unknown address": "O link de verificação de e-mail está configurado para um endereço desconhecido",
-      "Verify email link expired": "E-mail de verificação recebido?",                                                  // 70
-      "Send again": "Renviar",                                                                                         // 70
-      "Match failed": "Senhas não coincidem",                                                                          // 70
-      "Unknown error": "Erro desconhecido"                                                                             // 70
+      "Verify email link expired": "E-mail de verificação recebido?",                                                  // 74
+      "Send again": "Renviar",                                                                                         // 74
+      "Match failed": "Senhas não coincidem",                                                                          // 74
+      "Unknown error": "Erro desconhecido"                                                                             // 74
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -3225,6 +3333,7 @@ sv = {                                                                          
   add: "lägg till",                                                                                                    // 6
   and: "och",                                                                                                          // 6
   back: "tillbaka",                                                                                                    // 6
+  cancel: "Avbryt",                                                                                                    // 6
   changePassword: "Ändra lösenord",                                                                                    // 6
   choosePassword: "Välj lösenord",                                                                                     // 6
   clickAgree: "När du väljer att skapa ett konto så godkänner du också vår",                                           // 6
@@ -3259,52 +3368,61 @@ sv = {                                                                          
   username: "Användarnamn",                                                                                            // 6
   usernameOrEmail: "Användarnamn eller e-postadress",                                                                  // 6
   "with": "med",                                                                                                       // 6
+  enterPassword: "Lösenord",                                                                                           // 6
+  enterNewPassword: "Nytt lösenord",                                                                                   // 6
+  enterEmail: "E-post",                                                                                                // 6
+  enterUsername: "Användarnamn",                                                                                       // 6
+  enterUsernameOrEmail: "Användarnamn eller e-post",                                                                   // 6
+  orUse: "Eller använd",                                                                                               // 6
   info: {                                                                                                              // 6
-    emailSent: "E-post skickades",                                                                                     // 46
-    emailVerified: "E-post verifierades",                                                                              // 46
-    passwordChanged: "Lösenordet har ändrats",                                                                         // 46
-    passwordReset: "Återställ lösenordet"                                                                              // 46
+    emailSent: "E-post skickades",                                                                                     // 53
+    emailVerified: "E-post verifierades",                                                                              // 53
+    passwordChanged: "Lösenordet har ändrats",                                                                         // 53
+    passwordReset: "Återställ lösenordet"                                                                              // 53
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "Det krävs en e-postaddress.",                                                                      // 53
-    minChar: "Det krävs minst 7 tecken i ditt lösenord.",                                                              // 53
-    pwdsDontMatch: "Lösenorden matchar inte.",                                                                         // 53
-    pwOneDigit: "Lösenordet måste ha minst 1 siffra.",                                                                 // 53
-    pwOneLetter: "Lösenordet måste ha minst 1 bokstav.",                                                               // 53
-    signInRequired: "Inloggning krävs här.",                                                                           // 53
-    signupCodeIncorrect: "Registreringskoden är felaktig.",                                                            // 53
-    signupCodeRequired: "Det krävs en registreringskod.",                                                              // 53
-    usernameIsEmail: "Användarnamnet kan inte vara en e-postadress.",                                                  // 53
-    usernameRequired: "Det krävs ett användarnamn.",                                                                   // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "E-postadressen finns redan.",                                                          // 70
-      "Email doesn't match the criteria.": "E-postadressen uppfyller inte kriterierna.",                               // 70
-      "Invalid login token": "Felaktig login-token",                                                                   // 70
-      "Login forbidden": "Inloggning tillåts ej",                                                                      // 70
-      "Service unknown": "Okänd service",                                                                              // 70
-      "Unrecognized options for login request": "Okända val för inloggningsförsöket",                                  // 70
-      "User validation failed": "Validering av användare misslyckades",                                                // 70
-      "Username already exists.": "Användarnamn finns redan.",                                                         // 70
-      "You are not logged in.": "Du är inte inloggad.",                                                                // 70
+    emailRequired: "Det krävs en e-postaddress.",                                                                      // 60
+    minChar: "Det krävs minst 7 tecken i ditt lösenord.",                                                              // 60
+    pwdsDontMatch: "Lösenorden matchar inte.",                                                                         // 60
+    pwOneDigit: "Lösenordet måste ha minst 1 siffra.",                                                                 // 60
+    pwOneLetter: "Lösenordet måste ha minst 1 bokstav.",                                                               // 60
+    signInRequired: "Inloggning krävs här.",                                                                           // 60
+    signupCodeIncorrect: "Registreringskoden är felaktig.",                                                            // 60
+    signupCodeRequired: "Det krävs en registreringskod.",                                                              // 60
+    usernameIsEmail: "Användarnamnet kan inte vara en e-postadress.",                                                  // 60
+    usernameRequired: "Det krävs ett användarnamn.",                                                                   // 60
+    accounts: {                                                                                                        // 60
+      "Email already exists.": "E-postadressen finns redan.",                                                          // 77
+      "Email doesn't match the criteria.": "E-postadressen uppfyller inte kriterierna.",                               // 77
+      "Invalid login token": "Felaktig login-token",                                                                   // 77
+      "Login forbidden": "Inloggning tillåts ej",                                                                      // 77
+      "Service unknown": "Okänd service",                                                                              // 77
+      "Unrecognized options for login request": "Okända val för inloggningsförsöket",                                  // 77
+      "User validation failed": "Validering av användare misslyckades",                                                // 77
+      "Username already exists.": "Användarnamn finns redan.",                                                         // 77
+      "You are not logged in.": "Du är inte inloggad.",                                                                // 77
       "You've been logged out by the server. Please log in again.": "Du har loggats ut av servern. Vänligen logga in igen.",
-      "Your session has expired. Please log in again.": "Din session har gått ut. Vänligen ligga in igen.",            // 70
-      "No matching login attempt found": "Inget matchande loginförsök kunde hittas",                                   // 70
-      "Password is old. Please reset your password.": "Ditt lösenord är gammalt. Vänligen återställ ditt lösenord.",   // 70
-      "Incorrect password": "Felaktigt lösenord",                                                                      // 70
-      "Invalid email": "Ogiltig e-postadress",                                                                         // 70
-      "Must be logged in": "Måste vara inloggad",                                                                      // 70
-      "Need to set a username or email": "Ett användarnamn eller en e-postadress krävs.",                              // 70
-      "old password format": "gammalt lösenordsformat",                                                                // 70
-      "Password may not be empty": "Lösenordet får inte vara tomt",                                                    // 70
-      "Signups forbidden": "Registrering förbjuden",                                                                   // 70
-      "Token expired": "Token har gått ut",                                                                            // 70
-      "Token has invalid email address": "Token har ogiltig e-postadress",                                             // 70
-      "User has no password set": "Användaren har inget lösenord",                                                     // 70
-      "User not found": "Användaren hittades inte",                                                                    // 70
-      "Verify email link expired": "Länken för att verifera e-postadress har gått ut",                                 // 70
-      "Verify email link is for unknown address": "Länken för att verifiera e-postadress är för en okänd adress.",     // 70
-      "Match failed": "Matchning misslyckades",                                                                        // 70
-      "Unknown error": "Okänt fel"                                                                                     // 70
+      "Your session has expired. Please log in again.": "Din session har gått ut. Vänligen ligga in igen.",            // 77
+      "Invalid email or username": "Ogiltig e-post eller användarnamn",                                                // 77
+      "Internal server error": "Internt server problem",                                                               // 77
+      "undefined": "Något gick fel",                                                                                   // 77
+      "No matching login attempt found": "Inget matchande loginförsök kunde hittas",                                   // 77
+      "Password is old. Please reset your password.": "Ditt lösenord är gammalt. Vänligen återställ ditt lösenord.",   // 77
+      "Incorrect password": "Felaktigt lösenord",                                                                      // 77
+      "Invalid email": "Ogiltig e-postadress",                                                                         // 77
+      "Must be logged in": "Måste vara inloggad",                                                                      // 77
+      "Need to set a username or email": "Ett användarnamn eller en e-postadress krävs.",                              // 77
+      "old password format": "gammalt lösenordsformat",                                                                // 77
+      "Password may not be empty": "Lösenordet får inte vara tomt",                                                    // 77
+      "Signups forbidden": "Registrering förbjuden",                                                                   // 77
+      "Token expired": "Token har gått ut",                                                                            // 77
+      "Token has invalid email address": "Token har ogiltig e-postadress",                                             // 77
+      "User has no password set": "Användaren har inget lösenord",                                                     // 77
+      "User not found": "Användaren hittades inte",                                                                    // 77
+      "Verify email link expired": "Länken för att verifera e-postadress har gått ut",                                 // 77
+      "Verify email link is for unknown address": "Länken för att verifiera e-postadress är för en okänd adress.",     // 77
+      "Match failed": "Matchning misslyckades",                                                                        // 77
+      "Unknown error": "Okänt fel"                                                                                     // 77
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -3666,6 +3784,7 @@ zh_cn = {                                                                       
   add: "添加",                                                                                                           // 6
   and: "和",                                                                                                            // 6
   back: "返回",                                                                                                          // 6
+  cancel: "取消",                                                                                                        // 6
   changePassword: "修改密码",                                                                                              // 6
   choosePassword: "新密码",                                                                                               // 6
   clickAgree: "点击注册表示您同意",                                                                                             // 6
@@ -3700,52 +3819,61 @@ zh_cn = {                                                                       
   username: "用户名",                                                                                                     // 6
   usernameOrEmail: "用户名或电子邮箱",                                                                                         // 6
   "with": "与",                                                                                                         // 6
+  enterPassword: "输入密码",                                                                                               // 6
+  enterNewPassword: "输入新密码",                                                                                           // 6
+  enterEmail: "输入电子邮件",                                                                                                // 6
+  enterUsername: "输入用户名",                                                                                              // 6
+  enterUsernameOrEmail: "输入用户名或电子邮件",                                                                                  // 6
+  orUse: "或是使用",                                                                                                       // 6
   info: {                                                                                                              // 6
-    emailSent: "邮件已发出",                                                                                                // 46
-    emailVerified: "邮件验证成功",                                                                                           // 46
-    passwordChanged: "密码修改成功",                                                                                         // 46
-    passwordReset: "密码重置成功"                                                                                            // 46
+    emailSent: "邮件已发出",                                                                                                // 52
+    emailVerified: "邮件验证成功",                                                                                           // 52
+    passwordChanged: "密码修改成功",                                                                                         // 52
+    passwordReset: "密码重置成功"                                                                                            // 52
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "必须填写电子邮件",                                                                                         // 53
-    minChar: "密码至少7个字符长",                                                                                              // 53
-    pwdsDontMatch: "两次密码不一致",                                                                                          // 53
-    pwOneDigit: "密码中至少有一位数字",                                                                                          // 53
-    pwOneLetter: "密码中至少有一位字母",                                                                                         // 53
-    signInRequired: "您必须登录后才能查看",                                                                                      // 53
-    signupCodeIncorrect: "注册码错误",                                                                                      // 53
-    signupCodeRequired: "必须有注册码",                                                                                      // 53
-    usernameIsEmail: "是用户名而不是电子邮件地址",                                                                                  // 53
-    usernameRequired: "必须填写用户名。",                                                                                      // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "该电子邮件地址已被使用。",                                                                         // 70
-      "Email doesn't match the criteria.": "错误的的电子邮件地址。",                                                              // 70
-      "Invalid login token": "登录密匙错误",                                                                                 // 70
-      "Login forbidden": "登录被阻止",                                                                                      // 70
-      "Service unknown": "未知服务",                                                                                       // 70
-      "Unrecognized options for login request": "登录请求存在无法识别的选项",                                                       // 70
-      "User validation failed": "用户验证失败",                                                                              // 70
-      "Username already exists.": "用户名已被占用。",                                                                          // 70
-      "You are not logged in.": "您还没有登录。",                                                                             // 70
-      "You've been logged out by the server. Please log in again.": "您被服务器登出了。请重新登录。",                                 // 70
-      "Your session has expired. Please log in again.": "会话过期，请重新登录。",                                                 // 70
-      "No matching login attempt found": "未发现对应登录请求",                                                                  // 70
-      "Password is old. Please reset your password.": "密码过于老了，请重置您的密码。",                                               // 70
-      "Incorrect password": "错误的密码",                                                                                   // 70
-      "Invalid email": "不合法的电子邮件地址",                                                                                   // 70
-      "Must be logged in": "必须先登录",                                                                                    // 70
-      "Need to set a username or email": "必须设置用户名或电子邮件地址",                                                             // 70
-      "old password format": "较老的密码格式",                                                                                // 70
-      "Password may not be empty": "密码不应该为空",                                                                          // 70
-      "Signups forbidden": "注册被禁止",                                                                                    // 70
-      "Token expired": "密匙过期",                                                                                         // 70
-      "Token has invalid email address": "密匙对应的电子邮箱地址不合法",                                                             // 70
-      "User has no password set": "用户没有密码",                                                                            // 70
-      "User not found": "未找到该用户",                                                                                      // 70
-      "Verify email link expired": "激活验证邮件的链接已过期",                                                                     // 70
-      "Verify email link is for unknown address": "验证邮件的链接去向未知地址",                                                     // 70
-      "Match failed": "匹配失败",                                                                                          // 70
-      "Unknown error": "未知错误"                                                                                          // 70
+    emailRequired: "必须填写电子邮件",                                                                                         // 59
+    minChar: "密码至少7个字符长",                                                                                              // 59
+    pwdsDontMatch: "两次密码不一致",                                                                                          // 59
+    pwOneDigit: "密码中至少有一位数字",                                                                                          // 59
+    pwOneLetter: "密码中至少有一位字母",                                                                                         // 59
+    signInRequired: "您必须登录后才能查看",                                                                                      // 59
+    signupCodeIncorrect: "注册码错误",                                                                                      // 59
+    signupCodeRequired: "必须有注册码",                                                                                      // 59
+    usernameIsEmail: "是用户名而不是电子邮件地址",                                                                                  // 59
+    usernameRequired: "必须填写用户名。",                                                                                      // 59
+    accounts: {                                                                                                        // 59
+      "Email already exists.": "该电子邮件地址已被使用。",                                                                         // 76
+      "Email doesn't match the criteria.": "错误的的电子邮件地址。",                                                              // 76
+      "Invalid login token": "登录密匙错误",                                                                                 // 76
+      "Login forbidden": "登录被阻止",                                                                                      // 76
+      "Service unknown": "未知服务",                                                                                       // 76
+      "Unrecognized options for login request": "登录请求存在无法识别的选项",                                                       // 76
+      "User validation failed": "用户验证失败",                                                                              // 76
+      "Username already exists.": "用户名已被占用。",                                                                          // 76
+      "You are not logged in.": "您还没有登录。",                                                                             // 76
+      "You've been logged out by the server. Please log in again.": "您被服务器登出了。请重新登录。",                                 // 76
+      "Your session has expired. Please log in again.": "会话过期，请重新登录。",                                                 // 76
+      "Invalid email or username": "不合法的电子邮件或用户名",                                                                     // 76
+      "Internal server error": "内部服务器错误",                                                                              // 76
+      "undefined": "未知错误",                                                                                             // 76
+      "No matching login attempt found": "未发现对应登录请求",                                                                  // 76
+      "Password is old. Please reset your password.": "密码过于老了，请重置您的密码。",                                               // 76
+      "Incorrect password": "错误的密码",                                                                                   // 76
+      "Invalid email": "不合法的电子邮件地址",                                                                                   // 76
+      "Must be logged in": "必须先登录",                                                                                    // 76
+      "Need to set a username or email": "必须设置用户名或电子邮件地址",                                                             // 76
+      "old password format": "较老的密码格式",                                                                                // 76
+      "Password may not be empty": "密码不应该为空",                                                                          // 76
+      "Signups forbidden": "注册被禁止",                                                                                    // 76
+      "Token expired": "密匙过期",                                                                                         // 76
+      "Token has invalid email address": "密匙对应的电子邮箱地址不合法",                                                             // 76
+      "User has no password set": "用户没有密码",                                                                            // 76
+      "User not found": "未找到该用户",                                                                                      // 76
+      "Verify email link expired": "激活验证邮件的链接已过期",                                                                     // 76
+      "Verify email link is for unknown address": "验证邮件的链接去向未知地址",                                                     // 76
+      "Match failed": "匹配失败",                                                                                          // 76
+      "Unknown error": "未知错误"                                                                                          // 76
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
@@ -3778,6 +3906,7 @@ zh_tw = {                                                                       
   add: "添加",                                                                                                           // 6
   and: "和",                                                                                                            // 6
   back: "返回",                                                                                                          // 6
+  cancel: "取消",                                                                                                        // 6
   changePassword: "修改密碼",                                                                                              // 6
   choosePassword: "選擇密碼",                                                                                              // 6
   clickAgree: "點擊註冊, 您同意我們的",                                                                                          // 6
@@ -3812,52 +3941,61 @@ zh_tw = {                                                                       
   username: "用戶名",                                                                                                     // 6
   usernameOrEmail: "用戶名或電子郵箱",                                                                                         // 6
   "with": "與",                                                                                                         // 6
+  enterPassword: "輸入密碼",                                                                                               // 6
+  enterNewPassword: "輸入新密碼",                                                                                           // 6
+  enterEmail: "輸入電子郵件",                                                                                                // 6
+  enterUsername: "輸入用戶名",                                                                                              // 6
+  enterUsernameOrEmail: "輸入用戶名或電子郵件",                                                                                  // 6
+  orUse: "或是使用",                                                                                                       // 6
   info: {                                                                                                              // 6
-    emailSent: "郵件已發送",                                                                                                // 46
-    emailVerified: "郵件已驗證",                                                                                            // 46
-    passwordChanged: "密碼已修改",                                                                                          // 46
-    passwordReset: "密碼重置"                                                                                              // 46
+    emailSent: "郵件已發送",                                                                                                // 53
+    emailVerified: "郵件已驗證",                                                                                            // 53
+    passwordChanged: "密碼已修改",                                                                                          // 53
+    passwordReset: "密碼重置"                                                                                              // 53
   },                                                                                                                   //
   error: {                                                                                                             // 6
-    emailRequired: "必須填寫電子郵件。",                                                                                        // 53
-    minChar: "密碼至少需要7個字符。",                                                                                            // 53
-    pwdsDontMatch: "密碼不一致。",                                                                                           // 53
-    pwOneDigit: "密碼必須至少有一位數字。",                                                                                        // 53
-    pwOneLetter: "密碼必須至少有一位字母。",                                                                                       // 53
-    signInRequired: "您必須先登錄才能繼續。",                                                                                     // 53
-    signupCodeIncorrect: "註冊碼錯誤。",                                                                                     // 53
-    signupCodeRequired: "必須有註冊碼。",                                                                                     // 53
-    usernameIsEmail: "用戶名不能為電郵地址。",                                                                                    // 53
-    usernameRequired: "必須有用戶名。",                                                                                       // 53
-    accounts: {                                                                                                        // 53
-      "Email already exists.": "電郵地址已被使用。",                                                                            // 70
-      "Email doesn't match the criteria.": "電郵地址不符合條件。",                                                               // 70
-      "Invalid login token": "無效的登錄令牌",                                                                                // 70
-      "Login forbidden": "禁止登錄",                                                                                       // 70
-      "Service unknown": "未知服務",                                                                                       // 70
-      "Unrecognized options for login request": "無法識別的登錄請求選項",                                                         // 70
-      "User validation failed": "用戶驗證失敗",                                                                              // 70
-      "Username already exists.": "用戶名已經存在。",                                                                          // 70
-      "You are not logged in.": "您尚未登入。",                                                                              // 70
-      "You've been logged out by the server. Please log in again.": "你已被伺服器登出，請重新登入。",                                 // 70
-      "Your session has expired. Please log in again.": "您的協定已過期，請重新登入。",                                              // 70
-      "No matching login attempt found": "沒有找到匹配的登入請求",                                                                // 70
-      "Password is old. Please reset your password.": "密碼是舊的。請重置您的密碼。",                                                // 70
-      "Incorrect password": "密碼不正確",                                                                                   // 70
-      "Invalid email": "無效的電子郵件",                                                                                      // 70
-      "Must be logged in": "必須先登入",                                                                                    // 70
-      "Need to set a username or email": "必須設置用戶名或電郵地址",                                                               // 70
-      "old password format": "舊密碼格式",                                                                                  // 70
-      "Password may not be empty": "密碼不能為空的",                                                                          // 70
-      "Signups forbidden": "註冊被禁止",                                                                                    // 70
-      "Token expired": "密匙過期",                                                                                         // 70
-      "Token has invalid email address": "密匙具有無效的電郵地址",                                                                // 70
-      "User has no password set": "用戶沒有設置密碼",                                                                          // 70
-      "User not found": "找不到用戶",                                                                                       // 70
-      "Verify email link expired": "驗證電郵連結已過期",                                                                        // 70
-      "Verify email link is for unknown address": "驗證電郵連結是未知的地址",                                                      // 70
-      "Match failed": "匹配失敗",                                                                                          // 70
-      "Unknown error": "未知錯誤"                                                                                          // 70
+    emailRequired: "必須填寫電子郵件。",                                                                                        // 60
+    minChar: "密碼至少需要7個字符。",                                                                                            // 60
+    pwdsDontMatch: "密碼不一致。",                                                                                           // 60
+    pwOneDigit: "密碼必須至少有一位數字。",                                                                                        // 60
+    pwOneLetter: "密碼必須至少有一位字母。",                                                                                       // 60
+    signInRequired: "您必須先登錄才能繼續。",                                                                                     // 60
+    signupCodeIncorrect: "註冊碼錯誤。",                                                                                     // 60
+    signupCodeRequired: "必須有註冊碼。",                                                                                     // 60
+    usernameIsEmail: "用戶名不能為電郵地址。",                                                                                    // 60
+    usernameRequired: "必須有用戶名。",                                                                                       // 60
+    accounts: {                                                                                                        // 60
+      "Email already exists.": "電郵地址已被使用。",                                                                            // 77
+      "Email doesn't match the criteria.": "電郵地址不符合條件。",                                                               // 77
+      "Invalid login token": "無效的登錄令牌",                                                                                // 77
+      "Login forbidden": "禁止登錄",                                                                                       // 77
+      "Service unknown": "未知服務",                                                                                       // 77
+      "Unrecognized options for login request": "無法識別的登錄請求選項",                                                         // 77
+      "User validation failed": "用戶驗證失敗",                                                                              // 77
+      "Username already exists.": "用戶名已經存在。",                                                                          // 77
+      "You are not logged in.": "您尚未登入。",                                                                              // 77
+      "You've been logged out by the server. Please log in again.": "你已被伺服器登出，請重新登入。",                                 // 77
+      "Your session has expired. Please log in again.": "您的協定已過期，請重新登入。",                                              // 77
+      "Invalid email or username": "無效的電子郵件或用戶名",                                                                      // 77
+      "Internal server error": "内部服务器错误",                                                                              // 77
+      "undefined": "未知錯誤",                                                                                             // 77
+      "No matching login attempt found": "沒有找到匹配的登入請求",                                                                // 77
+      "Password is old. Please reset your password.": "密碼是舊的。請重置您的密碼。",                                                // 77
+      "Incorrect password": "密碼不正確",                                                                                   // 77
+      "Invalid email": "無效的電子郵件",                                                                                      // 77
+      "Must be logged in": "必須先登入",                                                                                    // 77
+      "Need to set a username or email": "必須設置用戶名或電郵地址",                                                               // 77
+      "old password format": "舊密碼格式",                                                                                  // 77
+      "Password may not be empty": "密碼不能為空的",                                                                          // 77
+      "Signups forbidden": "註冊被禁止",                                                                                    // 77
+      "Token expired": "密匙過期",                                                                                         // 77
+      "Token has invalid email address": "密匙具有無效的電郵地址",                                                                // 77
+      "User has no password set": "用戶沒有設置密碼",                                                                          // 77
+      "User not found": "找不到用戶",                                                                                       // 77
+      "Verify email link expired": "驗證電郵連結已過期",                                                                        // 77
+      "Verify email link is for unknown address": "驗證電郵連結是未知的地址",                                                      // 77
+      "Match failed": "匹配失敗",                                                                                          // 77
+      "Unknown error": "未知錯誤"                                                                                          // 77
     }                                                                                                                  //
   }                                                                                                                    //
 };                                                                                                                     //
