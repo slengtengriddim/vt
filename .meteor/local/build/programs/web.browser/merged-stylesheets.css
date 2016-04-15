@@ -12223,17 +12223,21 @@ body {
 
 svg {
   display: block;
+  min-height: 250px;
 }
 
 #chartWordsAll,
 #chartWordsUser,
-#chartFav,
-svg {
+#chartFavLine svg {
   margin: 0px;
   padding: 0px;
   height: 100%;
   width: 100%;
-  min-height: 300px;
+}
+
+#chartFavPie svg {
+  height: 350px !important;
+  width: 350px !important;
 }
 
 /*

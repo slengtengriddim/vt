@@ -30,14 +30,18 @@ body {
 /* CHARTS */
 
 svg {
-    display: block;
+  display: block;
+  min-height: 250px;
 }
-#chartWordsAll, #chartWordsUser, #chartFav, svg {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-    min-height: 300px;
+#chartWordsAll, #chartWordsUser, #chartFavLine svg {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+#chartFavPie svg {
+  height: 350px !important;
+  width: 350px !important;
 }
 
 /*

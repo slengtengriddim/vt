@@ -20,8 +20,8 @@ Template.chartFavPie.onCreated(() => {
 
 Template.chartFavPie.rendered = function() {
 
-	var height = 250;
-var width = 250;
+	var height = 350;
+var width = 350;
 		// chart object
 		var chart = nv.models.pieChart()
 		.x(function(d) { return d.key })

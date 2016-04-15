@@ -333,8 +333,8 @@ Template.chartFavPie.onCreated(function () {                                    
                                                                                                                        //
 Template.chartFavPie.rendered = function () {                                                                          // 21
                                                                                                                        //
-	var height = 250;                                                                                                     // 23
-	var width = 250;                                                                                                      // 24
+	var height = 350;                                                                                                     // 23
+	var width = 350;                                                                                                      // 24
 	// chart object                                                                                                       //
 	var chart = nv.models.pieChart().x(function (d) {                                                                     // 21
 		return d.key;                                                                                                        // 27
