@@ -1,0 +1,26 @@
+
+/* Sessions */
+{
+"userId": "12345",
+"device": "mobile",
+"loggedIn": "timestamp",
+"loggedOut": "timestamp",
+}
+
+/* Routes */
+{
+	"userId": "12345",
+	"device": "desktop",
+	"routeGroup": "highAttention",
+	"routeName": "register",
+	"routeEnter": "timestamp",
+	"routeExit": "timestamp"
+}
+
+/* Modes */
+{
+	"userId": "12345",
+	"device": "tablet",
+	"modeType": "read",
+	"click": "timestamp"
+}

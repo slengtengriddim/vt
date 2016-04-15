@@ -1,0 +1,24 @@
+<template name="modusDefinition">
+	<div class="jumbotron">
+		<div class="text-center media-middle">
+			{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+				<h2>
+					{{ term }}
+				</h2>
+		</div>
+		<hr>
+		{{#unless getSession "revealed"}}
+		<div class="text-center media-middle">
+			<div class="btn-reveal">
+				<i class="fa fa-question fa-4x"></i><span class="label label-info">Gesucht: Bedeutung</span>
+			</div>
+		</div>
+		{{else}}
+		<h3>
+			<ol>
+				<li>{{ description }}</li>
+			</ol>
+		</h3>
+		{{/unless}}
+	</div>
+</template>

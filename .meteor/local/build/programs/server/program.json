@@ -310,16 +310,28 @@
       "path": "packages/nvd3_nvd3.js"
     },
     {
+      "path": "packages/momentjs_moment.js"
+    },
+    {
+      "path": "packages/autoupdate.js"
+    },
+    {
+      "path": "packages/meteor-platform.js"
+    },
+    {
+      "path": "packages/arsnebula_classx.js"
+    },
+    {
       "path": "packages/livedata.js"
+    },
+    {
+      "path": "packages/arsnebula_darwin.js"
     },
     {
       "path": "packages/hot-code-push.js"
     },
     {
       "path": "packages/launch-screen.js"
-    },
-    {
-      "path": "packages/autoupdate.js"
     },
     {
       "path": "packages/global-imports.js"

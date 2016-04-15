@@ -9,6 +9,8 @@ aldeed:simple-schema@1.5.3
 allow-deny@1.0.3
 anti:fake@0.4.1
 arillo:flow-router-helpers@0.5.1
+arsnebula:classx@2.0.5
+arsnebula:darwin@1.0.0
 autoupdate@1.2.7
 babel-compiler@6.6.1
 babel-runtime@0.1.7
@@ -55,6 +57,7 @@ logging@1.0.11
 mdg:validation-error@0.5.1
 meteor@1.1.13
 meteor-base@1.0.3
+meteor-platform@1.2.5
 minifier-css@1.1.10
 minifier-js@1.1.10
 minimongo@1.0.13

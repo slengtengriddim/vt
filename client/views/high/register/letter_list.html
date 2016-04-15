@@ -1,0 +1,24 @@
+<template name="letterList">
+	<h3>{{letter}}</h3>
+	{{#each entries}}
+		<li class="list-group-item clearfix">
+			<div class="media">
+				<div class="media-body">
+					<a href="/register/{{_id}}">
+						<h4 class="media-heading">{{term}}</h4>
+						{{description}}
+					</a>
+				</div>
+				{{#if isFavourite this._id}}
+					<div class="media-right media-middle btn-delete">
+							<i class="fa fa-trash-o fa-4x"></i>
+					</div>
+				{{else}}
+					<div class="media-right media-middle btn-insert">
+							<i class="fa fa-heart-o fa-4x"></i>
+					</div>
+				{{/if}}
+			</div>
+		</li>
+	{{/each}}
+</template>

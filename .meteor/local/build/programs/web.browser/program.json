@@ -747,6 +747,33 @@
       "hash": "f1dd2a0c10dad324686921210343325f9a97c197"
     },
     {
+      "path": "packages/autoupdate.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/autoupdate.js?hash=028c641918eb50a83f0f93187f6373bc617e73f7",
+      "size": 16598,
+      "hash": "028c641918eb50a83f0f93187f6373bc617e73f7"
+    },
+    {
+      "path": "packages/meteor-platform.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/meteor-platform.js?hash=e888430a42b6351e66c5ba66210af80c318ceb75",
+      "size": 335,
+      "hash": "e888430a42b6351e66c5ba66210af80c318ceb75"
+    },
+    {
+      "path": "packages/arsnebula_classx.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/arsnebula_classx.js?hash=9879ef0dca23eaec0ec80ba9d4ec2e781be55d0d",
+      "size": 22024,
+      "hash": "9879ef0dca23eaec0ec80ba9d4ec2e781be55d0d"
+    },
+    {
       "path": "packages/webapp.js",
       "where": "client",
       "type": "js",
@@ -758,15 +785,6 @@
       "hash": "7431a11f1c671b350504fe7192b94219e5200359"
     },
     {
-      "path": "packages/hot-code-push.js",
-      "where": "client",
-      "type": "js",
-      "cacheable": true,
-      "url": "/packages/hot-code-push.js?hash=9121bd39124b5010787be320ca559344b6691712",
-      "size": 249,
-      "hash": "9121bd39124b5010787be320ca559344b6691712"
-    },
-    {
       "path": "packages/launch-screen.js",
       "where": "client",
       "type": "js",
@@ -776,33 +794,42 @@
       "hash": "56bda4b972e8035450feba7f866a060872c46fbc"
     },
     {
-      "path": "packages/autoupdate.js",
+      "path": "packages/arsnebula_darwin.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/autoupdate.js?hash=028c641918eb50a83f0f93187f6373bc617e73f7",
-      "size": 16598,
-      "hash": "028c641918eb50a83f0f93187f6373bc617e73f7"
+      "url": "/packages/arsnebula_darwin.js?hash=5c15ee0db5a22ccc64912596dff2f55c2bfdb53c",
+      "size": 51648,
+      "hash": "5c15ee0db5a22ccc64912596dff2f55c2bfdb53c"
+    },
+    {
+      "path": "packages/hot-code-push.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/hot-code-push.js?hash=9121bd39124b5010787be320ca559344b6691712",
+      "size": 249,
+      "hash": "9121bd39124b5010787be320ca559344b6691712"
     },
     {
       "path": "packages/global-imports.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/global-imports.js?hash=b00167f4a47340ec854ac4ac3194d7178ed00545",
-      "size": 2046,
-      "hash": "b00167f4a47340ec854ac4ac3194d7178ed00545"
+      "url": "/packages/global-imports.js?hash=dcb18826a04e1e49749eb4d7b95e88ed71268ef7",
+      "size": 2135,
+      "hash": "dcb18826a04e1e49749eb4d7b95e88ed71268ef7"
     },
     {
       "path": "app/app.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=7c9c8d0dc5bd9280d76fa39d0f62c721f96fff54",
+      "url": "/app/app.js?hash=4b60614b8b4e5d01918372adca6466f540aa5da9",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/7c9c8d0dc5bd9280d76fa39d0f62c721f96fff54.map",
-      "size": 291980,
-      "hash": "7c9c8d0dc5bd9280d76fa39d0f62c721f96fff54"
+      "sourceMapUrl": "/app/4b60614b8b4e5d01918372adca6466f540aa5da9.map",
+      "size": 340694,
+      "hash": "4b60614b8b4e5d01918372adca6466f540aa5da9"
     },
     {
       "path": "packages/mdg_validation-error.js",
@@ -820,11 +847,11 @@
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/merged-stylesheets.css?hash=7f11edd409d1122d69c21c7c13fbc787719eef39",
+      "url": "/merged-stylesheets.css?hash=a5d7a92319c92fd4120fa5b131392f8bb357b377",
       "sourceMap": "merged-stylesheets.css.map",
-      "sourceMapUrl": "/7f11edd409d1122d69c21c7c13fbc787719eef39.map",
-      "size": 204798,
-      "hash": "7f11edd409d1122d69c21c7c13fbc787719eef39"
+      "sourceMapUrl": "/a5d7a92319c92fd4120fa5b131392f8bb357b377.map",
+      "size": 204975,
+      "hash": "a5d7a92319c92fd4120fa5b131392f8bb357b377"
     },
     {
       "path": "packages/twbs_bootstrap/dist/fonts/glyphicons-halflings-regular.eot",

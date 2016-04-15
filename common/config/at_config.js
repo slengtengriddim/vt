@@ -1,6 +1,6 @@
 // Options
 AccountsTemplates.configure({
-  defaultLayout: 'layoutSlim',
+  defaultLayout: 'layout',
   defaultLayoutRegions: {
     footer: 'footer'
   },

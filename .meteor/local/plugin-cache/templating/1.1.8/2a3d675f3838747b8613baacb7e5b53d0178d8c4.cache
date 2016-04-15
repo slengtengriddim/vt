@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartWordsAll\");\nTemplate[\"chartWordsAll\"] = new Template(\"Template.chartWordsAll\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Insgesamt</h4>\\n\t\"), HTML.DIV({\n    id: \"chartWordsAll\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

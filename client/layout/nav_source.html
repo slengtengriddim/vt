@@ -1,0 +1,18 @@
+<template name="navSource">
+		<div class="row text-center">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<button type="button" class="btn btn-default btn-lg btn-block btn-source">
+					Woerter aus: {{source}}
+					{{#if getSession 'sourceFavourites'}}
+						<span class="label label-default">{{lengthFav}}</span>
+					{{else}}
+						<span class="label label-default">{{lengthNotFav}}</span>
+					{{/if}}
+				</button>
+				{{#unless lengthFav}}<span class="label label-warning">Kein Eintrag in Favoritenliste</span>{{/unless}}
+				{{#unless lengthNotFav}}<span class="label label-warning">Kein Eintrag in Nicht-Favoritenliste. Alle Woerter sind favorisiert.</span>{{/unless}}
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+</template>

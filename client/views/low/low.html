@@ -1,0 +1,33 @@
+<template name="low">
+
+  <div class="container">
+		<div class="media">
+
+			{{> backward }}
+
+			<div class="media-body">
+				{{#if Template.subscriptionsReady}}
+					{{#with entry}}
+						{{#if getSession 'lesen'}}
+							{{> modusLesen}}
+						{{/if}}
+						{{#if getSession 'wort'}}
+							{{> modusWort}}
+						{{/if}}
+						{{#if getSession 'definition'}}
+							{{> modusDefinition}}
+						{{/if}}
+					{{/with}}
+				{{else}}
+					{{> loading}}
+				{{/if}}
+			</div>
+
+			{{> forward }}
+
+		</div>
+	</div>
+
+	<br>
+
+</template>

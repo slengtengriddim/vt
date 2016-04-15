@@ -1,0 +1,23 @@
+<template name="modusLesen">
+	<div class="jumbotron">
+		{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+		<h2 class="text-center">
+			{{term}}
+			{{#if getSession "sourceFavourites"}}
+				<div class="btn-delete text-center">
+					<i class="fa fa-trash-o fa-2x"></i>
+				</div>
+			{{else}}
+				<div class="btn-insert text-center">
+						<i class="fa fa-heart-o fa-2x"></i>
+				</div>
+			{{/if}}
+		</h2>
+		<hr>
+		<h3>
+			<ol>
+				<li>{{ description }}</li>
+			</ol>
+		</h3>
+	</div>
+</template>

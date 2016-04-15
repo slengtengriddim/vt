@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartModeAll\");\nTemplate[\"chartModeAll\"] = new Template(\"Template.chartModeAll\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Favourisierte Modi insgesamt</h4>\\n\t\"), HTML.DIV({\n    id: \"chartModeAll\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

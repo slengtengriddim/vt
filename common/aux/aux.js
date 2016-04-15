@@ -12,4 +12,5 @@ exports.shuffle = (array) => {
     }
     return array;
 };
-})(this.Aux = {})
+exports.getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+})(this.Aux = {});

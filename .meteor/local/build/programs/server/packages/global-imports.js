@@ -20,6 +20,7 @@ BlazeLayout = Package['kadira:blaze-layout'].BlazeLayout;
 FlowRouter = Package['kadira:flow-router'].FlowRouter;
 R = Package['ramda:ramda'].R;
 nv = Package['nvd3:nvd3'].nv;
+moment = Package['momentjs:moment'].moment;
 Meteor = Package.meteor.Meteor;
 global = Package.meteor.global;
 meteorEnv = Package.meteor.meteorEnv;

@@ -1,6 +1,6 @@
+//  search query
 Meteor.publish('vocabularyRegister', function(search) {
 	check(search, Match.OneOf(String, null, undefined));
-
 	let query = {},
 		projection = {
 			limit: 0,
@@ -8,7 +8,6 @@ Meteor.publish('vocabularyRegister', function(search) {
 				term: 1
 			}
 		};
-
 	if (search) {
 		let regex = new RegExp(search, 'i');
 		query = {
@@ -31,40 +30,6 @@ Meteor.publish("vocabularyAll", function() {
 	return this.ready();
 });
 
-Meteor.publish("vocabularyFavourised", function() {
-	let currentUserId = this.userId;
-	let favIds = R.pluck('vocabularyId')(Favourites.find({
-		userId: currentUserId
-	}).fetch());
-
-	return Vocabulary.find({
-		_id: {
-			$in: favIds
-		}
-	}, {
-		sort: {
-			term: 1
-		}
-	});
-});
-
-Meteor.publish("vocabularyWithoutFavourised", function() {
-	let currentUserId = this.userId;
-	let favIds = R.pluck('vocabularyId')(Favourites.find({
-		userId: currentUserId
-	}).fetch());
-	let data = Vocabulary.find({
-		_id: {
-			$nin: favIds
-		}
-	});
-
-	if (data) {
-		return data;
-	}
-	return this.ready();
-});
-
 Meteor.publish("ownedFavourites", function() {
 	let currentUserId = this.userId;
 	let data = Favourites.find({
@@ -81,3 +46,60 @@ Meteor.publish('singleEntry', function(entryId) {
 		_id: entryId
 	});
 });
+
+Meteor.publish('dataViewedAll', function() {
+	let data = Data.Viewed.All.find({}, {
+		limit: 5,
+		sort: {
+			timesViewed: -1
+		}
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish('dataViewedUser', function() {
+	let data = Data.Viewed.User.find({
+		userId: this.userId
+	}, {
+		limit: 5,
+		sort: {
+			timesViewed: -1
+		}
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish('dataFavHigh', function() {
+	let data = Data.Fav.High.find({}, {
+		sort: {
+
+		}
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish('dataFavLow', function() {
+	let data = Data.Fav.Low.find({}, {
+		sort: {
+
+		}
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+
+// Meteor.publish('people', function() {
+// 	let data = People.find({});
+// 	if (data) {
+// 		return data;
+// 	}
+// 	return this.ready();
+// });

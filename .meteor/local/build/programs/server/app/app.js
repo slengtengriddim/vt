@@ -52,36 +52,114 @@ Meteor.startup(function () {});                                                 
 //////////////////////////////////////////////////////////////////////////////////////
                                                                                     //
 Meteor.methods({                                                                    // 1
-	toggleFavourite: function () {                                                     // 2
-		function toggleFavourite(vocabularyId) {                                          //
+	deleteFavourite: function () {                                                     // 2
+		function deleteFavourite(vocabularyId) {                                          //
+			check(vocabularyId, String);                                                     // 3
+			Favourites.remove({                                                              // 4
+				vocabularyId: vocabularyId                                                      // 5
+			});                                                                              //
+		}                                                                                 //
                                                                                     //
-			if (Favourites.find({                                                            // 4
-				vocabularyId: vocabularyId,                                                     // 5
-				userId: this.userId                                                             // 6
-			}).count() === 0) {                                                              //
+		return deleteFavourite;                                                           //
+	}(),                                                                               //
+	insertFavourite: function () {                                                     // 8
+		function insertFavourite(vocabularyId) {                                          //
+			check(vocabularyId, String);                                                     // 9
+			Favourites.insert({                                                              // 10
+				vocabularyId: vocabularyId                                                      // 11
+			});                                                                              //
+		}                                                                                 //
                                                                                     //
-				Favourites.insert({                                                             // 9
-					vocabularyId: vocabularyId                                                     // 10
+		return insertFavourite;                                                           //
+	}(),                                                                               //
+	dataViewedUser: function () {                                                      // 14
+		function dataViewedUser(obj) {                                                    //
+			Data.Viewed.User.upsert({                                                        // 15
+				vocabularyId: obj._id,                                                          // 16
+				userId: this.userId                                                             // 17
+			}, {                                                                             //
+				$setOnInsert: {                                                                 // 19
+					vocabularyId: obj._id,                                                         // 20
+					userId: this.userId,                                                           // 21
+					vocabularyName: obj.term,                                                      // 22
+					timesViewed: 0                                                                 // 23
+				},                                                                              //
+				$inc: {                                                                         // 25
+					timesViewed: 1                                                                 // 26
+				}                                                                               //
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return dataViewedUser;                                                            //
+	}(),                                                                               //
+	dataViewedAll: function () {                                                       // 30
+		function dataViewedAll(obj) {                                                     //
+			Data.Viewed.All.upsert({                                                         // 31
+				vocabularyId: obj._id                                                           // 32
+			}, {                                                                             //
+				$setOnInsert: {                                                                 // 34
+					vocabularyId: obj._id,                                                         // 35
+					vocabularyName: obj.term,                                                      // 36
+					timesViewed: 0                                                                 // 37
+				},                                                                              //
+				$inc: {                                                                         // 39
+					timesViewed: 1                                                                 // 40
+				}                                                                               //
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return dataViewedAll;                                                             //
+	}(),                                                                               //
+	dataFavLow: function () {                                                          // 44
+		function dataFavLow(timestamp) {                                                  //
+			Data.Fav.Low.upsert({                                                            // 45
+				x: timestamp                                                                    // 46
+			}, {                                                                             //
+				$setOnInsert: {                                                                 // 48
+					x: timestamp,                                                                  // 49
+					y: 0                                                                           // 50
+				},                                                                              //
+				$inc: {                                                                         // 52
+					y: 1                                                                           // 53
+				}                                                                               //
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return dataFavLow;                                                                //
+	}(),                                                                               //
+	dataFavHigh: function () {                                                         // 57
+		function dataFavHigh(timestamp) {                                                 //
+			Data.Fav.High.upsert({                                                           // 58
+				x: timestamp                                                                    // 59
+			}, {                                                                             //
+				$setOnInsert: {                                                                 // 61
+					x: timestamp,                                                                  // 62
+					y: 0                                                                           // 63
+				},                                                                              //
+				$inc: {                                                                         // 65
+					y: 1                                                                           // 66
+				}                                                                               //
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return dataFavHigh;                                                               //
+	}(),                                                                               //
+	addPerson: function () {                                                           // 70
+		function addPerson(lastPerson, age) {                                             //
+			if (lastPerson) {                                                                // 71
+				People.insert({                                                                 // 72
+					x: lastPerson.x + 1,                                                           // 73
+					y: age                                                                         // 74
 				});                                                                             //
 			} else {                                                                         //
-				Favourites.remove({                                                             // 13
-					vocabularyId: vocabularyId                                                     // 14
+				People.insert({                                                                 // 77
+					x: 1,                                                                          // 78
+					y: age                                                                         // 79
 				});                                                                             //
 			}                                                                                //
 		}                                                                                 //
                                                                                     //
-		return toggleFavourite;                                                           //
-	}(),                                                                               //
-	deleteFavourite: function () {                                                     // 18
-		function deleteFavourite(vocabularyId) {                                          //
-			var favEntry = Favourites.findOne({                                              // 19
-				vocabularyId: vocabularyId                                                      // 20
-			});                                                                              //
-                                                                                    //
-			Favourites.remove(favEntry._id);                                                 // 23
-		}                                                                                 //
-                                                                                    //
-		return deleteFavourite;                                                           //
+		return addPerson;                                                                 //
 	}()                                                                                //
 });                                                                                 //
 //////////////////////////////////////////////////////////////////////////////////////
@@ -94,9 +172,9 @@ Meteor.methods({                                                                
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
                                                                                     //
-Meteor.publish('vocabularyRegister', function (search) {                            // 1
-	check(search, Match.OneOf(String, null, undefined));                               // 2
-                                                                                    //
+//  search query                                                                    //
+Meteor.publish('vocabularyRegister', function (search) {                            // 2
+	check(search, Match.OneOf(String, null, undefined));                               // 3
 	var query = {},                                                                    // 4
 	    projection = {                                                                 //
 		limit: 0,                                                                         // 6
@@ -104,79 +182,97 @@ Meteor.publish('vocabularyRegister', function (search) {                        
 			term: 1                                                                          // 8
 		}                                                                                 //
 	};                                                                                 //
-                                                                                    //
-	if (search) {                                                                      // 12
-		var regex = new RegExp(search, 'i');                                              // 13
-		query = {                                                                         // 14
-			$or: [{                                                                          // 15
-				term: regex                                                                     // 16
+	if (search) {                                                                      // 11
+		var regex = new RegExp(search, 'i');                                              // 12
+		query = {                                                                         // 13
+			$or: [{                                                                          // 14
+				term: regex                                                                     // 15
 			}, {                                                                             //
-				description: regex                                                              // 18
+				description: regex                                                              // 17
 			}]                                                                               //
 		};                                                                                //
-		projection.limit = 0;                                                             // 21
+		projection.limit = 0;                                                             // 20
 	}                                                                                  //
-	return Vocabulary.find(query, projection);                                         // 23
+	return Vocabulary.find(query, projection);                                         // 22
 });                                                                                 //
                                                                                     //
-Meteor.publish("vocabularyAll", function () {                                       // 26
-	var data = Vocabulary.find({});                                                    // 27
-	if (data) {                                                                        // 28
-		return data;                                                                      // 29
+Meteor.publish("vocabularyAll", function () {                                       // 25
+	var data = Vocabulary.find({});                                                    // 26
+	if (data) {                                                                        // 27
+		return data;                                                                      // 28
 	}                                                                                  //
-	return this.ready();                                                               // 31
+	return this.ready();                                                               // 30
 });                                                                                 //
                                                                                     //
-Meteor.publish("vocabularyFavourised", function () {                                // 34
-	var currentUserId = this.userId;                                                   // 35
-	var favIds = R.pluck('vocabularyId')(Favourites.find({                             // 36
-		userId: currentUserId                                                             // 37
-	}).fetch());                                                                       //
+Meteor.publish("ownedFavourites", function () {                                     // 33
+	var currentUserId = this.userId;                                                   // 34
+	var data = Favourites.find({                                                       // 35
+		userId: currentUserId                                                             // 36
+	});                                                                                //
+	if (data) {                                                                        // 38
+		return data;                                                                      // 39
+	}                                                                                  //
+	return this.ready();                                                               // 41
+});                                                                                 //
                                                                                     //
-	return Vocabulary.find({                                                           // 40
-		_id: {                                                                            // 41
-			$in: favIds                                                                      // 42
+Meteor.publish('singleEntry', function (entryId) {                                  // 44
+	return Vocabulary.find({                                                           // 45
+		_id: entryId                                                                      // 46
+	});                                                                                //
+});                                                                                 //
+                                                                                    //
+Meteor.publish('dataViewedAll', function () {                                       // 50
+	var data = Data.Viewed.All.find({}, {                                              // 51
+		limit: 5,                                                                         // 52
+		sort: {                                                                           // 53
+			timesViewed: -1                                                                  // 54
 		}                                                                                 //
+	});                                                                                //
+	if (data) {                                                                        // 57
+		return data;                                                                      // 58
+	}                                                                                  //
+	return this.ready();                                                               // 60
+});                                                                                 //
+Meteor.publish('dataViewedUser', function () {                                      // 62
+	var data = Data.Viewed.User.find({                                                 // 63
+		userId: this.userId                                                               // 64
 	}, {                                                                               //
-		sort: {                                                                           // 45
-			term: 1                                                                          // 46
+		limit: 5,                                                                         // 66
+		sort: {                                                                           // 67
+			timesViewed: -1                                                                  // 68
 		}                                                                                 //
 	});                                                                                //
-});                                                                                 //
-                                                                                    //
-Meteor.publish("vocabularyWithoutFavourised", function () {                         // 51
-	var currentUserId = this.userId;                                                   // 52
-	var favIds = R.pluck('vocabularyId')(Favourites.find({                             // 53
-		userId: currentUserId                                                             // 54
-	}).fetch());                                                                       //
-	var data = Vocabulary.find({                                                       // 56
-		_id: {                                                                            // 57
-			$nin: favIds                                                                     // 58
-		}                                                                                 //
-	});                                                                                //
-                                                                                    //
-	if (data) {                                                                        // 62
-		return data;                                                                      // 63
+	if (data) {                                                                        // 71
+		return data;                                                                      // 72
 	}                                                                                  //
-	return this.ready();                                                               // 65
+	return this.ready();                                                               // 74
 });                                                                                 //
-                                                                                    //
-Meteor.publish("ownedFavourites", function () {                                     // 68
-	var currentUserId = this.userId;                                                   // 69
-	var data = Favourites.find({                                                       // 70
-		userId: currentUserId                                                             // 71
+Meteor.publish('dataFavHigh', function () {                                         // 76
+	var data = Data.Fav.High.find({}, {                                                // 77
+		sort: {}                                                                          // 78
 	});                                                                                //
-	if (data) {                                                                        // 73
-		return data;                                                                      // 74
+	if (data) {                                                                        // 82
+		return data;                                                                      // 83
 	}                                                                                  //
-	return this.ready();                                                               // 76
+	return this.ready();                                                               // 85
+});                                                                                 //
+Meteor.publish('dataFavLow', function () {                                          // 87
+	var data = Data.Fav.Low.find({}, {                                                 // 88
+		sort: {}                                                                          // 89
+	});                                                                                //
+	if (data) {                                                                        // 93
+		return data;                                                                      // 94
+	}                                                                                  //
+	return this.ready();                                                               // 96
 });                                                                                 //
                                                                                     //
-Meteor.publish('singleEntry', function (entryId) {                                  // 79
-	return Vocabulary.find({                                                           // 80
-		_id: entryId                                                                      // 81
-	});                                                                                //
-});                                                                                 //
+// Meteor.publish('people', function() {                                            //
+// 	let data = People.find({});                                                     //
+// 	if (data) {                                                                     //
+// 		return data;                                                                   //
+// 	}                                                                               //
+// 	return this.ready();                                                            //
+// });                                                                              //
 //////////////////////////////////////////////////////////////////////////////////////
 
 },"vocabularySeed.js":function(){
@@ -189,14 +285,14 @@ Meteor.publish('singleEntry', function (entryId) {                              
                                                                                     //
 Meteor.startup(function () {                                                        // 1
                                                                                     //
-	if (Vocabulary.find().count() === 0) {                                             // 3
-		for (var i = 0; i < 10; i++) {                                                    // 4
-			Vocabulary.insert({                                                              // 5
-				term: Fake.word(),                                                              // 6
-				description: Fake.sentence([24])                                                // 7
-			});                                                                              //
-		}                                                                                 //
-	};                                                                                 //
+	// if (Vocabulary.find().count() === 0) {                                          //
+	// 	for (let i = 0; i < 10; i++) {                                                 //
+	// 		Vocabulary.insert({                                                           //
+	// 			term: Fake.word(),                                                           //
+	// 			description: Fake.sentence([24])                                             //
+	// 		});                                                                           //
+	// 	}                                                                              //
+	// };                                                                              //
 });                                                                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -222,7 +318,57 @@ Meteor.startup(function () {                                                    
         }                                                                           //
         return array;                                                               // 13
     };                                                                              //
+    exports.getRandomInt = function (min, max) {                                    // 15
+        return Math.floor(Math.random() * (max - min + 1)) + min;                   //
+    };                                                                              //
 })(this.Aux = {});                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+
+},"nvd3_extra.js":function(require,exports){
+
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+// common/aux/nvd3_extra.js                                                         //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+                                                                                    //
+/* Inspired by Lee Byron's test data generator. */                                  //
+(function (exports) {                                                               // 2
+  var _arguments = arguments;                                                       //
+                                                                                    //
+  exports.stream_layers = function (n, m, o) {                                      // 3
+    if (_arguments.length < 3) o = 0;                                               // 4
+    function bump(a) {                                                              // 5
+      var x = 1 / (.1 + Math.random()),                                             // 6
+          y = 2 * Math.random() - .5,                                               //
+          z = 10 / (.1 + Math.random());                                            //
+      for (var i = 0; i < m; i++) {                                                 // 9
+        var w = (i / m - y) * z;                                                    // 10
+        a[i] += x * Math.exp(-w * w);                                               // 11
+      }                                                                             //
+    }                                                                               //
+    return d3.range(n).map(function () {                                            // 14
+      var a = [],                                                                   // 15
+          i;                                                                        //
+      for (i = 0; i < m; i++) {                                                     // 16
+        a[i] = o + o * Math.random();                                               // 16
+      }for (i = 0; i < 5; i++) {                                                    //
+        bump(a);                                                                    // 17
+      }return a.map(exports.stream_index);                                          //
+    });                                                                             //
+  };                                                                                //
+  exports.stream_waves = function (n, m) {                                          // 21
+    return d3.range(n).map(function (i) {                                           // 22
+      return d3.range(m).map(function (j) {                                         // 23
+        var x = 20 * j / m - i / 3;                                                 // 24
+        return 2 * x * Math.exp(-.5 * x);                                           // 25
+      }).map(exports.stream_index);                                                 //
+    });                                                                             //
+  };                                                                                //
+  exports.stream_index = function (d, i) {                                          // 29
+    return { x: i, y: Math.max(0, d) };                                             // 30
+  };                                                                                //
+})(this.NVD3 = {});                                                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 
 },"validation.js":function(require,exports){
@@ -251,7 +397,78 @@ Meteor.startup(function () {                                                    
 })(this.Validate = {});                                                             //
 //////////////////////////////////////////////////////////////////////////////////////
 
-}},"collections":{"favourites.js":function(){
+}},"collections":{"data.js":function(){
+
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+// common/collections/data.js                                                       //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+                                                                                    //
+People = new Mongo.Collection("people", {});                                        // 1
+                                                                                    //
+Data = {};                                                                          // 3
+Data.Viewed = {};                                                                   // 4
+Data.Viewed.User = new Mongo.Collection("dataViewedUser", {});                      // 5
+Data.Viewed.All = new Mongo.Collection("dataViewedAll", {});                        // 6
+Data.Fav = {};                                                                      // 7
+Data.Fav.High = new Mongo.Collection("dataFavHigh", {});                            // 8
+Data.Fav.Low = new Mongo.Collection("dataFavLow", {});                              // 9
+                                                                                    //
+Data.Viewed.All.Schema = new SimpleSchema({                                         // 11
+	vocabularyId: {                                                                    // 12
+		type: String                                                                      // 13
+	},                                                                                 //
+	vocabularyName: {                                                                  // 15
+		type: String                                                                      // 16
+	},                                                                                 //
+	timesViewed: {                                                                     // 18
+		type: Number                                                                      // 19
+	},                                                                                 //
+	createdAt: {                                                                       // 21
+		type: Date,                                                                       // 22
+		autoValue: function () {                                                          // 23
+			function autoValue() {                                                           // 23
+				return new Date();                                                              // 24
+			}                                                                                //
+                                                                                    //
+			return autoValue;                                                                //
+		}()                                                                               //
+	}                                                                                  //
+});                                                                                 //
+                                                                                    //
+Data.Viewed.User.Schema = new SimpleSchema([{                                       // 29
+	userId: {                                                                          // 31
+		type: String,                                                                     // 32
+		autoValue: function () {                                                          // 33
+			function autoValue() {                                                           // 33
+				return this.userId;                                                             // 34
+			}                                                                                //
+                                                                                    //
+			return autoValue;                                                                //
+		}()                                                                               //
+	}                                                                                  //
+}, Data.Viewed.All.Schema]);                                                        //
+                                                                                    //
+Data.Viewed.User.attachSchema(Data.Viewed.User.Schema);                             // 41
+Data.Viewed.All.attachSchema(Data.Viewed.All.Schema);                               // 42
+                                                                                    //
+// CHART MODE                                                                       //
+// timestamp (day),                                                                 //
+// mode,                                                                            //
+// countClick,                                                                      //
+// device --->>> $sum to get all devices                                            //
+                                                                                    //
+// CHART LOW HIGH                                                                   //
+// URL                                                                              //
+// timestamp enter                                                                  //
+// timestamp exit                                                                   //
+// device                                                                           //
+                                                                                    //
+// --->>> insert @ logout and routeEnter/ routeExit                                 //
+//////////////////////////////////////////////////////////////////////////////////////
+
+},"favourites.js":function(){
 
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
@@ -290,63 +507,6 @@ var FavouritesSchema = new SimpleSchema({                                       
                                                                                     //
 Favourites = new Mongo.Collection('favourites', {});                                // 22
 Favourites.attachSchema(FavouritesSchema);                                          // 23
-//////////////////////////////////////////////////////////////////////////////////////
-
-},"local.js":function(){
-
-//////////////////////////////////////////////////////////////////////////////////////
-//                                                                                  //
-// common/collections/local.js                                                      //
-//                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////
-                                                                                    //
-                                                                                    //
-//////////////////////////////////////////////////////////////////////////////////////
-
-},"viewed.js":function(){
-
-//////////////////////////////////////////////////////////////////////////////////////
-//                                                                                  //
-// common/collections/viewed.js                                                     //
-//                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////
-                                                                                    //
-var ViewedSchema = new SimpleSchema({                                               // 1
-	userId: {                                                                          // 2
-		type: String,                                                                     // 3
-		autoValue: function () {                                                          // 4
-			function autoValue() {                                                           // 4
-				return this.userId;                                                             // 5
-			}                                                                                //
-                                                                                    //
-			return autoValue;                                                                //
-		}()                                                                               //
-	},                                                                                 //
-	vocabularyId: {                                                                    // 8
-		type: String                                                                      // 9
-	},                                                                                 //
-	createdAt: {                                                                       // 11
-		type: Date,                                                                       // 12
-		autoValue: function () {                                                          // 13
-			function autoValue() {                                                           // 13
-				return new Date();                                                              // 14
-			}                                                                                //
-                                                                                    //
-			return autoValue;                                                                //
-		}(),                                                                              //
-		autoform: {                                                                       // 16
-			type: "hidden"                                                                   // 17
-		}                                                                                 //
-	},                                                                                 //
-	timesViewed: {                                                                     // 20
-		type: Number,                                                                     // 21
-		defaultValue: 0                                                                   // 22
-	}                                                                                  //
-	// link to page the word was looked up from                                        //
-});                                                                                 // 1
-                                                                                    //
-Viewed = new Mongo.Collection('viewed', {});                                        // 27
-Viewed.attachSchema(ViewedSchema);                                                  // 28
 //////////////////////////////////////////////////////////////////////////////////////
 
 },"vocabulary.js":function(){
@@ -448,7 +608,7 @@ T9n.setLanguage('de');                                                          
                                                                                     //
 // Options                                                                          //
 AccountsTemplates.configure({                                                       // 2
-  defaultLayout: 'layoutSlim',                                                      // 3
+  defaultLayout: 'layout',                                                          // 3
   defaultLayoutRegions: {                                                           // 4
     footer: 'footer'                                                                // 5
   },                                                                                //
@@ -510,9 +670,9 @@ checkAttentionModeOn = function checkAttentionModeOn() {                        
 	}                                                                                  //
 };                                                                                  //
                                                                                     //
-setTrainerPath = function setTrainerPath() {                                        // 15
-	Session.set(LAST_PATH_TRAINER, FlowRouter.current().route.path);                   // 16
-};                                                                                  //
+// setLowPath = () => {                                                             //
+// 	Session.set(LAST_PATH_LOW, FlowRouter.current().route.path)                     //
+// }                                                                                //
                                                                                     //
 resetSession = function resetSession() {                                            // 19
 	Session.set(REVEALED, false);                                                      // 20
@@ -528,116 +688,66 @@ var lowRoutes = FlowRouter.group({                                              
 	triggersEnter: [checkAttentionModeOn],                                             // 30
 	triggersExit: []                                                                   // 31
 });                                                                                 //
-var basicRoutes = FlowRouter.group({                                                // 33
-	name: "basic",                                                                     // 34
+var highRoutes = FlowRouter.group({                                                 // 33
+	name: "high",                                                                      // 34
 	triggersEnter: [checkAttentionModeOff],                                            // 35
 	triggersExit: []                                                                   // 36
 });                                                                                 //
                                                                                     //
-basicRoutes.trainerRoutes = FlowRouter.group({                                      // 39
-	name: "trainer",                                                                   // 40
-	triggersEnter: [setTrainerPath],                                                   // 41
-	triggersExit: [resetSession]                                                       // 42
-});                                                                                 //
-                                                                                    //
 // *** ROUTES                                                                       //
                                                                                     //
-basicRoutes.route('/', {                                                            // 47
-	name: "index",                                                                     // 48
-	action: function () {                                                              // 49
-		function action(params, queryParams) {                                            // 49
-			BlazeLayout.render('layoutBasic', {                                              // 50
-				bar: "bar",                                                                     // 51
-				nav: "nav",                                                                     // 52
-				main: "index"                                                                   // 53
+highRoutes.route('/', {                                                             // 41
+	name: "index",                                                                     // 42
+	action: function () {                                                              // 43
+		function action(params, queryParams) {                                            // 43
+			BlazeLayout.render('layout', {                                                   // 44
+				bar: "bar",                                                                     // 45
+				nav: "nav",                                                                     // 46
+				main: "index"                                                                   // 47
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.route('/favouriten', {                                                  // 57
-	name: "favouriten",                                                                // 58
-	action: function () {                                                              // 59
-		function action(params, queryParams) {                                            // 59
-			BlazeLayout.render('layoutBasic', {                                              // 60
-				bar: "bar",                                                                     // 61
-				nav: "nav",                                                                     // 62
-				main: "favouriten"                                                              // 63
+highRoutes.route('/eingabe', {                                                      // 51
+	name: "eingabe",                                                                   // 52
+	action: function () {                                                              // 53
+		function action(params, queryParams) {                                            // 53
+			BlazeLayout.render('layout', {                                                   // 54
+				bar: "bar",                                                                     // 55
+				nav: "nav",                                                                     // 56
+				main: "eingabe",                                                                // 57
+				navSource: "navSource"                                                          // 58
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.route('/trainer', {                                                     // 67
-	name: "trainer",                                                                   // 68
-	action: function () {                                                              // 69
-		function action(params, queryParams) {                                            // 69
-			FlowRouter.go(Session.get('lastPathTrainer'));                                   // 70
+                                                                                    //
+highRoutes.route('/register/:id', {                                                 // 63
+	name: "vokabelDetail",                                                             // 64
+	action: function () {                                                              // 65
+		function action(params, queryParams) {                                            // 65
+			BlazeLayout.render('layout', {                                                   // 66
+				bar: "bar",                                                                     // 67
+				nav: "nav",                                                                     // 68
+				main: "vokabelDetail"                                                           // 69
+			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/lesen', {                                 // 73
-	name: "trainerLesen",                                                              // 74
+highRoutes.route('/register', {                                                     // 73
+	name: "register",                                                                  // 74
 	action: function () {                                                              // 75
 		function action(params, queryParams) {                                            // 75
-			BlazeLayout.render('layoutTrainer', {                                            // 76
+			BlazeLayout.render('layout', {                                                   // 76
 				bar: "bar",                                                                     // 77
 				nav: "nav",                                                                     // 78
-				navTrainer: "navTrainer",                                                       // 79
-				main: "trainerLesen",                                                           // 80
-				navRandom: "navRandom"                                                          // 81
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/eingabe', {                               // 85
-	name: "trainerEingabe",                                                            // 86
-	action: function () {                                                              // 87
-		function action(params, queryParams) {                                            // 87
-			BlazeLayout.render('layoutTrainer', {                                            // 88
-				bar: "bar",                                                                     // 89
-				nav: "nav",                                                                     // 90
-				navTrainer: "navTrainer",                                                       // 91
-				main: "trainerEingabe",                                                         // 92
-				navRandom: "navRandom"                                                          // 93
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/wort', {                                  // 97
-	name: "trainerWort",                                                               // 98
-	action: function () {                                                              // 99
-		function action(params, queryParams) {                                            // 99
-			BlazeLayout.render('layoutTrainer', {                                            // 100
-				bar: "bar",                                                                     // 101
-				nav: "nav",                                                                     // 102
-				navTrainer: "navTrainer",                                                       // 103
-				main: "trainerWort",                                                            // 104
-				navRandom: "navRandom"                                                          // 105
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-basicRoutes.trainerRoutes.route('/trainer/bedeutung', {                             // 109
-	name: "trainerBedeutung",                                                          // 110
-	action: function () {                                                              // 111
-		function action(params, queryParams) {                                            // 111
-			BlazeLayout.render('layoutTrainer', {                                            // 112
-				bar: "bar",                                                                     // 113
-				nav: "nav",                                                                     // 114
-				navTrainer: "navTrainer",                                                       // 115
-				main: "trainerBedeutung",                                                       // 116
-				navRandom: "navRandom"                                                          // 117
+				main: "register"                                                                // 79
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -645,57 +755,29 @@ basicRoutes.trainerRoutes.route('/trainer/bedeutung', {                         
 	}()                                                                                //
 });                                                                                 //
                                                                                     //
-basicRoutes.route('/vokabelregister', {                                             // 122
-	name: "vokabelregister",                                                           // 123
-	action: function () {                                                              // 124
-		function action(params, queryParams) {                                            // 124
-			BlazeLayout.render('layoutBasic', {                                              // 125
-				bar: "bar",                                                                     // 126
-				nav: "nav",                                                                     // 127
-				main: "vokabelregister"                                                         // 128
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-basicRoutes.route('/vokabelregister/:id', {                                         // 132
-	name: "vokabelDetail",                                                             // 133
-	action: function () {                                                              // 134
-		function action(params, queryParams) {                                            // 134
-			console.log(params);                                                             // 135
-			BlazeLayout.render('layoutBasic', {                                              // 136
-				bar: "bar",                                                                     // 137
-				nav: "nav",                                                                     // 138
-				main: "vokabelDetail"                                                           // 139
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-                                                                                    //
-lowRoutes.route('/low', {                                                           // 145
-	name: "indexLow",                                                                  // 146
-	action: function () {                                                              // 147
-		function action(params, queryParams) {                                            // 147
-			BlazeLayout.render('layoutBasic', {                                              // 148
-				bar: "bar",                                                                     // 149
-				main: "indexLow"                                                                // 150
+lowRoutes.route('/low', {                                                           // 84
+	name: "low",                                                                       // 85
+	action: function () {                                                              // 86
+		function action(params, queryParams) {                                            // 86
+			BlazeLayout.render('layout', {                                                   // 87
+				bar: "bar",                                                                     // 88
+				nav: "navMode",                                                                 // 89
+				main: "low",                                                                    // 90
+				navSource: "navSource"                                                          // 91
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}(),                                                                               //
-	triggersEnter: [function (context, redirect) {}]                                   // 153
+	triggersEnter: [function (context, redirect) {}]                                   // 94
 });                                                                                 //
                                                                                     //
-FlowRouter.notFound = {                                                             // 156
-	action: function () {                                                              // 157
-		function action() {                                                               // 157
-			BlazeLayout.render('layoutSlim', {                                               // 158
-				footer: "footer",                                                               // 159
-				main: "pageNotFound"                                                            // 160
+FlowRouter.notFound = {                                                             // 98
+	action: function () {                                                              // 99
+		function action() {                                                               // 99
+			BlazeLayout.render('layout', {                                                   // 100
+				footer: "footer",                                                               // 101
+				main: "pageNotFound"                                                            // 102
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -704,11 +786,11 @@ FlowRouter.notFound = {                                                         
 };                                                                                  //
                                                                                     //
 //Routes                                                                            //
-AccountsTemplates.configureRoute('changePwd');                                      // 167
+AccountsTemplates.configureRoute('changePwd');                                      // 109
 // AccountsTemplates.configureRoute('forgotPwd');                                   //
-AccountsTemplates.configureRoute('resetPwd');                                       // 169
-AccountsTemplates.configureRoute('signIn');                                         // 170
-AccountsTemplates.configureRoute('signUp');                                         // 171
+AccountsTemplates.configureRoute('resetPwd');                                       // 111
+AccountsTemplates.configureRoute('signIn');                                         // 112
+AccountsTemplates.configureRoute('signUp');                                         // 113
 // AccountsTemplates.configureRoute('verifyEmail');                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -716,10 +798,10 @@ AccountsTemplates.configureRoute('signUp');                                     
 require("./server/lib/config/accounts.js");
 require("./server/lib/config/email.js");
 require("./common/aux/aux.js");
+require("./common/aux/nvd3_extra.js");
 require("./common/aux/validation.js");
+require("./common/collections/data.js");
 require("./common/collections/favourites.js");
-require("./common/collections/local.js");
-require("./common/collections/viewed.js");
 require("./common/collections/vocabulary.js");
 require("./common/config/accounts_t9n.js");
 require("./common/config/at_config.js");

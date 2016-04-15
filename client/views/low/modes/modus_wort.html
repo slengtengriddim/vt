@@ -1,0 +1,25 @@
+<template name="modusWort">
+	<div class="jumbotron">
+		<div class="text-center media-middle">
+			{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+
+			{{#unless getSession "revealed"}}
+			<div class="btn-reveal">
+				<i class="fa fa-question fa-4x"></i><span class="label label-info">Gesucht: Wort</span>
+			</div>
+			{{else}}
+				<h2>
+					{{ term }}
+				</h2>
+			{{/unless}}
+		</div>
+
+		<hr>
+
+		<h3>
+		<ol>
+			<li>{{ description }}</li>
+		</ol>
+	</h3>
+	</div>
+</template>

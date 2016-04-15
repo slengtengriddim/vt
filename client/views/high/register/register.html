@@ -1,0 +1,130 @@
+<template name="register">
+
+  <div class="container">
+    <div class="page-header clearfix">
+
+        <input type="text" name="search" class="form-control" width="300px" placeholder="Finde einen Begriff...">
+
+    </div>
+
+      {{#unless isAlphabetic}}
+      <p class="alert alert-warning">Der Suchbegriff darf nur Zeichen des Alphabets (a - Z)enthalten. Keine Leer- und Sonderzeichen.</p>
+      {{/unless}}
+      {{#unless isLength64}}
+      <p class="alert alert-warning">Der Suchbegriff darf nicht mehr als 64 Zeichen enthalten.</p>
+      {{/unless}}
+
+
+<!-- favourites -->
+  {{#if getSession 'lengthFav'}}
+  <div class="col-xs-12 {{#if getSession 'lengthNotFav'}}col-sm-6{{/if}}">
+    <div class="page-header clearfix">
+      <h4 class="pull-left">Favouriten</h4>
+    </div>
+
+    {{#if Template.subscriptionsReady}}
+      {{#if query}}
+        <ul class="list-group">
+          {{#if searching}}
+            {{> loading}}
+          {{else}}
+            {{#each vocabulary.fav}}
+              {{> letterList}}
+            {{else}}
+              <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ".</p>
+            {{/each}}
+          {{/if}}
+        </ul>
+
+      {{else}}
+
+        {{#if favLengthShort}}
+          {{#each vocabulary.fav}}
+            {{> letterList}}
+          {{/each}}
+        {{else}}
+          <div class="panel-group" id="accordion">
+            {{#each vocabulary.fav}}
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-fav-{{letter}}">
+                  <h4 class="panel-title">
+                    {{letter}}
+                  </h4>
+                  </a>
+                </div>
+                <div id="collapse-fav-{{letter}}" class="panel-collapse collapse">
+                  {{>letterCollapse}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
+      {{/if}}
+    {{else}}
+      {{> loading}}
+    {{/if}}
+
+  </div>
+  {{/if}}
+
+
+
+    <!-- not favourites -->
+  {{#if getSession 'lengthNotFav'}}
+  <div class="col-xs-12 {{#if getSession 'lengthFav'}}col-sm-6{{/if}}">
+    <div class="page-header clearfix">
+      <h4 class="pull-left">Nicht-Favouriten</h4>
+    </div>
+
+      {{#if Template.subscriptionsReady}}
+        {{#if query}}
+          <ul class="list-group">
+            {{#if searching}}
+              {{> loading}}
+            {{else}}
+              {{#each vocabulary.notFav}}
+                {{> letterList}}
+              {{else}}
+                <p class="alert alert-warning">Nichts gefunden unter dem Begriff " {{query}} ".</p>
+              {{/each}}
+            {{/if}}
+          </ul>
+
+        {{else}}
+
+          {{#if notFavLengthShort}}
+            {{#each vocabulary.notFav}}
+              {{> letterList}}
+            {{/each}}
+          {{else}}
+
+            <div class="panel-group" id="accordion">
+              {{#each vocabulary.notFav}}
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-not-fav-{{letter}}">
+                  <h4 class="panel-title">
+                    {{letter}}
+                  </h4>
+                  </a>
+                </div>
+                <div id="collapse-not-fav-{{letter}}" class="panel-collapse collapse">
+                  {{>letterCollapse}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+
+          {{/if}}
+        {{/if}}
+      {{else}}
+        {{> loading}}
+      {{/if}}
+  </div>
+  {{/if}}
+
+</div>
+
+</template>

@@ -12,9 +12,9 @@ checkAttentionModeOn = () => {
 	}
 }
 
-setTrainerPath = () => {
-	Session.set(LAST_PATH_TRAINER, FlowRouter.current().route.path)
-}
+// setLowPath = () => {
+// 	Session.set(LAST_PATH_LOW, FlowRouter.current().route.path)
+// }
 
 resetSession = () => {
 	Session.set(REVEALED, false);
@@ -30,132 +30,74 @@ let lowRoutes = FlowRouter.group({
 	triggersEnter: [checkAttentionModeOn],
 	triggersExit: []
 });
-let basicRoutes = FlowRouter.group({
-	name: "basic",
+let highRoutes = FlowRouter.group({
+	name: "high",
 	triggersEnter: [checkAttentionModeOff],
 	triggersExit: []
 });
 
-basicRoutes.trainerRoutes = FlowRouter.group({
-	name: "trainer",
-	triggersEnter: [setTrainerPath],
-	triggersExit: [resetSession]
-});
-
 // *** ROUTES
 
-basicRoutes.route('/', {
+highRoutes.route('/', {
 	name: "index",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layoutBasic', {
+		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
 			main: "index"
 		});
 	}
 });
-basicRoutes.route('/favouriten', {
-	name: "favouriten",
+highRoutes.route('/eingabe', {
+	name: "eingabe",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layoutBasic', {
+		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "favouriten"
-		});
-	}
-});
-basicRoutes.route('/trainer', {
-	name: "trainer",
-	action: function(params, queryParams) {
-		FlowRouter.go(Session.get('lastPathTrainer'));
-	}
-});
-basicRoutes.trainerRoutes.route('/trainer/lesen', {
-	name: "trainerLesen",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layoutTrainer', {
-			bar: "bar",
-			nav: "nav",
-			navTrainer: "navTrainer",
-			main: "trainerLesen",
-			navRandom: "navRandom"
-		});
-	}
-});
-basicRoutes.trainerRoutes.route('/trainer/eingabe', {
-	name: "trainerEingabe",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layoutTrainer', {
-			bar: "bar",
-			nav: "nav",
-			navTrainer: "navTrainer",
-			main: "trainerEingabe",
-			navRandom: "navRandom"
-		});
-	}
-});
-basicRoutes.trainerRoutes.route('/trainer/wort', {
-	name: "trainerWort",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layoutTrainer', {
-			bar: "bar",
-			nav: "nav",
-			navTrainer: "navTrainer",
-			main: "trainerWort",
-			navRandom: "navRandom"
-		});
-	}
-});
-basicRoutes.trainerRoutes.route('/trainer/bedeutung', {
-	name: "trainerBedeutung",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layoutTrainer', {
-			bar: "bar",
-			nav: "nav",
-			navTrainer: "navTrainer",
-			main: "trainerBedeutung",
-			navRandom: "navRandom"
+			main: "eingabe",
+			navSource: "navSource"
 		});
 	}
 });
 
-basicRoutes.route('/vokabelregister', {
-	name: "vokabelregister",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layoutBasic', {
-			bar: "bar",
-			nav: "nav",
-			main: "vokabelregister"
-		});
-	}
-});
-basicRoutes.route('/vokabelregister/:id', {
+highRoutes.route('/register/:id', {
 	name: "vokabelDetail",
 	action: function(params, queryParams) {
-		console.log(params);
-		BlazeLayout.render('layoutBasic', {
+		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
 			main: "vokabelDetail"
 		});
 	}
 });
-
+highRoutes.route('/register', {
+	name: "register",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			main: "register"
+		});
+	}
+});
 
 lowRoutes.route('/low', {
-	name: "indexLow",
+	name: "low",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layoutBasic', {
+		BlazeLayout.render('layout', {
 			bar: "bar",
-			main: "indexLow"
+			nav: "navMode",
+			main: "low",
+			navSource: "navSource"
 		});
 	},
 	triggersEnter: [function(context, redirect) {}]
 });
 
+
 FlowRouter.notFound = {
 	action: function() {
-		BlazeLayout.render('layoutSlim', {
+		BlazeLayout.render('layout', {
 			footer: "footer",
 			main: "pageNotFound"
 		});

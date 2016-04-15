@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"popularWords\");\nTemplate[\"popularWords\"] = new Template(\"Template.popularWords\", (function() {\n  var view = this;\n  return HTML.DIV({\n    id: \"chartPopularWords\"\n  }, \"\\n\t\t\", HTML.SVG({\n    style: \"height:400px;width:700px\"\n  }), \"\\n\t\");\n}));\n","bodyAttrs":{}}

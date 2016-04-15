@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartFav\");\nTemplate[\"chartFav\"] = new Template(\"Template.chartFav\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Vergleich low/ high - Nutzung der Fav/ delete Funktion</h4>\\n\t\"), HTML.DIV({\n    id: \"chartFav\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

@@ -1,90 +1,119 @@
-Template.layoutTrainer.onCreated(function() {
+Template.layout.onCreated(function() {
 	this.autorun(() => {
-		this.subscribe('vocabularyAll'); // Vocabulary.find()
-		this.subscribe('ownedFavourites'); // Favourites.find()
 
 		Session.set(LENGTH_FAV, Favourites.find().count());
 		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());
 	});
 });
 
-//  Session variables
 
-ATTENTION_MODE = 'attentionMode';
-Session.setDefault(ATTENTION_MODE, false);
-
-LAST_PATH = 'lastPath';
-Session.setDefault(LAST_PATH, '/');
-
-LAST_PATH_TRAINER = 'lastPathTrainer';
-Session.setDefault(LAST_PATH_TRAINER, '/trainer/lesen');
-
-RANDOM_FAV = 'randomFavourites';
-Session.setDefault(RANDOM_FAV, false);
-
-RANDOM_NOT_FAV = 'randomNotFavourites';
-Session.setDefault(RANDOM_NOT_FAV, true);
-
-LENGTH_FAV = 'lengthFav';
-Session.setDefault(LENGTH_FAV, 0);
-
-LENGTH_NOT_FAV = 'lengthNotFav';
-Session.setDefault(LENGTH_NOT_FAV, 0);
-
-COUNT_VIEWED = 'countViewed';
-Session.setDefault(COUNT_VIEWED, 0);
-
-REVEALED = 'revealed';
-Session.setDefault(REVEALED, false);
-
-TERM_MODE = 'termMode';
-Session.setDefault(TERM_MODE, true);
-
-TERM_WRONG = 'termWrong';
-Session.setDefault(TERM_WRONG, false);
-
-TERM_RIGHT = 'termRight';
-Session.setDefault(TERM_RIGHT, false);
-
-TERM_CACHE = 'termCache';
-Session.setDefault(TERM_CACHE, '');
-
-COUNT_LETTERS_MATCH = 'countLettersMatch';
-Session.setDefault(COUNT_LETTERS_MATCH, 0);
-
-// Global helpers
-
-// e.g. {{getSession "posX"}} in Template
-Template.registerHelper('getSession', function(key) {
-	return Session.get(key);
-});
-Template.registerHelper('userMail', function() {
-	return Meteor.user().emails[0].address;
-});
-Template.registerHelper('isOwner', function() {
-	return this.userId == Meteor.userId();
-});
-Template.registerHelper("lengthIsOne", function() {
-	return (Session.get(LENGTH_FAV) === 1) && Session.get(RANDOM_FAV) ||
-		(Session.get(LENGTH_NOT_FAV) === 1) && Session.get(RANDOM_NOT_FAV);
-});
-Template.registerHelper("entry", function() {
-		let currentUserId = this.userId;
-		let favIds = R.pluck('vocabularyId')(Favourites.find().fetch());
-		let vocabulary = [];
-
-		if (Session.get('randomFavourites')) {
-			vocabulary = Vocabulary.find({
-				_id: {
-					$in: favIds
-				}
-			}).fetch();
-		} else {
-			vocabulary = Vocabulary.find({
-				_id: {
-					$nin: favIds
-				}
-			}).fetch();
+Template.layout.events({
+	'click .btn-forward, click .btn-backward' (event, template) {
+		let self = this;
+		if (Session.get(REVEALED)) {
+			Session.set(REVEALED, false);
 		}
-		return vocabulary[Session.get(COUNT_VIEWED)];
-})
+		if (Session.get(TERM_WRONG)) {
+			Session.set(TERM_WRONG, false);
+		}
+		if (document.getElementById("term")) {
+			document.getElementById("term").value = '';
+			if (document.getElementById("term").disabled === true) {
+				document.getElementById("term").disabled = false;
+			}
+		}
+		// log
+		Meteor.call('dataViewedUser', self);
+		Meteor.call('dataViewedAll', self);
+	},
+	'click .btn-backward' (event, template) {
+		let val = 0;
+		if (Session.get(SOURCE_FAV)) {
+			// reset to avoid going into negative numbers and be able to circle backwards
+			if (Session.get(COUNT_VIEWED) === 0) {
+				val = Session.get(LENGTH_FAV) - 1;
+				Session.set(COUNT_VIEWED, val);
+			} else {
+				val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);
+				Session.set(COUNT_VIEWED, val);
+			}
+		} else {
+			if (Session.get(COUNT_VIEWED) === 0) {
+				val = Session.get(LENGTH_NOT_FAV) - 1;
+				Session.set(COUNT_VIEWED, val);
+			} else {
+				val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);
+				Session.set(COUNT_VIEWED, val);
+			}
+		}
+	},
+	'click .btn-forward' (event, template) {
+		let val = 0;
+		if (Session.get(SOURCE_FAV)) {
+			val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);
+			Session.set(COUNT_VIEWED, val);
+		} else {
+			val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);
+			Session.set(COUNT_VIEWED, val);
+		}
+	},
+	'click .btn-reveal' (event, template) {
+		if (!Session.get(REVEALED)) {
+			Session.set(REVEALED, true);
+		}
+		if (document.getElementById("term")) {
+			if (document.getElementById("term").disabled === false) {
+				document.getElementById("term").disabled = true;
+			}
+		}
+	},
+	'click .btn-insert' (event, template) {
+		let self = this;
+		let group = FlowRouter.current().route.group.name;
+		// log start
+		let timestamp = Number(moment().format('DDDDHHmm'));
+
+		if (group === 'high') {
+			Meteor.call('dataFavHigh', timestamp);
+		}
+		if (group === 'low') {
+			Meteor.call('dataFavLow', timestamp);
+		}
+		// log end
+		Meteor.call('insertFavourite', self._id);
+
+		// reset the COUNT VIEW when a list entry has been removed
+		if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {
+			let val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);
+			Session.set(COUNT_VIEWED, val);
+		}
+		if (Session.get(LENGTH_NOT_FAV) === 1) {
+			Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));
+		}
+	},
+
+	'click .btn-delete' (event, template) {
+		let self = this;
+		let group = FlowRouter.current().route.group.name;
+		// log start
+		let timestamp = Number(moment().format('DDDDHHmm'));
+
+		if (group === 'high') {
+			Meteor.call('dataFavHigh', timestamp);
+		}
+		if (group === 'low') {
+			Meteor.call('dataFavLow', timestamp);
+		}
+		// log end
+
+		Meteor.call('deleteFavourite', self._id);
+
+		if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {
+			let val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);
+			Session.set(COUNT_VIEWED, val);
+		}
+		if (Session.get(LENGTH_FAV) === 1) {
+			Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));
+		}
+	}
+});
