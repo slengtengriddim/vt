@@ -9,6 +9,8 @@ Template.layout.onCreated(function() {
 
 Template.layout.events({
 	'click .btn-forward, click .btn-backward' (event, template) {
+
+
 		let self = this;
 		if (Session.get(REVEALED)) {
 			Session.set(REVEALED, false);
@@ -25,6 +27,24 @@ Template.layout.events({
 		// log
 		Meteor.call('dataViewedUser', self);
 		Meteor.call('dataViewedAll', self);
+
+		// log
+		let deviceType = Darwin.device.type;
+		let devicePlatform = Darwin.device.platform;
+		let clickArea = 'browse';
+		let mode;
+		let attention = Session.get(ATTENTION_MODE);
+		if (Session.get(ATTENTION_MODE)) {
+			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+		} else {
+			if (FlowRouter.current().route.name === "eingabe") {
+					mode  = 'eingabe';
+			} else {
+					mode  = 'null';
+			}
+		}
+		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+
 	},
 	'click .btn-backward' (event, template) {
 		let val = 0;
@@ -66,21 +86,63 @@ Template.layout.events({
 				document.getElementById("term").disabled = true;
 			}
 		}
+		// log
+		let deviceType = Darwin.device.type;
+		let devicePlatform = Darwin.device.platform;
+		let clickArea = 'reveal';
+		let mode;
+		let attention = Session.get(ATTENTION_MODE);
+		if (Session.get(ATTENTION_MODE)) {
+			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+		} else {
+			if (FlowRouter.current().route.name === "eingabe") {
+					mode  = 'eingabe';
+			} else {
+					mode  = 'null';
+			}
+		}
+		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+	},
+	'click .btn-insert, click .btn-delete' (event, template) {
+		// log
+		let deviceType = Darwin.device.type;
+		let devicePlatform = Darwin.device.platform;
+		let clickArea = 'favDel';
+		let mode;
+		let attention = Session.get(ATTENTION_MODE);
+		if (Session.get(ATTENTION_MODE)) {
+			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+		} else {
+			if (FlowRouter.current().route.name === "eingabe") {
+					mode  = 'eingabe';
+			} else {
+					mode  = 'null';
+			}
+		}
+		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
 	},
 	'click .btn-insert' (event, template) {
 		let self = this;
 		let group = FlowRouter.current().route.group.name;
 		// log start
-		let timestamp = Number(moment().format('DDDDHHmm'));
+		let timestamp = new Date();
+		timestamp.setHours(0);
+		timestamp.setMinutes(0);
+		timestamp.setSeconds(0);
+		timestamp.setMilliseconds(0);
 
 		if (group === 'high') {
-			Meteor.call('dataFavHigh', timestamp);
+			Meteor.call('dataFavHigh', timestamp.getTime());
 		}
 		if (group === 'low') {
-			Meteor.call('dataFavLow', timestamp);
+			Meteor.call('dataFavLow', timestamp.getTime());
 		}
 		// log end
 		Meteor.call('insertFavourite', self._id);
+		// simulate source mode button for register page
+		if (!Session.get(ATTENTION_MODE)) {
+			Session.set(SOURCE_FAV, false);
+		}
 
 		// reset the COUNT VIEW when a list entry has been removed
 		if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {
@@ -96,17 +158,25 @@ Template.layout.events({
 		let self = this;
 		let group = FlowRouter.current().route.group.name;
 		// log start
-		let timestamp = Number(moment().format('DDDDHHmm'));
+		let timestamp = new Date();
+		timestamp.setHours(0);
+		timestamp.setMinutes(0);
+		timestamp.setSeconds(0);
+		timestamp.setMilliseconds(0);
 
 		if (group === 'high') {
-			Meteor.call('dataFavHigh', timestamp);
+			Meteor.call('dataFavHigh', timestamp.getTime());
 		}
 		if (group === 'low') {
-			Meteor.call('dataFavLow', timestamp);
+			Meteor.call('dataFavLow', timestamp.getTime());
 		}
 		// log end
 
 		Meteor.call('deleteFavourite', self._id);
+		// simulate source mode button for register page
+		if (!Session.get(ATTENTION_MODE)) {
+			Session.set(SOURCE_FAV, true);
+		}
 
 		if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {
 			let val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);

@@ -160,6 +160,19 @@ Meteor.methods({                                                                
 		}                                                                                 //
                                                                                     //
 		return addPerson;                                                                 //
+	}(),                                                                               //
+	dataDetail: function () {                                                          // 83
+		function dataDetail(deviceType, devicePlatform, clickArea, mode, attention) {     //
+			Data.Detail.insert({                                                             // 84
+				deviceType: deviceType,                                                         // 85
+				devicePlatform: devicePlatform,                                                 // 86
+				clickArea: clickArea,                                                           // 87
+				mode: mode,                                                                     // 88
+				attention: attention                                                            // 89
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return dataDetail;                                                                //
 	}()                                                                                //
 });                                                                                 //
 //////////////////////////////////////////////////////////////////////////////////////
@@ -248,23 +261,32 @@ Meteor.publish('dataViewedUser', function () {                                  
 	return this.ready();                                                               // 74
 });                                                                                 //
 Meteor.publish('dataFavHigh', function () {                                         // 76
-	var data = Data.Fav.High.find({}, {                                                // 77
-		sort: {}                                                                          // 78
-	});                                                                                //
-	if (data) {                                                                        // 82
-		return data;                                                                      // 83
+	var data = Data.Fav.High.find({});                                                 // 77
+	if (data) {                                                                        // 78
+		return data;                                                                      // 79
 	}                                                                                  //
-	return this.ready();                                                               // 85
+	return this.ready();                                                               // 81
 });                                                                                 //
-Meteor.publish('dataFavLow', function () {                                          // 87
-	var data = Data.Fav.Low.find({}, {                                                 // 88
-		sort: {}                                                                          // 89
-	});                                                                                //
-	if (data) {                                                                        // 93
-		return data;                                                                      // 94
+Meteor.publish('dataFavLow', function () {                                          // 83
+	var data = Data.Fav.Low.find({});                                                  // 84
+	if (data) {                                                                        // 85
+		return data;                                                                      // 86
 	}                                                                                  //
-	return this.ready();                                                               // 96
+	return this.ready();                                                               // 88
 });                                                                                 //
+Meteor.publish('dataDetail', function () {                                          // 90
+	var data = Data.Detail.find({});                                                   // 91
+	if (data) {                                                                        // 92
+		return data;                                                                      // 93
+	}                                                                                  //
+	return this.ready();                                                               // 95
+});                                                                                 //
+                                                                                    //
+// Meteor.publish("booksByAuthor", function () {                                    //
+//   ReactiveAggregate(this, Books, [{                                              //
+//     $mode: "wort"                                                                //
+//   }]);                                                                           //
+// });                                                                              //
                                                                                     //
 // Meteor.publish('people', function() {                                            //
 // 	let data = People.find({});                                                     //
@@ -409,27 +431,70 @@ People = new Mongo.Collection("people", {});                                    
                                                                                     //
 Data = {};                                                                          // 3
 Data.Viewed = {};                                                                   // 4
-Data.Viewed.User = new Mongo.Collection("dataViewedUser", {});                      // 5
-Data.Viewed.All = new Mongo.Collection("dataViewedAll", {});                        // 6
-Data.Fav = {};                                                                      // 7
-Data.Fav.High = new Mongo.Collection("dataFavHigh", {});                            // 8
-Data.Fav.Low = new Mongo.Collection("dataFavLow", {});                              // 9
+Data.Detail = new Mongo.Collection('dataDetail', {});                               // 5
+Data.Viewed.User = new Mongo.Collection("dataViewedUser", {});                      // 6
+Data.Viewed.All = new Mongo.Collection("dataViewedAll", {});                        // 7
+Data.Fav = {};                                                                      // 8
+Data.Fav.High = new Mongo.Collection("dataFavHigh", {});                            // 9
+Data.Fav.Low = new Mongo.Collection("dataFavLow", {});                              // 10
                                                                                     //
-Data.Viewed.All.Schema = new SimpleSchema({                                         // 11
-	vocabularyId: {                                                                    // 12
-		type: String                                                                      // 13
+Data.Detail.Schema = new SimpleSchema({                                             // 12
+	userId: {                                                                          // 13
+		type: String,                                                                     // 14
+		autoValue: function () {                                                          // 15
+			function autoValue() {                                                           // 15
+				return this.userId;                                                             // 16
+			}                                                                                //
+                                                                                    //
+			return autoValue;                                                                //
+		}()                                                                               //
 	},                                                                                 //
-	vocabularyName: {                                                                  // 15
-		type: String                                                                      // 16
+	timestamp: {                                                                       // 19
+		type: Date,                                                                       // 20
+		autoValue: function () {                                                          // 21
+			function autoValue() {                                                           // 21
+				return new Date();                                                              // 22
+			}                                                                                //
+                                                                                    //
+			return autoValue;                                                                //
+		}()                                                                               //
 	},                                                                                 //
-	timesViewed: {                                                                     // 18
-		type: Number                                                                      // 19
+	deviceType: {                                                                      // 25
+		type: String                                                                      // 26
 	},                                                                                 //
-	createdAt: {                                                                       // 21
-		type: Date,                                                                       // 22
-		autoValue: function () {                                                          // 23
-			function autoValue() {                                                           // 23
-				return new Date();                                                              // 24
+	devicePlatform: {                                                                  // 28
+		type: String                                                                      // 29
+	},                                                                                 //
+	clickArea: {                                                                       // 31
+		type: String,                                                                     // 32
+		allowedValues: ['favDel', 'browse', 'source', 'reveal', 'bar', 'mode']            // 33
+	},                                                                                 //
+	mode: {                                                                            // 35
+		type: String,                                                                     // 36
+		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']                 // 37
+	},                                                                                 //
+	attention: {                                                                       // 39
+		type: Boolean                                                                     // 40
+	}                                                                                  //
+});                                                                                 //
+                                                                                    //
+Data.Detail.attachSchema(Data.Detail.Schema);                                       // 44
+                                                                                    //
+Data.Viewed.All.Schema = new SimpleSchema({                                         // 47
+	vocabularyId: {                                                                    // 48
+		type: String                                                                      // 49
+	},                                                                                 //
+	vocabularyName: {                                                                  // 51
+		type: String                                                                      // 52
+	},                                                                                 //
+	timesViewed: {                                                                     // 54
+		type: Number                                                                      // 55
+	},                                                                                 //
+	createdAt: {                                                                       // 57
+		type: Date,                                                                       // 58
+		autoValue: function () {                                                          // 59
+			function autoValue() {                                                           // 59
+				return new Date();                                                              // 60
 			}                                                                                //
                                                                                     //
 			return autoValue;                                                                //
@@ -437,12 +502,12 @@ Data.Viewed.All.Schema = new SimpleSchema({                                     
 	}                                                                                  //
 });                                                                                 //
                                                                                     //
-Data.Viewed.User.Schema = new SimpleSchema([{                                       // 29
-	userId: {                                                                          // 31
-		type: String,                                                                     // 32
-		autoValue: function () {                                                          // 33
-			function autoValue() {                                                           // 33
-				return this.userId;                                                             // 34
+Data.Viewed.User.Schema = new SimpleSchema([{                                       // 65
+	userId: {                                                                          // 67
+		type: String,                                                                     // 68
+		autoValue: function () {                                                          // 69
+			function autoValue() {                                                           // 69
+				return this.userId;                                                             // 70
 			}                                                                                //
                                                                                     //
 			return autoValue;                                                                //
@@ -450,8 +515,8 @@ Data.Viewed.User.Schema = new SimpleSchema([{                                   
 	}                                                                                  //
 }, Data.Viewed.All.Schema]);                                                        //
                                                                                     //
-Data.Viewed.User.attachSchema(Data.Viewed.User.Schema);                             // 41
-Data.Viewed.All.attachSchema(Data.Viewed.All.Schema);                               // 42
+Data.Viewed.User.attachSchema(Data.Viewed.User.Schema);                             // 77
+Data.Viewed.All.attachSchema(Data.Viewed.All.Schema);                               // 78
                                                                                     //
 // CHART MODE                                                                       //
 // timestamp (day),                                                                 //
@@ -598,6 +663,23 @@ Vocabulary.attachSchema(VocabularySchema);                                      
 T9n.setLanguage('de');                                                              // 1
 //////////////////////////////////////////////////////////////////////////////////////
 
+},"admin.js":function(){
+
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+// common/config/admin.js                                                           //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+                                                                                    //
+AdminConfig = {                                                                     // 1
+	name: 'Chalimo',                                                                   // 2
+	adminEmails: ['bla@bla.org'],                                                      // 3
+	collections: {                                                                     // 4
+		Vocabulary: {}                                                                    // 6
+	}                                                                                  //
+};                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+
 },"at_config.js":function(){
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -648,11 +730,11 @@ AccountsTemplates.configure({                                                   
 });                                                                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-}},"router":{"routes.js":function(){
+}},"routes.js":function(){
 
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
-// common/router/routes.js                                                          //
+// common/routes.js                                                                 //
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
                                                                                     //
@@ -670,84 +752,57 @@ checkAttentionModeOn = function checkAttentionModeOn() {                        
 	}                                                                                  //
 };                                                                                  //
                                                                                     //
-// setLowPath = () => {                                                             //
-// 	Session.set(LAST_PATH_LOW, FlowRouter.current().route.path)                     //
-// }                                                                                //
-                                                                                    //
-resetSession = function resetSession() {                                            // 19
-	Session.set(REVEALED, false);                                                      // 20
-	Session.set(TERM_WRONG, false);                                                    // 21
+resetSession = function resetSession() {                                            // 15
+	Session.set(REVEALED, false);                                                      // 16
+	Session.set(TERM_WRONG, false);                                                    // 17
 };                                                                                  //
                                                                                     //
-FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                      // 24
+checkAdmin = function checkAdmin() {                                                // 20
+	if (!Roles.userIsInRole(Meteor.userId(), 'admin')) {                               // 21
+		FlowRouter.go("notFound");                                                        // 22
+	}                                                                                  //
+};                                                                                  //
+                                                                                    //
+FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                      // 26
                                                                                     //
 // *** ROUTE GROUPS                                                                 //
                                                                                     //
-var lowRoutes = FlowRouter.group({                                                  // 28
-	name: "low",                                                                       // 29
-	triggersEnter: [checkAttentionModeOn],                                             // 30
-	triggersExit: []                                                                   // 31
+var lowRoutes = FlowRouter.group({                                                  // 30
+	name: "low",                                                                       // 31
+	triggersEnter: [checkAttentionModeOn],                                             // 32
+	triggersExit: []                                                                   // 33
 });                                                                                 //
-var highRoutes = FlowRouter.group({                                                 // 33
-	name: "high",                                                                      // 34
-	triggersEnter: [checkAttentionModeOff],                                            // 35
-	triggersExit: []                                                                   // 36
+var highRoutes = FlowRouter.group({                                                 // 35
+	name: "high",                                                                      // 36
+	triggersEnter: [checkAttentionModeOff],                                            // 37
+	triggersExit: []                                                                   // 38
 });                                                                                 //
                                                                                     //
 // *** ROUTES                                                                       //
                                                                                     //
-highRoutes.route('/', {                                                             // 41
-	name: "index",                                                                     // 42
-	action: function () {                                                              // 43
-		function action(params, queryParams) {                                            // 43
-			BlazeLayout.render('layout', {                                                   // 44
-				bar: "bar",                                                                     // 45
-				nav: "nav",                                                                     // 46
-				main: "index"                                                                   // 47
+highRoutes.route('/', {                                                             // 45
+	name: "index",                                                                     // 46
+	action: function () {                                                              // 47
+		function action(params, queryParams) {                                            // 47
+			BlazeLayout.render('layout', {                                                   // 48
+				bar: "bar",                                                                     // 49
+				nav: "nav",                                                                     // 50
+				main: "index"                                                                   // 51
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}()                                                                                //
 });                                                                                 //
-highRoutes.route('/eingabe', {                                                      // 51
-	name: "eingabe",                                                                   // 52
-	action: function () {                                                              // 53
-		function action(params, queryParams) {                                            // 53
-			BlazeLayout.render('layout', {                                                   // 54
-				bar: "bar",                                                                     // 55
-				nav: "nav",                                                                     // 56
-				main: "eingabe",                                                                // 57
-				navSource: "navSource"                                                          // 58
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-                                                                                    //
-highRoutes.route('/register/:id', {                                                 // 63
-	name: "vokabelDetail",                                                             // 64
-	action: function () {                                                              // 65
-		function action(params, queryParams) {                                            // 65
-			BlazeLayout.render('layout', {                                                   // 66
-				bar: "bar",                                                                     // 67
-				nav: "nav",                                                                     // 68
-				main: "vokabelDetail"                                                           // 69
-			});                                                                              //
-		}                                                                                 //
-                                                                                    //
-		return action;                                                                    //
-	}()                                                                                //
-});                                                                                 //
-highRoutes.route('/register', {                                                     // 73
-	name: "register",                                                                  // 74
-	action: function () {                                                              // 75
-		function action(params, queryParams) {                                            // 75
-			BlazeLayout.render('layout', {                                                   // 76
-				bar: "bar",                                                                     // 77
-				nav: "nav",                                                                     // 78
-				main: "register"                                                                // 79
+highRoutes.route('/eingabe', {                                                      // 55
+	name: "eingabe",                                                                   // 56
+	action: function () {                                                              // 57
+		function action(params, queryParams) {                                            // 57
+			BlazeLayout.render('layout', {                                                   // 58
+				bar: "bar",                                                                     // 59
+				nav: "nav",                                                                     // 60
+				main: "eingabe",                                                                // 61
+				navSource: "navSource"                                                          // 62
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -755,29 +810,75 @@ highRoutes.route('/register', {                                                 
 	}()                                                                                //
 });                                                                                 //
                                                                                     //
-lowRoutes.route('/low', {                                                           // 84
-	name: "low",                                                                       // 85
-	action: function () {                                                              // 86
-		function action(params, queryParams) {                                            // 86
-			BlazeLayout.render('layout', {                                                   // 87
-				bar: "bar",                                                                     // 88
-				nav: "navMode",                                                                 // 89
-				main: "low",                                                                    // 90
-				navSource: "navSource"                                                          // 91
+highRoutes.route('/register/:id', {                                                 // 67
+	name: "vokabelDetail",                                                             // 68
+	action: function () {                                                              // 69
+		function action(params, queryParams) {                                            // 69
+			BlazeLayout.render('layout', {                                                   // 70
+				bar: "bar",                                                                     // 71
+				nav: "nav",                                                                     // 72
+				main: "vokabelDetail"                                                           // 73
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return action;                                                                    //
+	}()                                                                                //
+});                                                                                 //
+highRoutes.route('/register', {                                                     // 77
+	name: "register",                                                                  // 78
+	action: function () {                                                              // 79
+		function action(params, queryParams) {                                            // 79
+			BlazeLayout.render('layout', {                                                   // 80
+				bar: "bar",                                                                     // 81
+				nav: "nav",                                                                     // 82
+				main: "register"                                                                // 83
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return action;                                                                    //
+	}()                                                                                //
+});                                                                                 //
+                                                                                    //
+lowRoutes.route('/low', {                                                           // 88
+	name: "low",                                                                       // 89
+	action: function () {                                                              // 90
+		function action(params, queryParams) {                                            // 90
+			BlazeLayout.render('layout', {                                                   // 91
+				bar: "bar",                                                                     // 92
+				nav: "navMode",                                                                 // 93
+				main: "low",                                                                    // 94
+				navSource: "navSource"                                                          // 95
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
 		return action;                                                                    //
 	}(),                                                                               //
-	triggersEnter: [function (context, redirect) {}]                                   // 94
+	triggersEnter: []                                                                  // 98
 });                                                                                 //
                                                                                     //
-FlowRouter.notFound = {                                                             // 98
-	action: function () {                                                              // 99
-		function action() {                                                               // 99
-			BlazeLayout.render('layout', {                                                   // 100
-				footer: "footer",                                                               // 101
-				main: "pageNotFound"                                                            // 102
+highRoutes.route('/stats', {                                                        // 101
+	name: "stats",                                                                     // 102
+	action: function () {                                                              // 103
+		function action(params, queryParams) {                                            // 103
+			BlazeLayout.render('layout', {                                                   // 104
+				bar: "bar",                                                                     // 105
+				nav: "nav",                                                                     // 106
+				main: "stats"                                                                   // 107
+			});                                                                              //
+		}                                                                                 //
+                                                                                    //
+		return action;                                                                    //
+	}(),                                                                               //
+	triggersEnter: [checkAdmin]                                                        // 110
+});                                                                                 //
+                                                                                    //
+FlowRouter.notFound = {                                                             // 113
+	name: "notFound",                                                                  // 114
+	action: function () {                                                              // 115
+		function action(params, queryParams) {                                            // 115
+			BlazeLayout.render('layout', {                                                   // 116
+				footer: "footer",                                                               // 117
+				main: "pageNotFound"                                                            // 118
 			});                                                                              //
 		}                                                                                 //
                                                                                     //
@@ -786,15 +887,15 @@ FlowRouter.notFound = {                                                         
 };                                                                                  //
                                                                                     //
 //Routes                                                                            //
-AccountsTemplates.configureRoute('changePwd');                                      // 109
+AccountsTemplates.configureRoute('changePwd');                                      // 125
 // AccountsTemplates.configureRoute('forgotPwd');                                   //
-AccountsTemplates.configureRoute('resetPwd');                                       // 111
-AccountsTemplates.configureRoute('signIn');                                         // 112
-AccountsTemplates.configureRoute('signUp');                                         // 113
+AccountsTemplates.configureRoute('resetPwd');                                       // 127
+AccountsTemplates.configureRoute('signIn');                                         // 128
+AccountsTemplates.configureRoute('signUp');                                         // 129
 // AccountsTemplates.configureRoute('verifyEmail');                                 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-}}}},{"extensions":[".js",".json"]});
+}}},{"extensions":[".js",".json"]});
 require("./server/lib/config/accounts.js");
 require("./server/lib/config/email.js");
 require("./common/aux/aux.js");
@@ -804,8 +905,9 @@ require("./common/collections/data.js");
 require("./common/collections/favourites.js");
 require("./common/collections/vocabulary.js");
 require("./common/config/accounts_t9n.js");
+require("./common/config/admin.js");
 require("./common/config/at_config.js");
-require("./common/router/routes.js");
+require("./common/routes.js");
 require("./server/methods.js");
 require("./server/publication.js");
 require("./server/vocabularySeed.js");

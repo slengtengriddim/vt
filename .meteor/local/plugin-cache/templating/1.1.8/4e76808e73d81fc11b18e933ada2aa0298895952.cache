@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartPieAttention\");\nTemplate[\"chartPieAttention\"] = new Template(\"Template.chartPieAttention\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Vergleich Click-Ratio low/ high</h4>\\n\t\"), HTML.DIV({\n    id: \"chartPieAttention\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

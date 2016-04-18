@@ -261,6 +261,9 @@
       "path": "packages/zimme_active-route.js"
     },
     {
+      "path": "packages/alanning_roles.js"
+    },
+    {
       "sourceMap": "packages/arillo_flow-router-helpers.js.map",
       "path": "packages/arillo_flow-router-helpers.js"
     },
@@ -310,9 +313,6 @@
       "path": "packages/nvd3_nvd3.js"
     },
     {
-      "path": "packages/momentjs_moment.js"
-    },
-    {
       "path": "packages/autoupdate.js"
     },
     {
@@ -326,6 +326,38 @@
     },
     {
       "path": "packages/arsnebula_darwin.js"
+    },
+    {
+      "path": "packages/mongo-livedata.js"
+    },
+    {
+      "path": "packages/meteorhacks_meteorx.js"
+    },
+    {
+      "path": "packages/meteorhacks_unblock.js"
+    },
+    {
+      "path": "packages/reywood_publish-composite.js"
+    },
+    {
+      "path": "packages/aldeed_template-extension.js"
+    },
+    {
+      "path": "packages/raix_handlebar-helpers.js"
+    },
+    {
+      "path": "packages/momentjs_moment.js"
+    },
+    {
+      "node_modules": "npm/node_modules/meteor/aldeed_tabular/node_modules",
+      "path": "packages/aldeed_tabular.js"
+    },
+    {
+      "path": "packages/mfactory_admin-lte.js"
+    },
+    {
+      "sourceMap": "packages/sach_flow-db-admin.js.map",
+      "path": "packages/sach_flow-db-admin.js"
     },
     {
       "path": "packages/hot-code-push.js"

@@ -74,27 +74,33 @@ Meteor.publish('dataViewedUser', function() {
 	return this.ready();
 });
 Meteor.publish('dataFavHigh', function() {
-	let data = Data.Fav.High.find({}, {
-		sort: {
-
-		}
-	});
+	let data = Data.Fav.High.find({});
 	if (data) {
 		return data;
 	}
 	return this.ready();
 });
 Meteor.publish('dataFavLow', function() {
-	let data = Data.Fav.Low.find({}, {
-		sort: {
-
-		}
-	});
+	let data = Data.Fav.Low.find({});
 	if (data) {
 		return data;
 	}
 	return this.ready();
 });
+Meteor.publish('dataDetail', function() {
+	let data = Data.Detail.find({});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+
+
+// Meteor.publish("booksByAuthor", function () {
+//   ReactiveAggregate(this, Books, [{
+//     $mode: "wort"
+//   }]);
+// });
 
 // Meteor.publish('people', function() {
 // 	let data = People.find({});

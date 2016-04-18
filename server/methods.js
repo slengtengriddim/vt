@@ -79,5 +79,14 @@ Meteor.methods({
 				y: age
 			});
 		}
+	},
+	dataDetail(deviceType, devicePlatform, clickArea, mode, attention){
+		Data.Detail.insert({
+			deviceType: deviceType,
+			devicePlatform: devicePlatform,
+			clickArea: clickArea,
+			mode: mode,
+			attention: attention
+		})
 	}
 });

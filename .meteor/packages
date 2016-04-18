@@ -30,6 +30,7 @@ useraccounts:bootstrap
 twbs:bootstrap
 zimme:active-route
 
+alanning:roles
 useraccounts:flow-routing
 arillo:flow-router-helpers
 
@@ -51,5 +52,8 @@ d3js:d3
 nvd3:nvd3
 
 # goltfisch:hotjar
-momentjs:moment
+# momentjs:moment
 arsnebula:darwin
+# meteorhacks:aggregate
+# jcbernack:reactive-aggregate
+sach:flow-db-admin

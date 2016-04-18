@@ -30,8 +30,7 @@ body {
 /* CHARTS */
 
 svg {
-  display: block;
-  min-height: 250px;
+  min-height: 300px;
 }
 #chartWordsAll, #chartWordsUser, #chartFavLine svg {
   margin: 0px;

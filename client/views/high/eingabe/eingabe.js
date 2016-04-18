@@ -3,6 +3,8 @@ Template.eingabe.onCreated(() => {
 	template.isAlphabetic = new ReactiveVar(true);
 	template.isLength64 = new ReactiveVar(true);
 
+	template.subscribe('dataDetail2');
+
 	template.autorun(() => {
 		template.subscribe('vocabularyAll'); // Vocabulary.find()
 		template.subscribe('ownedFavourites'); // Favourites.find()

@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartBarModes\");\nTemplate[\"chartBarModes\"] = new Template(\"Template.chartBarModes\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Vergleich Browse Modi (Wort, Lesen, Bedeutung, Eingabe)</h4>\\n\t\"), HTML.DIV({\n    id: \"chartBarModes\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

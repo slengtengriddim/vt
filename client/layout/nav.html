@@ -9,6 +9,9 @@
         <li role="presentation" class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
         <li role="presentation" class="{{isActiveRoute regex='eingabe'}}"><a href="{{pathFor 'eingabe'}}">Eingabetrainer</a></li>
         <li role="presentation" class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
+        {{#if isInRole 'admin'}}
+        <li role="presentation" class="{{isActiveRoute regex='stats'}}"><a href="{{pathFor 'stats'}}">Stats</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>
