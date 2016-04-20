@@ -11,8 +11,8 @@ Meteor.methods({
 			vocabularyId: vocabularyId
 		});
 	},
-	dataViewedUser(obj) {
-		Data.Viewed.User.upsert({
+	dataWords(obj) {
+		Data.Words.upsert({
 			vocabularyId: obj._id,
 			userId: this.userId
 		}, {
@@ -20,65 +20,12 @@ Meteor.methods({
 				vocabularyId: obj._id,
 				userId: this.userId,
 				vocabularyName: obj.term,
-				timesViewed: 0
+				viewed: 0
 			},
 			$inc: {
-				timesViewed: 1
+				viewed: 1
 			}
 		});
-	},
-	dataViewedAll(obj) {
-		Data.Viewed.All.upsert({
-			vocabularyId: obj._id
-		}, {
-			$setOnInsert: {
-				vocabularyId: obj._id,
-				vocabularyName: obj.term,
-				timesViewed: 0
-			},
-			$inc: {
-				timesViewed: 1
-			}
-		});
-	},
-	dataFavLow(timestamp) {
-		Data.Fav.Low.upsert({
-			x: timestamp
-		}, {
-			$setOnInsert: {
-				x: timestamp,
-				y: 0
-			},
-			$inc: {
-				y: 1
-			}
-		});
-	},
-	dataFavHigh(timestamp) {
-		Data.Fav.High.upsert({
-			x: timestamp
-		}, {
-			$setOnInsert: {
-				x: timestamp,
-				y: 0
-			},
-			$inc: {
-				y: 1
-			}
-		});
-	},
-	addPerson(lastPerson, age) {
-		if (lastPerson) {
-			People.insert({
-				x: (lastPerson.x + 1),
-				y: age
-			});
-		} else {
-			People.insert({
-				x: 1,
-				y: age
-			});
-		}
 	},
 	dataDetail(deviceType, devicePlatform, clickArea, mode, attention){
 		Data.Detail.insert({
@@ -88,5 +35,16 @@ Meteor.methods({
 			mode: mode,
 			attention: attention
 		})
+	},
+	surveySubmitted() {
+		UserExt.upsert({
+			userId: this.userId
+		}, {
+			$setOnInsert: {
+				userId: this.userId,
+				surveySubmitted: true
+			}
+		});
 	}
+
 });

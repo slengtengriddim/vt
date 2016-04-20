@@ -216,7 +216,6 @@ AccountsTemplates.configureRoute = function(route, options) {
     }
 
     layoutRegions[contentRegion] = React.createElement(BlazeToReact, { blazeTemplate: template });
-
   }
 
   function doLayout() {
@@ -248,12 +247,14 @@ AccountsTemplates.configureRoute = function(route, options) {
           doLayout();
 
           var token = params.paramToken;
-          Accounts.verifyEmail(token, function(error) {
-            AccountsTemplates.setDisabled(false);
-            AccountsTemplates.submitCallback(error, route, function() {
-              AccountsTemplates.state.form.set("result", AccountsTemplates.texts.info.emailVerified);
-            });
-          });
+          if (Meteor.isClient) {
+             Accounts.verifyEmail(token, function(error) {
+               AccountsTemplates.setDisabled(false);
+               AccountsTemplates.submitCallback(error, route, function() {
+                 AccountsTemplates.state.form.set("result", AccountsTemplates.texts.info.emailVerified);
+               });
+             });
+          }
         }
       });
     } else {

@@ -19,7 +19,14 @@ resetSession = () => {
 
 checkAdmin	= () => {
 	if (! Roles.userIsInRole(Meteor.userId(), 'admin')) {
-		FlowRouter.go("notFound");
+		FlowRouter.redirect('/notFound');
+	}
+};
+
+checkSurveySubmitted = () => {
+	let query = UserExt.findOne({userId: Meteor.userId(), surveySubmitted: true});
+	if (query) {
+		FlowRouter.redirect('/');
 	}
 };
 
@@ -84,6 +91,49 @@ highRoutes.route('/register', {
 		});
 	}
 });
+highRoutes.route('/uebersicht', {
+	name: "uebersicht",
+	action: function(params, queryParams) {
+		FlowRouter.redirect('/uebersicht/feedback');
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/uebersicht/statistik', {
+	name: "statistik",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			main: "statistik"
+		});
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/uebersicht/feedback', {
+	name: "feedback",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			main: "feedback"
+		});
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/fragebogen', {
+	name: "fragebogen",
+	triggersEnter:[checkSurveySubmitted],
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			main: "fragebogen"
+		});
+	},
+	triggersEnter: []
+});
 
 lowRoutes.route('/low', {
 	name: "low",
@@ -96,18 +146,6 @@ lowRoutes.route('/low', {
 		});
 	},
 	triggersEnter: []
-});
-
-highRoutes.route('/stats', {
-	name: "stats",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
-			bar: "bar",
-			nav: "nav",
-			main: "stats"
-		});
-	},
-	triggersEnter: [checkAdmin]
 });
 
 FlowRouter.notFound = {

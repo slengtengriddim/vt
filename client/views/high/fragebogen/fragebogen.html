@@ -1,0 +1,46 @@
+<template name="fragebogen">
+	<div class="container">
+		<h1>Fragebogen</h1>
+		<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->
+		{{#autoForm collection="Data.Survey" id="insertSurveyForm" type="insert"}}
+		<fieldset>
+		<legend>Allgemein</legend>
+		{{> afQuickField name='age'}}
+		{{> afQuickField name='previousExperience'}}
+		{{> afQuickField name='learningCurve'}}
+		<hr>
+		{{> afQuickField name='everydayUse'}}
+		{{> afQuickField name='everydayUseText'}}
+		<hr>
+		{{> afQuickField name='usability'}}
+		{{> afQuickField name='usabilityText'}}
+
+		<legend>Nutzung</legend>
+		Von welchen Endgeraeten aus hast du die App genutzt?
+		{{> afQuickField name='deviceMobile'}}
+		{{> afQuickField name='deviceTablet'}}
+		{{> afQuickField name='deviceDesktop'}}
+		{{> afQuickField name='deviceBehavior'}}
+		<hr>
+		{{> afQuickField name='favouriteMode'}}
+		{{> afQuickField name='favouriteModeText'}}
+		<hr>
+		{{> afQuickField name='attentionBenefit'}}
+		<hr>
+		{{> afQuickField name='attentionBehavior'}}
+		{{> afQuickField name='attentionBehaviorText'}}
+		<hr>
+		{{> afQuickField name='attentionSituation'}}
+		<hr>
+		{{> afQuickField name='attentionUse'}}
+		{{> afQuickField name='attentionUseText'}}
+		<hr>
+		{{> afQuickField name='prospects'}}
+	</fieldset>
+
+		<div>
+			<button type="submit" class="btn btn-primary">Abschicken</button>
+		</div>
+		{{/autoForm}}
+	</div>
+</template>

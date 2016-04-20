@@ -46,68 +46,66 @@ Template["chartWordsUser"] = new Template("Template.chartWordsUser", (function()
                                                                                                                        //
 Template.chartWordsAll.onCreated(function () {                                                                         // 1
 	var template = Template.instance();                                                                                   // 2
-	template.subscribe('dataViewedAll');                                                                                  // 3
+	template.subscribe('dataWords');                                                                                      // 3
 });                                                                                                                    //
                                                                                                                        //
 Template.chartWordsAll.rendered = function () {                                                                        // 6
                                                                                                                        //
 	var barChart = function barChart() {                                                                                  // 8
-		var data = Data.Viewed.All.find({}, {                                                                                // 9
-			sort: {                                                                                                             // 10
-				timesViewed: -1                                                                                                    // 11
+		var result = [];                                                                                                     // 9
+		var data = Data.Words.find({}).fetch();                                                                              // 10
+                                                                                                                       //
+		var byVocabularyId = R.groupBy(function (entry) {                                                                    // 12
+			return entry.vocabularyId;                                                                                          // 13
+		});                                                                                                                  //
+                                                                                                                       //
+		var groupedByVocabularyId = byVocabularyId(data);                                                                    // 16
+		for (var k in meteorBabelHelpers.sanitizeForInObject(groupedByVocabularyId)) {                                       // 17
+			if (groupedByVocabularyId.hasOwnProperty(k)) {                                                                      // 18
+				result.push({                                                                                                      // 19
+					x: groupedByVocabularyId[k][0].vocabularyName,                                                                    // 20
+					y: R.sum(R.pluck('viewed')(groupedByVocabularyId[k]))                                                             // 21
+				});                                                                                                                //
 			}                                                                                                                   //
-		}).fetch();                                                                                                          //
-		var barChart = [{                                                                                                    // 14
-			key: "Top 5 beliebte Woerter (allgemein)",                                                                          // 15
-			values: data                                                                                                        // 16
+		};                                                                                                                   //
+		var sortByViewed = R.sortBy(R.prop('y'));                                                                            // 25
+		result = R.take(5, R.reverse(sortByViewed(result)));                                                                 // 26
+                                                                                                                       //
+		var barChart = [{                                                                                                    // 29
+			key: "Top 5 beliebte Woerter (allgemein)",                                                                          // 30
+			values: result                                                                                                      // 31
 		}];                                                                                                                  //
                                                                                                                        //
-		return barChart;                                                                                                     // 19
+		return barChart;                                                                                                     // 34
 	};                                                                                                                    //
                                                                                                                        //
 	// chart object                                                                                                       //
 	var chart = nv.models.discreteBarChart().x(function (d) {                                                             // 6
-		return d.vocabularyName;                                                                                             // 25
+		return d.x;                                                                                                          // 40
 	}).y(function (d) {                                                                                                   //
-		return d.timesViewed;                                                                                                // 28
+		return d.y;                                                                                                          // 43
 	}).staggerLabels(true)                                                                                                //
 	//.staggerLabels(historicalBarChart[0].values.length > 8)                                                             //
-	.showValues(true).duration(250);                                                                                      //
+	.showValues(false).showYAxis(false)                                                                                   //
+	// .tooltips(false)                                                                                                   //
+	.duration(250);                                                                                                       //
                                                                                                                        //
 	// chart details                                                                                                      //
 	nv.addGraph(function () {                                                                                             // 6
+		d3.select('#chartWordsAll svg').datum(barChart()).call(chart);                                                       // 54
                                                                                                                        //
-		d3.select('#chartWordsAll svg').datum(barChart()).call(chart);                                                       // 38
+		nv.utils.windowResize(chart.update);                                                                                 // 58
                                                                                                                        //
-		nv.utils.windowResize(chart.update);                                                                                 // 42
-                                                                                                                       //
-		return chart;                                                                                                        // 44
+		return chart;                                                                                                        // 60
 	});                                                                                                                   //
                                                                                                                        //
 	// update chart when data changes                                                                                     //
 	this.autorun(function () {                                                                                            // 6
-		// let data = Data.Viewed.All.find({}, {                                                                             //
-		// 	sort: {                                                                                                          //
-		// 		timesViewed: -1                                                                                                 //
-		// 	}                                                                                                                //
-		// }).fetch();                                                                                                       //
-		// let barChart = [{                                                                                                 //
-		// 	key: "Top 5 beliebte Woerter",                                                                                   //
-		// 	values: data                                                                                                     //
-		// }];                                                                                                               //
+		d3.select('#chartWordsAll svg').datum(barChart()).call(chart);                                                       // 65
                                                                                                                        //
-		d3.select('#chartWordsAll svg').datum(barChart()).call(chart);                                                       // 59
-                                                                                                                       //
-		chart.update();                                                                                                      // 63
+		chart.update();                                                                                                      // 69
 	});                                                                                                                   //
 };                                                                                                                     //
-                                                                                                                       //
-// data = Data.Viewed.find({}, {                                                                                       //
-//     limit: 5,                                                                                                       //
-//     sort: {                                                                                                         //
-//         timesViewed: -1                                                                                             //
-//     }                                                                                                               //
-// });                                                                                                                 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"chart_words_user.js":function(){
@@ -120,55 +118,97 @@ Template.chartWordsAll.rendered = function () {                                 
                                                                                                                        //
 Template.chartWordsAll.onCreated(function () {                                                                         // 1
 	var template = Template.instance();                                                                                   // 2
-	template.subscribe('dataViewedUser');                                                                                 // 3
+	template.subscribe('dataWords');                                                                                      // 3
 });                                                                                                                    //
                                                                                                                        //
 Template.chartWordsUser.rendered = function () {                                                                       // 6
                                                                                                                        //
 	var barChart = function barChart() {                                                                                  // 8
-		var data = Data.Viewed.User.find({}, {                                                                               // 9
-			sort: {                                                                                                             // 10
-				timesViewed: -1                                                                                                    // 11
+		var data = Data.Words.find({                                                                                         // 9
+			userId: Meteor.userId()                                                                                             // 10
+		}, {                                                                                                                 //
+			limit: 5,                                                                                                           // 12
+			sort: {                                                                                                             // 13
+				viewed: -1                                                                                                         // 14
 			}                                                                                                                   //
 		}).fetch();                                                                                                          //
-		var barChart = [{                                                                                                    // 14
-			key: "Top 5 beliebte Woerter (allgemein)",                                                                          // 15
-			values: data                                                                                                        // 16
+		var barChart = [{                                                                                                    // 17
+			key: "Top 5 beliebte Woerter (Benutzer)",                                                                           // 18
+			values: data                                                                                                        // 19
 		}];                                                                                                                  //
                                                                                                                        //
-		return barChart;                                                                                                     // 19
+		return barChart;                                                                                                     // 22
 	};                                                                                                                    //
                                                                                                                        //
 	// chart object                                                                                                       //
 	var chart = nv.models.discreteBarChart().x(function (d) {                                                             // 6
-		return d.vocabularyName;                                                                                             // 25
+		return d.vocabularyName;                                                                                             // 28
 	}).y(function (d) {                                                                                                   //
-		return d.timesViewed;                                                                                                // 28
+		return d.viewed;                                                                                                     // 31
 	}).staggerLabels(true)                                                                                                //
 	//.staggerLabels(historicalBarChart[0].values.length > 8)                                                             //
-	.showValues(true).duration(250);                                                                                      //
+	.showValues(false).showYAxis(false).duration(250);                                                                    //
                                                                                                                        //
 	// chart details                                                                                                      //
 	nv.addGraph(function () {                                                                                             // 6
                                                                                                                        //
-		d3.select('#chartWordsUser svg').datum(barChart()).call(chart);                                                      // 38
+		d3.select('#chartWordsUser svg').datum(barChart()).call(chart);                                                      // 42
                                                                                                                        //
-		nv.utils.windowResize(chart.update);                                                                                 // 42
+		nv.utils.windowResize(chart.update);                                                                                 // 46
                                                                                                                        //
-		return chart;                                                                                                        // 44
+		return chart;                                                                                                        // 48
 	});                                                                                                                   //
                                                                                                                        //
 	// update chart when data changes                                                                                     //
 	this.autorun(function () {                                                                                            // 6
                                                                                                                        //
-		d3.select('#chartWordsUser svg').datum(barChart()).call(chart);                                                      // 50
+		d3.select('#chartWordsUser svg').datum(barChart()).call(chart);                                                      // 54
                                                                                                                        //
-		chart.update();                                                                                                      // 54
+		chart.update();                                                                                                      // 58
 	});                                                                                                                   //
 };                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"hello.html":function(){
+}},"feedback.html":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/template.feedback.js                                                                        //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("feedbackClient");                                                                                // 2
+Template["feedbackClient"] = new Template("Template.feedbackClient", (function() {                                     // 3
+  var view = this;                                                                                                     // 4
+  return Blaze._TemplateWith(function() {                                                                              // 5
+    return {                                                                                                           // 6
+      collection: Spacebars.call("Data.Feedback"),                                                                     // 7
+      id: Spacebars.call("insertFeedbackForm"),                                                                        // 8
+      type: Spacebars.call("insert")                                                                                   // 9
+    };                                                                                                                 // 10
+  }, function() {                                                                                                      // 11
+    return Spacebars.include(view.lookupTemplate("autoForm"), function() {                                             // 12
+      return [ "\n  ", HTML.FIELDSET("\n    ", HTML.LEGEND("Feedback:"), "\n    ", Blaze._TemplateWith(function() {    // 13
+        return {                                                                                                       // 14
+          name: Spacebars.call("message")                                                                              // 15
+        };                                                                                                             // 16
+      }, function() {                                                                                                  // 17
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 18
+      }), "\n    ", HTML.DIV("\n      ", HTML.BUTTON({                                                                 // 19
+        type: "submit",                                                                                                // 20
+        "class": "btn btn-primary"                                                                                     // 21
+      }, "Senden"), "\n      ", HTML.BUTTON({                                                                          // 22
+        type: "reset",                                                                                                 // 23
+        "class": "btn btn-default"                                                                                     // 24
+      }, "Zuruecksetzen"), "\n    "), "\n  "), "\n  " ];                                                               // 25
+    });                                                                                                                // 26
+  });                                                                                                                  // 27
+}));                                                                                                                   // 28
+                                                                                                                       // 29
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"hello.html":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -201,9 +241,58 @@ Template["index"] = new Template("Template.index", (function() {                
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
     "class": "container"                                                                                               // 6
-  }, HTML.Raw('\n    <h1>Index - Startseite.</h1>\n    <p>\n      5 Tage nach Registration/ nach 5 Logins folgende Meldung:\n    </p>\n    <p class="alert alert-info">Bitte fuelle den Fragebogen aus. Du hast bis zum 03. Juli 2016 dafuer Zeit. Nur mit ausgefuellten Fragebogen ist deine Teilnahme gueltig.\n      <input class="btn btn-default btn-question" type="submit" value="Fragebogen">\n    </p>\n\n    <!-- {{#each dataDetail1}} <br> {{mode}} {{/each}} -->\n\n    <!-- {{> chartFavLine }} -->\n\n<h3>TOP 5 - Nachgeschlagene Begriffe</h3>\n\n  '), Spacebars.include(view.lookupTemplate("chartWordsAll")), "\n\n  ", Spacebars.include(view.lookupTemplate("chartWordsUser")), HTML.Raw("\n\n    <h4>TODO: </h4>\n    <ul>\n      <li>TOP 5 last viewed</li>\n      <li>TOP 5 popularity on users fav lists</li>\n      <li>Vocabulary of the day</li>\n    </ul>\n\n    <p>\n      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,\n      sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.\n    </p>\n\n    <h4>Log Data: </h4>\n    <ul>\n      <li>Count successful Logins</li>\n      <li> Login and Logout + Timestamp, Browser, OS</li>\n      <li>Clicked Menu items plus timestamp</li>\n      <li>Clicked Attention button plus timestamp</li>\n      <li>Count words viewed and in which mode -> compare attention high/ low plus timestamp -> how did the use evolve?</li>\n      <li></li>\n    </ul>\n\n    <h4>Fragebogen: </h4>\n    <ul>\n      <li>Welchen Trainermodus hast du am liebsten genutzt?</li>\n      <li>Von welchem Endgeraet aus hast du die App genutzt?</li>\n      <li>Falls von mehreren: Inwiefern hat sich dein Nutzerverhalten mit den versch. Endgeraeten veraendert?</li>\n      <li>Hat die Moeglichkeit, den Modus zu wechseln, dein Nutzungsverhalten veraendert? Falls ja, wie?</li>\n      <li>Wie hat dir die Moeglichkeit gefallen das UI zu reduzieren?</li>\n      <li>Hast du vom Attention Mode Gebrauch gemacht? Wann, wo und in welchen Situationen?</li>\n      <li>Wie Zufrieden warst du mit der Benutzeroberflaeche?</li>\n      <li>Fandest du die Bedienung der App verstaendlich?</li>\n      <li>...</li>\n    </ul>\n\n  "));
-}));                                                                                                                   // 8
-                                                                                                                       // 9
+  }, HTML.Raw("\n    <br>\n    "), Blaze.Unless(function() {                                                           // 7
+    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 8
+  }, function() {                                                                                                      // 9
+    return [ "\n    ", HTML.BR(), "\n    ", HTML.P({                                                                   // 10
+      "class": "alert alert-info"                                                                                      // 11
+    }, "Bitte fuelle den Fragebogen aus. Du hast bis zum 03. Juli 2016 dafuer Zeit. Nur mit ausgefuellten Fragebogen ist deine Teilnahme gueltig.\n      ", HTML.A({
+      "class": "btn btn-default btn-question",                                                                         // 13
+      href: function() {                                                                                               // 14
+        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 15
+      }                                                                                                                // 16
+    }, "Fragebogen"), "\n    "), "\n    " ];                                                                           // 17
+  }), HTML.Raw("\n    <br>\n\n    <!-- {{#each dataDetail1}} <br> {{mode}} {{/each}} -->\n\n    <!-- {{> chartFavLine }} -->\n\n\n\n\n<h3>TOP 5 - Nachgeschlagene Begriffe</h3>\n\n"), HTML.DIV({
+    "class": "row"                                                                                                     // 19
+  }, "\n  ", HTML.DIV({                                                                                                // 20
+    "class": "col-sm-6"                                                                                                // 21
+  }, "\n    ", Spacebars.include(view.lookupTemplate("chartWordsAll")), "\n  "), "\n  ", HTML.DIV({                    // 22
+    "class": "col-sm-6"                                                                                                // 23
+  }, "\n    ", Spacebars.include(view.lookupTemplate("chartWordsUser")), "\n  "), "\n"), HTML.Raw("\n\n    <h4>TODO: </h4>\n    <ul>\n      <li>Vocabulary of the day</li>\n    </ul>\n\n    "), Spacebars.include(view.lookupTemplate("feedbackClient")), HTML.Raw("\n\n    <p>\n      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,\n      sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.\n    </p>\n\n\n  "));
+}));                                                                                                                   // 25
+                                                                                                                       // 26
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"feedback.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/feedback.js                                                                                 //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+var hooksFeedbackForm = {                                                                                              // 1
+	onSuccess: function () {                                                                                              // 2
+		function onSuccess(formType, result) {                                                                               // 2
+			var msg = 'Feedback erfolgreich gesendet.';                                                                         // 3
+			toastr.success(msg);                                                                                                // 4
+		}                                                                                                                    //
+                                                                                                                       //
+		return onSuccess;                                                                                                    //
+	}(),                                                                                                                  //
+	onError: function () {                                                                                                // 6
+		function onError(formType, error) {                                                                                  // 6
+			var msg = 'Feedback konnte nicht gesendet werden.';                                                                 // 7
+			toastr.error(msg);                                                                                                  // 8
+		}                                                                                                                    //
+                                                                                                                       //
+		return onError;                                                                                                      //
+	}()                                                                                                                   //
+};                                                                                                                     //
+                                                                                                                       //
+AutoForm.addHooks(['insertFeedbackForm'], hooksFeedbackForm);                                                          // 12
+                                                                                                                       //
+SimpleSchema.debug = true;                                                                                             // 14
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"hello.js":function(){
@@ -315,64 +404,22 @@ Template.index.onCreated(function () {                                          
 	template.subscribe('dataDetail');                                                                                     // 3
 });                                                                                                                    //
                                                                                                                        //
-Template.index.helpers({                                                                                               // 6
-	dataDetail1: function () {                                                                                            // 7
-		function dataDetail1() {                                                                                             //
-			var data = Data.Detail.find().fetch();                                                                              // 8
-			return data;                                                                                                        // 9
-		}                                                                                                                    //
+Template.index.helpers({});                                                                                            // 6
                                                                                                                        //
-		return dataDetail1;                                                                                                  //
-	}(),                                                                                                                  //
-	dataDetail2: function () {                                                                                            // 11
-		function dataDetail2() {                                                                                             //
-			var result = void 0;                                                                                                // 12
-			var data = Data.Detail.find().fetch();                                                                              // 13
-			var byMode = R.groupBy(function (entry) {                                                                           // 14
-				var mode = entry.mode;                                                                                             // 15
-				return mode;                                                                                                       // 16
-			});                                                                                                                 //
-			console.log(byMode(data));                                                                                          // 18
-			return data;                                                                                                        // 19
-		}                                                                                                                    //
-                                                                                                                       //
-		return dataDetail2;                                                                                                  //
-	}()                                                                                                                   //
-});                                                                                                                    //
-                                                                                                                       //
-Template.index.events({                                                                                                // 23
-	'click .btn-question': function () {                                                                                  // 24
-		function clickBtnQuestion(event, template) {                                                                         //
-			var result = void 0;                                                                                                // 25
-			var data = Data.Detail.find().fetch();                                                                              // 26
-			var byMode = R.groupBy(function (entry) {                                                                           // 27
-				return entry.mode;                                                                                                 // 28
-			});                                                                                                                 //
-			console.log(byMode(data));                                                                                          // 30
-			var byDate = R.groupBy(function (entry) {                                                                           // 31
-				var day = entry.timestamp;                                                                                         // 32
-				// day.setHours(0);                                                                                                //
-				// day.setMinutes(0);                                                                                              //
-				day.setSeconds(0);                                                                                                 // 31
-				day.setMilliseconds(0);                                                                                            // 36
-				if (entry.timestamp.getMinutes()) {                                                                                // 37
-					return day;                                                                                                       // 38
-				}                                                                                                                  //
-			});                                                                                                                 //
-			console.log(byDate(data));                                                                                          // 41
-			console.log(R.map(R.length, byDate(data)));                                                                         // 42
-		}                                                                                                                    //
+Template.index.events({                                                                                                // 10
+	'click .btn-question': function () {                                                                                  // 11
+		function clickBtnQuestion(event, template) {}                                                                        //
                                                                                                                        //
 		return clickBtnQuestion;                                                                                             //
 	}()                                                                                                                   //
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"stats":{"charts":{"chart_bar_clicks_per_day.html":function(){
+}},"uebersicht":{"charts":{"chart_bar_clicks_per_day.html":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/template.chart_bar_clicks_per_day.js                                                 //
+// client/views/high/uebersicht/charts/template.chart_bar_clicks_per_day.js                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -391,7 +438,7 @@ Template["chartBarClicksPerDay"] = new Template("Template.chartBarClicksPerDay",
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/template.chart_bar_modes.js                                                          //
+// client/views/high/uebersicht/charts/template.chart_bar_modes.js                                                     //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -410,7 +457,7 @@ Template["chartBarModes"] = new Template("Template.chartBarModes", (function() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/template.chart_multibar_attention.js                                                 //
+// client/views/high/uebersicht/charts/template.chart_multibar_attention.js                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -429,7 +476,7 @@ Template["chartMultiBarModes"] = new Template("Template.chartMultiBarModes", (fu
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/template.chart_pie_attention.js                                                      //
+// client/views/high/uebersicht/charts/template.chart_pie_attention.js                                                 //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -448,7 +495,7 @@ Template["chartPieAttention"] = new Template("Template.chartPieAttention", (func
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/chart_bar_clicks_per_day.js                                                          //
+// client/views/high/uebersicht/charts/chart_bar_clicks_per_day.js                                                     //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -498,10 +545,10 @@ Template.chartBarClicksPerDay.rendered = function () {                          
 	//.staggerLabels(historicalBarChart[0].values.length > 8)                                                             //
 	.showValues(true).duration(250);                                                                                      // 39
                                                                                                                        //
-	chart.xAxis.axisLabel('Clicks').tickFormat(function (d) {                                                             // 54
+	chart.xAxis.axisLabel('Minute').tickFormat(function (d) {                                                             // 54
 		return d3.time.format('%e, %H:%M')(new Date(d));                                                                     // 57
 	});                                                                                                                   //
-	chart.yAxis.tickFormat(d3.format(',.1f')).axisLabel('Minute');                                                        // 59
+	chart.yAxis.tickFormat(d3.format(',.1f')).axisLabel('Clicks');                                                        // 59
 	// chart details                                                                                                      //
 	nv.addGraph(function () {                                                                                             // 1
 		d3.select('#chartBarClicksPerDay svg').datum(barChart()).call(chart);                                                // 64
@@ -521,7 +568,7 @@ Template.chartBarClicksPerDay.rendered = function () {                          
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/chart_bar_modes.js                                                                   //
+// client/views/high/uebersicht/charts/chart_bar_modes.js                                                              //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -582,7 +629,7 @@ Template.chartBarModes.rendered = function () {                                 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/chart_multibar_attention.js                                                          //
+// client/views/high/uebersicht/charts/chart_multibar_attention.js                                                     //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -667,7 +714,7 @@ Template.chartMultiBarModes.rendered = function () {                            
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/charts/chart_pie_attention.js                                                               //
+// client/views/high/uebersicht/charts/chart_pie_attention.js                                                          //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -716,17 +763,52 @@ Template.chartPieAttention.rendered = function () {                             
 };                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"stats.html":function(){
+}},"feedback.html":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/template.stats.js                                                                           //
+// client/views/high/uebersicht/template.feedback.js                                                                   //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
                                                                                                                        // 1
-Template.__checkName("stats");                                                                                         // 2
-Template["stats"] = new Template("Template.stats", (function() {                                                       // 3
+Template.__checkName("feedback");                                                                                      // 2
+Template["feedback"] = new Template("Template.feedback", (function() {                                                 // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "container"                                                                                               // 6
+  }, HTML.Raw("\n		<h1>Feedback</h1>\n		"), Blaze.Each(function() {                                                    // 7
+    return Spacebars.call(view.lookup("feedback"));                                                                    // 8
+  }, function() {                                                                                                      // 9
+    return [ "\n		", HTML.DIV({                                                                                        // 10
+      "class": "panel panel-default"                                                                                   // 11
+    }, "\n			", HTML.DIV({                                                                                             // 12
+      "class": "panel-heading"                                                                                         // 13
+    }, Blaze.View("lookup:userMail", function() {                                                                      // 14
+      return Spacebars.mustache(view.lookup("userMail"));                                                              // 15
+    }), " | ", Blaze.View("lookup:createdAt", function() {                                                             // 16
+      return Spacebars.mustache(view.lookup("createdAt"));                                                             // 17
+    })), "\n			", HTML.DIV({                                                                                           // 18
+      "class": "panel-body"                                                                                            // 19
+    }, "\n				", Blaze.View("lookup:message", function() {                                                             // 20
+      return Spacebars.mustache(view.lookup("message"));                                                               // 21
+    }), "\n			"), "\n		"), "\n		" ];                                                                                   // 22
+  }), "\n	");                                                                                                          // 23
+}));                                                                                                                   // 24
+                                                                                                                       // 25
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"statistik.html":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/uebersicht/template.statistik.js                                                                  //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("statistik");                                                                                     // 2
+Template["statistik"] = new Template("Template.statistik", (function() {                                               // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
     "class": "container"                                                                                               // 6
@@ -745,56 +827,87 @@ Template["stats"] = new Template("Template.stats", (function() {                
                                                                                                                        // 19
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"stats.js":function(){
+},"feedback.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/stats/stats.js                                                                                    //
+// client/views/high/uebersicht/feedback.js                                                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-Template.stats.onCreated(function () {                                                                                 // 1
+Template.feedback.onCreated(function () {                                                                              // 1
 	var template = Template.instance();                                                                                   // 2
-	template.subscribe('dataDetail');                                                                                     // 3
+	template.subscribe('feedback');                                                                                       // 3
 });                                                                                                                    //
                                                                                                                        //
-Template.stats.events({                                                                                                // 6
-	'click .btn-test': function () {                                                                                      // 7
+Template.feedback.helpers({                                                                                            // 6
+	feedback: function () {                                                                                               // 7
+		function feedback() {                                                                                                //
+			return Data.Feedback.find({}, {                                                                                     // 8
+				sort: {                                                                                                            // 9
+					createdAt: -1                                                                                                     // 10
+				}                                                                                                                  //
+			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return feedback;                                                                                                     //
+	}()                                                                                                                   //
+});                                                                                                                    //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"statistik.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/uebersicht/statistik.js                                                                           //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+Template.statistik.onCreated(function () {                                                                             // 1
+	var template = Template.instance();                                                                                   // 2
+	template.subscribe('dataDetail');                                                                                     // 3
+	template.subscribe('dataWords');                                                                                      // 4
+});                                                                                                                    //
+                                                                                                                       //
+Template.statistik.events({                                                                                            // 7
+	'click .btn-test': function () {                                                                                      // 8
 		function clickBtnTest(event, template) {                                                                             //
-			var result = [];                                                                                                    // 8
-			var data = Data.Detail.find({}, {                                                                                   // 9
-				sort: {                                                                                                            // 10
-					timestamp: 1                                                                                                      // 11
-				}                                                                                                                  //
-			}).fetch();                                                                                                         //
-			var byMode = R.groupBy(function (entry) {                                                                           // 14
-				return entry.mode;                                                                                                 // 15
+			var result = [];                                                                                                    // 9
+			var data = Data.Words.find().fetch();                                                                               // 10
+                                                                                                                       //
+			var byVocabularyId = R.groupBy(function (entry) {                                                                   // 12
+				return entry.vocabularyId;                                                                                         // 13
 			});                                                                                                                 //
-			var byAttention = R.groupBy(function (entry) {                                                                      // 17
-				return entry.attention;                                                                                            // 18
-			});                                                                                                                 //
-			var byDate = R.groupBy(function (entry) {                                                                           // 20
-				var day = entry.timestamp;                                                                                         // 21
-				// day.setHours(0);                                                                                                //
-				// day.setMinutes(0);                                                                                              //
-				day.setSeconds(0);                                                                                                 // 20
-				day.setMilliseconds(0);                                                                                            // 25
-				if (entry.timestamp.getMinutes()) {                                                                                // 26
-					return day;                                                                                                       // 27
-				}                                                                                                                  //
-			});                                                                                                                 //
-			console.log(byDate(data));                                                                                          // 30
-			var sortedByDate = R.map(R.length, byDate(data));                                                                   // 31
-			for (var k in meteorBabelHelpers.sanitizeForInObject(sortedByDate)) {                                               // 32
-				if (sortedByDate.hasOwnProperty(k)) {                                                                              // 33
-					console.log("Key is " + k + ", value is " + sortedByDate[k]);                                                     // 34
+			// let byMode = R.groupBy(function(entry) {                                                                         //
+			// 	return entry.mode;                                                                                              //
+			// });                                                                                                              //
+			// let byAttention = R.groupBy(function(entry) {                                                                    //
+			// 	return entry.attention;                                                                                         //
+			// });                                                                                                              //
+			// let byDate = R.groupBy(function(entry) {                                                                         //
+			// 	let day = entry.timestamp;                                                                                      //
+			// 	// day.setHours(0);                                                                                             //
+			// 	// day.setMinutes(0);                                                                                           //
+			// 	day.setSeconds(0);                                                                                              //
+			// 	day.setMilliseconds(0);                                                                                         //
+			// 	if (entry.timestamp.getMinutes()) {                                                                             //
+			// 		return day;                                                                                                    //
+			// 	}                                                                                                               //
+			// });                                                                                                              //
+                                                                                                                       //
+			var groupedByVocabularyId = byVocabularyId(data);                                                                   // 8
+			for (var k in meteorBabelHelpers.sanitizeForInObject(groupedByVocabularyId)) {                                      // 33
+				if (groupedByVocabularyId.hasOwnProperty(k)) {                                                                     // 34
 					result.push({                                                                                                     // 35
-						x: k,                                                                                                            // 36
-						y: sortedByDate[k]                                                                                               // 37
+						x: groupedByVocabularyId[k][0].vocabularyName,                                                                   // 36
+						y: R.sum(R.pluck('viewed')(groupedByVocabularyId[k]))                                                            // 37
 					});                                                                                                               //
 				}                                                                                                                  //
 			};                                                                                                                  //
-			console.log(result);                                                                                                // 41
+			result.forEach(function (entry) {                                                                                   // 41
+				console.log(R.prop('y', entry));                                                                                   // 42
+			});                                                                                                                 //
+			console.log(result);                                                                                                // 44
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnTest;                                                                                                 //
@@ -1054,6 +1167,190 @@ Template.eingabe.events({                                                       
 		return keyupNameTerm;                                                                                                //
 	}()                                                                                                                   //
 });                                                                                                                    //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"fragebogen":{"fragebogen.html":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/fragebogen/template.fragebogen.js                                                                 //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("fragebogen");                                                                                    // 2
+Template["fragebogen"] = new Template("Template.fragebogen", (function() {                                             // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "container"                                                                                               // 6
+  }, HTML.Raw('\n		<h1>Fragebogen</h1>\n		<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->\n		'), Blaze._TemplateWith(function() {
+    return {                                                                                                           // 8
+      collection: Spacebars.call("Data.Survey"),                                                                       // 9
+      id: Spacebars.call("insertSurveyForm"),                                                                          // 10
+      type: Spacebars.call("insert")                                                                                   // 11
+    };                                                                                                                 // 12
+  }, function() {                                                                                                      // 13
+    return Spacebars.include(view.lookupTemplate("autoForm"), function() {                                             // 14
+      return [ "\n		", HTML.FIELDSET("\n		", HTML.LEGEND("Allgemein"), "\n		", Blaze._TemplateWith(function() {        // 15
+        return {                                                                                                       // 16
+          name: Spacebars.call("age")                                                                                  // 17
+        };                                                                                                             // 18
+      }, function() {                                                                                                  // 19
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 20
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 21
+        return {                                                                                                       // 22
+          name: Spacebars.call("previousExperience")                                                                   // 23
+        };                                                                                                             // 24
+      }, function() {                                                                                                  // 25
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 26
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 27
+        return {                                                                                                       // 28
+          name: Spacebars.call("learningCurve")                                                                        // 29
+        };                                                                                                             // 30
+      }, function() {                                                                                                  // 31
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 32
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 33
+        return {                                                                                                       // 34
+          name: Spacebars.call("everydayUse")                                                                          // 35
+        };                                                                                                             // 36
+      }, function() {                                                                                                  // 37
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 38
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 39
+        return {                                                                                                       // 40
+          name: Spacebars.call("everydayUseText")                                                                      // 41
+        };                                                                                                             // 42
+      }, function() {                                                                                                  // 43
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 44
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 45
+        return {                                                                                                       // 46
+          name: Spacebars.call("usability")                                                                            // 47
+        };                                                                                                             // 48
+      }, function() {                                                                                                  // 49
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 50
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 51
+        return {                                                                                                       // 52
+          name: Spacebars.call("usabilityText")                                                                        // 53
+        };                                                                                                             // 54
+      }, function() {                                                                                                  // 55
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 56
+      }), "\n\n		", HTML.LEGEND("Nutzung"), "\n		Von welchen Endgeraeten aus hast du die App genutzt?\n		", Blaze._TemplateWith(function() {
+        return {                                                                                                       // 58
+          name: Spacebars.call("deviceMobile")                                                                         // 59
+        };                                                                                                             // 60
+      }, function() {                                                                                                  // 61
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 62
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 63
+        return {                                                                                                       // 64
+          name: Spacebars.call("deviceTablet")                                                                         // 65
+        };                                                                                                             // 66
+      }, function() {                                                                                                  // 67
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 68
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 69
+        return {                                                                                                       // 70
+          name: Spacebars.call("deviceDesktop")                                                                        // 71
+        };                                                                                                             // 72
+      }, function() {                                                                                                  // 73
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 74
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 75
+        return {                                                                                                       // 76
+          name: Spacebars.call("deviceBehavior")                                                                       // 77
+        };                                                                                                             // 78
+      }, function() {                                                                                                  // 79
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 80
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 81
+        return {                                                                                                       // 82
+          name: Spacebars.call("favouriteMode")                                                                        // 83
+        };                                                                                                             // 84
+      }, function() {                                                                                                  // 85
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 86
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 87
+        return {                                                                                                       // 88
+          name: Spacebars.call("favouriteModeText")                                                                    // 89
+        };                                                                                                             // 90
+      }, function() {                                                                                                  // 91
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 92
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 93
+        return {                                                                                                       // 94
+          name: Spacebars.call("attentionBenefit")                                                                     // 95
+        };                                                                                                             // 96
+      }, function() {                                                                                                  // 97
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 98
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 99
+        return {                                                                                                       // 100
+          name: Spacebars.call("attentionBehavior")                                                                    // 101
+        };                                                                                                             // 102
+      }, function() {                                                                                                  // 103
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 104
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 105
+        return {                                                                                                       // 106
+          name: Spacebars.call("attentionBehaviorText")                                                                // 107
+        };                                                                                                             // 108
+      }, function() {                                                                                                  // 109
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 110
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 111
+        return {                                                                                                       // 112
+          name: Spacebars.call("attentionSituation")                                                                   // 113
+        };                                                                                                             // 114
+      }, function() {                                                                                                  // 115
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 116
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 117
+        return {                                                                                                       // 118
+          name: Spacebars.call("attentionUse")                                                                         // 119
+        };                                                                                                             // 120
+      }, function() {                                                                                                  // 121
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 122
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 123
+        return {                                                                                                       // 124
+          name: Spacebars.call("attentionUseText")                                                                     // 125
+        };                                                                                                             // 126
+      }, function() {                                                                                                  // 127
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 128
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 129
+        return {                                                                                                       // 130
+          name: Spacebars.call("prospects")                                                                            // 131
+        };                                                                                                             // 132
+      }, function() {                                                                                                  // 133
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 134
+      }), "\n	"), "\n\n		", HTML.DIV("\n			", HTML.BUTTON({                                                            // 135
+        type: "submit",                                                                                                // 136
+        "class": "btn btn-primary"                                                                                     // 137
+      }, "Abschicken"), "\n		"), "\n		" ];                                                                             // 138
+    });                                                                                                                // 139
+  }), "\n	");                                                                                                          // 140
+}));                                                                                                                   // 141
+                                                                                                                       // 142
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"fragebogen.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/fragebogen/fragebogen.js                                                                          //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+var hooksSurveyForm = {                                                                                                // 1
+	onSuccess: function () {                                                                                              // 2
+		function onSuccess(formType, result) {                                                                               // 2
+			Meteor.call('surveySubmitted');                                                                                     // 3
+			FlowRouter.go('index');                                                                                             // 4
+			var msg = 'Fragebogen erfolgreich gesendet.';                                                                       // 5
+			toastr.success(msg);                                                                                                // 6
+		}                                                                                                                    //
+                                                                                                                       //
+		return onSuccess;                                                                                                    //
+	}(),                                                                                                                  //
+	onError: function () {                                                                                                // 8
+		function onError(formType, error) {                                                                                  // 8
+			var msg = 'Fragebogen konnte nicht gesendet werden.';                                                               // 9
+			toastr.error(msg);                                                                                                  // 10
+		}                                                                                                                    //
+                                                                                                                       //
+		return onError;                                                                                                      //
+	}()                                                                                                                   //
+};                                                                                                                     //
+                                                                                                                       //
+AutoForm.addHooks(['insertSurveyForm'], hooksSurveyForm);                                                              // 14
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }},"register":{"letter_collapse.html":function(){
@@ -2001,7 +2298,7 @@ Template["layout"] = new Template("Template.layout", (function() {              
     });                                                                                                                // 22
   }), "\n    ", Blaze._TemplateWith(function() {                                                                       // 23
     return {                                                                                                           // 24
-      template: Spacebars.call(view.lookup("main"))                                                                    // 25
+      template: Spacebars.call(view.lookup("navOverview"))                                                             // 25
     };                                                                                                                 // 26
   }, function() {                                                                                                      // 27
     return Spacebars.include(function() {                                                                              // 28
@@ -2009,7 +2306,7 @@ Template["layout"] = new Template("Template.layout", (function() {              
     });                                                                                                                // 30
   }), "\n    ", Blaze._TemplateWith(function() {                                                                       // 31
     return {                                                                                                           // 32
-      template: Spacebars.call(view.lookup("navSource"))                                                               // 33
+      template: Spacebars.call(view.lookup("main"))                                                                    // 33
     };                                                                                                                 // 34
   }, function() {                                                                                                      // 35
     return Spacebars.include(function() {                                                                              // 36
@@ -2017,15 +2314,23 @@ Template["layout"] = new Template("Template.layout", (function() {              
     });                                                                                                                // 38
   }), "\n    ", Blaze._TemplateWith(function() {                                                                       // 39
     return {                                                                                                           // 40
-      template: Spacebars.call(view.lookup("footer"))                                                                  // 41
+      template: Spacebars.call(view.lookup("navSource"))                                                               // 41
     };                                                                                                                 // 42
   }, function() {                                                                                                      // 43
     return Spacebars.include(function() {                                                                              // 44
       return Spacebars.call(Template.__dynamic);                                                                       // 45
     });                                                                                                                // 46
-  }), "\n  ");                                                                                                         // 47
-}));                                                                                                                   // 48
-                                                                                                                       // 49
+  }), "\n    ", Blaze._TemplateWith(function() {                                                                       // 47
+    return {                                                                                                           // 48
+      template: Spacebars.call(view.lookup("footer"))                                                                  // 49
+    };                                                                                                                 // 50
+  }, function() {                                                                                                      // 51
+    return Spacebars.include(function() {                                                                              // 52
+      return Spacebars.call(Template.__dynamic);                                                                       // 53
+    });                                                                                                                // 54
+  }), "\n  ");                                                                                                         // 55
+}));                                                                                                                   // 56
+                                                                                                                       // 57
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nav.html":function(){
@@ -2087,24 +2392,39 @@ Template["nav"] = new Template("Template.nav", (function() {                    
     href: function() {                                                                                                 // 49
       return Spacebars.mustache(view.lookup("pathFor"), "register");                                                   // 50
     }                                                                                                                  // 51
-  }, "Register")), "\n        ", Blaze.If(function() {                                                                 // 52
-    return Spacebars.dataMustache(view.lookup("isInRole"), "admin");                                                   // 53
+  }, "Register")), "\n        ", Blaze.Unless(function() {                                                             // 52
+    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 53
   }, function() {                                                                                                      // 54
     return [ "\n        ", HTML.LI({                                                                                   // 55
       role: "presentation",                                                                                            // 56
       "class": function() {                                                                                            // 57
         return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 58
-          regex: "stats"                                                                                               // 59
+          regex: "fragebogen"                                                                                          // 59
         }));                                                                                                           // 60
       }                                                                                                                // 61
     }, HTML.A({                                                                                                        // 62
       href: function() {                                                                                               // 63
-        return Spacebars.mustache(view.lookup("pathFor"), "stats");                                                    // 64
+        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 64
       }                                                                                                                // 65
-    }, "Stats")), "\n        " ];                                                                                      // 66
-  }), "\n      "), "\n    "), "\n  ");                                                                                 // 67
-}));                                                                                                                   // 68
-                                                                                                                       // 69
+    }, "Fragebogen")), "\n        " ];                                                                                 // 66
+  }), "\n        ", Blaze.If(function() {                                                                              // 67
+    return Spacebars.dataMustache(view.lookup("isInRole"), "admin");                                                   // 68
+  }, function() {                                                                                                      // 69
+    return [ "\n        ", HTML.LI({                                                                                   // 70
+      role: "presentation",                                                                                            // 71
+      "class": function() {                                                                                            // 72
+        return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 73
+          regex: "uebersicht"                                                                                          // 74
+        }));                                                                                                           // 75
+      }                                                                                                                // 76
+    }, HTML.A({                                                                                                        // 77
+      href: function() {                                                                                               // 78
+        return Spacebars.mustache(view.lookup("pathFor"), "uebersicht");                                               // 79
+      }                                                                                                                // 80
+    }, "Uebersicht")), "\n        " ];                                                                                 // 81
+  }), "\n      "), "\n    "), "\n  ");                                                                                 // 82
+}));                                                                                                                   // 83
+                                                                                                                       // 84
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nav_mode.html":function(){
@@ -2131,6 +2451,50 @@ Template["navMode"] = new Template("Template.navMode", (function() {            
   })), "\n		"), "\n		", HTML.Raw('<div class="col-sm-4"></div>'), "\n	"), HTML.Raw("\n	<br>\n	<br>") ];                // 14
 }));                                                                                                                   // 15
                                                                                                                        // 16
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"nav_overview.html":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/layout/template.nav_overview.js                                                                              //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("navOverview");                                                                                   // 2
+Template["navOverview"] = new Template("Template.navOverview", (function() {                                           // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "container"                                                                                               // 6
+  }, "\n		", HTML.DIV({                                                                                                // 7
+    "class": "row text-center"                                                                                         // 8
+  }, "\n			", HTML.Raw("<br>"), "\n			", HTML.DIV({                                                                    // 9
+    "class": "btn-group btn-group-lg",                                                                                 // 10
+    role: "group"                                                                                                      // 11
+  }, "\n				", HTML.A({                                                                                                // 12
+    "class": function() {                                                                                              // 13
+      return [ "btn btn-default ", Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                     // 14
+        regex: "statistik"                                                                                             // 15
+      })) ];                                                                                                           // 16
+    },                                                                                                                 // 17
+    href: function() {                                                                                                 // 18
+      return Spacebars.mustache(view.lookup("pathFor"), "statistik");                                                  // 19
+    },                                                                                                                 // 20
+    role: "button"                                                                                                     // 21
+  }, "Statistik"), "\n				", HTML.A({                                                                                  // 22
+    "class": function() {                                                                                              // 23
+      return [ "btn btn-default ", Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                     // 24
+        regex: "feedback"                                                                                              // 25
+      })) ];                                                                                                           // 26
+    },                                                                                                                 // 27
+    href: function() {                                                                                                 // 28
+      return Spacebars.mustache(view.lookup("pathFor"), "feedback");                                                   // 29
+    },                                                                                                                 // 30
+    role: "button"                                                                                                     // 31
+  }, "Feedback"), "\n			"), "\n		"), "\n	");                                                                           // 32
+}));                                                                                                                   // 33
+                                                                                                                       // 34
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nav_source.html":function(){
@@ -2206,52 +2570,60 @@ Template.registerHelper('userMail', function () {                               
 Template.registerHelper('isOwner', function () {                                                                       // 11
 	return this.userId == Meteor.userId();                                                                                // 12
 });                                                                                                                    //
-Template.registerHelper("lengthIsOne", function () {                                                                   // 14
-	return Session.get(LENGTH_FAV) === 1 && Session.get(SOURCE_FAV) || Session.get(LENGTH_NOT_FAV) === 1 && !Session.get(SOURCE_FAV);
-});                                                                                                                    //
-Template.registerHelper("isFavourite", function (vocabularyId) {                                                       // 18
-	var favEntry = Favourites.findOne({                                                                                   // 19
-		vocabularyId: vocabularyId                                                                                           // 20
-	});                                                                                                                   //
-	if (favEntry) {                                                                                                       // 22
-		return true;                                                                                                         // 23
+Template.registerHelper('surveySubmitted', function () {                                                               // 14
+	var query = UserExt.findOne({ userId: Meteor.userId(), surveySubmitted: true });                                      // 15
+	if (query) {                                                                                                          // 16
+		return true;                                                                                                         // 17
+	} else {                                                                                                              //
+		return false;                                                                                                        // 19
 	}                                                                                                                     //
 });                                                                                                                    //
-Template.registerHelper("favourites", function () {                                                                    // 26
-	var favIds = R.pluck('vocabularyId')(Favourites.find({}).fetch());                                                    // 27
-	if (Favourites.find().count() !== 0) {                                                                                // 28
-		return Vocabulary.find({                                                                                             // 29
-			_id: {                                                                                                              // 30
-				$in: favIds                                                                                                        // 31
+Template.registerHelper("lengthIsOne", function () {                                                                   // 22
+	return Session.get(LENGTH_FAV) === 1 && Session.get(SOURCE_FAV) || Session.get(LENGTH_NOT_FAV) === 1 && !Session.get(SOURCE_FAV);
+});                                                                                                                    //
+Template.registerHelper("isFavourite", function (vocabularyId) {                                                       // 26
+	var favEntry = Favourites.findOne({                                                                                   // 27
+		vocabularyId: vocabularyId                                                                                           // 28
+	});                                                                                                                   //
+	if (favEntry) {                                                                                                       // 30
+		return true;                                                                                                         // 31
+	}                                                                                                                     //
+});                                                                                                                    //
+Template.registerHelper("favourites", function () {                                                                    // 34
+	var favIds = R.pluck('vocabularyId')(Favourites.find({}).fetch());                                                    // 35
+	if (Favourites.find().count() !== 0) {                                                                                // 36
+		return Vocabulary.find({                                                                                             // 37
+			_id: {                                                                                                              // 38
+				$in: favIds                                                                                                        // 39
 			}                                                                                                                   //
 		}, {                                                                                                                 //
-			sort: {                                                                                                             // 34
-				term: 1                                                                                                            // 35
+			sort: {                                                                                                             // 42
+				term: 1                                                                                                            // 43
 			}                                                                                                                   //
 		});                                                                                                                  //
 	} else {                                                                                                              //
-		return null;                                                                                                         // 39
+		return null;                                                                                                         // 47
 	}                                                                                                                     //
 });                                                                                                                    //
-Template.registerHelper("entry", function () {                                                                         // 42
-	var currentUserId = this.userId;                                                                                      // 43
-	var favIds = R.pluck('vocabularyId')(Favourites.find().fetch());                                                      // 44
-	var vocabulary = [];                                                                                                  // 45
+Template.registerHelper("entry", function () {                                                                         // 50
+	var currentUserId = this.userId;                                                                                      // 51
+	var favIds = R.pluck('vocabularyId')(Favourites.find().fetch());                                                      // 52
+	var vocabulary = [];                                                                                                  // 53
                                                                                                                        //
-	if (Session.get(SOURCE_FAV)) {                                                                                        // 47
-		vocabulary = Vocabulary.find({                                                                                       // 48
-			_id: {                                                                                                              // 49
-				$in: favIds                                                                                                        // 50
+	if (Session.get(SOURCE_FAV)) {                                                                                        // 55
+		vocabulary = Vocabulary.find({                                                                                       // 56
+			_id: {                                                                                                              // 57
+				$in: favIds                                                                                                        // 58
 			}                                                                                                                   //
 		}).fetch();                                                                                                          //
 	} else {                                                                                                              //
-		vocabulary = Vocabulary.find({                                                                                       // 54
-			_id: {                                                                                                              // 55
-				$nin: favIds                                                                                                       // 56
+		vocabulary = Vocabulary.find({                                                                                       // 62
+			_id: {                                                                                                              // 63
+				$nin: favIds                                                                                                       // 64
 			}                                                                                                                   //
 		}).fetch();                                                                                                          //
 	}                                                                                                                     //
-	return vocabulary[Session.get(COUNT_VIEWED)];                                                                         // 60
+	return vocabulary[Session.get(COUNT_VIEWED)];                                                                         // 68
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2361,212 +2733,181 @@ Template.bar.events({                                                           
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
 Template.layout.onCreated(function () {                                                                                // 1
-	this.autorun(function () {                                                                                            // 2
-                                                                                                                       //
-		Session.set(LENGTH_FAV, Favourites.find().count());                                                                  // 4
-		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());                                  // 5
+	var template = Template.instance();                                                                                   // 2
+	Tracker.autorun(function () {                                                                                         // 3
+		template.subscribe('userExtension');                                                                                 // 4
+		Session.set(LENGTH_FAV, Favourites.find().count());                                                                  // 5
+		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());                                  // 6
 	});                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.layout.events({                                                                                               // 10
-	'click .btn-forward, click .btn-backward': function () {                                                              // 11
+Template.layout.events({                                                                                               // 11
+	'click .btn-forward, click .btn-backward': function () {                                                              // 12
 		function clickBtnForwardClickBtnBackward(event, template) {                                                          //
                                                                                                                        //
-			var self = this;                                                                                                    // 14
-			if (Session.get(REVEALED)) {                                                                                        // 15
-				Session.set(REVEALED, false);                                                                                      // 16
+			var self = this;                                                                                                    // 15
+			if (Session.get(REVEALED)) {                                                                                        // 16
+				Session.set(REVEALED, false);                                                                                      // 17
 			}                                                                                                                   //
-			if (Session.get(TERM_WRONG)) {                                                                                      // 18
-				Session.set(TERM_WRONG, false);                                                                                    // 19
+			if (Session.get(TERM_WRONG)) {                                                                                      // 19
+				Session.set(TERM_WRONG, false);                                                                                    // 20
 			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 21
-				document.getElementById("term").value = '';                                                                        // 22
-				if (document.getElementById("term").disabled === true) {                                                           // 23
-					document.getElementById("term").disabled = false;                                                                 // 24
+			if (document.getElementById("term")) {                                                                              // 22
+				document.getElementById("term").value = '';                                                                        // 23
+				if (document.getElementById("term").disabled === true) {                                                           // 24
+					document.getElementById("term").disabled = false;                                                                 // 25
 				}                                                                                                                  //
 			}                                                                                                                   //
 			// log                                                                                                              //
-			Meteor.call('dataViewedUser', self);                                                                                // 11
-			Meteor.call('dataViewedAll', self);                                                                                 // 29
-                                                                                                                       //
-			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 11
-			var devicePlatform = Darwin.device.platform;                                                                        // 33
-			var clickArea = 'browse';                                                                                           // 34
-			var mode = void 0;                                                                                                  // 35
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 36
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 37
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 38
+			var deviceType = Darwin.device.type;                                                                                // 12
+			var devicePlatform = Darwin.device.platform;                                                                        // 30
+			var clickArea = 'browse';                                                                                           // 31
+			var mode = void 0;                                                                                                  // 32
+			var attention = Session.get(ATTENTION_MODE);                                                                        // 33
+			if (Session.get(ATTENTION_MODE)) {                                                                                  // 34
+				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 35
 			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 40
-					mode = 'eingabe';                                                                                                 // 41
+				if (FlowRouter.current().route.name === "eingabe") {                                                               // 37
+					mode = 'eingabe';                                                                                                 // 38
 				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 43
+					mode = 'null';                                                                                                    // 40
 				}                                                                                                                  //
 			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 46
+			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 43
+			Meteor.call('dataWords', self);                                                                                     // 44
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForwardClickBtnBackward;                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-backward': function () {                                                                                  // 49
+	'click .btn-backward': function () {                                                                                  // 47
 		function clickBtnBackward(event, template) {                                                                         //
-			var val = 0;                                                                                                        // 50
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 51
+			var val = 0;                                                                                                        // 48
+			if (Session.get(SOURCE_FAV)) {                                                                                      // 49
 				// reset to avoid going into negative numbers and be able to circle backwards                                      //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 53
-					val = Session.get(LENGTH_FAV) - 1;                                                                                // 54
-					Session.set(COUNT_VIEWED, val);                                                                                   // 55
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 51
+					val = Session.get(LENGTH_FAV) - 1;                                                                                // 52
+					Session.set(COUNT_VIEWED, val);                                                                                   // 53
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 57
-					Session.set(COUNT_VIEWED, val);                                                                                   // 58
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 55
+					Session.set(COUNT_VIEWED, val);                                                                                   // 56
 				}                                                                                                                  //
 			} else {                                                                                                            //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 61
-					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 62
-					Session.set(COUNT_VIEWED, val);                                                                                   // 63
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 59
+					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 60
+					Session.set(COUNT_VIEWED, val);                                                                                   // 61
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 65
-					Session.set(COUNT_VIEWED, val);                                                                                   // 66
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 63
+					Session.set(COUNT_VIEWED, val);                                                                                   // 64
 				}                                                                                                                  //
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnBackward;                                                                                             //
 	}(),                                                                                                                  //
-	'click .btn-forward': function () {                                                                                   // 70
+	'click .btn-forward': function () {                                                                                   // 68
 		function clickBtnForward(event, template) {                                                                          //
-			var val = 0;                                                                                                        // 71
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 72
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 73
-				Session.set(COUNT_VIEWED, val);                                                                                    // 74
+			var val = 0;                                                                                                        // 69
+			if (Session.get(SOURCE_FAV)) {                                                                                      // 70
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 71
+				Session.set(COUNT_VIEWED, val);                                                                                    // 72
 			} else {                                                                                                            //
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 76
-				Session.set(COUNT_VIEWED, val);                                                                                    // 77
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 74
+				Session.set(COUNT_VIEWED, val);                                                                                    // 75
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForward;                                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-reveal': function () {                                                                                    // 80
+	'click .btn-reveal': function () {                                                                                    // 78
 		function clickBtnReveal(event, template) {                                                                           //
-			if (!Session.get(REVEALED)) {                                                                                       // 81
-				Session.set(REVEALED, true);                                                                                       // 82
+			if (!Session.get(REVEALED)) {                                                                                       // 79
+				Session.set(REVEALED, true);                                                                                       // 80
 			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 84
-				if (document.getElementById("term").disabled === false) {                                                          // 85
-					document.getElementById("term").disabled = true;                                                                  // 86
+			if (document.getElementById("term")) {                                                                              // 82
+				if (document.getElementById("term").disabled === false) {                                                          // 83
+					document.getElementById("term").disabled = true;                                                                  // 84
 				}                                                                                                                  //
 			}                                                                                                                   //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 80
-			var devicePlatform = Darwin.device.platform;                                                                        // 91
-			var clickArea = 'reveal';                                                                                           // 92
-			var mode = void 0;                                                                                                  // 93
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 94
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 95
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 96
+			var deviceType = Darwin.device.type;                                                                                // 78
+			var devicePlatform = Darwin.device.platform;                                                                        // 89
+			var clickArea = 'reveal';                                                                                           // 90
+			var mode = void 0;                                                                                                  // 91
+			var attention = Session.get(ATTENTION_MODE);                                                                        // 92
+			if (Session.get(ATTENTION_MODE)) {                                                                                  // 93
+				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 94
 			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 98
-					mode = 'eingabe';                                                                                                 // 99
+				if (FlowRouter.current().route.name === "eingabe") {                                                               // 96
+					mode = 'eingabe';                                                                                                 // 97
 				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 101
+					mode = 'null';                                                                                                    // 99
 				}                                                                                                                  //
 			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 104
+			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 102
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnReveal;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-insert, click .btn-delete': function () {                                                                 // 106
+	'click .btn-insert, click .btn-delete': function () {                                                                 // 104
 		function clickBtnInsertClickBtnDelete(event, template) {                                                             //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 108
-			var devicePlatform = Darwin.device.platform;                                                                        // 109
-			var clickArea = 'favDel';                                                                                           // 110
-			var mode = void 0;                                                                                                  // 111
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 112
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 113
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 114
+			var deviceType = Darwin.device.type;                                                                                // 106
+			var devicePlatform = Darwin.device.platform;                                                                        // 107
+			var clickArea = 'favDel';                                                                                           // 108
+			var mode = void 0;                                                                                                  // 109
+			var attention = Session.get(ATTENTION_MODE);                                                                        // 110
+			if (Session.get(ATTENTION_MODE)) {                                                                                  // 111
+				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 112
 			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 116
-					mode = 'eingabe';                                                                                                 // 117
+				if (FlowRouter.current().route.name === "eingabe") {                                                               // 114
+					mode = 'eingabe';                                                                                                 // 115
 				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 119
+					mode = 'null';                                                                                                    // 117
 				}                                                                                                                  //
 			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 122
+			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 120
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnInsertClickBtnDelete;                                                                                 //
 	}(),                                                                                                                  //
-	'click .btn-insert': function () {                                                                                    // 124
+	'click .btn-insert': function () {                                                                                    // 122
 		function clickBtnInsert(event, template) {                                                                           //
-			var self = this;                                                                                                    // 125
-			var group = FlowRouter.current().route.group.name;                                                                  // 126
-			// log start                                                                                                        //
-			var timestamp = new Date();                                                                                         // 124
-			timestamp.setHours(0);                                                                                              // 129
-			timestamp.setMinutes(0);                                                                                            // 130
-			timestamp.setSeconds(0);                                                                                            // 131
-			timestamp.setMilliseconds(0);                                                                                       // 132
+			var self = this;                                                                                                    // 123
                                                                                                                        //
-			if (group === 'high') {                                                                                             // 134
-				Meteor.call('dataFavHigh', timestamp.getTime());                                                                   // 135
-			}                                                                                                                   //
-			if (group === 'low') {                                                                                              // 137
-				Meteor.call('dataFavLow', timestamp.getTime());                                                                    // 138
-			}                                                                                                                   //
-			// log end                                                                                                          //
-			Meteor.call('insertFavourite', self._id);                                                                           // 124
+			Meteor.call('insertFavourite', self._id);                                                                           // 125
 			// simulate source mode button for register page                                                                    //
-			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 124
-				Session.set(SOURCE_FAV, false);                                                                                    // 144
+			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 122
+				Session.set(SOURCE_FAV, false);                                                                                    // 128
 			}                                                                                                                   //
                                                                                                                        //
 			// reset the COUNT VIEW when a list entry has been removed                                                          //
-			if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                     // 124
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 149
-				Session.set(COUNT_VIEWED, val);                                                                                    // 150
+			if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                     // 122
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 133
+				Session.set(COUNT_VIEWED, val);                                                                                    // 134
 			}                                                                                                                   //
-			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 152
-				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 153
+			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 136
+				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 137
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnInsert;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-delete': function () {                                                                                    // 157
+	'click .btn-delete': function () {                                                                                    // 141
 		function clickBtnDelete(event, template) {                                                                           //
-			var self = this;                                                                                                    // 158
-			var group = FlowRouter.current().route.group.name;                                                                  // 159
-			// log start                                                                                                        //
-			var timestamp = new Date();                                                                                         // 157
-			timestamp.setHours(0);                                                                                              // 162
-			timestamp.setMinutes(0);                                                                                            // 163
-			timestamp.setSeconds(0);                                                                                            // 164
-			timestamp.setMilliseconds(0);                                                                                       // 165
+			var self = this;                                                                                                    // 142
                                                                                                                        //
-			if (group === 'high') {                                                                                             // 167
-				Meteor.call('dataFavHigh', timestamp.getTime());                                                                   // 168
-			}                                                                                                                   //
-			if (group === 'low') {                                                                                              // 170
-				Meteor.call('dataFavLow', timestamp.getTime());                                                                    // 171
-			}                                                                                                                   //
-			// log end                                                                                                          //
-                                                                                                                       //
-			Meteor.call('deleteFavourite', self._id);                                                                           // 157
+			Meteor.call('deleteFavourite', self._id);                                                                           // 144
 			// simulate source mode button for register page                                                                    //
-			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 157
-				Session.set(SOURCE_FAV, true);                                                                                     // 178
+			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 141
+				Session.set(SOURCE_FAV, true);                                                                                     // 147
 			}                                                                                                                   //
                                                                                                                        //
-			if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 181
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 182
-				Session.set(COUNT_VIEWED, val);                                                                                    // 183
+			if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 150
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 151
+				Session.set(COUNT_VIEWED, val);                                                                                    // 152
 			}                                                                                                                   //
-			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 185
-				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 186
+			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 154
+				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 155
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -2868,74 +3209,66 @@ Meteor.startup(function () {});                                                 
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-People = new Mongo.Collection("people", {});                                                                           // 1
+Data = {};                                                                                                             // 1
+Data.Detail = new Mongo.Collection('dataDetail', {});                                                                  // 2
+Data.Words = new Mongo.Collection('dataWords', {});                                                                    // 3
+Data.Survey = new Mongo.Collection('dataSurvey', {});                                                                  // 4
+Data.Feedback = new Mongo.Collection('dataFeedback', {});                                                              // 5
                                                                                                                        //
-Data = {};                                                                                                             // 3
-Data.Viewed = {};                                                                                                      // 4
-Data.Detail = new Mongo.Collection('dataDetail', {});                                                                  // 5
-Data.Viewed.User = new Mongo.Collection("dataViewedUser", {});                                                         // 6
-Data.Viewed.All = new Mongo.Collection("dataViewedAll", {});                                                           // 7
-Data.Fav = {};                                                                                                         // 8
-Data.Fav.High = new Mongo.Collection("dataFavHigh", {});                                                               // 9
-Data.Fav.Low = new Mongo.Collection("dataFavLow", {});                                                                 // 10
+Data.Survey.allow({                                                                                                    // 7
+	insert: function () {                                                                                                 // 8
+		function insert() {                                                                                                  // 8
+			return true;                                                                                                        // 9
+		}                                                                                                                    //
                                                                                                                        //
-Data.Detail.Schema = new SimpleSchema({                                                                                // 12
-	userId: {                                                                                                             // 13
-		type: String,                                                                                                        // 14
-		autoValue: function () {                                                                                             // 15
-			function autoValue() {                                                                                              // 15
-				return this.userId;                                                                                                // 16
-			}                                                                                                                   //
+		return insert;                                                                                                       //
+	}()                                                                                                                   //
+});                                                                                                                    //
+Data.Feedback.allow({                                                                                                  // 12
+	insert: function () {                                                                                                 // 13
+		function insert() {                                                                                                  // 13
+			return true;                                                                                                        // 14
+		}                                                                                                                    //
                                                                                                                        //
-			return autoValue;                                                                                                   //
-		}()                                                                                                                  //
-	},                                                                                                                    //
-	timestamp: {                                                                                                          // 19
-		type: Date,                                                                                                          // 20
+		return insert;                                                                                                       //
+	}()                                                                                                                   //
+});                                                                                                                    //
+                                                                                                                       //
+Data.Feedback.Schema = new SimpleSchema({                                                                              // 18
+	userId: {                                                                                                             // 19
+		type: String,                                                                                                        // 20
 		autoValue: function () {                                                                                             // 21
 			function autoValue() {                                                                                              // 21
-				return new Date();                                                                                                 // 22
+				return this.userId;                                                                                                // 22
 			}                                                                                                                   //
                                                                                                                        //
 			return autoValue;                                                                                                   //
 		}()                                                                                                                  //
 	},                                                                                                                    //
-	deviceType: {                                                                                                         // 25
-		type: String                                                                                                         // 26
+	userMail: {                                                                                                           // 25
+		type: String,                                                                                                        // 26
+		autoValue: function () {                                                                                             // 27
+			function autoValue() {                                                                                              // 27
+				return Meteor.user().emails[0].address;                                                                            // 28
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
 	},                                                                                                                    //
-	devicePlatform: {                                                                                                     // 28
-		type: String                                                                                                         // 29
-	},                                                                                                                    //
-	clickArea: {                                                                                                          // 31
+	message: {                                                                                                            // 31
 		type: String,                                                                                                        // 32
-		allowedValues: ['favDel', 'browse', 'source', 'reveal', 'bar', 'mode']                                               // 33
+		max: 1000,                                                                                                           // 33
+		autoform: {                                                                                                          // 34
+			afFieldInput: {                                                                                                     // 35
+				type: "textarea"                                                                                                   // 36
+			}                                                                                                                   //
+		}                                                                                                                    //
 	},                                                                                                                    //
-	mode: {                                                                                                               // 35
-		type: String,                                                                                                        // 36
-		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']                                                    // 37
-	},                                                                                                                    //
-	attention: {                                                                                                          // 39
-		type: Boolean                                                                                                        // 40
-	}                                                                                                                     //
-});                                                                                                                    //
-                                                                                                                       //
-Data.Detail.attachSchema(Data.Detail.Schema);                                                                          // 44
-                                                                                                                       //
-Data.Viewed.All.Schema = new SimpleSchema({                                                                            // 47
-	vocabularyId: {                                                                                                       // 48
-		type: String                                                                                                         // 49
-	},                                                                                                                    //
-	vocabularyName: {                                                                                                     // 51
-		type: String                                                                                                         // 52
-	},                                                                                                                    //
-	timesViewed: {                                                                                                        // 54
-		type: Number                                                                                                         // 55
-	},                                                                                                                    //
-	createdAt: {                                                                                                          // 57
-		type: Date,                                                                                                          // 58
-		autoValue: function () {                                                                                             // 59
-			function autoValue() {                                                                                              // 59
-				return new Date();                                                                                                 // 60
+	createdAt: {                                                                                                          // 40
+		type: Date,                                                                                                          // 41
+		autoValue: function () {                                                                                             // 42
+			function autoValue() {                                                                                              // 42
+				return new Date();                                                                                                 // 43
 			}                                                                                                                   //
                                                                                                                        //
 			return autoValue;                                                                                                   //
@@ -2943,35 +3276,432 @@ Data.Viewed.All.Schema = new SimpleSchema({                                     
 	}                                                                                                                     //
 });                                                                                                                    //
                                                                                                                        //
-Data.Viewed.User.Schema = new SimpleSchema([{                                                                          // 65
-	userId: {                                                                                                             // 67
+Data.Survey.Schema = new SimpleSchema({                                                                                // 48
+	// GENERAL                                                                                                            //
+	userId: {                                                                                                             // 50
+		type: String,                                                                                                        // 51
+		autoValue: function () {                                                                                             // 52
+			function autoValue() {                                                                                              // 52
+				return this.userId;                                                                                                // 53
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}(),                                                                                                                 //
+		autoform: {                                                                                                          // 55
+			type: "hidden",                                                                                                     // 56
+			label: false                                                                                                        // 57
+		}                                                                                                                    //
+	},                                                                                                                    //
+	age: {                                                                                                                // 60
+		type: Number,                                                                                                        // 61
+		label: 'Dein Alter',                                                                                                 // 62
+		min: 18,                                                                                                             // 63
+		max: 99                                                                                                              // 64
+	},                                                                                                                    //
+                                                                                                                       //
+	previousExperience: {                                                                                                 // 67
 		type: String,                                                                                                        // 68
-		autoValue: function () {                                                                                             // 69
-			function autoValue() {                                                                                              // 69
-				return this.userId;                                                                                                // 70
+		label: 'Wie steht es um deine Vorerfahrung mit digitalen Vokabeltrainern?',                                          // 69
+		autoform: {                                                                                                          // 70
+			type: "select-radio-inline",                                                                                        // 71
+			options: function () {                                                                                              // 72
+				function options() {                                                                                               // 72
+					return [{                                                                                                         // 73
+						label: "gar keine",                                                                                              // 74
+						value: "keine"                                                                                                   // 75
+					}, {                                                                                                              //
+						label: "mal probiert",                                                                                           // 77
+						value: "probiert"                                                                                                // 78
+					}, {                                                                                                              //
+						label: "nutze ich regelmaessig",                                                                                 // 80
+						value: "regelmaessig"                                                                                            // 81
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	learningCurve: {                                                                                                      // 86
+		type: String,                                                                                                        // 87
+		label: 'Wie ist dir die Einarbeitung in die App gefallen?',                                                          // 88
+		autoform: {                                                                                                          // 89
+			type: "select-radio-inline",                                                                                        // 90
+			options: function () {                                                                                              // 91
+				function options() {                                                                                               // 91
+					return [{                                                                                                         // 92
+						label: "Leicht",                                                                                                 // 93
+						value: "leicht"                                                                                                  // 94
+					}, {                                                                                                              //
+						label: "Mittel",                                                                                                 // 96
+						value: "mittel"                                                                                                  // 97
+					}, {                                                                                                              //
+						label: "Schwer",                                                                                                 // 99
+						value: "schwer"                                                                                                  // 100
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	everydayUse: {                                                                                                        // 105
+		type: String,                                                                                                        // 106
+		label: 'Konntest du den Gebrauch der App muehelos in deinen Alltag integrieren?',                                    // 107
+		autoform: {                                                                                                          // 108
+			type: "select-radio-inline",                                                                                        // 109
+			options: function () {                                                                                              // 110
+				function options() {                                                                                               // 110
+					return [{                                                                                                         // 111
+						label: "Ja",                                                                                                     // 112
+						value: "ja"                                                                                                      // 113
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 115
+						value: "nein"                                                                                                    // 116
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	everydayUseText: {                                                                                                    // 121
+		type: String,                                                                                                        // 122
+		max: 1000,                                                                                                           // 123
+		label: 'Weshalb?',                                                                                                   // 124
+		autoform: {                                                                                                          // 125
+			afFieldInput: {                                                                                                     // 126
+				type: "textarea"                                                                                                   // 127
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	usability: {                                                                                                          // 131
+		type: String,                                                                                                        // 132
+		label: 'Wie kommst du mit der Bedienung der App zurecht?',                                                           // 133
+		autoform: {                                                                                                          // 134
+			type: "select-radio-inline",                                                                                        // 135
+			options: function () {                                                                                              // 136
+				function options() {                                                                                               // 136
+					return [{                                                                                                         // 137
+						label: "gar nicht",                                                                                              // 138
+						value: "nicht"                                                                                                   // 139
+					}, {                                                                                                              //
+						label: "ok",                                                                                                     // 141
+						value: "ok"                                                                                                      // 142
+					}, {                                                                                                              //
+						label: "super",                                                                                                  // 144
+						value: "super"                                                                                                   // 145
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	usabilityText: {                                                                                                      // 150
+		type: String,                                                                                                        // 151
+		max: 1000,                                                                                                           // 152
+		label: 'Teile deine Ideen zur Bedienung (optional)',                                                                 // 153
+		optional: true,                                                                                                      // 154
+		autoform: {                                                                                                          // 155
+			afFieldInput: {                                                                                                     // 156
+				type: "textarea"                                                                                                   // 157
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	// NUTZUNGSVERHALTEN                                                                                                  //
+	deviceMobile: {                                                                                                       // 162
+		type: String,                                                                                                        // 163
+		label: 'Mobile:',                                                                                                    // 164
+		autoform: {                                                                                                          // 165
+			type: "select-radio-inline",                                                                                        // 166
+			options: function () {                                                                                              // 167
+				function options() {                                                                                               // 167
+					return [{                                                                                                         // 168
+						label: "Ja",                                                                                                     // 169
+						value: "ja"                                                                                                      // 170
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 172
+						value: "nein"                                                                                                    // 173
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	deviceTablet: {                                                                                                       // 178
+		type: String,                                                                                                        // 179
+		label: 'Tablet:',                                                                                                    // 180
+		autoform: {                                                                                                          // 181
+			type: "select-radio-inline",                                                                                        // 182
+			options: function () {                                                                                              // 183
+				function options() {                                                                                               // 183
+					return [{                                                                                                         // 184
+						label: "Ja",                                                                                                     // 185
+						value: "ja"                                                                                                      // 186
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 188
+						value: "nein"                                                                                                    // 189
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	deviceDesktop: {                                                                                                      // 194
+		type: String,                                                                                                        // 195
+		label: 'Desktop:',                                                                                                   // 196
+		autoform: {                                                                                                          // 197
+			type: "select-radio-inline",                                                                                        // 198
+			options: function () {                                                                                              // 199
+				function options() {                                                                                               // 199
+					return [{                                                                                                         // 200
+						label: "Ja",                                                                                                     // 201
+						value: "ja"                                                                                                      // 202
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 204
+						value: "nein"                                                                                                    // 205
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	deviceBehavior: {                                                                                                     // 210
+		type: String,                                                                                                        // 211
+		max: 1000,                                                                                                           // 212
+		label: 'Falls du mehrere Endgeraete benutzt hast um die App aufzurufen: Inwiefern hat sich dein Nutzungsverhalten unterschieden?',
+		optional: false,                                                                                                     // 214
+		autoform: {                                                                                                          // 215
+			afFieldInput: {                                                                                                     // 216
+				type: "textarea"                                                                                                   // 217
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	favouriteMode: {                                                                                                      // 221
+		type: String,                                                                                                        // 222
+		label: 'Welchen Trainermodus hast du am liebsten genutzt?',                                                          // 223
+		autoform: {                                                                                                          // 224
+			type: "select-radio-inline",                                                                                        // 225
+			options: function () {                                                                                              // 226
+				function options() {                                                                                               // 226
+					return [{                                                                                                         // 227
+						label: "Lesen",                                                                                                  // 228
+						value: "lesen"                                                                                                   // 229
+					}, {                                                                                                              //
+						label: "Wort",                                                                                                   // 231
+						value: "wort"                                                                                                    // 232
+					}, {                                                                                                              //
+						label: "Definition",                                                                                             // 234
+						value: "definition"                                                                                              // 235
+					}, {                                                                                                              //
+						label: "Texteingabe",                                                                                            // 237
+						value: "eingabe"                                                                                                 // 238
+					}, {                                                                                                              //
+						label: "Register",                                                                                               // 240
+						value: "register"                                                                                                // 241
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	favouriteModeText: {                                                                                                  // 246
+		type: String,                                                                                                        // 247
+		max: 1000,                                                                                                           // 248
+		label: 'Weshalb?',                                                                                                   // 249
+		optional: false,                                                                                                     // 250
+		autoform: {                                                                                                          // 251
+			afFieldInput: {                                                                                                     // 252
+				type: "textarea"                                                                                                   // 253
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBenefit: {                                                                                                   // 257
+		type: String,                                                                                                        // 258
+		label: 'Hat dir die Moeglichkeit, das UI kontextorientiert zu veraendern, gefallen?',                                // 259
+		autoform: {                                                                                                          // 260
+			type: "select-radio-inline",                                                                                        // 261
+			options: function () {                                                                                              // 262
+				function options() {                                                                                               // 262
+					return [{                                                                                                         // 263
+						label: "Ja",                                                                                                     // 264
+						value: "ja"                                                                                                      // 265
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 267
+						value: "nein"                                                                                                    // 268
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBehavior: {                                                                                                  // 273
+		type: String,                                                                                                        // 274
+		label: 'Hat die Moeglichkeit, das UI kontextorientiert zu veraendern, dein Nutzungsverhalten beeinflusst?',          // 275
+		autoform: {                                                                                                          // 276
+			type: "select-radio-inline",                                                                                        // 277
+			options: function () {                                                                                              // 278
+				function options() {                                                                                               // 278
+					return [{                                                                                                         // 279
+						label: "Ja",                                                                                                     // 280
+						value: "ja"                                                                                                      // 281
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 283
+						value: "nein"                                                                                                    // 284
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBehaviorText: {                                                                                              // 289
+		type: String,                                                                                                        // 290
+		max: 1000,                                                                                                           // 291
+		label: 'Weshalb?',                                                                                                   // 292
+		autoform: {                                                                                                          // 293
+			afFieldInput: {                                                                                                     // 294
+				type: "textarea"                                                                                                   // 295
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionSituation: {                                                                                                 // 299
+		type: String,                                                                                                        // 300
+		label: 'Wann, wo und in welcher Situation hast du beschlossen, das UI zu wechseln? (Beispiel)',                      // 301
+		optional: false,                                                                                                     // 302
+		autoform: {                                                                                                          // 303
+			afFieldInput: {                                                                                                     // 304
+				type: "textarea"                                                                                                   // 305
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionUse: {                                                                                                       // 309
+		type: String,                                                                                                        // 310
+		label: 'Siehst du generell einen Vorteil in der Moeglichkeit das UI kontextorientiert anzupassen?',                  // 311
+		autoform: {                                                                                                          // 312
+			type: "select-radio-inline",                                                                                        // 313
+			options: function () {                                                                                              // 314
+				function options() {                                                                                               // 314
+					return [{                                                                                                         // 315
+						label: "Ja",                                                                                                     // 316
+						value: "ja"                                                                                                      // 317
+					}, {                                                                                                              //
+						label: "Nein",                                                                                                   // 319
+						value: "nein"                                                                                                    // 320
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionUseText: {                                                                                                   // 325
+		type: String,                                                                                                        // 326
+		max: 1000,                                                                                                           // 327
+		label: 'Weshalb?',                                                                                                   // 328
+		optional: false,                                                                                                     // 329
+		autoform: {                                                                                                          // 330
+			afFieldInput: {                                                                                                     // 331
+				type: "textarea"                                                                                                   // 332
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	prospects: {                                                                                                          // 336
+		type: String,                                                                                                        // 337
+		max: 1000,                                                                                                           // 338
+		label: 'Welche alternativen Anwendungsgebiete fuer ein kontextsensitives UI kannst du dir vorstellen?',              // 339
+		optional: false,                                                                                                     // 340
+		autoform: {                                                                                                          // 341
+			afFieldInput: {                                                                                                     // 342
+				type: "textarea"                                                                                                   // 343
+			}                                                                                                                   //
+		}                                                                                                                    //
+	}                                                                                                                     //
+                                                                                                                       //
+});                                                                                                                    //
+                                                                                                                       //
+Data.Detail.Schema = new SimpleSchema({                                                                                // 350
+	userId: {                                                                                                             // 351
+		type: String,                                                                                                        // 352
+		autoValue: function () {                                                                                             // 353
+			function autoValue() {                                                                                              // 353
+				return this.userId;                                                                                                // 354
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	timestamp: {                                                                                                          // 357
+		type: Date,                                                                                                          // 358
+		autoValue: function () {                                                                                             // 359
+			function autoValue() {                                                                                              // 359
+				return new Date();                                                                                                 // 360
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	deviceType: {                                                                                                         // 363
+		type: String                                                                                                         // 364
+	},                                                                                                                    //
+	devicePlatform: {                                                                                                     // 366
+		type: String                                                                                                         // 367
+	},                                                                                                                    //
+	clickArea: {                                                                                                          // 369
+		type: String,                                                                                                        // 370
+		allowedValues: ['favDel', 'browse', 'source', 'reveal', 'bar', 'mode']                                               // 371
+	},                                                                                                                    //
+	mode: {                                                                                                               // 373
+		type: String,                                                                                                        // 374
+		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']                                                    // 375
+	},                                                                                                                    //
+	attention: {                                                                                                          // 377
+		type: Boolean                                                                                                        // 378
+	}                                                                                                                     //
+});                                                                                                                    //
+                                                                                                                       //
+Data.Words.Schema = new SimpleSchema({                                                                                 // 382
+	userId: {                                                                                                             // 383
+		type: String,                                                                                                        // 384
+		autoValue: function () {                                                                                             // 385
+			function autoValue() {                                                                                              // 385
+				return this.userId;                                                                                                // 386
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	vocabularyId: {                                                                                                       // 389
+		type: String                                                                                                         // 390
+	},                                                                                                                    //
+	vocabularyName: {                                                                                                     // 392
+		type: String                                                                                                         // 393
+	},                                                                                                                    //
+	viewed: {                                                                                                             // 395
+		type: Number                                                                                                         // 396
+	},                                                                                                                    //
+	createdAt: {                                                                                                          // 398
+		type: Date,                                                                                                          // 399
+		autoValue: function () {                                                                                             // 400
+			function autoValue() {                                                                                              // 400
+				return new Date();                                                                                                 // 401
 			}                                                                                                                   //
                                                                                                                        //
 			return autoValue;                                                                                                   //
 		}()                                                                                                                  //
 	}                                                                                                                     //
-}, Data.Viewed.All.Schema]);                                                                                           //
+});                                                                                                                    //
                                                                                                                        //
-Data.Viewed.User.attachSchema(Data.Viewed.User.Schema);                                                                // 77
-Data.Viewed.All.attachSchema(Data.Viewed.All.Schema);                                                                  // 78
-                                                                                                                       //
-// CHART MODE                                                                                                          //
-// timestamp (day),                                                                                                    //
-// mode,                                                                                                               //
-// countClick,                                                                                                         //
-// device --->>> $sum to get all devices                                                                               //
-                                                                                                                       //
-// CHART LOW HIGH                                                                                                      //
-// URL                                                                                                                 //
-// timestamp enter                                                                                                     //
-// timestamp exit                                                                                                      //
-// device                                                                                                              //
-                                                                                                                       //
-// --->>> insert @ logout and routeEnter/ routeExit                                                                    //
+Data.Detail.attachSchema(Data.Detail.Schema);                                                                          // 406
+Data.Words.attachSchema(Data.Words.Schema);                                                                            // 407
+Data.Survey.attachSchema(Data.Survey.Schema);                                                                          // 408
+Data.Feedback.attachSchema(Data.Feedback.Schema);                                                                      // 409
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"favourites.js":function(){
@@ -3013,6 +3743,78 @@ var FavouritesSchema = new SimpleSchema({                                       
                                                                                                                        //
 Favourites = new Mongo.Collection('favourites', {});                                                                   // 22
 Favourites.attachSchema(FavouritesSchema);                                                                             // 23
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"messages.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// common/collections/messages.js                                                                                      //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+SimpleSchema.messages({                                                                                                // 1
+  required: "[label] wird benoetigt.",                                                                                 // 2
+  minString: "[label] muss mindestens [min] Zeichen enthalten.",                                                       // 3
+  maxString: "[label] darf nicht mehr als [max] Zeichen enthalten.",                                                   // 4
+  minNumber: "[label] muss mindestens [min] sein.",                                                                    // 5
+  maxNumber: "[label] darf nicht hoeher als [max] sein.",                                                              // 6
+  minDate: "[label] must be on or after [min]",                                                                        // 7
+  maxDate: "[label] cannot be after [max]",                                                                            // 8
+  badDate: "[label] is not a valid date",                                                                              // 9
+  minCount: "You must specify at least [minCount] values",                                                             // 10
+  maxCount: "You cannot specify more than [maxCount] values",                                                          // 11
+  noDecimal: "[label] muss eine gerade Zahl sein.",                                                                    // 12
+  notAllowed: "[value] kein zulaessiger Wert.",                                                                        // 13
+  expectedString: "[label] muss eine Zeichenkette sein.",                                                              // 14
+  expectedNumber: "[label] muss eine Zahl sein.",                                                                      // 15
+  expectedBoolean: "[label] muss ein Bool-Wert sein.",                                                                 // 16
+  expectedArray: "[label] muss ein Array sein.",                                                                       // 17
+  expectedObject: "[label] muss ein Object sein.",                                                                     // 18
+  expectedConstructor: "[label] muss vom Typ [type] sein.",                                                            // 19
+  regEx: [{ msg: "[label] failed regular expression validation" }, { exp: SimpleSchema.RegEx.Email, msg: "[label] must be a valid e-mail address" }, { exp: SimpleSchema.RegEx.WeakEmail, msg: "[label] must be a valid e-mail address" }, { exp: SimpleSchema.RegEx.Domain, msg: "[label] must be a valid domain" }, { exp: SimpleSchema.RegEx.WeakDomain, msg: "[label] must be a valid domain" }, { exp: SimpleSchema.RegEx.IP, msg: "[label] must be a valid IPv4 or IPv6 address" }, { exp: SimpleSchema.RegEx.IPv4, msg: "[label] must be a valid IPv4 address" }, { exp: SimpleSchema.RegEx.IPv6, msg: "[label] must be a valid IPv6 address" }, { exp: SimpleSchema.RegEx.Url, msg: "[label] must be a valid URL" }, { exp: SimpleSchema.RegEx.Id, msg: "[label] must be a valid alphanumeric ID" }],
+  keyNotInSchema: "[key] ist nicht erlaubt im Schema."                                                                 // 32
+});                                                                                                                    //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"userExt.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// common/collections/userExt.js                                                                                       //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+UserExt = new Mongo.Collection('userExt', {});                                                                         // 1
+                                                                                                                       //
+UserExt.Schema = new SimpleSchema({                                                                                    // 3
+	userId: {                                                                                                             // 4
+		type: String,                                                                                                        // 5
+		autoValue: function () {                                                                                             // 6
+			function autoValue() {                                                                                              // 6
+				return this.userId;                                                                                                // 7
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	userMail: {                                                                                                           // 10
+		type: String,                                                                                                        // 11
+		autoValue: function () {                                                                                             // 12
+			function autoValue() {                                                                                              // 12
+				return Meteor.user().emails[0].address;                                                                            // 13
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	surveySubmitted: {                                                                                                    // 16
+		type: Boolean,                                                                                                       // 17
+		defaultValue: false                                                                                                  // 18
+	}                                                                                                                     //
+});                                                                                                                    //
+                                                                                                                       //
+UserExt.attachSchema(UserExt.Schema);                                                                                  // 22
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"vocabulary.js":function(){
@@ -3200,79 +4002,57 @@ resetSession = function resetSession() {                                        
                                                                                                                        //
 checkAdmin = function checkAdmin() {                                                                                   // 20
 	if (!Roles.userIsInRole(Meteor.userId(), 'admin')) {                                                                  // 21
-		FlowRouter.go("notFound");                                                                                           // 22
+		FlowRouter.redirect('/notFound');                                                                                    // 22
 	}                                                                                                                     //
 };                                                                                                                     //
                                                                                                                        //
-FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                                                         // 26
+checkSurveySubmitted = function checkSurveySubmitted() {                                                               // 26
+	var query = UserExt.findOne({ userId: Meteor.userId(), surveySubmitted: true });                                      // 27
+	if (query) {                                                                                                          // 28
+		FlowRouter.redirect('/');                                                                                            // 29
+	}                                                                                                                     //
+};                                                                                                                     //
+                                                                                                                       //
+FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);                                                         // 33
                                                                                                                        //
 // *** ROUTE GROUPS                                                                                                    //
                                                                                                                        //
-var lowRoutes = FlowRouter.group({                                                                                     // 30
-	name: "low",                                                                                                          // 31
-	triggersEnter: [checkAttentionModeOn],                                                                                // 32
-	triggersExit: []                                                                                                      // 33
+var lowRoutes = FlowRouter.group({                                                                                     // 37
+	name: "low",                                                                                                          // 38
+	triggersEnter: [checkAttentionModeOn],                                                                                // 39
+	triggersExit: []                                                                                                      // 40
 });                                                                                                                    //
-var highRoutes = FlowRouter.group({                                                                                    // 35
-	name: "high",                                                                                                         // 36
-	triggersEnter: [checkAttentionModeOff],                                                                               // 37
-	triggersExit: []                                                                                                      // 38
+var highRoutes = FlowRouter.group({                                                                                    // 42
+	name: "high",                                                                                                         // 43
+	triggersEnter: [checkAttentionModeOff],                                                                               // 44
+	triggersExit: []                                                                                                      // 45
 });                                                                                                                    //
                                                                                                                        //
 // *** ROUTES                                                                                                          //
                                                                                                                        //
-highRoutes.route('/', {                                                                                                // 45
-	name: "index",                                                                                                        // 46
-	action: function () {                                                                                                 // 47
-		function action(params, queryParams) {                                                                               // 47
-			BlazeLayout.render('layout', {                                                                                      // 48
-				bar: "bar",                                                                                                        // 49
-				nav: "nav",                                                                                                        // 50
-				main: "index"                                                                                                      // 51
+highRoutes.route('/', {                                                                                                // 52
+	name: "index",                                                                                                        // 53
+	action: function () {                                                                                                 // 54
+		function action(params, queryParams) {                                                                               // 54
+			BlazeLayout.render('layout', {                                                                                      // 55
+				bar: "bar",                                                                                                        // 56
+				nav: "nav",                                                                                                        // 57
+				main: "index"                                                                                                      // 58
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}()                                                                                                                   //
 });                                                                                                                    //
-highRoutes.route('/eingabe', {                                                                                         // 55
-	name: "eingabe",                                                                                                      // 56
-	action: function () {                                                                                                 // 57
-		function action(params, queryParams) {                                                                               // 57
-			BlazeLayout.render('layout', {                                                                                      // 58
-				bar: "bar",                                                                                                        // 59
-				nav: "nav",                                                                                                        // 60
-				main: "eingabe",                                                                                                   // 61
-				navSource: "navSource"                                                                                             // 62
-			});                                                                                                                 //
-		}                                                                                                                    //
-                                                                                                                       //
-		return action;                                                                                                       //
-	}()                                                                                                                   //
-});                                                                                                                    //
-                                                                                                                       //
-highRoutes.route('/register/:id', {                                                                                    // 67
-	name: "vokabelDetail",                                                                                                // 68
-	action: function () {                                                                                                 // 69
-		function action(params, queryParams) {                                                                               // 69
-			BlazeLayout.render('layout', {                                                                                      // 70
-				bar: "bar",                                                                                                        // 71
-				nav: "nav",                                                                                                        // 72
-				main: "vokabelDetail"                                                                                              // 73
-			});                                                                                                                 //
-		}                                                                                                                    //
-                                                                                                                       //
-		return action;                                                                                                       //
-	}()                                                                                                                   //
-});                                                                                                                    //
-highRoutes.route('/register', {                                                                                        // 77
-	name: "register",                                                                                                     // 78
-	action: function () {                                                                                                 // 79
-		function action(params, queryParams) {                                                                               // 79
-			BlazeLayout.render('layout', {                                                                                      // 80
-				bar: "bar",                                                                                                        // 81
-				nav: "nav",                                                                                                        // 82
-				main: "register"                                                                                                   // 83
+highRoutes.route('/eingabe', {                                                                                         // 62
+	name: "eingabe",                                                                                                      // 63
+	action: function () {                                                                                                 // 64
+		function action(params, queryParams) {                                                                               // 64
+			BlazeLayout.render('layout', {                                                                                      // 65
+				bar: "bar",                                                                                                        // 66
+				nav: "nav",                                                                                                        // 67
+				main: "eingabe",                                                                                                   // 68
+				navSource: "navSource"                                                                                             // 69
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
@@ -3280,46 +4060,118 @@ highRoutes.route('/register', {                                                 
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-lowRoutes.route('/low', {                                                                                              // 88
-	name: "low",                                                                                                          // 89
-	action: function () {                                                                                                 // 90
-		function action(params, queryParams) {                                                                               // 90
-			BlazeLayout.render('layout', {                                                                                      // 91
-				bar: "bar",                                                                                                        // 92
-				nav: "navMode",                                                                                                    // 93
-				main: "low",                                                                                                       // 94
-				navSource: "navSource"                                                                                             // 95
+highRoutes.route('/register/:id', {                                                                                    // 74
+	name: "vokabelDetail",                                                                                                // 75
+	action: function () {                                                                                                 // 76
+		function action(params, queryParams) {                                                                               // 76
+			BlazeLayout.render('layout', {                                                                                      // 77
+				bar: "bar",                                                                                                        // 78
+				nav: "nav",                                                                                                        // 79
+				main: "vokabelDetail"                                                                                              // 80
 			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}()                                                                                                                   //
+});                                                                                                                    //
+highRoutes.route('/register', {                                                                                        // 84
+	name: "register",                                                                                                     // 85
+	action: function () {                                                                                                 // 86
+		function action(params, queryParams) {                                                                               // 86
+			BlazeLayout.render('layout', {                                                                                      // 87
+				bar: "bar",                                                                                                        // 88
+				nav: "nav",                                                                                                        // 89
+				main: "register"                                                                                                   // 90
+			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}()                                                                                                                   //
+});                                                                                                                    //
+highRoutes.route('/uebersicht', {                                                                                      // 94
+	name: "uebersicht",                                                                                                   // 95
+	action: function () {                                                                                                 // 96
+		function action(params, queryParams) {                                                                               // 96
+			FlowRouter.redirect('/uebersicht/feedback');                                                                        // 97
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: []                                                                                                     // 98
+	triggersEnter: [checkAdmin]                                                                                           // 99
 });                                                                                                                    //
-                                                                                                                       //
-highRoutes.route('/stats', {                                                                                           // 101
-	name: "stats",                                                                                                        // 102
+highRoutes.route('/uebersicht/statistik', {                                                                            // 101
+	name: "statistik",                                                                                                    // 102
 	action: function () {                                                                                                 // 103
 		function action(params, queryParams) {                                                                               // 103
 			BlazeLayout.render('layout', {                                                                                      // 104
 				bar: "bar",                                                                                                        // 105
 				nav: "nav",                                                                                                        // 106
-				main: "stats"                                                                                                      // 107
+				navOverview: "navOverview",                                                                                        // 107
+				main: "statistik"                                                                                                  // 108
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 110
+	triggersEnter: [checkAdmin]                                                                                           // 111
 });                                                                                                                    //
-                                                                                                                       //
-FlowRouter.notFound = {                                                                                                // 113
-	name: "notFound",                                                                                                     // 114
+highRoutes.route('/uebersicht/feedback', {                                                                             // 113
+	name: "feedback",                                                                                                     // 114
 	action: function () {                                                                                                 // 115
 		function action(params, queryParams) {                                                                               // 115
 			BlazeLayout.render('layout', {                                                                                      // 116
-				footer: "footer",                                                                                                  // 117
-				main: "pageNotFound"                                                                                               // 118
+				bar: "bar",                                                                                                        // 117
+				nav: "nav",                                                                                                        // 118
+				navOverview: "navOverview",                                                                                        // 119
+				main: "feedback"                                                                                                   // 120
+			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}(),                                                                                                                  //
+	triggersEnter: [checkAdmin]                                                                                           // 123
+});                                                                                                                    //
+highRoutes.route('/fragebogen', {                                                                                      // 125
+	name: "fragebogen",                                                                                                   // 126
+	triggersEnter: [checkSurveySubmitted],                                                                                // 127
+	action: function () {                                                                                                 // 128
+		function action(params, queryParams) {                                                                               // 128
+			BlazeLayout.render('layout', {                                                                                      // 129
+				bar: "bar",                                                                                                        // 130
+				nav: "nav",                                                                                                        // 131
+				main: "fragebogen"                                                                                                 // 132
+			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}(),                                                                                                                  //
+	triggersEnter: []                                                                                                     // 135
+});                                                                                                                    //
+                                                                                                                       //
+lowRoutes.route('/low', {                                                                                              // 138
+	name: "low",                                                                                                          // 139
+	action: function () {                                                                                                 // 140
+		function action(params, queryParams) {                                                                               // 140
+			BlazeLayout.render('layout', {                                                                                      // 141
+				bar: "bar",                                                                                                        // 142
+				nav: "navMode",                                                                                                    // 143
+				main: "low",                                                                                                       // 144
+				navSource: "navSource"                                                                                             // 145
+			});                                                                                                                 //
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}(),                                                                                                                  //
+	triggersEnter: []                                                                                                     // 148
+});                                                                                                                    //
+                                                                                                                       //
+FlowRouter.notFound = {                                                                                                // 151
+	name: "notFound",                                                                                                     // 152
+	action: function () {                                                                                                 // 153
+		function action(params, queryParams) {                                                                               // 153
+			BlazeLayout.render('layout', {                                                                                      // 154
+				footer: "footer",                                                                                                  // 155
+				main: "pageNotFound"                                                                                               // 156
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
@@ -3328,29 +4180,32 @@ FlowRouter.notFound = {                                                         
 };                                                                                                                     //
                                                                                                                        //
 //Routes                                                                                                               //
-AccountsTemplates.configureRoute('changePwd');                                                                         // 125
+AccountsTemplates.configureRoute('changePwd');                                                                         // 163
 // AccountsTemplates.configureRoute('forgotPwd');                                                                      //
-AccountsTemplates.configureRoute('resetPwd');                                                                          // 127
-AccountsTemplates.configureRoute('signIn');                                                                            // 128
-AccountsTemplates.configureRoute('signUp');                                                                            // 129
+AccountsTemplates.configureRoute('resetPwd');                                                                          // 165
+AccountsTemplates.configureRoute('signIn');                                                                            // 166
+AccountsTemplates.configureRoute('signUp');                                                                            // 167
 // AccountsTemplates.configureRoute('verifyEmail');                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }}},{"extensions":[".js",".json",".html",".css"]});
 require("./client/views/high/index/charts/chart_words_all.html");
 require("./client/views/high/index/charts/chart_words_user.html");
-require("./client/views/high/stats/charts/chart_bar_clicks_per_day.html");
-require("./client/views/high/stats/charts/chart_bar_modes.html");
-require("./client/views/high/stats/charts/chart_multibar_attention.html");
-require("./client/views/high/stats/charts/chart_pie_attention.html");
+require("./client/views/high/uebersicht/charts/chart_bar_clicks_per_day.html");
+require("./client/views/high/uebersicht/charts/chart_bar_modes.html");
+require("./client/views/high/uebersicht/charts/chart_multibar_attention.html");
+require("./client/views/high/uebersicht/charts/chart_pie_attention.html");
 require("./client/views/high/eingabe/eingabe.html");
+require("./client/views/high/fragebogen/fragebogen.html");
+require("./client/views/high/index/feedback.html");
 require("./client/views/high/index/hello.html");
 require("./client/views/high/index/index.html");
 require("./client/views/high/register/letter_collapse.html");
 require("./client/views/high/register/letter_list.html");
 require("./client/views/high/register/register.html");
 require("./client/views/high/register/vokabel_detail.html");
-require("./client/views/high/stats/stats.html");
+require("./client/views/high/uebersicht/feedback.html");
+require("./client/views/high/uebersicht/statistik.html");
 require("./client/views/low/modes/modus_definition.html");
 require("./client/views/low/modes/modus_lesen.html");
 require("./client/views/low/modes/modus_wort.html");
@@ -3363,21 +4218,25 @@ require("./client/layout/head.html");
 require("./client/layout/layout.html");
 require("./client/layout/nav.html");
 require("./client/layout/nav_mode.html");
+require("./client/layout/nav_overview.html");
 require("./client/layout/nav_source.html");
 require("./client/loading.html");
 require("./client/page_not_found.html");
 require("./client/views/high/index/charts/chart_words_all.js");
 require("./client/views/high/index/charts/chart_words_user.js");
-require("./client/views/high/stats/charts/chart_bar_clicks_per_day.js");
-require("./client/views/high/stats/charts/chart_bar_modes.js");
-require("./client/views/high/stats/charts/chart_multibar_attention.js");
-require("./client/views/high/stats/charts/chart_pie_attention.js");
+require("./client/views/high/uebersicht/charts/chart_bar_clicks_per_day.js");
+require("./client/views/high/uebersicht/charts/chart_bar_modes.js");
+require("./client/views/high/uebersicht/charts/chart_multibar_attention.js");
+require("./client/views/high/uebersicht/charts/chart_pie_attention.js");
 require("./client/views/high/eingabe/eingabe.js");
+require("./client/views/high/fragebogen/fragebogen.js");
+require("./client/views/high/index/feedback.js");
 require("./client/views/high/index/hello.js");
 require("./client/views/high/index/index.js");
 require("./client/views/high/register/register.js");
 require("./client/views/high/register/vokabel_detail.js");
-require("./client/views/high/stats/stats.js");
+require("./client/views/high/uebersicht/feedback.js");
+require("./client/views/high/uebersicht/statistik.js");
 require("./client/views/low/low.js");
 require("./client/layout/_GLOBAL_HELPERS.js");
 require("./client/layout/__SESSIONS.js");
@@ -3390,6 +4249,8 @@ require("./common/aux/nvd3_extra.js");
 require("./common/aux/validation.js");
 require("./common/collections/data.js");
 require("./common/collections/favourites.js");
+require("./common/collections/messages.js");
+require("./common/collections/userExt.js");
 require("./common/collections/vocabulary.js");
 require("./common/config/accounts_t9n.js");
 require("./common/config/admin.js");

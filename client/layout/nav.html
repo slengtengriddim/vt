@@ -9,8 +9,11 @@
         <li role="presentation" class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
         <li role="presentation" class="{{isActiveRoute regex='eingabe'}}"><a href="{{pathFor 'eingabe'}}">Eingabetrainer</a></li>
         <li role="presentation" class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
+        {{#unless surveySubmitted}}
+        <li role="presentation" class="{{isActiveRoute regex='fragebogen'}}"><a href="{{pathFor 'fragebogen'}}">Fragebogen</a></li>
+        {{/unless}}
         {{#if isInRole 'admin'}}
-        <li role="presentation" class="{{isActiveRoute regex='stats'}}"><a href="{{pathFor 'stats'}}">Stats</a></li>
+        <li role="presentation" class="{{isActiveRoute regex='uebersicht'}}"><a href="{{pathFor 'uebersicht'}}">Uebersicht</a></li>
         {{/if}}
       </ul>
     </div>

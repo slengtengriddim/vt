@@ -1,18 +1,21 @@
 Template.chartWordsAll.onCreated(() => {
-    let template = Template.instance();
-	template.subscribe('dataViewedUser');
+	let template = Template.instance();
+	template.subscribe('dataWords');
 });
 
 Template.chartWordsUser.rendered = function() {
 
 	let barChart = () => {
-		let data = Data.Viewed.User.find({}, {
+		let data = Data.Words.find({
+			userId: Meteor.userId()
+		}, {
+			limit: 5,
 			sort: {
-				timesViewed: -1
+				viewed: -1
 			}
 		}).fetch();
 		let barChart = [{
-			key: "Top 5 beliebte Woerter (allgemein)",
+			key: "Top 5 beliebte Woerter (Benutzer)",
 			values: data
 		}];
 
@@ -25,11 +28,12 @@ Template.chartWordsUser.rendered = function() {
 			return d.vocabularyName
 		})
 		.y(function(d) {
-			return d.timesViewed
+			return d.viewed
 		})
 		.staggerLabels(true)
 		//.staggerLabels(historicalBarChart[0].values.length > 8)
-		.showValues(true)
+		.showValues(false)
+		.showYAxis(false)
 		.duration(250);
 
 	// chart details

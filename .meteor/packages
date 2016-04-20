@@ -22,6 +22,7 @@ ejson
 spacebars
 check
 
+# ongoworks:security
 anti:fake
 
 accounts-password

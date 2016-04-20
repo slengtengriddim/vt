@@ -1,0 +1,11 @@
+<template name="navOverview">
+	<div class="container">
+		<div class="row text-center">
+			<br>
+			<div class="btn-group btn-group-lg" role="group">
+				<a class="btn btn-default {{isActiveRoute regex='statistik'}}" href="{{pathFor 'statistik'}}" role="button">Statistik</a>
+				<a class="btn btn-default {{isActiveRoute regex='feedback'}}" href="{{pathFor 'feedback'}}" role="button">Feedback</a>
+			</div>
+		</div>
+	</div>
+</template>

@@ -222,101 +222,102 @@ AccountsTemplates.configureRoute = function(route, options) {                   
     }                                                                                                                // 194
                                                                                                                      // 195
     layoutRegions[contentRegion] = React.createElement(BlazeToReact, { blazeTemplate: template });                   // 196
-                                                                                                                     // 197
-  }                                                                                                                  // 198
-                                                                                                                     // 199
-  function doLayout() {                                                                                              // 200
-    if (layoutType === "blaze-to-react") {                                                                           // 201
-                                                                                                                     // 202
-      // The layout template is a React Class.                                                                       // 203
-      // We need to render using ReactLayout and BlazeToReact                                                        // 204
-                                                                                                                     // 205
-      ReactLayout.render(layoutTemplate, layoutRegions);                                                             // 206
-    } else {                                                                                                         // 207
-      // Render using BlazeLayout                                                                                    // 208
-      BlazeLayout.render(layoutTemplate, layoutRegions);                                                             // 209
-    }                                                                                                                // 210
-  }                                                                                                                  // 211
-                                                                                                                     // 212
-  // Possibly adds token parameter                                                                                   // 213
-  if (_.contains(["enrollAccount", "resetPwd", "verifyEmail"], route)) {                                             // 214
-    path += "/:paramToken";                                                                                          // 215
-    if (route === "verifyEmail") {                                                                                   // 216
-      FlowRouter.route(path, {                                                                                       // 217
-        name: name,                                                                                                  // 218
-        triggersEnter: [                                                                                             // 219
-          function() {                                                                                               // 220
-            AccountsTemplates.setState(route);                                                                       // 221
-            AccountsTemplates.setDisabled(true);                                                                     // 222
-          }                                                                                                          // 223
-        ],                                                                                                           // 224
-        action: function(params) {                                                                                   // 225
-          doLayout();                                                                                                // 226
-                                                                                                                     // 227
-          var token = params.paramToken;                                                                             // 228
-          Accounts.verifyEmail(token, function(error) {                                                              // 229
-            AccountsTemplates.setDisabled(false);                                                                    // 230
-            AccountsTemplates.submitCallback(error, route, function() {                                              // 231
-              AccountsTemplates.state.form.set("result", AccountsTemplates.texts.info.emailVerified);                // 232
-            });                                                                                                      // 233
-          });                                                                                                        // 234
-        }                                                                                                            // 235
-      });                                                                                                            // 236
-    } else {                                                                                                         // 237
-      FlowRouter.route(path, {                                                                                       // 238
-        name: name,                                                                                                  // 239
-        triggersEnter: [                                                                                             // 240
-          function() {                                                                                               // 241
-            AccountsTemplates.setState(route);                                                                       // 242
-          }                                                                                                          // 243
-        ],                                                                                                           // 244
-        action: function(params) {                                                                                   // 245
-          doLayout();                                                                                                // 246
-        }                                                                                                            // 247
-      });                                                                                                            // 248
-    }                                                                                                                // 249
-  } else {                                                                                                           // 250
-    FlowRouter.route(path, {                                                                                         // 251
-      name: name,                                                                                                    // 252
-      triggersEnter: [                                                                                               // 253
-        function() {                                                                                                 // 254
-          var redirect = false;                                                                                      // 255
-          if (route === 'changePwd') {                                                                               // 256
-            if (!Meteor.loggingIn() && !Meteor.userId()) {                                                           // 257
-              redirect = true;                                                                                       // 258
-            }                                                                                                        // 259
-          } else if (Meteor.userId()) {                                                                              // 260
-            redirect = true;                                                                                         // 261
-          }                                                                                                          // 262
-          if (redirect) {                                                                                            // 263
-            AccountsTemplates.postSubmitRedirect(route);                                                             // 264
-          } else {                                                                                                   // 265
-            AccountsTemplates.setState(route);                                                                       // 266
-          }                                                                                                          // 267
-        }                                                                                                            // 268
-      ],                                                                                                             // 269
-      action: function() {                                                                                           // 270
-        doLayout();                                                                                                  // 271
-      }                                                                                                              // 272
-    });                                                                                                              // 273
-  }                                                                                                                  // 274
-};                                                                                                                   // 275
-                                                                                                                     // 276
+  }                                                                                                                  // 197
+                                                                                                                     // 198
+  function doLayout() {                                                                                              // 199
+    if (layoutType === "blaze-to-react") {                                                                           // 200
+                                                                                                                     // 201
+      // The layout template is a React Class.                                                                       // 202
+      // We need to render using ReactLayout and BlazeToReact                                                        // 203
+                                                                                                                     // 204
+      ReactLayout.render(layoutTemplate, layoutRegions);                                                             // 205
+    } else {                                                                                                         // 206
+      // Render using BlazeLayout                                                                                    // 207
+      BlazeLayout.render(layoutTemplate, layoutRegions);                                                             // 208
+    }                                                                                                                // 209
+  }                                                                                                                  // 210
+                                                                                                                     // 211
+  // Possibly adds token parameter                                                                                   // 212
+  if (_.contains(["enrollAccount", "resetPwd", "verifyEmail"], route)) {                                             // 213
+    path += "/:paramToken";                                                                                          // 214
+    if (route === "verifyEmail") {                                                                                   // 215
+      FlowRouter.route(path, {                                                                                       // 216
+        name: name,                                                                                                  // 217
+        triggersEnter: [                                                                                             // 218
+          function() {                                                                                               // 219
+            AccountsTemplates.setState(route);                                                                       // 220
+            AccountsTemplates.setDisabled(true);                                                                     // 221
+          }                                                                                                          // 222
+        ],                                                                                                           // 223
+        action: function(params) {                                                                                   // 224
+          doLayout();                                                                                                // 225
+                                                                                                                     // 226
+          var token = params.paramToken;                                                                             // 227
+          if (Meteor.isClient) {                                                                                     // 228
+             Accounts.verifyEmail(token, function(error) {                                                           // 229
+               AccountsTemplates.setDisabled(false);                                                                 // 230
+               AccountsTemplates.submitCallback(error, route, function() {                                           // 231
+                 AccountsTemplates.state.form.set("result", AccountsTemplates.texts.info.emailVerified);             // 232
+               });                                                                                                   // 233
+             });                                                                                                     // 234
+          }                                                                                                          // 235
+        }                                                                                                            // 236
+      });                                                                                                            // 237
+    } else {                                                                                                         // 238
+      FlowRouter.route(path, {                                                                                       // 239
+        name: name,                                                                                                  // 240
+        triggersEnter: [                                                                                             // 241
+          function() {                                                                                               // 242
+            AccountsTemplates.setState(route);                                                                       // 243
+          }                                                                                                          // 244
+        ],                                                                                                           // 245
+        action: function(params) {                                                                                   // 246
+          doLayout();                                                                                                // 247
+        }                                                                                                            // 248
+      });                                                                                                            // 249
+    }                                                                                                                // 250
+  } else {                                                                                                           // 251
+    FlowRouter.route(path, {                                                                                         // 252
+      name: name,                                                                                                    // 253
+      triggersEnter: [                                                                                               // 254
+        function() {                                                                                                 // 255
+          var redirect = false;                                                                                      // 256
+          if (route === 'changePwd') {                                                                               // 257
+            if (!Meteor.loggingIn() && !Meteor.userId()) {                                                           // 258
+              redirect = true;                                                                                       // 259
+            }                                                                                                        // 260
+          } else if (Meteor.userId()) {                                                                              // 261
+            redirect = true;                                                                                         // 262
+          }                                                                                                          // 263
+          if (redirect) {                                                                                            // 264
+            AccountsTemplates.postSubmitRedirect(route);                                                             // 265
+          } else {                                                                                                   // 266
+            AccountsTemplates.setState(route);                                                                       // 267
+          }                                                                                                          // 268
+        }                                                                                                            // 269
+      ],                                                                                                             // 270
+      action: function() {                                                                                           // 271
+        doLayout();                                                                                                  // 272
+      }                                                                                                              // 273
+    });                                                                                                              // 274
+  }                                                                                                                  // 275
+};                                                                                                                   // 276
                                                                                                                      // 277
-AccountsTemplates.getRouteName = function(route) {                                                                   // 278
-  if (route in this.routes) {                                                                                        // 279
-    return this.routes[route].name;                                                                                  // 280
-  }                                                                                                                  // 281
-  return null;                                                                                                       // 282
-};                                                                                                                   // 283
-                                                                                                                     // 284
-AccountsTemplates.getRoutePath = function(route) {                                                                   // 285
-  if (route in this.routes) {                                                                                        // 286
-    return this.routes[route].path;                                                                                  // 287
-  }                                                                                                                  // 288
-  return "#";                                                                                                        // 289
-};                                                                                                                   // 290
-                                                                                                                     // 291
+                                                                                                                     // 278
+AccountsTemplates.getRouteName = function(route) {                                                                   // 279
+  if (route in this.routes) {                                                                                        // 280
+    return this.routes[route].name;                                                                                  // 281
+  }                                                                                                                  // 282
+  return null;                                                                                                       // 283
+};                                                                                                                   // 284
+                                                                                                                     // 285
+AccountsTemplates.getRoutePath = function(route) {                                                                   // 286
+  if (route in this.routes) {                                                                                        // 287
+    return this.routes[route].path;                                                                                  // 288
+  }                                                                                                                  // 289
+  return "#";                                                                                                        // 290
+};                                                                                                                   // 291
+                                                                                                                     // 292
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }).call(this);
@@ -496,58 +497,81 @@ AccountsTemplates.submitCallback = function(error, state, onSuccess) {          
                                                                                                                      // 160
   if (error) {                                                                                                       // 161
     if (_.isObject(error.details)) {                                                                                 // 162
-      // If error.details is an object, we may try to set fields errors from it                                      // 163
-      _.each(error.details, function(error, fieldId) {                                                               // 164
-        AccountsTemplates.getField(fieldId).setError(error);                                                         // 165
-      });                                                                                                            // 166
-    } else {                                                                                                         // 167
-      var err = 'error.accounts.Unknown error';                                                                      // 168
-      if (error.reason) {                                                                                            // 169
-        err = error.reason;                                                                                          // 170
-      }                                                                                                              // 171
-      if (err.substring(0, 15) !== 'error.accounts.') {                                                              // 172
-        err = 'error.accounts.' + err;                                                                               // 173
-      }                                                                                                              // 174
-      AccountsTemplates.state.form.set('error', [err]);                                                              // 175
-    }                                                                                                                // 176
-    AccountsTemplates.setDisabled(false);                                                                            // 177
-    // Possibly resets reCaptcha form                                                                                // 178
-    if (state === 'signUp' && AccountsTemplates.options.showReCaptcha) {                                             // 179
-      grecaptcha.reset();                                                                                            // 180
-    }                                                                                                                // 181
-  } else {                                                                                                           // 182
-    if (onSuccess) {                                                                                                 // 183
-      onSuccess();                                                                                                   // 184
-    }                                                                                                                // 185
-                                                                                                                     // 186
-    if (_.contains(['enrollAccount', 'forgotPwd', 'resetPwd', 'verifyEmail'], state)) {                              // 187
-      var redirectTimeout = AccountsTemplates.options.redirectTimeout;                                               // 188
-      if (redirectTimeout > 0) {                                                                                     // 189
-        AccountsTemplates.timedOutRedirect = Meteor.setTimeout(function() {                                          // 190
-          AccountsTemplates.timedOutRedirect = null;                                                                 // 191
-          AccountsTemplates.setDisabled(false);                                                                      // 192
-          AccountsTemplates.postSubmitRedirect(state);                                                               // 193
-        }, redirectTimeout);                                                                                         // 194
-      }                                                                                                              // 195
-    } else if (state) {                                                                                              // 196
-      AccountsTemplates.setDisabled(false);                                                                          // 197
-      AccountsTemplates.postSubmitRedirect(state);                                                                   // 198
+      if (error.error === 'validation-error') {                                                                      // 163
+        // This error is a ValidationError from the mdg:validation-error package.                                    // 164
+        // It has a well-defined error format                                                                        // 165
+                                                                                                                     // 166
+        // Record errors that don't correspond to fields in the form                                                 // 167
+        var errorsWithoutField = [];                                                                                 // 168
+                                                                                                                     // 169
+        _.each(error.details, function(fieldError) {                                                                 // 170
+          var field = AccountsTemplates.getField(fieldError.name);                                                   // 171
+                                                                                                                     // 172
+          if (field) {                                                                                               // 173
+            // XXX in the future, this should have a way to do i18n                                                  // 174
+            field.setError(fieldError.type);                                                                         // 175
+          } else {                                                                                                   // 176
+            errorsWithoutField.push(fieldError.type);                                                                // 177
+          }                                                                                                          // 178
+        });                                                                                                          // 179
+                                                                                                                     // 180
+        if (errorsWithoutField) {                                                                                    // 181
+          AccountsTemplates.state.form.set('error', errorsWithoutField);                                             // 182
+        }                                                                                                            // 183
+      } else {                                                                                                       // 184
+        // If error.details is an object, we may try to set fields errors from it                                    // 185
+        _.each(error.details, function(error, fieldId) {                                                             // 186
+          AccountsTemplates.getField(fieldId).setError(error);                                                       // 187
+        });                                                                                                          // 188
+      }                                                                                                              // 189
+    } else {                                                                                                         // 190
+      var err = 'error.accounts.Unknown error';                                                                      // 191
+      if (error.reason) {                                                                                            // 192
+        err = error.reason;                                                                                          // 193
+      }                                                                                                              // 194
+      if (err.substring(0, 15) !== 'error.accounts.') {                                                              // 195
+        err = 'error.accounts.' + err;                                                                               // 196
+      }                                                                                                              // 197
+      AccountsTemplates.state.form.set('error', [err]);                                                              // 198
     }                                                                                                                // 199
-  }                                                                                                                  // 200
-};                                                                                                                   // 201
-                                                                                                                     // 202
-// Initialization                                                                                                    // 203
-if (FlowRouter && FlowRouter.initialize) {                                                                           // 204
-  // In order for ensureSignIn triggers to work,                                                                     // 205
-  // AccountsTemplates must be initialized before FlowRouter                                                         // 206
-  // (this is now true since useraccounts:core is being executed first...)                                           // 207
-  var oldInitialize = FlowRouter.initialize;                                                                         // 208
-  FlowRouter.initialize = function() {                                                                               // 209
-    AccountsTemplates._init();                                                                                       // 210
-    oldInitialize.apply(this, arguments);                                                                            // 211
-  };                                                                                                                 // 212
-}                                                                                                                    // 213
-                                                                                                                     // 214
+    AccountsTemplates.setDisabled(false);                                                                            // 200
+    // Possibly resets reCaptcha form                                                                                // 201
+    if (state === 'signUp' && AccountsTemplates.options.showReCaptcha) {                                             // 202
+      grecaptcha.reset();                                                                                            // 203
+    }                                                                                                                // 204
+  } else {                                                                                                           // 205
+    if (onSuccess) {                                                                                                 // 206
+      onSuccess();                                                                                                   // 207
+    }                                                                                                                // 208
+                                                                                                                     // 209
+    if (_.contains(['enrollAccount', 'forgotPwd', 'resetPwd', 'verifyEmail'], state)) {                              // 210
+      var redirectTimeout = AccountsTemplates.options.redirectTimeout;                                               // 211
+      if (redirectTimeout > 0) {                                                                                     // 212
+        AccountsTemplates.timedOutRedirect = Meteor.setTimeout(function() {                                          // 213
+          AccountsTemplates.timedOutRedirect = null;                                                                 // 214
+          AccountsTemplates.setDisabled(false);                                                                      // 215
+          AccountsTemplates.postSubmitRedirect(state);                                                               // 216
+        }, redirectTimeout);                                                                                         // 217
+      }                                                                                                              // 218
+    } else if (state) {                                                                                              // 219
+      AccountsTemplates.setDisabled(false);                                                                          // 220
+      AccountsTemplates.postSubmitRedirect(state);                                                                   // 221
+    }                                                                                                                // 222
+  }                                                                                                                  // 223
+};                                                                                                                   // 224
+                                                                                                                     // 225
+// Initialization                                                                                                    // 226
+if (FlowRouter && FlowRouter.initialize) {                                                                           // 227
+  // In order for ensureSignIn triggers to work,                                                                     // 228
+  // AccountsTemplates must be initialized before FlowRouter                                                         // 229
+  // (this is now true since useraccounts:core is being executed first...)                                           // 230
+  var oldInitialize = FlowRouter.initialize;                                                                         // 231
+  FlowRouter.initialize = function() {                                                                               // 232
+    AccountsTemplates._init();                                                                                       // 233
+    oldInitialize.apply(this, arguments);                                                                            // 234
+  };                                                                                                                 // 235
+}                                                                                                                    // 236
+                                                                                                                     // 237
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }).call(this);

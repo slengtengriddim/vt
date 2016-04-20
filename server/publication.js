@@ -1,3 +1,22 @@
+Meteor.publish("userExtension", function() {
+	let currentUserId = this.userId;
+	let data = UserExt.find({
+		userId: currentUserId
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish("feedback", function() {
+	let data = Data.Feedback.find({});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+
+
 //  search query
 Meteor.publish('vocabularyRegister', function(search) {
 	check(search, Match.OneOf(String, null, undefined));
@@ -47,11 +66,10 @@ Meteor.publish('singleEntry', function(entryId) {
 	});
 });
 
-Meteor.publish('dataViewedAll', function() {
-	let data = Data.Viewed.All.find({}, {
-		limit: 5,
+Meteor.publish('dataWords', function() {
+	let data = Data.Words.find({}, {
 		sort: {
-			timesViewed: -1
+			viewed: -1
 		}
 	});
 	if (data) {
@@ -59,34 +77,7 @@ Meteor.publish('dataViewedAll', function() {
 	}
 	return this.ready();
 });
-Meteor.publish('dataViewedUser', function() {
-	let data = Data.Viewed.User.find({
-		userId: this.userId
-	}, {
-		limit: 5,
-		sort: {
-			timesViewed: -1
-		}
-	});
-	if (data) {
-		return data;
-	}
-	return this.ready();
-});
-Meteor.publish('dataFavHigh', function() {
-	let data = Data.Fav.High.find({});
-	if (data) {
-		return data;
-	}
-	return this.ready();
-});
-Meteor.publish('dataFavLow', function() {
-	let data = Data.Fav.Low.find({});
-	if (data) {
-		return data;
-	}
-	return this.ready();
-});
+
 Meteor.publish('dataDetail', function() {
 	let data = Data.Detail.find({});
 	if (data) {
@@ -94,18 +85,3 @@ Meteor.publish('dataDetail', function() {
 	}
 	return this.ready();
 });
-
-
-// Meteor.publish("booksByAuthor", function () {
-//   ReactiveAggregate(this, Books, [{
-//     $mode: "wort"
-//   }]);
-// });
-
-// Meteor.publish('people', function() {
-// 	let data = People.find({});
-// 	if (data) {
-// 		return data;
-// 	}
-// 	return this.ready();
-// });

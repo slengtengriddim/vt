@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"fragebogen\");\nTemplate[\"fragebogen\"] = new Template(\"Template.fragebogen\", (function() {\n  var view = this;\n  return HTML.Raw('<div class=\"container\">\\n\t\t<h1>Fragebogen</h1>\\n\t</div>');\n}));\n","bodyAttrs":{}}

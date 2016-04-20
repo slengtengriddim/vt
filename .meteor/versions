@@ -110,9 +110,9 @@ twbs:bootstrap@3.3.6
 ui@1.0.10
 underscore@1.0.7
 url@1.0.8
-useraccounts:bootstrap@1.13.1
-useraccounts:core@1.13.1
-useraccounts:flow-routing@1.13.1
+useraccounts:bootstrap@1.14.2
+useraccounts:core@1.14.2
+useraccounts:flow-routing@1.14.2
 webapp@1.2.7
 webapp-hashing@1.0.8
 zimme:active-route@2.3.2

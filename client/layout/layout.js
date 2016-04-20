@@ -1,6 +1,7 @@
 Template.layout.onCreated(function() {
-	this.autorun(() => {
-
+	let template = Template.instance();
+	Tracker.autorun(() => {
+		template.subscribe('userExtension');
 		Session.set(LENGTH_FAV, Favourites.find().count());
 		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());
 	});
@@ -25,25 +26,22 @@ Template.layout.events({
 			}
 		}
 		// log
-		Meteor.call('dataViewedUser', self);
-		Meteor.call('dataViewedAll', self);
-
-		// log
 		let deviceType = Darwin.device.type;
 		let devicePlatform = Darwin.device.platform;
 		let clickArea = 'browse';
 		let mode;
 		let attention = Session.get(ATTENTION_MODE);
 		if (Session.get(ATTENTION_MODE)) {
-			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
 		} else {
 			if (FlowRouter.current().route.name === "eingabe") {
-					mode  = 'eingabe';
+				mode = 'eingabe';
 			} else {
-					mode  = 'null';
+				mode = 'null';
 			}
 		}
 		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+		Meteor.call('dataWords', self);
 
 	},
 	'click .btn-backward' (event, template) {
@@ -93,12 +91,12 @@ Template.layout.events({
 		let mode;
 		let attention = Session.get(ATTENTION_MODE);
 		if (Session.get(ATTENTION_MODE)) {
-			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
 		} else {
 			if (FlowRouter.current().route.name === "eingabe") {
-					mode  = 'eingabe';
+				mode = 'eingabe';
 			} else {
-					mode  = 'null';
+				mode = 'null';
 			}
 		}
 		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
@@ -111,33 +109,19 @@ Template.layout.events({
 		let mode;
 		let attention = Session.get(ATTENTION_MODE);
 		if (Session.get(ATTENTION_MODE)) {
-			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
+			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
 		} else {
 			if (FlowRouter.current().route.name === "eingabe") {
-					mode  = 'eingabe';
+				mode = 'eingabe';
 			} else {
-					mode  = 'null';
+				mode = 'null';
 			}
 		}
 		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
 	},
 	'click .btn-insert' (event, template) {
 		let self = this;
-		let group = FlowRouter.current().route.group.name;
-		// log start
-		let timestamp = new Date();
-		timestamp.setHours(0);
-		timestamp.setMinutes(0);
-		timestamp.setSeconds(0);
-		timestamp.setMilliseconds(0);
 
-		if (group === 'high') {
-			Meteor.call('dataFavHigh', timestamp.getTime());
-		}
-		if (group === 'low') {
-			Meteor.call('dataFavLow', timestamp.getTime());
-		}
-		// log end
 		Meteor.call('insertFavourite', self._id);
 		// simulate source mode button for register page
 		if (!Session.get(ATTENTION_MODE)) {
@@ -156,21 +140,6 @@ Template.layout.events({
 
 	'click .btn-delete' (event, template) {
 		let self = this;
-		let group = FlowRouter.current().route.group.name;
-		// log start
-		let timestamp = new Date();
-		timestamp.setHours(0);
-		timestamp.setMinutes(0);
-		timestamp.setSeconds(0);
-		timestamp.setMilliseconds(0);
-
-		if (group === 'high') {
-			Meteor.call('dataFavHigh', timestamp.getTime());
-		}
-		if (group === 'low') {
-			Meteor.call('dataFavLow', timestamp.getTime());
-		}
-		// log end
 
 		Meteor.call('deleteFavourite', self._id);
 		// simulate source mode button for register page

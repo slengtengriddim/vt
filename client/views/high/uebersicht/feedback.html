@@ -1,0 +1,13 @@
+<template name="feedback">
+	<div class="container">
+		<h1>Feedback</h1>
+		{{#each feedback}}
+		<div class="panel panel-default">
+			<div class="panel-heading">{{ userMail }} | {{ createdAt }}</div>
+			<div class="panel-body">
+				{{ message }}
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</template>

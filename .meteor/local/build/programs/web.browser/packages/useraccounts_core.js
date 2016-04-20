@@ -166,16 +166,16 @@ Field.prototype.getStatus = function() {                                        
 };                                                                                                                  // 97
                                                                                                                     // 98
 if (Meteor.isClient) {                                                                                              // 99
-  Field.prototype.getValue = function(tempalteInstance) {                                                           // 100
+  Field.prototype.getValue = function(templateInstance) {                                                           // 100
     if (this.type === "checkbox") {                                                                                 // 101
-      return !!(tempalteInstance.$("#at-field-" + this._id + ":checked").val());                                    // 102
+      return !!(templateInstance.$("#at-field-" + this._id + ":checked").val());                                    // 102
     }                                                                                                               // 103
                                                                                                                     // 104
     if (this.type === "radio") {                                                                                    // 105
-      return tempalteInstance.$("[name=at-field-"+ this._id + "]:checked").val();                                   // 106
+      return templateInstance.$("[name=at-field-"+ this._id + "]:checked").val();                                   // 106
     }                                                                                                               // 107
                                                                                                                     // 108
-    return tempalteInstance.$("#at-field-" + this._id).val();                                                       // 109
+    return templateInstance.$("#at-field-" + this._id).val();                                                       // 109
   };                                                                                                                // 110
 }                                                                                                                   // 111
                                                                                                                     // 112
@@ -275,18 +275,18 @@ if (Meteor.isServer) {                                                          
 }                                                                                                                   // 206
                                                                                                                     // 207
 if (Meteor.isClient) {                                                                                              // 208
-  Field.prototype.setValue = function(tempalteInstance, value) {                                                    // 209
+  Field.prototype.setValue = function(templateInstance, value) {                                                    // 209
     if (this.type === "checkbox") {                                                                                 // 210
-      tempalteInstance.$("#at-field-" + this._id).prop('checked', true);                                            // 211
+      templateInstance.$("#at-field-" + this._id).prop('checked', true);                                            // 211
       return;                                                                                                       // 212
     }                                                                                                               // 213
                                                                                                                     // 214
     if (this.type === "radio") {                                                                                    // 215
-      tempalteInstance.$("[name=at-field-"+ this._id + "]").prop('checked', true);                                  // 216
+      templateInstance.$("[name=at-field-"+ this._id + "]").prop('checked', true);                                  // 216
       return;                                                                                                       // 217
     }                                                                                                               // 218
                                                                                                                     // 219
-    tempalteInstance.$("#at-field-" + this._id).val(value);                                                         // 220
+    templateInstance.$("#at-field-" + this._id).val(value);                                                         // 220
   };                                                                                                                // 221
 }                                                                                                                   // 222
                                                                                                                     // 223

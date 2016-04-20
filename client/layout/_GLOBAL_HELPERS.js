@@ -11,6 +11,14 @@ Template.registerHelper('userMail', function() {
 Template.registerHelper('isOwner', function() {
 	return this.userId == Meteor.userId();
 });
+Template.registerHelper('surveySubmitted', function() {
+	let query = UserExt.findOne({userId: Meteor.userId(), surveySubmitted: true});
+	if (query) {
+		return true;
+	} else {
+		return false;
+	}
+});
 Template.registerHelper("lengthIsOne", function() {
 	return (Session.get(LENGTH_FAV) === 1) && Session.get(SOURCE_FAV) ||
 		(Session.get(LENGTH_NOT_FAV) === 1) && !Session.get(SOURCE_FAV);

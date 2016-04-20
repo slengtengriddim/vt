@@ -1,19 +1,34 @@
 Template.chartWordsAll.onCreated(() => {
-    let template = Template.instance();
-			template.subscribe('dataViewedAll');
+	let template = Template.instance();
+	template.subscribe('dataWords');
 });
 
 Template.chartWordsAll.rendered = function() {
 
 	let barChart = () => {
-		let data = Data.Viewed.All.find({}, {
-			sort: {
-				timesViewed: -1
+		let result = [];
+		let data = Data.Words.find({}).fetch();
+
+		let byVocabularyId = R.groupBy(function(entry) {
+			return entry.vocabularyId;
+		});
+
+		let groupedByVocabularyId = byVocabularyId(data);
+		for (let k in groupedByVocabularyId) {
+			if (groupedByVocabularyId.hasOwnProperty(k)) {
+				result.push({
+					x: groupedByVocabularyId[k][0].vocabularyName,
+					y: R.sum(R.pluck('viewed')(groupedByVocabularyId[k]))
+				});
 			}
-		}).fetch();
+		};
+		let sortByViewed = R.sortBy(R.prop('y'));
+		result = R.take(5, R.reverse(sortByViewed(result)));
+
+
 		let barChart = [{
 			key: "Top 5 beliebte Woerter (allgemein)",
-			values: data
+			values: result
 		}];
 
 		return barChart;
@@ -22,19 +37,20 @@ Template.chartWordsAll.rendered = function() {
 	// chart object
 	let chart = nv.models.discreteBarChart()
 		.x(function(d) {
-			return d.vocabularyName
+			return d.x
 		})
 		.y(function(d) {
-			return d.timesViewed
+			return d.y
 		})
 		.staggerLabels(true)
 		//.staggerLabels(historicalBarChart[0].values.length > 8)
-		.showValues(true)
+		.showValues(false)
+		.showYAxis(false)
+		// .tooltips(false)
 		.duration(250);
 
 	// chart details
 	nv.addGraph(function() {
-
 		d3.select('#chartWordsAll svg')
 			.datum(barChart())
 			.call(chart);
@@ -46,16 +62,6 @@ Template.chartWordsAll.rendered = function() {
 
 	// update chart when data changes
 	this.autorun(function() {
-		// let data = Data.Viewed.All.find({}, {
-		// 	sort: {
-		// 		timesViewed: -1
-		// 	}
-		// }).fetch();
-		// let barChart = [{
-		// 	key: "Top 5 beliebte Woerter",
-		// 	values: data
-		// }];
-
 		d3.select('#chartWordsAll svg')
 			.datum(barChart())
 			.call(chart);
@@ -64,11 +70,3 @@ Template.chartWordsAll.rendered = function() {
 	});
 
 };
-
-
-// data = Data.Viewed.find({}, {
-//     limit: 5,
-//     sort: {
-//         timesViewed: -1
-//     }
-// });
