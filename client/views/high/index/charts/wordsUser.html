@@ -1,0 +1,8 @@
+<template name="wordsUser">
+	<h4>Du</h4>
+	<ul class="list-group">
+		{{#each top5}}
+			<li class="list-group-item">{{@index}}: {{vocabularyName}} ({{viewed}})</li>
+		{{/each}}
+	</ul>
+</template>

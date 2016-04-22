@@ -1,0 +1,8 @@
+<template name="wordsAll">
+	<h4>Insgesamt</h4>
+	<ul class="list-group">
+		{{#each top5}}
+			<li class="list-group-item">{{@index}}: {{term}} ({{count}})</li> 
+		{{/each}}
+	</ul>
+</template>

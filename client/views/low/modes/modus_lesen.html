@@ -19,5 +19,20 @@
 				<li>{{ description }}</li>
 			</ol>
 		</h3>
+		<div class="text-center">
+			<div class="btn-example" data-toggle="collapse" data-target="#example">
+				{{#unless getSession "example"}}
+					<i class="fa fa-plus-square-o fa-4x"></i>
+				{{else}}
+					<i class="fa fa-minus-square-o fa-4x"></i>
+				{{/unless}}
+			</div>
+		</div>
+		<div id="example" class="collapse">
+			<ol>
+				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
+				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </li>
+			</ol>
+		</div>
 	</div>
 </template>

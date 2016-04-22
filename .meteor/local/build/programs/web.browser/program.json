@@ -397,15 +397,6 @@
       "hash": "96f49c2d9b2e24e9bbfcf73479de4bed0fa56835"
     },
     {
-      "path": "packages/npm-bcrypt.js",
-      "where": "client",
-      "type": "js",
-      "cacheable": true,
-      "url": "/packages/npm-bcrypt.js?hash=a73f331e0c83fb62a46c6f719522972ff78cd94d",
-      "size": 854,
-      "hash": "a73f331e0c83fb62a46c6f719522972ff78cd94d"
-    },
-    {
       "path": "packages/ddp-rate-limiter.js",
       "where": "client",
       "type": "js",
@@ -442,6 +433,64 @@
       "sourceMapUrl": "/packages/9a2df45ebeba9d14f693547bc91555a09feda78e.map",
       "size": 149443,
       "hash": "9a2df45ebeba9d14f693547bc91555a09feda78e"
+    },
+    {
+      "path": "packages/coffeescript.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/coffeescript.js?hash=aaacad2a108fce73154794a6a3a2c2984e304558",
+      "size": 245,
+      "hash": "aaacad2a108fce73154794a6a3a2c2984e304558"
+    },
+    {
+      "path": "packages/url.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/url.js?hash=5ea990d643b1a8e6e399429d79183b2def7502fb",
+      "size": 5685,
+      "hash": "5ea990d643b1a8e6e399429d79183b2def7502fb"
+    },
+    {
+      "path": "packages/http.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/http.js?hash=18533e1caf7c942be3ecaa4dc168c938768df8ca",
+      "sourceMap": "packages/http.js.map",
+      "sourceMapUrl": "/packages/18533e1caf7c942be3ecaa4dc168c938768df8ca.map",
+      "size": 38076,
+      "hash": "18533e1caf7c942be3ecaa4dc168c938768df8ca"
+    },
+    {
+      "path": "packages/mizzao_timesync.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/mizzao_timesync.js?hash=b625595eedc7daa548e49533bd711ef160f9ae2b",
+      "size": 16185,
+      "hash": "b625595eedc7daa548e49533bd711ef160f9ae2b"
+    },
+    {
+      "path": "packages/mizzao_user-status.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/mizzao_user-status.js?hash=856a6ffd111d95ca54272b11c9473cc6409b7176",
+      "sourceMap": "packages/mizzao_user-status.js.map",
+      "sourceMapUrl": "/packages/856a6ffd111d95ca54272b11c9473cc6409b7176.map",
+      "size": 20513,
+      "hash": "856a6ffd111d95ca54272b11c9473cc6409b7176"
+    },
+    {
+      "path": "packages/npm-bcrypt.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/npm-bcrypt.js?hash=a73f331e0c83fb62a46c6f719522972ff78cd94d",
+      "size": 854,
+      "hash": "a73f331e0c83fb62a46c6f719522972ff78cd94d"
     },
     {
       "path": "packages/sha.js",
@@ -516,15 +565,6 @@
       "url": "/packages/kadira_blaze-layout.js?hash=72b8d06da5a7a5f042bc0bb4ade9d34f8634b461",
       "size": 15634,
       "hash": "72b8d06da5a7a5f042bc0bb4ade9d34f8634b461"
-    },
-    {
-      "path": "packages/coffeescript.js",
-      "where": "client",
-      "type": "js",
-      "cacheable": true,
-      "url": "/packages/coffeescript.js?hash=aaacad2a108fce73154794a6a3a2c2984e304558",
-      "size": 245,
-      "hash": "aaacad2a108fce73154794a6a3a2c2984e304558"
     },
     {
       "path": "packages/softwarerero_accounts-t9n.js",
@@ -908,20 +948,20 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/global-imports.js?hash=2581384698a5aab5e93d2d346e258eeada3e6e1f",
-      "size": 2195,
-      "hash": "2581384698a5aab5e93d2d346e258eeada3e6e1f"
+      "url": "/packages/global-imports.js?hash=6c046124d80d983f0e11fe1fd1cc73edbc1d169c",
+      "size": 2250,
+      "hash": "6c046124d80d983f0e11fe1fd1cc73edbc1d169c"
     },
     {
       "path": "app/app.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=4f39e09771a0cc090edd2b660560f0b18427a431",
+      "url": "/app/app.js?hash=b0cd50431334aed3d55dfebcc0bd755f0b5b9c1d",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/4f39e09771a0cc090edd2b660560f0b18427a431.map",
-      "size": 501448,
-      "hash": "4f39e09771a0cc090edd2b660560f0b18427a431"
+      "sourceMapUrl": "/app/b0cd50431334aed3d55dfebcc0bd755f0b5b9c1d.map",
+      "size": 608377,
+      "hash": "b0cd50431334aed3d55dfebcc0bd755f0b5b9c1d"
     },
     {
       "path": "packages/mdg_validation-error.js",

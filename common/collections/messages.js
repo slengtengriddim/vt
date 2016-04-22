@@ -29,5 +29,5 @@ SimpleSchema.messages({
     {exp: SimpleSchema.RegEx.Url, msg: "[label] must be a valid URL"},
     {exp: SimpleSchema.RegEx.Id, msg: "[label] must be a valid alphanumeric ID"}
   ],
-  keyNotInSchema: "[key] ist nicht erlaubt im Schema."
+  keyNotInSchema: "[key] ist nicht im Schema erlaubt."
 });

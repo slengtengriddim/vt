@@ -10,8 +10,6 @@ Template.layout.onCreated(function() {
 
 Template.layout.events({
 	'click .btn-forward, click .btn-backward' (event, template) {
-
-
 		let self = this;
 		if (Session.get(REVEALED)) {
 			Session.set(REVEALED, false);
@@ -100,6 +98,10 @@ Template.layout.events({
 			}
 		}
 		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+	},
+	'click .btn-example' (event, template) {
+		let oldValue = Session.get(EXAMPLE) || false;
+    Session.set(EXAMPLE, !oldValue);
 	},
 	'click .btn-insert, click .btn-delete' (event, template) {
 		// log

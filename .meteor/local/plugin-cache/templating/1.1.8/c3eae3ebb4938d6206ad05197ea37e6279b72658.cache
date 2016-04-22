@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"navtrainer\");\nTemplate[\"navtrainer\"] = new Template(\"Template.navtrainer\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

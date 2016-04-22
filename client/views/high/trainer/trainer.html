@@ -1,0 +1,91 @@
+<template name="trainer">
+
+	<div class="container">
+
+		<br>
+
+		{{#unless isAlphabetic}}
+			<p class="alert alert-warning">Tipp: Das gesuchte Wort enthaelt nur Zeichen des Alphabets (a - Z). Keine Leer- und Sonderzeichen.</p>
+		{{/unless}}
+		{{#unless isLength64}}
+			<p class="alert alert-warning">Tipp: Das gesuchte Wort enthaelt nicht mehr als 64 Zeichen.</p>
+		{{/unless}}
+
+
+		<div class="media">
+
+			{{> backward }}
+
+			<div class="media-body">
+				{{#if Template.subscriptionsReady}}
+					{{#with entry}}
+
+
+					<div class="jumbotron">
+
+						{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+
+						<div class="media">
+							<div class="media-left btn-reveal">
+									{{#unless getSession 'revealed'}}
+										<i class="fa fa-question fa-4x"></i>
+									{{else}}
+										<i class="fa fa-exclamation fa-4x"></i>
+									{{/unless}}
+							</div>
+							<div class="media-body">
+								{{#unless getSession 'revealed'}}
+									{{#if getSession 'termWrong'}}
+										<p class="alert alert-warning">Zu {{termPercent}}% bisher richtig: {{getSession 'termCache'}}</p>
+									{{/if}}
+									{{#if getSession 'termRight'}}
+										<p class="alert alert-success">Richtig: {{term}}</p>
+									{{/if}}
+								{{else}}
+									<p class="alert alert-info">Loesung: {{term}}</p>
+								{{/unless}}
+							</div>
+						</div>
+
+						<div class="input-group-lg ">
+						      <input type="text" name="term" id="term" class="form-control" placeholder="Was ist...">
+						</div>
+						<hr>
+
+						<h3>
+						<ol>
+							<li>{{ description }}</li>
+						</ol>
+						<hr>
+						<h3>Beispiel:</h3>
+						<ol>
+							<li><h4>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+								{{#unless getSession 'revealed'}}
+									<i class="fa fa-question "></i>
+								{{else}}
+									<b>{{ term }}</b>
+								{{/unless}}
+								diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</h4> </li>
+							<li><h4>Lorem ipsum dolor sit amet, consetetur {{#unless getSession 'revealed'}}
+								<i class="fa fa-question "></i>
+							{{else}}
+								<b>{{ term }}</b>
+							{{/unless}}sadipscing elitr.</h4> </li>
+						</ol>
+					</h3>
+					</div>
+
+					{{/with}}
+				{{else}}
+					{{> loading}}
+				{{/if}}
+			</div>
+
+			{{> forward }}
+
+		</div>
+	</div>
+
+	<br>
+
+</template>

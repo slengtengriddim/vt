@@ -17,6 +17,7 @@ UserExt.Schema = new SimpleSchema ({
 		type: Boolean,
 		defaultValue: false
 	}
+	// TODO last visited URL - save on logout
 });
 
 UserExt.attachSchema(UserExt.Schema);

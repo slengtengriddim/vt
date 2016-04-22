@@ -1,11 +1,11 @@
-
+Meteor.subscribe("userExt");
 // Global helpers
 
 // e.g. {{getSession "posX"}} in Template
 Template.registerHelper('getSession', function(key) {
 	return Session.get(key);
 });
-Template.registerHelper('userMail', function() {
+Template.registerHelper('currentUserMail', function() {
 	return Meteor.user().emails[0].address;
 });
 Template.registerHelper('isOwner', function() {

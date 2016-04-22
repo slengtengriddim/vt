@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartLineOnlineUser\");\nTemplate[\"chartLineOnlineUser\"] = new Template(\"Template.chartLineOnlineUser\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Online-Zeit pro User pro Tag</h4>\\n\t\"), HTML.DIV({\n    id: \"chartLineOnlineUser\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

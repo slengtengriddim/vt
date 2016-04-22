@@ -1,0 +1,17 @@
+<template name="navLow">
+
+	<div class="text-center">
+		<div class="btn-low" data-toggle="collapse" data-target="#navLow">
+			{{#unless getSession "navLow"}}
+				<i class="fa fa-bars fa-4x"></i>
+			{{else}}
+				<i class="fa fa-close fa-4x"></i>
+			{{/unless}}
+		</div>
+	</div>
+	<div id="navLow" class="collapse">
+		{{> navMode }}
+		{{> navSource }}
+	</div>
+
+</template>

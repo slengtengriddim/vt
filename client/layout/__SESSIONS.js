@@ -27,6 +27,9 @@ Session.setDefault(COUNT_VIEWED, 0);
 REVEALED = 'revealed';
 Session.setDefault(REVEALED, false);
 
+EXAMPLE = 'example';
+Session.setDefault(EXAMPLE, false);
+
 TERM_WRONG = 'termWrong';
 Session.setDefault(TERM_WRONG, false);
 
@@ -53,3 +56,6 @@ Session.setDefault(NAV_MODES, [NAV_MODE_READ, NAV_MODE_TERM, NAV_MODE_DEF]);
 
 NAV_MODE_COUNT = 'navModeCount';
 Session.setDefault(NAV_MODE_COUNT, 0);
+
+NAV_LOW = 'navLow';
+Session.setDefault(NAV_LOW, false);

@@ -1,8 +1,24 @@
-Meteor.publish("userExtension", function() {
+Meteor.publish("user", function() {
+  return Meteor.users.find({});
+});
+Meteor.publish("userExt", function() {
 	let currentUserId = this.userId;
-	let data = UserExt.find({
-		userId: currentUserId
-	});
+	let data = UserExt.find({userId: this.userId});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish("userExtAll", function() {
+	let currentUserId = this.userId;
+	let data = UserExt.find({});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+Meteor.publish("userStatus", function() {
+	let data = Data.Status.find({});
 	if (data) {
 		return data;
 	}

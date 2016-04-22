@@ -192,12 +192,22 @@
       "path": "packages/anti_fake.js"
     },
     {
-      "node_modules": "npm/node_modules/meteor/npm-bcrypt/node_modules",
-      "path": "packages/npm-bcrypt.js"
-    },
-    {
       "sourceMap": "packages/accounts-base.js.map",
       "path": "packages/accounts-base.js"
+    },
+    {
+      "path": "packages/coffeescript.js"
+    },
+    {
+      "path": "packages/mizzao_timesync.js"
+    },
+    {
+      "sourceMap": "packages/mizzao_user-status.js.map",
+      "path": "packages/mizzao_user-status.js"
+    },
+    {
+      "node_modules": "npm/node_modules/meteor/npm-bcrypt/node_modules",
+      "path": "packages/npm-bcrypt.js"
     },
     {
       "path": "packages/sha.js"
@@ -240,9 +250,6 @@
     },
     {
       "path": "packages/kadira_blaze-layout.js"
-    },
-    {
-      "path": "packages/coffeescript.js"
     },
     {
       "sourceMap": "packages/softwarerero_accounts-t9n.js.map",

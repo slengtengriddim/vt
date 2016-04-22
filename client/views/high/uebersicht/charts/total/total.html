@@ -1,0 +1,19 @@
+<template name="total">
+	<div class="container">
+		<h1>Total</h1>
+		<h4>Gesetzte Datenpunkte (Clickevents): {{dataPointsCount}}</h4>
+		<hr>
+		<div class="row">
+			{{> chartBarClicksPerDay }}
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				{{> chartPieAttention }}
+			</div>
+			<div class="col-sm-6">
+
+			</div>
+		</div>
+	</div>
+</template>

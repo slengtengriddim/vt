@@ -3,6 +3,7 @@ Data.Detail = new Mongo.Collection('dataDetail', {});
 Data.Words = new Mongo.Collection('dataWords', {});
 Data.Survey = new Mongo.Collection('dataSurvey', {});
 Data.Feedback = new Mongo.Collection('dataFeedback', {});
+Data.Status = new Mongo.Collection('dataStatus', {});
 
 Data.Survey.allow({
   insert: function () {
@@ -13,6 +14,22 @@ Data.Feedback.allow({
   insert: function () {
     return true;
   }
+});
+
+Data.Status.Schema = new SimpleSchema({
+	userId: {
+		type: String
+	},
+	timestamp: {
+		type: Date,
+		autoValue: function() {
+			return new Date();
+		}
+	},
+	status: {
+		type: String,
+		allowedValues: ['online', 'offline']
+	}
 });
 
 Data.Feedback.Schema = new SimpleSchema({
@@ -407,3 +424,4 @@ Data.Detail.attachSchema(Data.Detail.Schema);
 Data.Words.attachSchema(Data.Words.Schema);
 Data.Survey.attachSchema(Data.Survey.Schema);
 Data.Feedback.attachSchema(Data.Feedback.Schema);
+Data.Status.attachSchema(Data.Status.Schema);

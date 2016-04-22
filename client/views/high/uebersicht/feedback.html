@@ -1,6 +1,20 @@
 <template name="feedback">
 	<div class="container">
+		<div class="row">
+			<h4>online: {{usersCountOnline}} von {{usersCount}} </h4>
+			{{#each users}}
+				<span class="label {{labelClass}}">{{email}}</span>
+			{{/each}}
+			<hr>
+			<h4>Fragebogen abgeschickt: {{usersSurveySubmittedCount}} von {{usersCount}} </h4>
+			{{#each usersSurveySubmitted}}
+				<span class="label label-primary">{{userMail}}</span>
+			{{/each}}
+			<hr>
+		</div>
+
 		<h1>Feedback</h1>
+
 		{{#each feedback}}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{ userMail }} | {{ createdAt }}</div>

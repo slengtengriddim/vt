@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"wordsAll\");\nTemplate[\"wordsAll\"] = new Template(\"Template.wordsAll\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Insgesamt</h4>\\n\t\"), HTML.DIV({\n    id: \"wordsAll\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

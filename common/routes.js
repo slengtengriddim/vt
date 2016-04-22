@@ -19,7 +19,7 @@ resetSession = () => {
 
 checkAdmin	= () => {
 	if (! Roles.userIsInRole(Meteor.userId(), 'admin')) {
-		FlowRouter.redirect('/notFound');
+		// FlowRouter.redirect('/notFound');
 	}
 };
 
@@ -59,14 +59,15 @@ highRoutes.route('/', {
 		});
 	}
 });
-highRoutes.route('/eingabe', {
-	name: "eingabe",
+highRoutes.route('/trainer', {
+	name: "trainer",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "eingabe",
-			navSource: "navSource"
+			navModeTrainer: "navModeTrainer",
+			main: "trainer",
+			navSource: "navSourceTrainer"
 		});
 	}
 });
@@ -101,15 +102,63 @@ highRoutes.route('/uebersicht', {
 highRoutes.route('/uebersicht/statistik', {
 	name: "statistik",
 	action: function(params, queryParams) {
+		FlowRouter.redirect('/uebersicht/statistik/total');
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/uebersicht/statistik/device', {
+	name: "device",
+	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
-			main: "statistik"
+			navStatistics: "navStatistics",
+			main: "device"
 		});
 	},
 	triggersEnter: [checkAdmin]
 });
+highRoutes.route('/uebersicht/statistik/mode', {
+	name: "mode",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "mode"
+		});
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/uebersicht/statistik/status', {
+	name: "status",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "status"
+		});
+	},
+	triggersEnter: [checkAdmin]
+});
+highRoutes.route('/uebersicht/statistik/total', {
+	name: "total",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "total"
+		});
+	},
+	triggersEnter: [checkAdmin]
+});
+
 highRoutes.route('/uebersicht/feedback', {
 	name: "feedback",
 	action: function(params, queryParams) {
@@ -140,9 +189,8 @@ lowRoutes.route('/low', {
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
-			nav: "navMode",
 			main: "low",
-			navSource: "navSource"
+			navSource: "navLow"
 		});
 	},
 	triggersEnter: []

@@ -2,12 +2,12 @@
 
   <div class="container">
     <div class="row">
-      {{> atNavButton}} Logged in as: {{#if currentUser}} {{userMail}} {{/if}}
+      {{> atNavButton}} Logged in as: {{#if currentUser}} {{ currentUserMail }} {{/if}}
     </div>
     <div class="row">
       <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
-        <li role="presentation" class="{{isActiveRoute regex='eingabe'}}"><a href="{{pathFor 'eingabe'}}">Eingabetrainer</a></li>
+        <li role="presentation" class="{{isActiveRoute regex='trainer'}}"><a href="{{pathFor 'trainer'}}">Trainer</a></li>
         <li role="presentation" class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
         {{#unless surveySubmitted}}
         <li role="presentation" class="{{isActiveRoute regex='fragebogen'}}"><a href="{{pathFor 'fragebogen'}}">Fragebogen</a></li>

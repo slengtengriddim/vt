@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"navLow\");\nTemplate[\"navLow\"] = new Template(\"Template.navLow\", (function() {\n  var view = this;\n  return [ Spacebars.include(view.lookupTemplate(\"navMode\")), \"\\n\t\", Spacebars.include(view.lookupTemplate(\"navSource\")) ];\n}));\n","bodyAttrs":{}}

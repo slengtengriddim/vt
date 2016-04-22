@@ -22,8 +22,8 @@ ejson
 spacebars
 check
 
-# ongoworks:security
 anti:fake
+mizzao:user-status
 
 accounts-password
 service-configuration
@@ -55,6 +55,4 @@ nvd3:nvd3
 # goltfisch:hotjar
 # momentjs:moment
 arsnebula:darwin
-# meteorhacks:aggregate
-# jcbernack:reactive-aggregate
 sach:flow-db-admin
