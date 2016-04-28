@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////
+//                                                                      //
+// This is a generated file. You can view the original                  //
+// source in your browser if your browser supports source maps.         //
+// Source maps are supported by all recent versions of Chrome, Safari,  //
+// and Firefox, and by Internet Explorer 11.                            //
+//                                                                      //
+//////////////////////////////////////////////////////////////////////////
+
+
 (function () {
 
 /* Imports */
@@ -17,11 +27,11 @@ var process = Package.modules.process;
 /* Package-scope variables */
 var page, qs, Triggers, Router, Group, Route, FlowRouter;
 
-var require = meteorInstall({"node_modules":{"meteor":{"kadira:flow-router":{"client-modules.js":["page","qs",function(require){
+var require = meteorInstall({"node_modules":{"meteor":{"kadira:flow-router":{"client":{"modules.js":["page","qs",function(require){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
-// packages/kadira_flow-router/client-modules.js                                                                      //
+// packages/kadira_flow-router/client/modules.js                                                                      //
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
@@ -30,7 +40,7 @@ qs   = require('qs');                                                           
                                                                                                                       // 3
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"client":{"triggers.js":function(){
+}],"triggers.js":function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
@@ -1643,11 +1653,11 @@ exports.version = "1.6.4";                                                      
                                                                                                                       // 624
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}]},"path-to-regexp":{"package.json":function(require,exports){
+}],"node_modules":{"path-to-regexp":{"package.json":function(require,exports){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
-// ../npm/node_modules/path-to-regexp/package.json                                                                    //
+// ../npm/node_modules/page/node_modules/path-to-regexp/package.json                                                  //
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
@@ -1660,7 +1670,7 @@ exports.version = "1.2.1";                                                      
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
-// node_modules/meteor/kadira:flow-router/node_modules/path-to-regexp/index.js                                        //
+// node_modules/meteor/kadira:flow-router/node_modules/page/node_modules/path-to-regexp/index.js                      //
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
@@ -2057,11 +2067,11 @@ function pathToRegexp (path, keys, options) {                                   
                                                                                                                       // 391
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}]},"isarray":{"package.json":function(require,exports){
+}],"node_modules":{"isarray":{"package.json":function(require,exports){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
-// ../npm/node_modules/isarray/package.json                                                                           //
+// ../npm/node_modules/page/node_modules/path-to-regexp/node_modules/isarray/package.json                             //
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
@@ -2075,7 +2085,7 @@ exports.main = "index.js";                                                      
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
-// node_modules/meteor/kadira:flow-router/node_modules/isarray/index.js                                               //
+// node_modules/meteor/kadira:flow-router/node_modules/page/node_modules/path-to-regexp/node_modules/isarray/index.js //
 //                                                                                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
@@ -2085,7 +2095,7 @@ module.exports = Array.isArray || function (arr) {                              
                                                                                                                       // 4
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"qs":{"package.json":function(require,exports){
+}}}}}},"qs":{"package.json":function(require,exports){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                    //
@@ -2690,7 +2700,7 @@ module.exports = function (str, options) {                                      
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }]}}}}}}},{"extensions":[".js",".json"]});
-require("./node_modules/meteor/kadira:flow-router/client-modules.js");
+require("./node_modules/meteor/kadira:flow-router/client/modules.js");
 require("./node_modules/meteor/kadira:flow-router/client/triggers.js");
 require("./node_modules/meteor/kadira:flow-router/client/router.js");
 require("./node_modules/meteor/kadira:flow-router/client/group.js");

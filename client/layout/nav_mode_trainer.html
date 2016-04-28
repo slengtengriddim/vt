@@ -1,20 +1,11 @@
 <template name="navModeTrainer">
-	<br>
-	<br>
 	<div class="row text-center">
-		<div class="col-sm-12">
-			<div class="btn-group btn-group-lg" role="group">
-				<button type="button" class="btn btn-default btn-lg btn-lesen">Lesen</button>
-				<button type="button" class="btn btn-default btn-lg btn-wort">Wort</button>
-				<button type="button" class="btn btn-default btn-lg btn-definition">Definition</button>
-			</div>
-			<div class="btn-group btn-group-lg" role="group">
-				<button type="button" class="btn btn-default btn-lg btn-eingabe">Eingabe</button>
-			</div>
-		</div>
-		<br>
-		<br>
-		<h3><i class="fa fa-level-up fa-flip-horizontal"></i> Modus <i class="fa fa-level-up"></i></h3>
+		<h5 class="widget-title">Option</h5>
+			<ul class="list-inline">
+				<li><button type="button" class="btn btn-lesen btn-standard-1 {{#if getSession "lesen"}}active{{/if}}">Lesen</button></li>
+				<li><button type="button" class="btn btn-wort btn-standard-1 {{#if getSession "wort"}}active{{/if}}">Wort</button></li>
+				<li><button type="button" class="btn btn-definition btn-standard-1 {{#if getSession "definition"}}active{{/if}}">Definition</button></li>
+				<li><button type="button" class="btn btn-eingabe btn-standard-1 {{#if getSession "eingabe"}}active{{/if}}">Eingabe</button></li>
+			</ul>
 	</div>
-
 </template>

@@ -1,0 +1,12 @@
+<template name="wordsAll">
+	{{#if top5}}
+		<h5 class="widget-title">Top 5 Insgesamt</h5>
+		<div class="widget">
+			<ul>
+				{{#each top5}}
+				<li>{{term}}</li>
+				{{/each}}
+			</ul>
+		</div>
+	{{/if}}
+</template>

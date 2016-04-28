@@ -3,10 +3,12 @@
   "arch": "os.linux.x86_64",
   "load": [
     {
+      "sourceMap": "packages/underscore.js.map",
       "path": "packages/underscore.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/meteor/node_modules",
+      "sourceMap": "packages/meteor.js.map",
       "path": "packages/meteor.js"
     },
     {
@@ -17,19 +19,12 @@
     },
     {
       "node_modules": "npm/node_modules/meteor/npm-mongo/node_modules",
+      "sourceMap": "packages/npm-mongo.js.map",
       "path": "packages/npm-mongo.js"
     },
     {
-      "path": "packages/base64.js"
-    },
-    {
-      "path": "packages/ejson.js"
-    },
-    {
-      "path": "packages/check.js"
-    },
-    {
       "node_modules": "npm/node_modules/meteor/babel-compiler/node_modules",
+      "sourceMap": "packages/babel-compiler.js.map",
       "path": "packages/babel-compiler.js"
     },
     {
@@ -37,35 +32,52 @@
       "path": "packages/ecmascript.js"
     },
     {
+      "sourceMap": "packages/base64.js.map",
+      "path": "packages/base64.js"
+    },
+    {
+      "sourceMap": "packages/ejson.js.map",
+      "path": "packages/ejson.js"
+    },
+    {
+      "sourceMap": "packages/id-map.js.map",
       "path": "packages/id-map.js"
     },
     {
+      "sourceMap": "packages/ordered-dict.js.map",
       "path": "packages/ordered-dict.js"
     },
     {
+      "sourceMap": "packages/tracker.js.map",
       "path": "packages/tracker.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/modules-runtime/node_modules",
+      "sourceMap": "packages/modules-runtime.js.map",
       "path": "packages/modules-runtime.js"
     },
     {
+      "sourceMap": "packages/modules.js.map",
       "path": "packages/modules.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/es5-shim/node_modules",
+      "sourceMap": "packages/es5-shim.js.map",
       "path": "packages/es5-shim.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/promise/node_modules",
+      "sourceMap": "packages/promise.js.map",
       "path": "packages/promise.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/ecmascript-runtime/node_modules",
+      "sourceMap": "packages/ecmascript-runtime.js.map",
       "path": "packages/ecmascript-runtime.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/babel-runtime/node_modules",
+      "sourceMap": "packages/babel-runtime.js.map",
       "path": "packages/babel-runtime.js"
     },
     {
@@ -73,74 +85,98 @@
       "path": "packages/random.js"
     },
     {
+      "sourceMap": "packages/mongo-id.js.map",
       "path": "packages/mongo-id.js"
     },
     {
+      "sourceMap": "packages/diff-sequence.js.map",
       "path": "packages/diff-sequence.js"
     },
     {
+      "sourceMap": "packages/geojson-utils.js.map",
       "path": "packages/geojson-utils.js"
     },
     {
+      "sourceMap": "packages/minimongo.js.map",
       "path": "packages/minimongo.js"
     },
     {
+      "sourceMap": "packages/check.js.map",
+      "path": "packages/check.js"
+    },
+    {
+      "sourceMap": "packages/retry.js.map",
       "path": "packages/retry.js"
     },
     {
+      "sourceMap": "packages/ddp-common.js.map",
       "path": "packages/ddp-common.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/ddp-client/node_modules",
+      "sourceMap": "packages/ddp-client.js.map",
       "path": "packages/ddp-client.js"
     },
     {
+      "sourceMap": "packages/rate-limit.js.map",
       "path": "packages/rate-limit.js"
     },
     {
+      "sourceMap": "packages/ddp-rate-limiter.js.map",
       "path": "packages/ddp-rate-limiter.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/logging/node_modules",
+      "sourceMap": "packages/logging.js.map",
       "path": "packages/logging.js"
     },
     {
+      "sourceMap": "packages/routepolicy.js.map",
       "path": "packages/routepolicy.js"
     },
     {
       "path": "packages/deps.js"
     },
     {
+      "sourceMap": "packages/htmljs.js.map",
       "path": "packages/htmljs.js"
     },
     {
+      "sourceMap": "packages/html-tools.js.map",
       "path": "packages/html-tools.js"
     },
     {
+      "sourceMap": "packages/blaze-tools.js.map",
       "path": "packages/blaze-tools.js"
     },
     {
+      "sourceMap": "packages/spacebars-compiler.js.map",
       "path": "packages/spacebars-compiler.js"
     },
     {
       "path": "packages/jquery.js"
     },
     {
+      "sourceMap": "packages/observe-sequence.js.map",
       "path": "packages/observe-sequence.js"
     },
     {
+      "sourceMap": "packages/reactive-var.js.map",
       "path": "packages/reactive-var.js"
     },
     {
+      "sourceMap": "packages/blaze.js.map",
       "path": "packages/blaze.js"
     },
     {
+      "sourceMap": "packages/spacebars.js.map",
       "path": "packages/spacebars.js"
     },
     {
       "path": "packages/ui.js"
     },
     {
+      "sourceMap": "packages/boilerplate-generator.js.map",
       "path": "packages/boilerplate-generator.js",
       "assets": {
         "boilerplate_web.browser.html": "assets/packages/boilerplate-generator/boilerplate_web.browser.html",
@@ -157,6 +193,7 @@
       "path": "packages/webapp.js"
     },
     {
+      "sourceMap": "packages/callback-hook.js.map",
       "path": "packages/callback-hook.js"
     },
     {
@@ -172,6 +209,7 @@
       "path": "packages/allow-deny.js"
     },
     {
+      "sourceMap": "packages/binary-heap.js.map",
       "path": "packages/binary-heap.js"
     },
     {
@@ -189,6 +227,7 @@
       "path": "packages/reload.js"
     },
     {
+      "sourceMap": "packages/anti_fake.js.map",
       "path": "packages/anti_fake.js"
     },
     {
@@ -199,6 +238,7 @@
       "path": "packages/coffeescript.js"
     },
     {
+      "sourceMap": "packages/mizzao_timesync.js.map",
       "path": "packages/mizzao_timesync.js"
     },
     {
@@ -207,16 +247,20 @@
     },
     {
       "node_modules": "npm/node_modules/meteor/npm-bcrypt/node_modules",
+      "sourceMap": "packages/npm-bcrypt.js.map",
       "path": "packages/npm-bcrypt.js"
     },
     {
+      "sourceMap": "packages/sha.js.map",
       "path": "packages/sha.js"
     },
     {
+      "sourceMap": "packages/srp.js.map",
       "path": "packages/srp.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/email/node_modules",
+      "sourceMap": "packages/email.js.map",
       "path": "packages/email.js"
     },
     {
@@ -224,9 +268,11 @@
       "path": "packages/accounts-password.js"
     },
     {
+      "sourceMap": "packages/service-configuration.js.map",
       "path": "packages/service-configuration.js"
     },
     {
+      "sourceMap": "packages/url.js.map",
       "path": "packages/url.js"
     },
     {
@@ -235,6 +281,7 @@
       "path": "packages/http.js"
     },
     {
+      "sourceMap": "packages/useraccounts_core.js.map",
       "path": "packages/useraccounts_core.js"
     },
     {
@@ -243,6 +290,7 @@
     },
     {
       "node_modules": "npm/node_modules/meteor/kadira_flow-router/node_modules",
+      "sourceMap": "packages/kadira_flow-router.js.map",
       "path": "packages/kadira_flow-router.js"
     },
     {
@@ -256,18 +304,18 @@
       "path": "packages/softwarerero_accounts-t9n.js"
     },
     {
+      "sourceMap": "packages/useraccounts_flow-routing.js.map",
       "path": "packages/useraccounts_flow-routing.js"
     },
     {
       "path": "packages/useraccounts_bootstrap.js"
     },
     {
-      "path": "packages/twbs_bootstrap.js"
-    },
-    {
+      "sourceMap": "packages/zimme_active-route.js.map",
       "path": "packages/zimme_active-route.js"
     },
     {
+      "sourceMap": "packages/alanning_roles.js.map",
       "path": "packages/alanning_roles.js"
     },
     {
@@ -275,24 +323,30 @@
       "path": "packages/arillo_flow-router-helpers.js"
     },
     {
+      "sourceMap": "packages/aldeed_simple-schema.js.map",
       "path": "packages/aldeed_simple-schema.js"
     },
     {
+      "sourceMap": "packages/raix_eventemitter.js.map",
       "path": "packages/raix_eventemitter.js"
     },
     {
+      "sourceMap": "packages/aldeed_collection2-core.js.map",
       "path": "packages/aldeed_collection2-core.js"
     },
     {
+      "sourceMap": "packages/aldeed_schema-index.js.map",
       "path": "packages/aldeed_schema-index.js"
     },
     {
+      "sourceMap": "packages/aldeed_schema-deny.js.map",
       "path": "packages/aldeed_schema-deny.js"
     },
     {
       "path": "packages/aldeed_collection2.js"
     },
     {
+      "sourceMap": "packages/aldeed_autoform.js.map",
       "path": "packages/aldeed_autoform.js"
     },
     {
@@ -305,6 +359,7 @@
       "path": "packages/fortawesome_fontawesome.js"
     },
     {
+      "sourceMap": "packages/ramda_ramda.js.map",
       "path": "packages/ramda_ramda.js"
     },
     {
@@ -320,12 +375,14 @@
       "path": "packages/nvd3_nvd3.js"
     },
     {
+      "sourceMap": "packages/autoupdate.js.map",
       "path": "packages/autoupdate.js"
     },
     {
       "path": "packages/meteor-platform.js"
     },
     {
+      "sourceMap": "packages/arsnebula_classx.js.map",
       "path": "packages/arsnebula_classx.js"
     },
     {
@@ -338,25 +395,31 @@
       "path": "packages/mongo-livedata.js"
     },
     {
+      "sourceMap": "packages/meteorhacks_meteorx.js.map",
       "path": "packages/meteorhacks_meteorx.js"
     },
     {
+      "sourceMap": "packages/meteorhacks_unblock.js.map",
       "path": "packages/meteorhacks_unblock.js"
     },
     {
+      "sourceMap": "packages/reywood_publish-composite.js.map",
       "path": "packages/reywood_publish-composite.js"
     },
     {
       "path": "packages/aldeed_template-extension.js"
     },
     {
+      "sourceMap": "packages/raix_handlebar-helpers.js.map",
       "path": "packages/raix_handlebar-helpers.js"
     },
     {
+      "sourceMap": "packages/momentjs_moment.js.map",
       "path": "packages/momentjs_moment.js"
     },
     {
       "node_modules": "npm/node_modules/meteor/aldeed_tabular/node_modules",
+      "sourceMap": "packages/aldeed_tabular.js.map",
       "path": "packages/aldeed_tabular.js"
     },
     {
@@ -365,6 +428,18 @@
     {
       "sourceMap": "packages/sach_flow-db-admin.js.map",
       "path": "packages/sach_flow-db-admin.js"
+    },
+    {
+      "path": "packages/natestrauser_animate-css.js"
+    },
+    {
+      "path": "packages/webtempest_animate.js"
+    },
+    {
+      "path": "packages/fourseven_scss.js"
+    },
+    {
+      "path": "packages/twbs_bootstrap.js"
     },
     {
       "path": "packages/hot-code-push.js"

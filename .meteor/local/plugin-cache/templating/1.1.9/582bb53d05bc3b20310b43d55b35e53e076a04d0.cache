@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"termDay\");\nTemplate[\"termDay\"] = new Template(\"Template.termDay\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

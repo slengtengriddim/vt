@@ -1347,3 +1347,5 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
+
+//# sourceMappingURL=useraccounts_core.js.map

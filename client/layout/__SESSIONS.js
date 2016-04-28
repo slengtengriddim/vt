@@ -9,11 +9,11 @@ Session.setDefault(LAST_PATH, '/');
 SOURCE_FAV = 'sourceFavourites';
 Session.setDefault(SOURCE_FAV, false);
 
-RANDOM_FAV = 'randomFavourites';
-Session.setDefault(RANDOM_FAV, false);
-
-RANDOM_NOT_FAV = 'randomNotFavourites';
-Session.setDefault(RANDOM_NOT_FAV, true);
+// RANDOM_FAV = 'randomFavourites';
+// Session.setDefault(RANDOM_FAV, false);
+//
+// RANDOM_NOT_FAV = 'randomNotFavourites';
+// Session.setDefault(RANDOM_NOT_FAV, true);
 
 LENGTH_FAV = 'lengthFav';
 Session.setDefault(LENGTH_FAV, 0);
@@ -50,6 +50,9 @@ Session.setDefault(NAV_MODE_TERM, false);
 
 NAV_MODE_DEF = 'definition';
 Session.setDefault(NAV_MODE_DEF, false);
+
+NAV_MODE_ENTER = 'eingabe';
+Session.setDefault(NAV_MODE_ENTER, false);
 
 NAV_MODES = 'navModes';
 Session.setDefault(NAV_MODES, [NAV_MODE_READ, NAV_MODE_TERM, NAV_MODE_DEF]);

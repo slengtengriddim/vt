@@ -76,6 +76,17 @@ Meteor.publish("ownedFavourites", function() {
 	return this.ready();
 });
 
+Meteor.publish('termDay', function() {
+	let currentUserId = this.userId;
+	let data = TermDay.find({
+		userId: currentUserId
+	});
+	if (data) {
+		return data;
+	}
+	return this.ready();
+});
+
 Meteor.publish('singleEntry', function(entryId) {
 	return Vocabulary.find({
 		_id: entryId

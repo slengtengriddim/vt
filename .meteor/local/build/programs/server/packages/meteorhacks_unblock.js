@@ -84,3 +84,5 @@ if (typeof Package === 'undefined') Package = {};
 Package['meteorhacks:unblock'] = {};
 
 })();
+
+//# sourceMappingURL=meteorhacks_unblock.js.map

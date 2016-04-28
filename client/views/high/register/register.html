@@ -1,12 +1,11 @@
 <template name="register">
 
   <div class="container">
-    <div class="page-header clearfix">
-
+    <br>
+    <div class="form-wrapper clearfix">
         <input type="text" name="search" class="form-control" width="300px" placeholder="Finde einen Begriff...">
-
     </div>
-
+    <br>
       {{#unless isAlphabetic}}
       <p class="alert alert-warning">Der Suchbegriff darf nur Zeichen des Alphabets (a - Z)enthalten. Keine Leer- und Sonderzeichen.</p>
       {{/unless}}
@@ -14,12 +13,11 @@
       <p class="alert alert-warning">Der Suchbegriff darf nicht mehr als 64 Zeichen enthalten.</p>
       {{/unless}}
 
-
 <!-- favourites -->
   {{#if getSession 'lengthFav'}}
   <div class="col-xs-12 {{#if getSession 'lengthNotFav'}}col-sm-6{{/if}}">
-    <div class="page-header clearfix">
-      <h4 class="pull-left">Favouriten</h4>
+    <div class="clearfix">
+      <h5 class="widget-title">Favoriten</h5>
     </div>
 
     {{#if Template.subscriptionsReady}}
@@ -74,8 +72,8 @@
     <!-- not favourites -->
   {{#if getSession 'lengthNotFav'}}
   <div class="col-xs-12 {{#if getSession 'lengthFav'}}col-sm-6{{/if}}">
-    <div class="page-header clearfix">
-      <h4 class="pull-left">Nicht-Favouriten</h4>
+    <div class="clearfix">
+      <h5 class="widget-title">Nicht-Favoriten</h5>
     </div>
 
       {{#if Template.subscriptionsReady}}

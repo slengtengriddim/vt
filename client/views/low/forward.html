@@ -1,0 +1,11 @@
+<template name="forwardLow">
+	{{#if lengthIsOne}}
+			<i class="fa fa-ban fa-4x"></i>
+	{{else}}
+		{{#with entry}}
+			<div class="btn-forward">
+				<span><i class="fa fa-chevron-right fa-4x"></i></span>
+			</div>
+		{{/with}}
+	{{/if}}
+</template>

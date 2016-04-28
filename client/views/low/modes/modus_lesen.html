@@ -1,38 +1,34 @@
-<template name="modusLesen">
-	<div class="jumbotron">
-		{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
-		<h2 class="text-center">
-			{{term}}
-			{{#if getSession "sourceFavourites"}}
-				<div class="btn-delete text-center">
-					<i class="fa fa-trash-o fa-2x"></i>
+<template name="modusLesenLow">
+
+		<div class="row text-center">
+			<p>
+				{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+			</p>
+			<p>
+				{{#if getSession "sourceFavourites"}}
+				<div class="btn-delete fadeIn animated">
+					<i class="fa fa-trash-o fa-4x"></i>
 				</div>
-			{{else}}
-				<div class="btn-insert text-center">
-						<i class="fa fa-heart-o fa-2x"></i>
-				</div>
-			{{/if}}
-		</h2>
-		<hr>
-		<h3>
-			<ol>
-				<li>{{ description }}</li>
-			</ol>
-		</h3>
-		<div class="text-center">
-			<div class="btn-example" data-toggle="collapse" data-target="#example">
-				{{#unless getSession "example"}}
-					<i class="fa fa-plus-square-o fa-4x"></i>
 				{{else}}
-					<i class="fa fa-minus-square-o fa-4x"></i>
-				{{/unless}}
+				<div class="btn-insert fadeIn animated">
+					<i class="fa fa-heart-o fa-4x"></i>
+				</div>
+				{{/if}}
+			</p>
+			<br>
+			<p class="trainer-word-class fadeInUp animated">
+				{{ wordClass }}
+			</p>
+			<br>
+			<h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
+			<br>
+			<div class="trainer-definition">
+				<ol>
+					{{#each definition}}
+					<li><span class="rwd-line">{{this}}</span>  </li>
+					{{/each}}
+				</ol>
 			</div>
 		</div>
-		<div id="example" class="collapse">
-			<ol>
-				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>
-				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </li>
-			</ol>
-		</div>
-	</div>
+
 </template>

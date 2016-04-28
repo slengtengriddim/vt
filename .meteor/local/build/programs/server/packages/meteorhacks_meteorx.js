@@ -149,3 +149,5 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
+
+//# sourceMappingURL=meteorhacks_meteorx.js.map

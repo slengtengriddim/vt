@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"chartBarClicksPerDay\");\nTemplate[\"chartBarClicksPerDay\"] = new Template(\"Template.chartBarClicksPerDay\", (function() {\n  var view = this;\n  return [ HTML.Raw(\"<h4>Clicks pro Tag (Gesamt)</h4>\\n\t\"), HTML.DIV({\n    id: \"chartBarClicksPerDay\"\n  }, \"\\n\t\t\", HTML.SVG(), \"\\n\t\") ];\n}));\n","bodyAttrs":{}}

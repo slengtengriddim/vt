@@ -1,8 +1,8 @@
-var require = meteorInstall({"client":{"views":{"high":{"uebersicht":{"charts":{"device":{"device.html":function(){
+var require = meteorInstall({"client":{"views":{"high":{"verwaltung":{"charts":{"device":{"template.device.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/device/template.device.js                                                       //
+// client/views/high/verwaltung/charts/device/template.device.js                                                       //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -15,11 +15,11 @@ Template["device"] = new Template("Template.device", (function() {              
                                                                                                                        // 7
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"mode":{"chart_bar_modes.html":function(){
+}},"mode":{"template.chart_bar_modes.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/mode/template.chart_bar_modes.js                                                //
+// client/views/high/verwaltung/charts/mode/template.chart_bar_modes.js                                                //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -34,11 +34,11 @@ Template["chartBarModes"] = new Template("Template.chartBarModes", (function() {
                                                                                                                        // 9
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"mode.html":function(){
+},"template.mode.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/mode/template.mode.js                                                           //
+// client/views/high/verwaltung/charts/mode/template.mode.js                                                           //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -59,7 +59,7 @@ Template["mode"] = new Template("Template.mode", (function() {                  
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/mode/chart_bar_modes.js                                                         //
+// client/views/high/verwaltung/charts/mode/chart_bar_modes.js                                                         //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -120,7 +120,7 @@ Template.chartBarModes.rendered = function () {                                 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/mode/mode.js                                                                    //
+// client/views/high/verwaltung/charts/mode/mode.js                                                                    //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -131,11 +131,11 @@ Template.mode.onCreated(function () {                                           
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"status":{"chart_line_online_user.html":function(){
+}},"status":{"template.chart_line_online_user.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/status/template.chart_line_online_user.js                                       //
+// client/views/high/verwaltung/charts/status/template.chart_line_online_user.js                                       //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -150,11 +150,11 @@ Template["chartLineOnlineUser"] = new Template("Template.chartLineOnlineUser", (
                                                                                                                        // 9
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"status.html":function(){
+},"template.status.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/status/template.status.js                                                       //
+// client/views/high/verwaltung/charts/status/template.status.js                                                       //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -175,7 +175,7 @@ Template["status"] = new Template("Template.status", (function() {              
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/status/chart_line_online_user.js                                                //
+// client/views/high/verwaltung/charts/status/chart_line_online_user.js                                                //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -309,7 +309,7 @@ Template.chartLineOnlineUser.rendered = function () {                           
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/status/status.js                                                                //
+// client/views/high/verwaltung/charts/status/status.js                                                                //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -437,11 +437,11 @@ Template.status.events({                                                        
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"total":{"chart_bar_clicks_per_day.html":function(){
+}},"total":{"template.chart_bar_clicks_per_day.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/template.chart_bar_clicks_per_day.js                                      //
+// client/views/high/verwaltung/charts/total/template.chart_bar_clicks_per_day.js                                      //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -456,11 +456,11 @@ Template["chartBarClicksPerDay"] = new Template("Template.chartBarClicksPerDay",
                                                                                                                        // 9
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"chart_pie_attention.html":function(){
+},"template.chart_pie_attention.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/template.chart_pie_attention.js                                           //
+// client/views/high/verwaltung/charts/total/template.chart_pie_attention.js                                           //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -475,11 +475,11 @@ Template["chartPieAttention"] = new Template("Template.chartPieAttention", (func
                                                                                                                        // 9
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"total.html":function(){
+},"template.total.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/template.total.js                                                         //
+// client/views/high/verwaltung/charts/total/template.total.js                                                         //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -506,7 +506,7 @@ Template["total"] = new Template("Template.total", (function() {                
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/chart_bar_clicks_per_day.js                                               //
+// client/views/high/verwaltung/charts/total/chart_bar_clicks_per_day.js                                               //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -579,7 +579,7 @@ Template.chartBarClicksPerDay.rendered = function () {                          
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/chart_pie_attention.js                                                    //
+// client/views/high/verwaltung/charts/total/chart_pie_attention.js                                                    //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -632,7 +632,7 @@ Template.chartPieAttention.rendered = function () {                             
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/total/total.js                                                                  //
+// client/views/high/verwaltung/charts/total/total.js                                                                  //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -653,11 +653,11 @@ Template.total.helpers({                                                        
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"chart_multibar_attention.html":function(){
+}},"template.chart_multibar_attention.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/template.chart_multibar_attention.js                                            //
+// client/views/high/verwaltung/charts/template.chart_multibar_attention.js                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -676,7 +676,7 @@ Template["chartMultiBarModes"] = new Template("Template.chartMultiBarModes", (fu
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/charts/chart_multibar_attention.js                                                     //
+// client/views/high/verwaltung/charts/chart_multibar_attention.js                                                     //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -757,11 +757,11 @@ Template.chartMultiBarModes.rendered = function () {                            
 };                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"feedback.html":function(){
+}},"template.feedback.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/template.feedback.js                                                                   //
+// client/views/high/verwaltung/template.feedback.js                                                                   //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -824,7 +824,7 @@ Template["feedback"] = new Template("Template.feedback", (function() {          
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/uebersicht/feedback.js                                                                            //
+// client/views/high/verwaltung/feedback.js                                                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -922,11 +922,113 @@ Template.feedback.helpers({                                                     
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"index":{"charts":{"wordsAll.html":function(){
+}},"index":{"components":{"template.faqWidget.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/charts/template.wordsAll.js                                                                 //
+// client/views/high/index/components/template.faqWidget.js                                                            //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("faqWidget");                                                                                     // 2
+Template["faqWidget"] = new Template("Template.faqWidget", (function() {                                               // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "list-post"                                                                                               // 6
+  }, HTML.Raw("\n		<p class=\"categories\">\n			FAQ\n		</p>\n		<h2 class=\"category-title\">Erste Schritte</h2>\n		<p class=\"body-text\">\n			Der Fremdworttrainer verfuegt ueber ein Wortregister und einen Trainer mit 4 Modi.\n			<br> Im <i>Wortregister</i> findest du eine Auflistung aller registrierten Begriffe. Begriffe koennen favorisiert werden und werden dann dort separat gelistet.\n			<br> Im <i>Trainer</i> kannst du aus 4 verschiedenen Uebungsmodi waehlen: 'Lesen', 'Wort', 'Bedeutung' und 'Eingabe'.\n			<br> Des weiteren hast du die Moeglichkeit die Quelle der Woerter auszuwaehlen. Entweder das komplette Register (inkl. Favoriten) oder ausschliesslich Favoriten. Woerter koennen sowohl im Register als auch im Modus 'Lesen' zur Favoritenliste hinzugefuegt und entfernt werden.\n			<br> Am Seitenkopf findest du eine Switch-Button-Leiste, mit der du in den <i>Kompaktmodus</i> und wieder zurueck wechseln kannst. Der Modus 'Eingabe' ist im Kompaktmodus nicht vorhanden.\n		</p>\n		"), HTML.A({
+    "class": "btn btn-standard-1 btn-question",                                                                        // 8
+    href: function() {                                                                                                 // 9
+      return Spacebars.mustache(view.lookup("pathFor"), "faq");                                                        // 10
+    }                                                                                                                  // 11
+  }, "Mehr"), "\n	");                                                                                                  // 12
+}));                                                                                                                   // 13
+                                                                                                                       // 14
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.feedback.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/components/template.feedback.js                                                             //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("feedbackClient");                                                                                // 2
+Template["feedbackClient"] = new Template("Template.feedbackClient", (function() {                                     // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": ""                                                                                                        // 6
+  }, "\n  ", Blaze._TemplateWith(function() {                                                                          // 7
+    return {                                                                                                           // 8
+      collection: Spacebars.call("Data.Feedback"),                                                                     // 9
+      id: Spacebars.call("insertFeedbackForm"),                                                                        // 10
+      type: Spacebars.call("insert")                                                                                   // 11
+    };                                                                                                                 // 12
+  }, function() {                                                                                                      // 13
+    return Spacebars.include(view.lookupTemplate("autoForm"), function() {                                             // 14
+      return [ "\n  ", HTML.FIELDSET("\n    ", Blaze._TemplateWith(function() {                                        // 15
+        return {                                                                                                       // 16
+          name: Spacebars.call("message")                                                                              // 17
+        };                                                                                                             // 18
+      }, function() {                                                                                                  // 19
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 20
+      }), "\n    ", HTML.DIV("\n      ", HTML.BUTTON({                                                                 // 21
+        type: "submit",                                                                                                // 22
+        "class": "btn btn-standard-1"                                                                                  // 23
+      }, "Senden"), "\n      ", HTML.BUTTON({                                                                          // 24
+        type: "reset",                                                                                                 // 25
+        "class": "btn btn-standard-1"                                                                                  // 26
+      }, "Zuruecksetzen"), "\n    "), "\n  "), "\n  " ];                                                               // 27
+    });                                                                                                                // 28
+  }), "\n");                                                                                                           // 29
+}));                                                                                                                   // 30
+                                                                                                                       // 31
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.term_day.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/components/template.term_day.js                                                             //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("termDay");                                                                                       // 2
+Template["termDay"] = new Template("Template.termDay", (function() {                                                   // 3
+  var view = this;                                                                                                     // 4
+  return [ HTML.Raw("<br>\n		"), HTML.DIV({                                                                            // 5
+    "class": "text-center"                                                                                             // 6
+  }, "\n			", HTML.Raw('<p class="categories">\n				Dein Wort des Tages\n			</p>'), "\n			", Spacebars.With(function() {
+    return Spacebars.call(view.lookup("termDay"));                                                                     // 8
+  }, function() {                                                                                                      // 9
+    return [ "\n				", HTML.H2({                                                                                       // 10
+      "class": "category-title"                                                                                        // 11
+    }, Blaze.View("lookup:term", function() {                                                                          // 12
+      return Spacebars.mustache(view.lookup("term"));                                                                  // 13
+    })), "\n				", HTML.DIV({                                                                                          // 14
+      "class": "category-definition"                                                                                   // 15
+    }, "\n					", HTML.OL("\n						", Blaze.Each(function() {                                                          // 16
+      return Spacebars.call(view.lookup("definition"));                                                                // 17
+    }, function() {                                                                                                    // 18
+      return [ "\n						", HTML.LI(Blaze.View("lookup:.", function() {                                                 // 19
+        return Spacebars.mustache(view.lookup("."));                                                                   // 20
+      })), "\n						" ];                                                                                               // 21
+    }), "\n					"), "\n				"), "\n				", HTML.H2(HTML.I({                                                              // 22
+      "class": "fa fa-heart-o"                                                                                         // 23
+    })), "\n			" ];                                                                                                    // 24
+  }), "\n		") ];                                                                                                       // 25
+}));                                                                                                                   // 26
+                                                                                                                       // 27
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.wordsAll.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/components/template.wordsAll.js                                                             //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -934,30 +1036,30 @@ Template.feedback.helpers({                                                     
 Template.__checkName("wordsAll");                                                                                      // 2
 Template["wordsAll"] = new Template("Template.wordsAll", (function() {                                                 // 3
   var view = this;                                                                                                     // 4
-  return [ HTML.Raw("<h4>Insgesamt</h4>\n	"), HTML.UL({                                                                // 5
-    "class": "list-group"                                                                                              // 6
-  }, "\n		", Blaze.Each(function() {                                                                                   // 7
-    return Spacebars.call(view.lookup("top5"));                                                                        // 8
-  }, function() {                                                                                                      // 9
-    return [ "\n			", HTML.LI({                                                                                        // 10
-      "class": "list-group-item"                                                                                       // 11
-    }, Blaze.View("lookup:@index", function() {                                                                        // 12
-      return Spacebars.mustache(view.lookup("@index"));                                                                // 13
-    }), ": ", Blaze.View("lookup:term", function() {                                                                   // 14
-      return Spacebars.mustache(view.lookup("term"));                                                                  // 15
-    }), " (", Blaze.View("lookup:count", function() {                                                                  // 16
-      return Spacebars.mustache(view.lookup("count"));                                                                 // 17
-    }), ")"), " \n		" ];                                                                                               // 18
-  }), "\n	") ];                                                                                                        // 19
+  return Blaze.If(function() {                                                                                         // 5
+    return Spacebars.call(view.lookup("top5"));                                                                        // 6
+  }, function() {                                                                                                      // 7
+    return [ "\n		", HTML.H5({                                                                                         // 8
+      "class": "widget-title"                                                                                          // 9
+    }, "Top 5 Insgesamt"), "\n		", HTML.DIV({                                                                          // 10
+      "class": "widget"                                                                                                // 11
+    }, "\n			", HTML.UL("\n				", Blaze.Each(function() {                                                              // 12
+      return Spacebars.call(view.lookup("top5"));                                                                      // 13
+    }, function() {                                                                                                    // 14
+      return [ "\n				", HTML.LI(Blaze.View("lookup:term", function() {                                                // 15
+        return Spacebars.mustache(view.lookup("term"));                                                                // 16
+      })), "\n				" ];                                                                                                 // 17
+    }), "\n			"), "\n		"), "\n	" ];                                                                                    // 18
+  });                                                                                                                  // 19
 }));                                                                                                                   // 20
                                                                                                                        // 21
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"wordsUser.html":function(){
+},"template.wordsUser.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/charts/template.wordsUser.js                                                                //
+// client/views/high/index/components/template.wordsUser.js                                                            //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -965,30 +1067,102 @@ Template["wordsAll"] = new Template("Template.wordsAll", (function() {          
 Template.__checkName("wordsUser");                                                                                     // 2
 Template["wordsUser"] = new Template("Template.wordsUser", (function() {                                               // 3
   var view = this;                                                                                                     // 4
-  return [ HTML.Raw("<h4>Du</h4>\n	"), HTML.UL({                                                                       // 5
-    "class": "list-group"                                                                                              // 6
-  }, "\n		", Blaze.Each(function() {                                                                                   // 7
+  return [ HTML.Raw('<h5 class="widget-title">Top 5 Persoenlich</h5>\n		'), HTML.DIV({                                 // 5
+    "class": "widget"                                                                                                  // 6
+  }, "\n			", Blaze.If(function() {                                                                                    // 7
     return Spacebars.call(view.lookup("top5"));                                                                        // 8
   }, function() {                                                                                                      // 9
-    return [ "\n			", HTML.LI({                                                                                        // 10
-      "class": "list-group-item"                                                                                       // 11
-    }, Blaze.View("lookup:@index", function() {                                                                        // 12
-      return Spacebars.mustache(view.lookup("@index"));                                                                // 13
-    }), ": ", Blaze.View("lookup:vocabularyName", function() {                                                         // 14
-      return Spacebars.mustache(view.lookup("vocabularyName"));                                                        // 15
-    }), " (", Blaze.View("lookup:viewed", function() {                                                                 // 16
-      return Spacebars.mustache(view.lookup("viewed"));                                                                // 17
-    }), ")"), "\n		" ];                                                                                                // 18
-  }), "\n	") ];                                                                                                        // 19
-}));                                                                                                                   // 20
-                                                                                                                       // 21
+    return [ "\n				", HTML.UL("\n					", Blaze.Each(function() {                                                      // 10
+      return Spacebars.call(view.lookup("top5"));                                                                      // 11
+    }, function() {                                                                                                    // 12
+      return [ "\n					", HTML.LI(Blaze.View("lookup:vocabularyName", function() {                                     // 13
+        return Spacebars.mustache(view.lookup("vocabularyName"));                                                      // 14
+      })), "\n					" ];                                                                                                // 15
+    }), "\n				"), "\n			" ];                                                                                          // 16
+  }, function() {                                                                                                      // 17
+    return [ "\n				", HTML.DIV({                                                                                      // 18
+      "class": "categories text-center"                                                                                // 19
+    }, "\n					Nicht genuegend Daten. Benutz' mich. ", HTML.BR(), HTML.BR(), "\n				"), "\n			" ];                     // 20
+  }), "\n		") ];                                                                                                       // 21
+}));                                                                                                                   // 22
+                                                                                                                       // 23
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"feedback.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/components/feedback.js                                                                      //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+var hooksFeedbackForm = {                                                                                              // 1
+	onSuccess: function () {                                                                                              // 2
+		function onSuccess(formType, result) {                                                                               // 2
+			var msg = 'Feedback erfolgreich gesendet.';                                                                         // 3
+			toastr.success(msg);                                                                                                // 4
+		}                                                                                                                    //
+                                                                                                                       //
+		return onSuccess;                                                                                                    //
+	}(),                                                                                                                  //
+	onError: function () {                                                                                                // 6
+		function onError(formType, error) {                                                                                  // 6
+			var msg = 'Feedback konnte nicht gesendet werden.';                                                                 // 7
+			toastr.error(msg);                                                                                                  // 8
+		}                                                                                                                    //
+                                                                                                                       //
+		return onError;                                                                                                      //
+	}()                                                                                                                   //
+};                                                                                                                     //
+                                                                                                                       //
+AutoForm.addHooks(['insertFeedbackForm'], hooksFeedbackForm);                                                          // 12
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"term_day.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/index/components/term_day.js                                                                      //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+Template.termDay.onCreated(function () {                                                                               // 1
+	var template = Template.instance();                                                                                   // 2
+	template.subscribe('vocabularyAll');                                                                                  // 3
+	template.subscribe('termDay');                                                                                        // 4
+});                                                                                                                    //
+                                                                                                                       //
+Template.termDay.helpers({                                                                                             // 7
+	termDay: function () {                                                                                                // 8
+		function termDay() {                                                                                                 //
+			var currentUserId = Meteor.userId();                                                                                // 9
+			var termDay = TermDay.findOne({                                                                                     // 10
+				userId: currentUserId                                                                                              // 11
+			}, {                                                                                                                //
+				sort: {                                                                                                            // 13
+					timestamp: -1                                                                                                     // 14
+				}                                                                                                                  //
+			});                                                                                                                 //
+			if (termDay) {                                                                                                      // 17
+				var vocabulary = Vocabulary.findOne({                                                                              // 18
+					_id: termDay.vocabularyId                                                                                         // 19
+				});                                                                                                                //
+				if (vocabulary) {                                                                                                  // 21
+					return vocabulary;                                                                                                // 22
+				}                                                                                                                  //
+			}                                                                                                                   //
+		}                                                                                                                    //
+                                                                                                                       //
+		return termDay;                                                                                                      //
+	}()                                                                                                                   //
+});                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"wordsAll.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/charts/wordsAll.js                                                                          //
+// client/views/high/index/components/wordsAll.js                                                                      //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -1001,23 +1175,30 @@ Template.wordsAll.helpers({                                                     
 	top5: function () {                                                                                                   // 7
 		function top5() {                                                                                                    //
 			var result = [];                                                                                                    // 8
-			var data = Data.Words.find({}).fetch();                                                                             // 9
-			var byVocabularyId = R.groupBy(function (entry) {                                                                   // 10
-				return entry.vocabularyId;                                                                                         // 11
+			var data = Data.Words.find({}, {                                                                                    // 9
+				sort: {                                                                                                            // 10
+					viewed: -1,                                                                                                       // 11
+					vocabularyName: 1                                                                                                 // 12
+				}                                                                                                                  //
+			}).fetch();                                                                                                         //
+			var byVocabularyId = R.groupBy(function (entry) {                                                                   // 15
+				return entry.vocabularyId;                                                                                         // 16
 			});                                                                                                                 //
                                                                                                                        //
-			var groupedByVocabularyId = byVocabularyId(data);                                                                   // 14
-			for (var k in meteorBabelHelpers.sanitizeForInObject(groupedByVocabularyId)) {                                      // 15
-				if (groupedByVocabularyId.hasOwnProperty(k)) {                                                                     // 16
-					result.push({                                                                                                     // 17
-						term: groupedByVocabularyId[k][0].vocabularyName,                                                                // 18
-						count: R.sum(R.pluck('viewed')(groupedByVocabularyId[k]))                                                        // 19
+			var groupedByVocabularyId = byVocabularyId(data);                                                                   // 19
+			for (var k in meteorBabelHelpers.sanitizeForInObject(groupedByVocabularyId)) {                                      // 20
+				if (groupedByVocabularyId.hasOwnProperty(k)) {                                                                     // 21
+					result.push({                                                                                                     // 22
+						term: groupedByVocabularyId[k][0].vocabularyName,                                                                // 23
+						count: R.sum(R.pluck('viewed')(groupedByVocabularyId[k]))                                                        // 24
 					});                                                                                                               //
 				}                                                                                                                  //
 			};                                                                                                                  //
-			var sortByViewed = R.sortBy(R.prop('count'));                                                                       // 23
-			result = R.take(5, R.reverse(sortByViewed(result)));                                                                // 24
-			return result;                                                                                                      // 25
+			var sortByViewed = R.sortBy(R.prop('count'));                                                                       // 28
+			result = R.take(5, R.reverse(sortByViewed(result)));                                                                // 29
+			if (result.length >= 5) {                                                                                           // 30
+				return result;                                                                                                     // 31
+			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return top5;                                                                                                         //
@@ -1029,7 +1210,7 @@ Template.wordsAll.helpers({                                                     
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/charts/wordsUser.js                                                                         //
+// client/views/high/index/components/wordsUser.js                                                                     //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
@@ -1045,10 +1226,13 @@ Template.wordsUser.helpers({                                                    
 			}, {                                                                                                                //
 				limit: 5,                                                                                                          // 10
 				sort: {                                                                                                            // 11
-					viewed: -1                                                                                                        // 12
+					viewed: -1,                                                                                                       // 12
+					vocabularyName: -1                                                                                                // 13
 				}                                                                                                                  //
 			}).fetch();                                                                                                         //
-			return data;                                                                                                        // 15
+			if (data.length >= 5) {                                                                                             // 16
+				return data;                                                                                                       // 17
+			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return top5;                                                                                                         //
@@ -1056,65 +1240,7 @@ Template.wordsUser.helpers({                                                    
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"feedback.html":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/high/index/template.feedback.js                                                                        //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-                                                                                                                       // 1
-Template.__checkName("feedbackClient");                                                                                // 2
-Template["feedbackClient"] = new Template("Template.feedbackClient", (function() {                                     // 3
-  var view = this;                                                                                                     // 4
-  return Blaze._TemplateWith(function() {                                                                              // 5
-    return {                                                                                                           // 6
-      collection: Spacebars.call("Data.Feedback"),                                                                     // 7
-      id: Spacebars.call("insertFeedbackForm"),                                                                        // 8
-      type: Spacebars.call("insert")                                                                                   // 9
-    };                                                                                                                 // 10
-  }, function() {                                                                                                      // 11
-    return Spacebars.include(view.lookupTemplate("autoForm"), function() {                                             // 12
-      return [ "\n  ", HTML.FIELDSET("\n    ", HTML.LEGEND("Feedback:"), "\n    ", Blaze._TemplateWith(function() {    // 13
-        return {                                                                                                       // 14
-          name: Spacebars.call("message")                                                                              // 15
-        };                                                                                                             // 16
-      }, function() {                                                                                                  // 17
-        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 18
-      }), "\n    ", HTML.DIV("\n      ", HTML.BUTTON({                                                                 // 19
-        type: "submit",                                                                                                // 20
-        "class": "btn btn-primary"                                                                                     // 21
-      }, "Senden"), "\n      ", HTML.BUTTON({                                                                          // 22
-        type: "reset",                                                                                                 // 23
-        "class": "btn btn-default"                                                                                     // 24
-      }, "Zuruecksetzen"), "\n    "), "\n  "), "\n  " ];                                                               // 25
-    });                                                                                                                // 26
-  });                                                                                                                  // 27
-}));                                                                                                                   // 28
-                                                                                                                       // 29
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-},"hello.html":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/high/index/template.hello.js                                                                           //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-                                                                                                                       // 1
-Template.__checkName("hello");                                                                                         // 2
-Template["hello"] = new Template("Template.hello", (function() {                                                       // 3
-  var view = this;                                                                                                     // 4
-  return [ HTML.DIV({                                                                                                  // 5
-    id: "chart"                                                                                                        // 6
-  }, "\n		", HTML.SVG(), "\n	"), HTML.Raw('\n	<button id="addDataButton">Add data</button>\n	<button id="removeDataButton">Remove data</button>') ];
-}));                                                                                                                   // 8
-                                                                                                                       // 9
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-},"index.html":function(){
+}},"template.index.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1128,158 +1254,702 @@ Template["index"] = new Template("Template.index", (function() {                
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
     "class": "container"                                                                                               // 6
-  }, HTML.Raw("\n    <br>\n    "), Blaze.Unless(function() {                                                           // 7
-    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 8
+  }, "\n    ", HTML.DIV({                                                                                              // 7
+    "class": "row"                                                                                                     // 8
+  }, "\n    ", HTML.SPAN({                                                                                             // 9
+    "class": "categories"                                                                                              // 10
+  }, Blaze.If(function() {                                                                                             // 11
+    return Spacebars.call(view.lookup("currentUser"));                                                                 // 12
+  }, function() {                                                                                                      // 13
+    return [ "Angemeldet als: ", Blaze.View("lookup:currentUserMail", function() {                                     // 14
+      return Spacebars.mustache(view.lookup("currentUserMail"));                                                       // 15
+    }), " " ];                                                                                                         // 16
+  })), "\n    "), "\n    ", HTML.DIV({                                                                                 // 17
+    "class": "row"                                                                                                     // 18
+  }, "\n      ", Blaze.Unless(function() {                                                                             // 19
+    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 20
+  }, function() {                                                                                                      // 21
+    return [ "\n      ", HTML.BR(), "\n      ", HTML.DIV({                                                             // 22
+      "class": "archive-box"                                                                                           // 23
+    }, "\n        ", HTML.P("\n          Bitte fuelle den Fragebogen aus. Du hast bis zum 03. Juli 2016 dafuer Zeit. Nur mit ausgefuellten Fragebogen ist deine Teilnahme gueltig.\n        "), "\n        ", HTML.A({
+      "class": "btn btn-standard-1 btn-question",                                                                      // 25
+      href: function() {                                                                                               // 26
+        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 27
+      }                                                                                                                // 28
+    }, "Fragebogen"), "\n      "), "\n      " ];                                                                       // 29
+  }), "\n      ", HTML.Raw("<br>"), "\n\n    "), "\n    ", HTML.DIV({                                                  // 30
+    "class": "row"                                                                                                     // 31
+  }, "\n      ", Spacebars.include(view.lookupTemplate("termDay")), "\n    "), HTML.Raw("\n    <br>\n    <br>\n    "), HTML.DIV({
+    "class": "row"                                                                                                     // 33
+  }, "\n      ", HTML.DIV({                                                                                            // 34
+    "class": "col-sm-8"                                                                                                // 35
+  }, "\n        ", HTML.DIV({                                                                                          // 36
+    "class": "row offset-1"                                                                                            // 37
+  }, "\n          ", Spacebars.include(view.lookupTemplate("faqWidget")), "\n        "), "\n        ", HTML.DIV({      // 38
+    "class": "row offset-1"                                                                                            // 39
+  }, "\n          ", Spacebars.include(view.lookupTemplate("feedbackClient")), "\n        "), "\n      "), "\n      ", HTML.DIV({
+    "class": "col-sm-4 "                                                                                               // 41
+  }, "\n        ", HTML.Raw('<p class="categories text-center">\n          Beliebte Woerter\n        </p>'), "\n        ", HTML.DIV({
+    "class": "row"                                                                                                     // 43
+  }, "\n          ", Spacebars.include(view.lookupTemplate("wordsUser")), "\n        "), "\n        ", HTML.DIV({      // 44
+    "class": "row"                                                                                                     // 45
+  }, "\n          ", Spacebars.include(view.lookupTemplate("wordsAll")), "\n        "), "\n      "), "\n    "), HTML.Raw("\n\n    <br>\n\n  "));
+}));                                                                                                                   // 47
+                                                                                                                       // 48
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"trainer":{"modes":{"template.modus_definition.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/modes/template.modus_definition.js                                                        //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("modusDefinition");                                                                               // 2
+Template["modusDefinition"] = new Template("Template.modusDefinition", (function() {                                   // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "jumbotron"                                                                                               // 6
+  }, "\n\n		", HTML.DIV({                                                                                              // 7
+    "class": "row"                                                                                                     // 8
+  }, "\n			", HTML.DIV({                                                                                               // 9
+    "class": "media"                                                                                                   // 10
+  }, "\n				", HTML.DIV({                                                                                              // 11
+    "class": "media-body"                                                                                              // 12
+  }, "\n					", Blaze.If(function() {                                                                                  // 13
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 14
+  }, function() {                                                                                                      // 15
+    return HTML.SPAN({                                                                                                 // 16
+      "class": "flag animate-box fadeInUp animated"                                                                    // 17
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 18
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 19
+    }, function() {                                                                                                    // 20
+      return "Favoriten";                                                                                              // 21
+    }, function() {                                                                                                    // 22
+      return "Nicht-Favoriten";                                                                                        // 23
+    }));                                                                                                               // 24
+  }), "\n				"), "\n				", HTML.Raw('<div class="media-right">\n					<div class="i-transparent">\n						<i class="fa fa-minus fa-4x"></i>\n					</div>\n				</div>'), "\n			"), "\n		"), "\n\n		", HTML.DIV({
+    "class": "row"                                                                                                     // 26
+  }, "\n			", HTML.DIV({                                                                                               // 27
+    "class": "text-center"                                                                                             // 28
+  }, "\n				", HTML.P({                                                                                                // 29
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 30
+  }, "\n					", Blaze.View("lookup:wordClass", function() {                                                            // 31
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 32
+  }), "\n				"), "\n				", HTML.H2({                                                                                   // 33
+    "class": "trainer-title"                                                                                           // 34
+  }, Blaze.View("lookup:term", function() {                                                                            // 35
+    return Spacebars.mustache(view.lookup("term"));                                                                    // 36
+  }), Blaze.If(function() {                                                                                            // 37
+    return Spacebars.call(view.lookup("preposition"));                                                                 // 38
+  }, function() {                                                                                                      // 39
+    return [ " ", HTML.SPAN({                                                                                          // 40
+      "class": "trainer-preposition"                                                                                   // 41
+    }, HTML.I(Blaze.View("lookup:preposition", function() {                                                            // 42
+      return Spacebars.mustache(view.lookup("preposition"));                                                           // 43
+    }))) ];                                                                                                            // 44
+  })), "\n				", HTML.Raw("<!-- DEFINITION -->"), "\n				", Blaze.Unless(function() {                                  // 45
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 46
+  }, function() {                                                                                                      // 47
+    return [ "\n					", HTML.DIV({                                                                                     // 48
+      "class": "btn-reveal"                                                                                            // 49
+    }, "\n						", HTML.I({                                                                                            // 50
+      "class": "trainer-question fa fa-question fa-4x"                                                                 // 51
+    }), "\n						", HTML.Comment(' <div class="label label-info">Gesucht: Wort</div> '), "\n					"), "\n				" ];       // 52
+  }, function() {                                                                                                      // 53
+    return [ "\n					", HTML.DIV({                                                                                     // 54
+      "class": "trainer-definition flipInX animated"                                                                   // 55
+    }, "\n						", HTML.OL("\n							", Blaze.Each(function() {                                                        // 56
+      return Spacebars.call(view.lookup("definition"));                                                                // 57
+    }, function() {                                                                                                    // 58
+      return [ "\n							", HTML.LI(Blaze.View("lookup:.", function() {                                                // 59
+        return Spacebars.mustache(view.lookup("."));                                                                   // 60
+      })), "\n							" ];                                                                                              // 61
+    }), "\n						"), "\n					"), "\n				" ];                                                                           // 62
+  }), "\n			"), "\n		"), "\n\n	");                                                                                     // 63
+}));                                                                                                                   // 64
+                                                                                                                       // 65
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.modus_eingabe.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/modes/template.modus_eingabe.js                                                           //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("modusEingabe");                                                                                  // 2
+Template["modusEingabe"] = new Template("Template.modusEingabe", (function() {                                         // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "jumbotron"                                                                                               // 6
+  }, "\n\n		", Blaze.If(function() {                                                                                   // 7
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 8
   }, function() {                                                                                                      // 9
-    return [ "\n    ", HTML.BR(), "\n    ", HTML.P({                                                                   // 10
-      "class": "alert alert-info"                                                                                      // 11
-    }, "Bitte fuelle den Fragebogen aus. Du hast bis zum 03. Juli 2016 dafuer Zeit. Nur mit ausgefuellten Fragebogen ist deine Teilnahme gueltig.\n      ", HTML.A({
-      "class": "btn btn-default btn-question",                                                                         // 13
-      href: function() {                                                                                               // 14
-        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 15
-      }                                                                                                                // 16
-    }, "Fragebogen"), "\n    "), "\n    " ];                                                                           // 17
-  }), HTML.Raw("\n    <br>\n\n    <!-- {{#each dataDetail1}} <br> {{mode}} {{/each}} -->\n\n    <!-- {{> chartFavLine }} -->\n\n\n\n\n<h3>TOP 5 - Nachgeschlagene Begriffe</h3>\n\n"), HTML.DIV({
-    "class": "row"                                                                                                     // 19
-  }, "\n  ", HTML.DIV({                                                                                                // 20
-    "class": "col-sm-6"                                                                                                // 21
-  }, "\n    ", Spacebars.include(view.lookupTemplate("wordsAll")), "\n  "), "\n  ", HTML.DIV({                         // 22
-    "class": "col-sm-6"                                                                                                // 23
-  }, "\n    ", Spacebars.include(view.lookupTemplate("wordsUser")), "\n  "), "\n"), HTML.Raw("\n\n    <h4>TODO: </h4>\n    <ul>\n      <li>Vocabulary of the day</li>\n    </ul>\n\n    "), Spacebars.include(view.lookupTemplate("feedbackClient")), HTML.Raw("\n\n    <p>\n      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,\n      sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.\n    </p>\n\n\n  "));
-}));                                                                                                                   // 25
-                                                                                                                       // 26
+    return HTML.SPAN({                                                                                                 // 10
+      "class": "label label-warning text-center"                                                                       // 11
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 12
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 13
+    }, function() {                                                                                                    // 14
+      return "Favoriten";                                                                                              // 15
+    }, function() {                                                                                                    // 16
+      return "Nicht-Favoriten";                                                                                        // 17
+    }));                                                                                                               // 18
+  }), "\n\n		", HTML.DIV({                                                                                             // 19
+    "class": "media"                                                                                                   // 20
+  }, "\n			", HTML.DIV({                                                                                               // 21
+    "class": "media-left btn-reveal"                                                                                   // 22
+  }, "\n					", Blaze.Unless(function() {                                                                              // 23
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 24
+  }, function() {                                                                                                      // 25
+    return [ "\n						", Blaze.Unless(function() {                                                                     // 26
+      return Spacebars.dataMustache(view.lookup("getSession"), "termRight");                                           // 27
+    }, function() {                                                                                                    // 28
+      return [ "\n							", HTML.I({                                                                                   // 29
+        "class": "trainer-question fa fa-question fa-4x"                                                               // 30
+      }), "\n						" ];                                                                                                // 31
+    }, function() {                                                                                                    // 32
+      return [ "\n							", HTML.I({                                                                                   // 33
+        "class": "trainer-exclamation fa fa-thumbs-o-up fa-4x"                                                         // 34
+      }), "\n						" ];                                                                                                // 35
+    }), "\n					" ];                                                                                                   // 36
+  }, function() {                                                                                                      // 37
+    return [ "\n						", HTML.I({                                                                                      // 38
+      "class": "trainer-exclamation fa fa-exclamation fa-4x"                                                           // 39
+    }), "\n					" ];                                                                                                   // 40
+  }), "\n			"), "\n			", HTML.DIV({                                                                                    // 41
+    "class": "media-body media-middle"                                                                                 // 42
+  }, "\n				", Blaze.Unless(function() {                                                                               // 43
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 44
+  }, function() {                                                                                                      // 45
+    return [ "\n					", Blaze.If(function() {                                                                          // 46
+      return Spacebars.dataMustache(view.lookup("getSession"), "termWrong");                                           // 47
+    }, function() {                                                                                                    // 48
+      return [ "\n					", HTML.Comment(' <h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2> '), "\n						", HTML.P({
+        "class": "categories"                                                                                          // 50
+      }, "Bisher richtig:"), "\n						", HTML.H2({                                                                     // 51
+        "class": "trainer-title"                                                                                       // 52
+      }, Blaze.View("lookup:getSession", function() {                                                                  // 53
+        return Spacebars.mustache(view.lookup("getSession"), "termCache");                                             // 54
+      })), "\n					" ];                                                                                                // 55
+    }), "\n					", Blaze.If(function() {                                                                               // 56
+      return Spacebars.dataMustache(view.lookup("getSession"), "termRight");                                           // 57
+    }, function() {                                                                                                    // 58
+      return [ "\n						", HTML.P({                                                                                    // 59
+        "class": "categories fadeIn animated"                                                                          // 60
+      }, "Richtig!"), "\n						", HTML.H2({                                                                            // 61
+        "class": "trainer-title fadeIn animated"                                                                       // 62
+      }, Blaze.View("lookup:term", function() {                                                                        // 63
+        return Spacebars.mustache(view.lookup("term"));                                                                // 64
+      }), Blaze.If(function() {                                                                                        // 65
+        return Spacebars.call(view.lookup("preposition"));                                                             // 66
+      }, function() {                                                                                                  // 67
+        return [ " ", HTML.SPAN({                                                                                      // 68
+          "class": "trainer-preposition"                                                                               // 69
+        }, HTML.I(Blaze.View("lookup:preposition", function() {                                                        // 70
+          return Spacebars.mustache(view.lookup("preposition"));                                                       // 71
+        }))) ];                                                                                                        // 72
+      })), "\n					" ];                                                                                                // 73
+    }), "\n				" ];                                                                                                    // 74
+  }, function() {                                                                                                      // 75
+    return [ "\n				", HTML.P({                                                                                        // 76
+      "class": "categories fadeIn animated"                                                                            // 77
+    }, Blaze.View("lookup:wordClass", function() {                                                                     // 78
+      return Spacebars.mustache(view.lookup("wordClass"));                                                             // 79
+    })), "\n				", HTML.H2({                                                                                           // 80
+      "class": "trainer-title fadeIn animated"                                                                         // 81
+    }, Blaze.View("lookup:term", function() {                                                                          // 82
+      return Spacebars.mustache(view.lookup("term"));                                                                  // 83
+    }), Blaze.If(function() {                                                                                          // 84
+      return Spacebars.call(view.lookup("preposition"));                                                               // 85
+    }, function() {                                                                                                    // 86
+      return [ " ", HTML.SPAN({                                                                                        // 87
+        "class": "trainer-preposition"                                                                                 // 88
+      }, HTML.I(Blaze.View("lookup:preposition", function() {                                                          // 89
+        return Spacebars.mustache(view.lookup("preposition"));                                                         // 90
+      }))) ];                                                                                                          // 91
+    })), "\n				" ];                                                                                                   // 92
+  }), "\n			"), "\n		"), HTML.Raw('\n\n		<div class="input-group-lg form-wrapper">\n					<input autofocus="" type="text" name="term" id="term" class="form-control" placeholder="Das gesuchte Wort lautet...">\n		</div>\n\n		<br>\n		<br>\n		'), HTML.DIV({
+    "class": "text-center "                                                                                            // 94
+  }, "\n			", HTML.DIV({                                                                                               // 95
+    "class": "trainer-definition flipInX animated"                                                                     // 96
+  }, "\n				", HTML.OL("\n					", Blaze.Each(function() {                                                              // 97
+    return Spacebars.call(view.lookup("definition"));                                                                  // 98
+  }, function() {                                                                                                      // 99
+    return [ "\n					", HTML.LI(Blaze.View("lookup:.", function() {                                                    // 100
+      return Spacebars.mustache(view.lookup("."));                                                                     // 101
+    })), "\n					" ];                                                                                                  // 102
+  }), "\n				"), "\n			"), "\n		"), "\n	");                                                                            // 103
+}));                                                                                                                   // 104
+                                                                                                                       // 105
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"feedback.js":function(){
+},"template.modus_lesen.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/feedback.js                                                                                 //
+// client/views/high/trainer/modes/template.modus_lesen.js                                                             //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-var hooksFeedbackForm = {                                                                                              // 1
-	onSuccess: function () {                                                                                              // 2
-		function onSuccess(formType, result) {                                                                               // 2
-			var msg = 'Feedback erfolgreich gesendet.';                                                                         // 3
-			toastr.success(msg);                                                                                                // 4
-			console.log(Meteor.userId());                                                                                       // 5
-		}                                                                                                                    //
-                                                                                                                       //
-		return onSuccess;                                                                                                    //
-	}(),                                                                                                                  //
-	onError: function () {                                                                                                // 7
-		function onError(formType, error) {                                                                                  // 7
-			var msg = 'Feedback konnte nicht gesendet werden.';                                                                 // 8
-			toastr.error(msg);                                                                                                  // 9
-		}                                                                                                                    //
-                                                                                                                       //
-		return onError;                                                                                                      //
-	}()                                                                                                                   //
-};                                                                                                                     //
-                                                                                                                       //
-AutoForm.addHooks(['insertFeedbackForm'], hooksFeedbackForm);                                                          // 13
-                                                                                                                       //
-SimpleSchema.debug = true;                                                                                             // 15
+                                                                                                                       // 1
+Template.__checkName("modusLesen");                                                                                    // 2
+Template["modusLesen"] = new Template("Template.modusLesen", (function() {                                             // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "jumbotron"                                                                                               // 6
+  }, "\n\n		", HTML.DIV({                                                                                              // 7
+    "class": "row"                                                                                                     // 8
+  }, "\n			", HTML.DIV({                                                                                               // 9
+    "class": "media"                                                                                                   // 10
+  }, "\n				", HTML.DIV({                                                                                              // 11
+    "class": "media-body"                                                                                              // 12
+  }, "\n					", Blaze.If(function() {                                                                                  // 13
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 14
+  }, function() {                                                                                                      // 15
+    return HTML.SPAN({                                                                                                 // 16
+      "class": "flag animate-box fadeInUp animated"                                                                    // 17
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 18
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 19
+    }, function() {                                                                                                    // 20
+      return "Favoriten";                                                                                              // 21
+    }, function() {                                                                                                    // 22
+      return "Nicht-Favoriten";                                                                                        // 23
+    }));                                                                                                               // 24
+  }), "\n				"), "\n				", HTML.DIV({                                                                                  // 25
+    "class": "media-right"                                                                                             // 26
+  }, "\n					", Blaze.If(function() {                                                                                  // 27
+    return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                      // 28
+  }, function() {                                                                                                      // 29
+    return [ "\n					", HTML.DIV({                                                                                     // 30
+      "class": "btn-delete fadeInLeft animated"                                                                        // 31
+    }, "\n						", HTML.I({                                                                                            // 32
+      "class": "fa fa-trash-o fa-4x"                                                                                   // 33
+    }), "\n					"), "\n					" ];                                                                                       // 34
+  }, function() {                                                                                                      // 35
+    return [ "\n					", HTML.DIV({                                                                                     // 36
+      "class": "btn-insert fadeInLeft animated"                                                                        // 37
+    }, "\n						", HTML.I({                                                                                            // 38
+      "class": "fa fa-heart-o fa-4x"                                                                                   // 39
+    }), "\n					"), "\n					" ];                                                                                       // 40
+  }), "\n				"), "\n			"), "\n		"), "\n\n		", HTML.DIV({                                                               // 41
+    "class": "row"                                                                                                     // 42
+  }, "\n			", HTML.DIV({                                                                                               // 43
+    "class": "text-center"                                                                                             // 44
+  }, "\n				", HTML.P({                                                                                                // 45
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 46
+  }, "\n					", Blaze.View("lookup:wordClass", function() {                                                            // 47
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 48
+  }), "\n				"), "\n				", HTML.H2({                                                                                   // 49
+    "class": "trainer-title"                                                                                           // 50
+  }, Blaze.View("lookup:term", function() {                                                                            // 51
+    return Spacebars.mustache(view.lookup("term"));                                                                    // 52
+  }), Blaze.If(function() {                                                                                            // 53
+    return Spacebars.call(view.lookup("preposition"));                                                                 // 54
+  }, function() {                                                                                                      // 55
+    return [ " ", HTML.SPAN({                                                                                          // 56
+      "class": "trainer-preposition"                                                                                   // 57
+    }, HTML.I(Blaze.View("lookup:preposition", function() {                                                            // 58
+      return Spacebars.mustache(view.lookup("preposition"));                                                           // 59
+    }))) ];                                                                                                            // 60
+  })), "\n				", HTML.DIV({                                                                                            // 61
+    "class": "trainer-definition"                                                                                      // 62
+  }, "\n					", HTML.OL("\n						", Blaze.Each(function() {                                                            // 63
+    return Spacebars.call(view.lookup("definition"));                                                                  // 64
+  }, function() {                                                                                                      // 65
+    return [ "\n						", HTML.LI(Blaze.View("lookup:.", function() {                                                   // 66
+      return Spacebars.mustache(view.lookup("."));                                                                     // 67
+    })), "\n						" ];                                                                                                 // 68
+  }), "\n					"), "\n				"), "\n			"), "\n		"), "\n\n	");                                                              // 69
+}));                                                                                                                   // 70
+                                                                                                                       // 71
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"hello.js":function(){
+},"template.modus_wort.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
-// client/views/high/index/hello.js                                                                                    //
+// client/views/high/trainer/modes/template.modus_wort.js                                                              //
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-Template.hello.onCreated(function () {                                                                                 // 1
+                                                                                                                       // 1
+Template.__checkName("modusWort");                                                                                     // 2
+Template["modusWort"] = new Template("Template.modusWort", (function() {                                               // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "jumbotron"                                                                                               // 6
+  }, "\n\n		", HTML.DIV({                                                                                              // 7
+    "class": "row"                                                                                                     // 8
+  }, "\n			", HTML.DIV({                                                                                               // 9
+    "class": "media"                                                                                                   // 10
+  }, "\n				", HTML.DIV({                                                                                              // 11
+    "class": "media-body"                                                                                              // 12
+  }, "\n					", Blaze.If(function() {                                                                                  // 13
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 14
+  }, function() {                                                                                                      // 15
+    return HTML.SPAN({                                                                                                 // 16
+      "class": "flag animate-box fadeInUp animated"                                                                    // 17
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 18
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 19
+    }, function() {                                                                                                    // 20
+      return "Favoriten";                                                                                              // 21
+    }, function() {                                                                                                    // 22
+      return "Nicht-Favoriten";                                                                                        // 23
+    }));                                                                                                               // 24
+  }), "\n				"), "\n				", HTML.Raw('<div class="media-right">\n					<div class="i-transparent">\n						<i class="fa fa-minus fa-4x"></i>\n					</div>\n				</div>'), "\n			"), "\n		"), "\n\n		", HTML.DIV({
+    "class": "row"                                                                                                     // 26
+  }, "\n			", HTML.DIV({                                                                                               // 27
+    "class": "text-center"                                                                                             // 28
+  }, "\n				", HTML.P({                                                                                                // 29
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 30
+  }, "\n					", Blaze.View("lookup:wordClass", function() {                                                            // 31
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 32
+  }), "\n				"), "\n				", HTML.Raw("<!-- WORT -->"), "\n				", Blaze.Unless(function() {                              // 33
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 34
+  }, function() {                                                                                                      // 35
+    return [ "\n					", HTML.DIV({                                                                                     // 36
+      "class": "btn-reveal"                                                                                            // 37
+    }, "\n						", HTML.I({                                                                                            // 38
+      "class": "trainer-question fa fa-question fa-4x"                                                                 // 39
+    }), "\n					"), "\n				" ];                                                                                        // 40
+  }, function() {                                                                                                      // 41
+    return [ "\n						", HTML.H2({                                                                                     // 42
+      "class": "trainer-title  bounceIn animated"                                                                      // 43
+    }, Blaze.View("lookup:term", function() {                                                                          // 44
+      return Spacebars.mustache(view.lookup("term"));                                                                  // 45
+    }), Blaze.If(function() {                                                                                          // 46
+      return Spacebars.call(view.lookup("preposition"));                                                               // 47
+    }, function() {                                                                                                    // 48
+      return [ " ", HTML.SPAN({                                                                                        // 49
+        "class": "trainer-preposition"                                                                                 // 50
+      }, HTML.I(Blaze.View("lookup:preposition", function() {                                                          // 51
+        return Spacebars.mustache(view.lookup("preposition"));                                                         // 52
+      }))) ];                                                                                                          // 53
+    })), "\n				" ];                                                                                                   // 54
+  }), "\n\n				", HTML.DIV({                                                                                           // 55
+    "class": "trainer-definition"                                                                                      // 56
+  }, "\n					", HTML.OL("\n						", Blaze.Each(function() {                                                            // 57
+    return Spacebars.call(view.lookup("definition"));                                                                  // 58
+  }, function() {                                                                                                      // 59
+    return [ "\n						", HTML.LI(Blaze.View("lookup:.", function() {                                                   // 60
+      return Spacebars.mustache(view.lookup("."));                                                                     // 61
+    })), "\n						" ];                                                                                                 // 62
+  }), "\n					"), "\n				"), "\n			"), "\n		"), "\n\n	");                                                              // 63
+}));                                                                                                                   // 64
+                                                                                                                       // 65
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"template.backward.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/template.backward.js                                                                      //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("backward");                                                                                      // 2
+Template["backward"] = new Template("Template.backward", (function() {                                                 // 3
+  var view = this;                                                                                                     // 4
+  return Blaze.If(function() {                                                                                         // 5
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
+  }, function() {                                                                                                      // 7
+    return [ "\n		", HTML.DIV({                                                                                        // 8
+      "class": "media-left media-middle"                                                                               // 9
+    }, "\n			", HTML.I({                                                                                               // 10
+      "class": "fa fa-ban fa-2x"                                                                                       // 11
+    }), "\n		"), "\n	" ];                                                                                              // 12
+  }, function() {                                                                                                      // 13
+    return [ "\n		", Spacebars.With(function() {                                                                       // 14
+      return Spacebars.call(view.lookup("entry"));                                                                     // 15
+    }, function() {                                                                                                    // 16
+      return [ "\n			", HTML.DIV({                                                                                     // 17
+        "class": "media-left media-middle btn-backward"                                                                // 18
+      }, "\n				", HTML.I({                                                                                            // 19
+        "class": "fa fa-chevron-left fa-4x"                                                                            // 20
+      }), "\n			"), "\n		" ];                                                                                          // 21
+    }), "\n	" ];                                                                                                       // 22
+  });                                                                                                                  // 23
+}));                                                                                                                   // 24
+                                                                                                                       // 25
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.forward.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/template.forward.js                                                                       //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("forward");                                                                                       // 2
+Template["forward"] = new Template("Template.forward", (function() {                                                   // 3
+  var view = this;                                                                                                     // 4
+  return Blaze.If(function() {                                                                                         // 5
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
+  }, function() {                                                                                                      // 7
+    return [ "\n		", HTML.DIV({                                                                                        // 8
+      "class": "media-right media-middle"                                                                              // 9
+    }, "\n			", HTML.I({                                                                                               // 10
+      "class": "fa fa-ban fa-2x"                                                                                       // 11
+    }), "\n		"), "\n	" ];                                                                                              // 12
+  }, function() {                                                                                                      // 13
+    return [ "\n		", Spacebars.With(function() {                                                                       // 14
+      return Spacebars.call(view.lookup("entry"));                                                                     // 15
+    }, function() {                                                                                                    // 16
+      return [ "\n			", HTML.DIV({                                                                                     // 17
+        "class": "media-right media-middle btn-forward"                                                                // 18
+      }, "\n				", HTML.I({                                                                                            // 19
+        "class": "fa fa-chevron-right fa-4x"                                                                           // 20
+      }), "\n			"), "\n		" ];                                                                                          // 21
+    }), "\n	" ];                                                                                                       // 22
+  });                                                                                                                  // 23
+}));                                                                                                                   // 24
+                                                                                                                       // 25
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.trainer.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/template.trainer.js                                                                       //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("trainer");                                                                                       // 2
+Template["trainer"] = new Template("Template.trainer", (function() {                                                   // 3
+  var view = this;                                                                                                     // 4
+  return HTML.DIV({                                                                                                    // 5
+    "class": "container"                                                                                               // 6
+  }, HTML.Raw("\n		<br>\n		"), HTML.DIV({                                                                              // 7
+    "class": "row text-center"                                                                                         // 8
+  }, "\n			", HTML.DIV({                                                                                               // 9
+    "class": "col-sm-6"                                                                                                // 10
+  }, "\n				", Spacebars.include(view.lookupTemplate("navModeTrainer")), "\n			"), "\n			", HTML.DIV({                 // 11
+    "class": "col-sm-6"                                                                                                // 12
+  }, "\n				", Spacebars.include(view.lookupTemplate("navSourceTrainer")), "\n			"), "\n		"), HTML.Raw("\n		<br>\n		"), HTML.DIV({
+    "class": "row"                                                                                                     // 14
+  }, "\n			", Blaze.Unless(function() {                                                                                // 15
+    return Spacebars.call(view.lookup("isAlphabetic"));                                                                // 16
+  }, function() {                                                                                                      // 17
+    return [ "\n				", HTML.P({                                                                                        // 18
+      "class": "alert alert-warning"                                                                                   // 19
+    }, "Tipp: Das gesuchte Wort enthaelt nur Zeichen des Alphabets (a - Z). Keine Leer- und Sonderzeichen."), "\n			" ];
+  }), "\n			", Blaze.Unless(function() {                                                                               // 21
+    return Spacebars.call(view.lookup("isLength64"));                                                                  // 22
+  }, function() {                                                                                                      // 23
+    return [ "\n				", HTML.P({                                                                                        // 24
+      "class": "alert alert-warning"                                                                                   // 25
+    }, "Tipp: Das gesuchte Wort enthaelt nicht mehr als 64 Zeichen."), "\n			" ];                                      // 26
+  }), "\n\n			", HTML.DIV({                                                                                            // 27
+    "class": "media"                                                                                                   // 28
+  }, "\n\n				", Spacebars.include(view.lookupTemplate("backward")), "\n\n				", HTML.DIV({                            // 29
+    "class": "media-body"                                                                                              // 30
+  }, "\n					", Blaze.If(function() {                                                                                  // 31
+    return Spacebars.call(view.templateInstance().subscriptionsReady());                                               // 32
+  }, function() {                                                                                                      // 33
+    return [ "\n						", Spacebars.With(function() {                                                                   // 34
+      return Spacebars.call(view.lookup("entry"));                                                                     // 35
+    }, function() {                                                                                                    // 36
+      return [ "\n							", Blaze.If(function() {                                                                      // 37
+        return Spacebars.dataMustache(view.lookup("getSession"), "lesen");                                             // 38
+      }, function() {                                                                                                  // 39
+        return [ "\n								", Spacebars.include(view.lookupTemplate("modusLesen")), "\n							" ];                    // 40
+      }), "\n							", Blaze.If(function() {                                                                           // 41
+        return Spacebars.dataMustache(view.lookup("getSession"), "wort");                                              // 42
+      }, function() {                                                                                                  // 43
+        return [ "\n								", Spacebars.include(view.lookupTemplate("modusWort")), "\n							" ];                     // 44
+      }), "\n							", Blaze.If(function() {                                                                           // 45
+        return Spacebars.dataMustache(view.lookup("getSession"), "definition");                                        // 46
+      }, function() {                                                                                                  // 47
+        return [ "\n								", Spacebars.include(view.lookupTemplate("modusDefinition")), "\n							" ];               // 48
+      }), "\n							", Blaze.If(function() {                                                                           // 49
+        return Spacebars.dataMustache(view.lookup("getSession"), "eingabe");                                           // 50
+      }, function() {                                                                                                  // 51
+        return [ "\n								", Spacebars.include(view.lookupTemplate("modusEingabe")), "\n							" ];                  // 52
+      }), "\n						" ];                                                                                                // 53
+    }), "\n					" ];                                                                                                   // 54
+  }, function() {                                                                                                      // 55
+    return [ "\n						", Spacebars.include(view.lookupTemplate("loading")), "\n					" ];                               // 56
+  }), "\n				"), "\n\n				", Spacebars.include(view.lookupTemplate("forward")), "\n\n			"), "\n		"), "\n	");           // 57
+}));                                                                                                                   // 58
+                                                                                                                       // 59
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"trainer.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/trainer/trainer.js                                                                                //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+Template.trainer.onCreated(function () {                                                                               // 1
 	var template = Template.instance();                                                                                   // 2
-	template.subscribe('people'); // Data.Viewed.find()                                                                   // 3
-});                                                                                                                    // 1
+	template.isAlphabetic = new ReactiveVar(true);                                                                        // 3
+	template.isLength64 = new ReactiveVar(true);                                                                          // 4
                                                                                                                        //
-Template.hello.rendered = function () {                                                                                // 6
+	template.autorun(function () {                                                                                        // 6
+		template.subscribe('vocabularyAll'); // Vocabulary.find()                                                            // 7
+		template.subscribe('ownedFavourites'); // Favourites.find()                                                          // 6
                                                                                                                        //
-	// chart object                                                                                                       //
-	var chart = nv.models.lineChart().margin({                                                                            // 9
-		left: 100                                                                                                            // 11
-	}) //Adjust chart margins to give the x-axis some breathing room.                                                     //
-	.useInteractiveGuideline(true) //We want nice looking tooltips and a guideline!                                       //
-	.duration(350) //how fast do you want the lines to transition?                                                        //
-	.showLegend(true) //Show the legend, allowing users to turn on/off line series.                                       //
-	.showYAxis(true) //Show the y-axis                                                                                    //
-	.showXAxis(true) //Show the x-axis                                                                                    //
-	;                                                                                                                     // 9
-                                                                                                                       //
-	// chart details                                                                                                      //
-	nv.addGraph(function () {                                                                                             // 6
-		var data = People.find().fetch();                                                                                    // 22
-                                                                                                                       //
-		chart.xAxis.axisLabel('Person number').tickFormat(d3.format('d'));                                                   // 24
-		chart.yAxis.axisLabel('Age (years)').tickFormat(d3.format('d'));                                                     // 25
-                                                                                                                       //
-		d3.select('#chart svg').datum([{                                                                                     // 27
-			values: data,                                                                                                       // 30
-			key: 'Age'                                                                                                          // 31
-		}]).call(chart);                                                                                                     //
-                                                                                                                       //
-		nv.utils.windowResize(chart.update);                                                                                 // 37
-                                                                                                                       //
-		return chart;                                                                                                        // 39
+		Session.set(LENGTH_FAV, Favourites.find().count());                                                                  // 6
+		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());                                  // 11
 	});                                                                                                                   //
+});                                                                                                                    //
                                                                                                                        //
-	// update chart when data changes                                                                                     //
-	this.autorun(function () {                                                                                            // 6
-		var data = People.find().fetch();                                                                                    // 44
-		d3.select('#chart svg').datum([{                                                                                     // 45
-			values: data,                                                                                                       // 47
-			key: 'Age'                                                                                                          // 48
-		}]).call(chart);                                                                                                     //
-		chart.update();                                                                                                      // 51
-	});                                                                                                                   //
-};                                                                                                                     //
-                                                                                                                       //
-Template.hello.events({                                                                                                // 56
-	'click #addDataButton': function () {                                                                                 // 57
-		function clickAddDataButton() {                                                                                      // 57
-			var age = Aux.getRandomInt(13, 89);                                                                                 // 58
-			var lastPerson = People.findOne({}, {                                                                               // 59
-				fields: {                                                                                                          // 60
-					x: 1                                                                                                              // 61
-				},                                                                                                                 //
-				sort: {                                                                                                            // 63
-					x: -1                                                                                                             // 64
-				},                                                                                                                 //
-				limit: 1,                                                                                                          // 66
-				reactive: false                                                                                                    // 67
-			});                                                                                                                 //
-                                                                                                                       //
-			Meteor.call('addPerson', lastPerson, age);                                                                          // 70
+Template.trainer.helpers({                                                                                             // 15
+	isAlphabetic: function () {                                                                                           // 16
+		function isAlphabetic() {                                                                                            //
+			return Template.instance().isAlphabetic.get();                                                                      // 17
 		}                                                                                                                    //
                                                                                                                        //
-		return clickAddDataButton;                                                                                           //
+		return isAlphabetic;                                                                                                 //
 	}(),                                                                                                                  //
-	'click #removeDataButton': function () {                                                                              // 73
-		function clickRemoveDataButton() {                                                                                   // 73
-			var lastPerson = People.findOne({}, {                                                                               // 74
-				fields: {                                                                                                          // 75
-					x: 1                                                                                                              // 76
-				},                                                                                                                 //
-				sort: {                                                                                                            // 78
-					x: -1                                                                                                             // 79
-				},                                                                                                                 //
-				limit: 1,                                                                                                          // 81
-				reactive: false                                                                                                    // 82
-			});                                                                                                                 //
-			if (lastPerson) {                                                                                                   // 84
-				People.remove(lastPerson._id);                                                                                     // 85
+	isLength64: function () {                                                                                             // 19
+		function isLength64() {                                                                                              //
+			return Template.instance().isLength64.get();                                                                        // 20
+		}                                                                                                                    //
+                                                                                                                       //
+		return isLength64;                                                                                                   //
+	}(),                                                                                                                  //
+	termPercent: function () {                                                                                            // 22
+		function termPercent() {                                                                                             //
+			return Math.floor(Session.get(COUNT_LETTERS_MATCH) / this.term.length * 100);                                       // 23
+		}                                                                                                                    //
+                                                                                                                       //
+		return termPercent;                                                                                                  //
+	}()                                                                                                                   //
+});                                                                                                                    //
+                                                                                                                       //
+Template.trainer.events({                                                                                              // 27
+	'keyup [name="term"]': function () {                                                                                  // 28
+		function keyupNameTerm(event, template) {                                                                            //
+			var value = event.target.value.toLowerCase();                                                                       // 29
+                                                                                                                       //
+			if (value !== '') {                                                                                                 // 31
+				// check if string is valid                                                                                        //
+				if (Validate.isAlphabetic(value)) {                                                                                // 33
+					template.isAlphabetic.set(true);                                                                                  // 34
+				} else {                                                                                                           //
+					template.isAlphabetic.set(false);                                                                                 // 36
+				}                                                                                                                  //
+				if (Validate.isLength64(value)) {                                                                                  // 38
+					template.isLength64.set(true);                                                                                    // 39
+				} else {                                                                                                           //
+					template.isLength64.set(false);                                                                                   // 41
+				}                                                                                                                  //
+			}                                                                                                                   //
+                                                                                                                       //
+			// TODO exclude spaces                                                                                              //
+			// && event.keyCode === 13                                                                                          //
+			if (value !== '') {                                                                                                 // 28
+				if (template.isAlphabetic.get() && template.isLength64.get()) {                                                    // 48
+					var term = this.term.toLowerCase();                                                                               // 49
+                                                                                                                       //
+					if (term === value) {                                                                                             // 51
+						if (Session.get(TERM_WRONG)) {                                                                                   // 52
+							Session.set(TERM_WRONG, false);                                                                                 // 53
+						}                                                                                                                //
+						Session.set(TERM_RIGHT, true);                                                                                   // 55
+						event.target.disabled = true;                                                                                    // 56
+                                                                                                                       //
+						setTimeout(function () {                                                                                         // 58
+							Session.set(REVEALED, false);                                                                                   // 59
+							Session.set(TERM_RIGHT, false);                                                                                 // 60
+							// disable after correct term and autofocus input field for the next word                                       //
+							if (event.target) {                                                                                             // 58
+								event.target.disabled = false;                                                                                 // 63
+								event.target.value = '';                                                                                       // 64
+								if (event.target.disabled === true) {                                                                          // 65
+									event.target.disabled = false;                                                                                // 66
+									event.target.autofocus = true;                                                                                // 67
+								}                                                                                                              //
+								event.target.focus();                                                                                          // 69
+							}                                                                                                               //
+                                                                                                                       //
+							var val = 0;                                                                                                    // 72
+							if (Session.get(RANDOM_FAV)) {                                                                                  // 73
+								val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 74
+								Session.set(COUNT_VIEWED, val);                                                                                // 75
+							} else {                                                                                                        //
+								val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 77
+								Session.set(COUNT_VIEWED, val);                                                                                // 78
+							}                                                                                                               //
+						}, 2000);                                                                                                        //
+					} else {                                                                                                          //
+						Session.set(TERM_WRONG, true);                                                                                   // 83
+                                                                                                                       //
+						var termArray = R.split('', term);                                                                               // 85
+						var f = function () {                                                                                            // 86
+							function f(x, y) {                                                                                              // 86
+								var space = "_";                                                                                               // 87
+								if (x === y) {                                                                                                 // 88
+									return x;                                                                                                     // 89
+								} else {                                                                                                       //
+									return space;                                                                                                 // 91
+								}                                                                                                              //
+							}                                                                                                               //
+                                                                                                                       //
+							return f;                                                                                                       //
+						}();                                                                                                             //
+						var cheese = R.zipWith(f, term, value);                                                                          // 94
+						while (cheese.length < term.length) {                                                                            // 95
+							cheese = R.append('_', cheese);                                                                                 // 96
+						}                                                                                                                //
+                                                                                                                       //
+						var countMatch = term.length - R.filter(R.equals('_'), cheese).length;                                           // 99
+						Session.set(COUNT_LETTERS_MATCH, countMatch);                                                                    // 100
+                                                                                                                       //
+						cheese = R.join(' ', cheese);                                                                                    // 102
+						Session.set(TERM_CACHE, cheese);                                                                                 // 103
+					}                                                                                                                 //
+				}                                                                                                                  //
+			}                                                                                                                   //
+                                                                                                                       //
+			if (value === '') {                                                                                                 // 109
+				template.isAlphabetic.set(true);                                                                                   // 110
+				template.isLength64.set(true);                                                                                     // 111
+                                                                                                                       //
+				var _cheese = '';                                                                                                  // 113
+				while (_cheese.length < this.term.length) {                                                                        // 114
+					_cheese = R.append('_', _cheese);                                                                                 // 115
+				}                                                                                                                  //
+				_cheese = R.join(' ', _cheese);                                                                                    // 117
+				Session.set(TERM_CACHE, _cheese);                                                                                  // 118
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
-		return clickRemoveDataButton;                                                                                        //
+		return keyupNameTerm;                                                                                                //
 	}()                                                                                                                   //
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"fragebogen":{"fragebogen.html":function(){
+}},"faq":{"template.faq.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/faq/template.faq.js                                                                               //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("faq");                                                                                           // 2
+Template["faq"] = new Template("Template.faq", (function() {                                                           // 3
+  var view = this;                                                                                                     // 4
+  return HTML.Raw('<div class="text-center">\n			<h2 class="category-title">Dokumentation</h2>\n			<div class="category-description">\n				Ein paar Erlaeuterungen\n			</div>\n	</div>');
+}));                                                                                                                   // 6
+                                                                                                                       // 7
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"fragebogen":{"template.fragebogen.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1292,7 +1962,7 @@ Template.__checkName("fragebogen");                                             
 Template["fragebogen"] = new Template("Template.fragebogen", (function() {                                             // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
-    "class": "container"                                                                                               // 6
+    "class": "container survey"                                                                                        // 6
   }, HTML.Raw('\n		<h1>Fragebogen</h1>\n		<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->\n		'), Blaze._TemplateWith(function() {
     return {                                                                                                           // 8
       collection: Spacebars.call("Data.Survey"),                                                                       // 9
@@ -1343,7 +2013,7 @@ Template["fragebogen"] = new Template("Template.fragebogen", (function() {      
         };                                                                                                             // 54
       }, function() {                                                                                                  // 55
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 56
-      }), "\n\n		", HTML.LEGEND("Nutzung"), "\n		Von welchen Endgeraeten aus hast du die App genutzt?\n		", Blaze._TemplateWith(function() {
+      }), "\n\n		", HTML.LEGEND("Nutzung"), "\n		Ich habe die App am haeufigsten ueber ein ...\n		", Blaze._TemplateWith(function() {
         return {                                                                                                       // 58
           name: Spacebars.call("deviceMobile")                                                                         // 59
         };                                                                                                             // 60
@@ -1379,56 +2049,64 @@ Template["fragebogen"] = new Template("Template.fragebogen", (function() {      
         };                                                                                                             // 90
       }, function() {                                                                                                  // 91
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 92
-      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 93
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 93
         return {                                                                                                       // 94
-          name: Spacebars.call("attentionBenefit")                                                                     // 95
+          name: Spacebars.call("modeEnter")                                                                            // 95
         };                                                                                                             // 96
       }, function() {                                                                                                  // 97
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 98
       }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 99
         return {                                                                                                       // 100
-          name: Spacebars.call("attentionBehavior")                                                                    // 101
+          name: Spacebars.call("attentionBenefit")                                                                     // 101
         };                                                                                                             // 102
       }, function() {                                                                                                  // 103
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 104
-      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 105
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 105
         return {                                                                                                       // 106
-          name: Spacebars.call("attentionBehaviorText")                                                                // 107
+          name: Spacebars.call("attentionBehavior")                                                                    // 107
         };                                                                                                             // 108
       }, function() {                                                                                                  // 109
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 110
-      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 111
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 111
         return {                                                                                                       // 112
-          name: Spacebars.call("attentionSituation")                                                                   // 113
+          name: Spacebars.call("attentionBehaviorText")                                                                // 113
         };                                                                                                             // 114
       }, function() {                                                                                                  // 115
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 116
       }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 117
         return {                                                                                                       // 118
-          name: Spacebars.call("attentionUse")                                                                         // 119
+          name: Spacebars.call("attentionSituation")                                                                   // 119
         };                                                                                                             // 120
       }, function() {                                                                                                  // 121
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 122
-      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 123
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 123
         return {                                                                                                       // 124
-          name: Spacebars.call("attentionUseText")                                                                     // 125
+          name: Spacebars.call("attentionUse")                                                                         // 125
         };                                                                                                             // 126
       }, function() {                                                                                                  // 127
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 128
-      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 129
+      }), "\n		", Blaze._TemplateWith(function() {                                                                     // 129
         return {                                                                                                       // 130
-          name: Spacebars.call("prospects")                                                                            // 131
+          name: Spacebars.call("attentionUseText")                                                                     // 131
         };                                                                                                             // 132
       }, function() {                                                                                                  // 133
         return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 134
-      }), "\n	"), "\n\n		", HTML.DIV("\n			", HTML.BUTTON({                                                            // 135
-        type: "submit",                                                                                                // 136
-        "class": "btn btn-primary"                                                                                     // 137
-      }, "Abschicken"), "\n		"), "\n		" ];                                                                             // 138
-    });                                                                                                                // 139
-  }), "\n	");                                                                                                          // 140
-}));                                                                                                                   // 141
-                                                                                                                       // 142
+      }), "\n		", HTML.HR(), "\n		", Blaze._TemplateWith(function() {                                                  // 135
+        return {                                                                                                       // 136
+          name: Spacebars.call("prospects")                                                                            // 137
+        };                                                                                                             // 138
+      }, function() {                                                                                                  // 139
+        return Spacebars.include(view.lookupTemplate("afQuickField"));                                                 // 140
+      }), "\n	"), "\n\n		", HTML.DIV("\n			", HTML.P({                                                                 // 141
+        "class": "category-definition"                                                                                 // 142
+      }, "\n				Du kannst den Fragebogen nur einmal abschicken.\n			"), " ", HTML.BR(), "\n			", HTML.BUTTON({         // 143
+        type: "submit",                                                                                                // 144
+        "class": "btn btn-standard-1"                                                                                  // 145
+      }, "Abschicken"), "\n		"), "\n		" ];                                                                             // 146
+    });                                                                                                                // 147
+  }), "\n	");                                                                                                          // 148
+}));                                                                                                                   // 149
+                                                                                                                       // 150
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"fragebogen.js":function(){
@@ -1463,7 +2141,7 @@ var hooksSurveyForm = {                                                         
 AutoForm.addHooks(['insertSurveyForm'], hooksSurveyForm);                                                              // 14
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"register":{"letter_collapse.html":function(){
+}},"register":{"template.letter_collapse.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1480,43 +2158,13 @@ Template["letterCollapse"] = new Template("Template.letterCollapse", (function()
   }, "\n    ", Blaze.Each(function() {                                                                                 // 7
     return Spacebars.call(view.lookup("entries"));                                                                     // 8
   }, function() {                                                                                                      // 9
-    return [ "\n      ", HTML.LI({                                                                                     // 10
-      "class": "list-group-item clearfix"                                                                              // 11
-    }, "\n        ", HTML.DIV({                                                                                        // 12
-      "class": "media"                                                                                                 // 13
-    }, "\n          ", HTML.DIV({                                                                                      // 14
-      "class": "media-body"                                                                                            // 15
-    }, "\n            ", HTML.A({                                                                                      // 16
-      href: function() {                                                                                               // 17
-        return [ "/register/", Spacebars.mustache(view.lookup("_id")) ];                                               // 18
-      }                                                                                                                // 19
-    }, "\n              ", HTML.H4({                                                                                   // 20
-      "class": "media-heading"                                                                                         // 21
-    }, Blaze.View("lookup:term", function() {                                                                          // 22
-      return Spacebars.mustache(view.lookup("term"));                                                                  // 23
-    })), " ", Blaze.View("lookup:description", function() {                                                            // 24
-      return Spacebars.mustache(view.lookup("description"));                                                           // 25
-    }), "\n            "), "\n          "), "\n          ", Blaze.If(function() {                                      // 26
-      return Spacebars.dataMustache(view.lookup("isFavourite"), Spacebars.dot(view.lookup("."), "_id"));               // 27
-    }, function() {                                                                                                    // 28
-      return [ "\n            ", HTML.DIV({                                                                            // 29
-        "class": "media-right media-middle btn-delete"                                                                 // 30
-      }, "\n                ", HTML.I({                                                                                // 31
-        "class": "fa fa-trash-o fa-4x"                                                                                 // 32
-      }), "\n            "), "\n          " ];                                                                         // 33
-    }, function() {                                                                                                    // 34
-      return [ "\n            ", HTML.DIV({                                                                            // 35
-        "class": "media-right media-middle btn-insert"                                                                 // 36
-      }, "\n                ", HTML.I({                                                                                // 37
-        "class": "fa fa-heart-o fa-4x"                                                                                 // 38
-      }), "\n            "), "\n          " ];                                                                         // 39
-    }), "\n        "), "\n      "), "\n    " ];                                                                        // 40
-  }), "\n  ");                                                                                                         // 41
-}));                                                                                                                   // 42
-                                                                                                                       // 43
+    return [ "\n      ", Spacebars.include(view.lookupTemplate("registerEntry")), "\n    " ];                          // 10
+  }), "\n  ");                                                                                                         // 11
+}));                                                                                                                   // 12
+                                                                                                                       // 13
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"letter_list.html":function(){
+},"template.letter_list.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1533,43 +2181,13 @@ Template["letterList"] = new Template("Template.letterList", (function() {      
   })), "\n	", Blaze.Each(function() {                                                                                  // 7
     return Spacebars.call(view.lookup("entries"));                                                                     // 8
   }, function() {                                                                                                      // 9
-    return [ "\n		", HTML.LI({                                                                                         // 10
-      "class": "list-group-item clearfix"                                                                              // 11
-    }, "\n			", HTML.DIV({                                                                                             // 12
-      "class": "media"                                                                                                 // 13
-    }, "\n				", HTML.DIV({                                                                                            // 14
-      "class": "media-body"                                                                                            // 15
-    }, "\n					", HTML.A({                                                                                             // 16
-      href: function() {                                                                                               // 17
-        return [ "/register/", Spacebars.mustache(view.lookup("_id")) ];                                               // 18
-      }                                                                                                                // 19
-    }, "\n						", HTML.H4({                                                                                           // 20
-      "class": "media-heading"                                                                                         // 21
-    }, Blaze.View("lookup:term", function() {                                                                          // 22
-      return Spacebars.mustache(view.lookup("term"));                                                                  // 23
-    })), "\n						", Blaze.View("lookup:description", function() {                                                     // 24
-      return Spacebars.mustache(view.lookup("description"));                                                           // 25
-    }), "\n					"), "\n				"), "\n				", Blaze.If(function() {                                                         // 26
-      return Spacebars.dataMustache(view.lookup("isFavourite"), Spacebars.dot(view.lookup("."), "_id"));               // 27
-    }, function() {                                                                                                    // 28
-      return [ "\n					", HTML.DIV({                                                                                   // 29
-        "class": "media-right media-middle btn-delete"                                                                 // 30
-      }, "\n							", HTML.I({                                                                                         // 31
-        "class": "fa fa-trash-o fa-4x"                                                                                 // 32
-      }), "\n					"), "\n				" ];                                                                                      // 33
-    }, function() {                                                                                                    // 34
-      return [ "\n					", HTML.DIV({                                                                                   // 35
-        "class": "media-right media-middle btn-insert"                                                                 // 36
-      }, "\n							", HTML.I({                                                                                         // 37
-        "class": "fa fa-heart-o fa-4x"                                                                                 // 38
-      }), "\n					"), "\n				" ];                                                                                      // 39
-    }), "\n			"), "\n		"), "\n	" ];                                                                                    // 40
-  }) ];                                                                                                                // 41
-}));                                                                                                                   // 42
-                                                                                                                       // 43
+    return [ "\n		", Spacebars.include(view.lookupTemplate("registerEntry")), "\n	" ];                                 // 10
+  }) ];                                                                                                                // 11
+}));                                                                                                                   // 12
+                                                                                                                       // 13
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"register.html":function(){
+},"template.register.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1583,7 +2201,7 @@ Template["register"] = new Template("Template.register", (function() {          
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
     "class": "container"                                                                                               // 6
-  }, HTML.Raw('\n    <div class="page-header clearfix">\n\n        <input type="text" name="search" class="form-control" width="300px" placeholder="Finde einen Begriff...">\n\n    </div>\n\n      '), Blaze.Unless(function() {
+  }, HTML.Raw('\n    <br>\n    <div class="form-wrapper clearfix">\n        <input type="text" name="search" class="form-control" width="300px" placeholder="Finde einen Begriff...">\n    </div>\n    <br>\n      '), Blaze.Unless(function() {
     return Spacebars.call(view.lookup("isAlphabetic"));                                                                // 8
   }, function() {                                                                                                      // 9
     return [ "\n      ", HTML.P({                                                                                      // 10
@@ -1595,7 +2213,7 @@ Template["register"] = new Template("Template.register", (function() {          
     return [ "\n      ", HTML.P({                                                                                      // 16
       "class": "alert alert-warning"                                                                                   // 17
     }, "Der Suchbegriff darf nicht mehr als 64 Zeichen enthalten."), "\n      " ];                                     // 18
-  }), HTML.Raw("\n\n\n<!-- favourites -->\n  "), Blaze.If(function() {                                                 // 19
+  }), HTML.Raw("\n\n<!-- favourites -->\n  "), Blaze.If(function() {                                                   // 19
     return Spacebars.dataMustache(view.lookup("getSession"), "lengthFav");                                             // 20
   }, function() {                                                                                                      // 21
     return [ "\n  ", HTML.DIV({                                                                                        // 22
@@ -1607,10 +2225,10 @@ Template["register"] = new Template("Template.register", (function() {          
         }) ];                                                                                                          // 28
       }                                                                                                                // 29
     }, "\n    ", HTML.DIV({                                                                                            // 30
-      "class": "page-header clearfix"                                                                                  // 31
-    }, "\n      ", HTML.H4({                                                                                           // 32
-      "class": "pull-left"                                                                                             // 33
-    }, "Favouriten"), "\n    "), "\n\n    ", Blaze.If(function() {                                                     // 34
+      "class": "clearfix"                                                                                              // 31
+    }, "\n      ", HTML.H5({                                                                                           // 32
+      "class": "widget-title"                                                                                          // 33
+    }, "Favoriten"), "\n    "), "\n\n    ", Blaze.If(function() {                                                      // 34
       return Spacebars.call(view.templateInstance().subscriptionsReady());                                             // 35
     }, function() {                                                                                                    // 36
       return [ "\n      ", Blaze.If(function() {                                                                       // 37
@@ -1689,10 +2307,10 @@ Template["register"] = new Template("Template.register", (function() {          
         }) ];                                                                                                          // 110
       }                                                                                                                // 111
     }, "\n    ", HTML.DIV({                                                                                            // 112
-      "class": "page-header clearfix"                                                                                  // 113
-    }, "\n      ", HTML.H4({                                                                                           // 114
-      "class": "pull-left"                                                                                             // 115
-    }, "Nicht-Favouriten"), "\n    "), "\n\n      ", Blaze.If(function() {                                             // 116
+      "class": "clearfix"                                                                                              // 113
+    }, "\n      ", HTML.H5({                                                                                           // 114
+      "class": "widget-title"                                                                                          // 115
+    }, "Nicht-Favoriten"), "\n    "), "\n\n      ", Blaze.If(function() {                                              // 116
       return Spacebars.call(view.templateInstance().subscriptionsReady());                                             // 117
     }, function() {                                                                                                    // 118
       return [ "\n        ", Blaze.If(function() {                                                                     // 119
@@ -1764,7 +2382,60 @@ Template["register"] = new Template("Template.register", (function() {          
                                                                                                                        // 185
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"vokabel_detail.html":function(){
+},"template.register_entry.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/high/register/template.register_entry.js                                                               //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("registerEntry");                                                                                 // 2
+Template["registerEntry"] = new Template("Template.registerEntry", (function() {                                       // 3
+  var view = this;                                                                                                     // 4
+  return HTML.LI({                                                                                                     // 5
+    "class": "story clearfix"                                                                                          // 6
+  }, "\n		", HTML.DIV({                                                                                                // 7
+    "class": "media"                                                                                                   // 8
+  }, "\n			", HTML.DIV({                                                                                               // 9
+    "class": "media-body story-body"                                                                                   // 10
+  }, "\n\n					", HTML.H3({                                                                                            // 11
+    "class": "title"                                                                                                   // 12
+  }, Blaze.View("lookup:term", function() {                                                                            // 13
+    return Spacebars.mustache(view.lookup("term"));                                                                    // 14
+  }), " ", HTML.I({                                                                                                    // 15
+    "class": "preposition"                                                                                             // 16
+  }, Blaze.View("lookup:preposition", function() {                                                                     // 17
+    return Spacebars.mustache(view.lookup("preposition"));                                                             // 18
+  }))), "\n					", HTML.SPAN({                                                                                         // 19
+    "class": "definition"                                                                                              // 20
+  }, "\n						", HTML.OL("\n							", Blaze.Each(function() {                                                          // 21
+    return Spacebars.call(view.lookup("definition"));                                                                  // 22
+  }, function() {                                                                                                      // 23
+    return [ "\n							", HTML.LI(Blaze.View("lookup:.", function() {                                                  // 24
+      return Spacebars.mustache(view.lookup("."));                                                                     // 25
+    })), "\n							" ];                                                                                                // 26
+  }), "\n						"), "\n					"), "\n\n			"), "\n			", Blaze.If(function() {                                              // 27
+    return Spacebars.dataMustache(view.lookup("isFavourite"), Spacebars.dot(view.lookup("."), "_id"));                 // 28
+  }, function() {                                                                                                      // 29
+    return [ "\n				", HTML.DIV({                                                                                      // 30
+      "class": "media-right media-middle btn-delete"                                                                   // 31
+    }, "\n						", HTML.I({                                                                                            // 32
+      "class": "fa fa-trash-o fa-4x"                                                                                   // 33
+    }), "\n				"), "\n			" ];                                                                                          // 34
+  }, function() {                                                                                                      // 35
+    return [ "\n				", HTML.DIV({                                                                                      // 36
+      "class": "media-right media-middle btn-insert"                                                                   // 37
+    }, "\n						", HTML.I({                                                                                            // 38
+      "class": "fa fa-heart-o fa-4x"                                                                                   // 39
+    }), "\n				"), "\n			" ];                                                                                          // 40
+  }), "\n		"), "\n	");                                                                                                 // 41
+}));                                                                                                                   // 42
+                                                                                                                       // 43
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.vokabel_detail.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -1868,7 +2539,7 @@ Template.register.helpers({                                                     
 	}(),                                                                                                                  //
 	vocabulary: function () {                                                                                             // 38
 		function vocabulary() {                                                                                              //
-			// Sort and group entries by letter and create a new array of iterable objects for cascaded template iteration      //
+			// Sort and group entries by letter and create a new array of iterable objects for a cascaded template iteration    //
 			var vocabularyIndexed = [];                                                                                         // 40
 			vocabularyIndexed.fav = [];                                                                                         // 41
 			vocabularyIndexed.notFav = [];                                                                                      // 42
@@ -2000,279 +2671,7 @@ Template.vokabelDetail.helpers({                                                
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"trainer":{"trainer.html":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/high/trainer/template.trainer.js                                                                       //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-                                                                                                                       // 1
-Template.__checkName("trainer");                                                                                       // 2
-Template["trainer"] = new Template("Template.trainer", (function() {                                                   // 3
-  var view = this;                                                                                                     // 4
-  return [ HTML.DIV({                                                                                                  // 5
-    "class": "container"                                                                                               // 6
-  }, "\n\n		", HTML.Raw("<br>"), "\n\n		", Blaze.Unless(function() {                                                   // 7
-    return Spacebars.call(view.lookup("isAlphabetic"));                                                                // 8
-  }, function() {                                                                                                      // 9
-    return [ "\n			", HTML.P({                                                                                         // 10
-      "class": "alert alert-warning"                                                                                   // 11
-    }, "Tipp: Das gesuchte Wort enthaelt nur Zeichen des Alphabets (a - Z). Keine Leer- und Sonderzeichen."), "\n		" ];
-  }), "\n		", Blaze.Unless(function() {                                                                                // 13
-    return Spacebars.call(view.lookup("isLength64"));                                                                  // 14
-  }, function() {                                                                                                      // 15
-    return [ "\n			", HTML.P({                                                                                         // 16
-      "class": "alert alert-warning"                                                                                   // 17
-    }, "Tipp: Das gesuchte Wort enthaelt nicht mehr als 64 Zeichen."), "\n		" ];                                       // 18
-  }), "\n\n\n		", HTML.DIV({                                                                                           // 19
-    "class": "media"                                                                                                   // 20
-  }, "\n\n			", Spacebars.include(view.lookupTemplate("backward")), "\n\n			", HTML.DIV({                              // 21
-    "class": "media-body"                                                                                              // 22
-  }, "\n				", Blaze.If(function() {                                                                                   // 23
-    return Spacebars.call(view.templateInstance().subscriptionsReady());                                               // 24
-  }, function() {                                                                                                      // 25
-    return [ "\n					", Spacebars.With(function() {                                                                    // 26
-      return Spacebars.call(view.lookup("entry"));                                                                     // 27
-    }, function() {                                                                                                    // 28
-      return [ "\n\n\n					", HTML.DIV({                                                                               // 29
-        "class": "jumbotron"                                                                                           // 30
-      }, "\n\n						", Blaze.If(function() {                                                                           // 31
-        return Spacebars.call(view.lookup("lengthIsOne"));                                                             // 32
-      }, function() {                                                                                                  // 33
-        return HTML.SPAN({                                                                                             // 34
-          "class": "label label-warning text-center"                                                                   // 35
-        }, "Letzter Eintrag in ", Blaze.If(function() {                                                                // 36
-          return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                // 37
-        }, function() {                                                                                                // 38
-          return "Favoriten";                                                                                          // 39
-        }, function() {                                                                                                // 40
-          return "Nicht-Favoriten";                                                                                    // 41
-        }));                                                                                                           // 42
-      }), "\n\n						", HTML.DIV({                                                                                     // 43
-        "class": "media"                                                                                               // 44
-      }, "\n							", HTML.DIV({                                                                                       // 45
-        "class": "media-left btn-reveal"                                                                               // 46
-      }, "\n									", Blaze.Unless(function() {                                                                      // 47
-        return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                          // 48
-      }, function() {                                                                                                  // 49
-        return [ "\n										", HTML.I({                                                                              // 50
-          "class": "fa fa-question fa-4x"                                                                              // 51
-        }), "\n									" ];                                                                                           // 52
-      }, function() {                                                                                                  // 53
-        return [ "\n										", HTML.I({                                                                              // 54
-          "class": "fa fa-exclamation fa-4x"                                                                           // 55
-        }), "\n									" ];                                                                                           // 56
-      }), "\n							"), "\n							", HTML.DIV({                                                                        // 57
-        "class": "media-body"                                                                                          // 58
-      }, "\n								", Blaze.Unless(function() {                                                                       // 59
-        return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                          // 60
-      }, function() {                                                                                                  // 61
-        return [ "\n									", Blaze.If(function() {                                                                  // 62
-          return Spacebars.dataMustache(view.lookup("getSession"), "termWrong");                                       // 63
-        }, function() {                                                                                                // 64
-          return [ "\n										", HTML.P({                                                                            // 65
-            "class": "alert alert-warning"                                                                             // 66
-          }, "Zu ", Blaze.View("lookup:termPercent", function() {                                                      // 67
-            return Spacebars.mustache(view.lookup("termPercent"));                                                     // 68
-          }), "% bisher richtig: ", Blaze.View("lookup:getSession", function() {                                       // 69
-            return Spacebars.mustache(view.lookup("getSession"), "termCache");                                         // 70
-          })), "\n									" ];                                                                                        // 71
-        }), "\n									", Blaze.If(function() {                                                                       // 72
-          return Spacebars.dataMustache(view.lookup("getSession"), "termRight");                                       // 73
-        }, function() {                                                                                                // 74
-          return [ "\n										", HTML.P({                                                                            // 75
-            "class": "alert alert-success"                                                                             // 76
-          }, "Richtig: ", Blaze.View("lookup:term", function() {                                                       // 77
-            return Spacebars.mustache(view.lookup("term"));                                                            // 78
-          })), "\n									" ];                                                                                        // 79
-        }), "\n								" ];                                                                                            // 80
-      }, function() {                                                                                                  // 81
-        return [ "\n									", HTML.P({                                                                               // 82
-          "class": "alert alert-info"                                                                                  // 83
-        }, "Loesung: ", Blaze.View("lookup:term", function() {                                                         // 84
-          return Spacebars.mustache(view.lookup("term"));                                                              // 85
-        })), "\n								" ];                                                                                           // 86
-      }), "\n							"), "\n						"), "\n\n						", HTML.DIV({                                                          // 87
-        "class": "input-group-lg "                                                                                     // 88
-      }, "\n						      ", HTML.INPUT({                                                                                // 89
-        type: "text",                                                                                                  // 90
-        name: "term",                                                                                                  // 91
-        id: "term",                                                                                                    // 92
-        "class": "form-control",                                                                                       // 93
-        placeholder: "Was ist..."                                                                                      // 94
-      }), "\n						"), "\n						", HTML.HR(), "\n\n						", HTML.H3("\n						", HTML.OL("\n							", HTML.LI(Blaze.View("lookup:description", function() {
-        return Spacebars.mustache(view.lookup("description"));                                                         // 96
-      })), "\n						"), "\n						", HTML.HR(), "\n						", HTML.H3("Beispiel:"), "\n						", HTML.OL("\n							", HTML.LI(HTML.H4("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed\n								", Blaze.Unless(function() {
-        return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                          // 98
-      }, function() {                                                                                                  // 99
-        return [ "\n									", HTML.I({                                                                               // 100
-          "class": "fa fa-question "                                                                                   // 101
-        }), "\n								" ];                                                                                            // 102
-      }, function() {                                                                                                  // 103
-        return [ "\n									", HTML.B(Blaze.View("lookup:term", function() {                                          // 104
-          return Spacebars.mustache(view.lookup("term"));                                                              // 105
-        })), "\n								" ];                                                                                           // 106
-      }), "\n								diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."), " "), "\n							", HTML.LI(HTML.H4("Lorem ipsum dolor sit amet, consetetur ", Blaze.Unless(function() {
-        return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                          // 108
-      }, function() {                                                                                                  // 109
-        return [ "\n								", HTML.I({                                                                                // 110
-          "class": "fa fa-question "                                                                                   // 111
-        }), "\n							" ];                                                                                             // 112
-      }, function() {                                                                                                  // 113
-        return [ "\n								", HTML.B(Blaze.View("lookup:term", function() {                                           // 114
-          return Spacebars.mustache(view.lookup("term"));                                                              // 115
-        })), "\n							" ];                                                                                            // 116
-      }), "sadipscing elitr."), " "), "\n						"), "\n					"), "\n					"), "\n\n					" ];                              // 117
-    }), "\n				" ];                                                                                                    // 118
-  }, function() {                                                                                                      // 119
-    return [ "\n					", Spacebars.include(view.lookupTemplate("loading")), "\n				" ];                                 // 120
-  }), "\n			"), "\n\n			", Spacebars.include(view.lookupTemplate("forward")), "\n\n		"), "\n	"), HTML.Raw("\n\n	<br>") ];
-}));                                                                                                                   // 122
-                                                                                                                       // 123
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-},"trainer.js":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/high/trainer/trainer.js                                                                                //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-Template.trainer.onCreated(function () {                                                                               // 1
-	var template = Template.instance();                                                                                   // 2
-	template.isAlphabetic = new ReactiveVar(true);                                                                        // 3
-	template.isLength64 = new ReactiveVar(true);                                                                          // 4
-                                                                                                                       //
-	template.autorun(function () {                                                                                        // 6
-		template.subscribe('vocabularyAll'); // Vocabulary.find()                                                            // 7
-		template.subscribe('ownedFavourites'); // Favourites.find()                                                          // 6
-                                                                                                                       //
-		Session.set(LENGTH_FAV, Favourites.find().count());                                                                  // 6
-		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());                                  // 11
-	});                                                                                                                   //
-});                                                                                                                    //
-                                                                                                                       //
-Template.trainer.helpers({                                                                                             // 15
-	isAlphabetic: function () {                                                                                           // 16
-		function isAlphabetic() {                                                                                            //
-			return Template.instance().isAlphabetic.get();                                                                      // 17
-		}                                                                                                                    //
-                                                                                                                       //
-		return isAlphabetic;                                                                                                 //
-	}(),                                                                                                                  //
-	isLength64: function () {                                                                                             // 19
-		function isLength64() {                                                                                              //
-			return Template.instance().isLength64.get();                                                                        // 20
-		}                                                                                                                    //
-                                                                                                                       //
-		return isLength64;                                                                                                   //
-	}(),                                                                                                                  //
-	termPercent: function () {                                                                                            // 22
-		function termPercent() {                                                                                             //
-			return Math.floor(Session.get(COUNT_LETTERS_MATCH) / this.term.length * 100);                                       // 23
-		}                                                                                                                    //
-                                                                                                                       //
-		return termPercent;                                                                                                  //
-	}()                                                                                                                   //
-});                                                                                                                    //
-                                                                                                                       //
-Template.trainer.events({                                                                                              // 27
-	'keyup [name="term"]': function () {                                                                                  // 28
-		function keyupNameTerm(event, template) {                                                                            //
-			var value = event.target.value.toLowerCase();                                                                       // 29
-                                                                                                                       //
-			if (value !== '') {                                                                                                 // 31
-				// check if string is valid                                                                                        //
-				if (Validate.isAlphabetic(value)) {                                                                                // 33
-					template.isAlphabetic.set(true);                                                                                  // 34
-				} else {                                                                                                           //
-					template.isAlphabetic.set(false);                                                                                 // 36
-				}                                                                                                                  //
-				if (Validate.isLength64(value)) {                                                                                  // 38
-					template.isLength64.set(true);                                                                                    // 39
-				} else {                                                                                                           //
-					template.isLength64.set(false);                                                                                   // 41
-				}                                                                                                                  //
-			}                                                                                                                   //
-                                                                                                                       //
-			// TODO exclude spaces                                                                                              //
-			// && event.keyCode === 13                                                                                          //
-			if (value !== '') {                                                                                                 // 28
-				if (template.isAlphabetic.get() && template.isLength64.get()) {                                                    // 48
-					var term = this.term.toLowerCase();                                                                               // 49
-                                                                                                                       //
-					if (term === value) {                                                                                             // 51
-						if (Session.get(TERM_WRONG)) {                                                                                   // 52
-							Session.set(TERM_WRONG, false);                                                                                 // 53
-						}                                                                                                                //
-						Session.set(TERM_RIGHT, true);                                                                                   // 55
-                                                                                                                       //
-						setTimeout(function () {                                                                                         // 57
-							Session.set(REVEALED, false);                                                                                   // 58
-							Session.set(TERM_RIGHT, false);                                                                                 // 59
-							event.target.value = "";                                                                                        // 60
-                                                                                                                       //
-							var val = 0;                                                                                                    // 62
-							if (Session.get(RANDOM_FAV)) {                                                                                  // 63
-								val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 64
-								Session.set(COUNT_VIEWED, val);                                                                                // 65
-							} else {                                                                                                        //
-								val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 67
-								Session.set(COUNT_VIEWED, val);                                                                                // 68
-							}                                                                                                               //
-						}, 1000);                                                                                                        //
-					} else {                                                                                                          //
-						Session.set(TERM_WRONG, true);                                                                                   // 73
-                                                                                                                       //
-						var termArray = R.split('', term);                                                                               // 75
-						var f = function () {                                                                                            // 76
-							function f(x, y) {                                                                                              // 76
-								var space = "_";                                                                                               // 77
-								if (x === y) {                                                                                                 // 78
-									return x;                                                                                                     // 79
-								} else {                                                                                                       //
-									return space;                                                                                                 // 81
-								}                                                                                                              //
-							}                                                                                                               //
-                                                                                                                       //
-							return f;                                                                                                       //
-						}();                                                                                                             //
-						var cheese = R.zipWith(f, term, value);                                                                          // 84
-						while (cheese.length < term.length) {                                                                            // 85
-							cheese = R.append('_', cheese);                                                                                 // 86
-						}                                                                                                                //
-                                                                                                                       //
-						var countMatch = term.length - R.filter(R.equals('_'), cheese).length;                                           // 89
-						Session.set(COUNT_LETTERS_MATCH, countMatch);                                                                    // 90
-                                                                                                                       //
-						cheese = R.join(' ', cheese);                                                                                    // 92
-						Session.set(TERM_CACHE, cheese);                                                                                 // 93
-					}                                                                                                                 //
-				}                                                                                                                  //
-			}                                                                                                                   //
-                                                                                                                       //
-			if (value === '') {                                                                                                 // 99
-				template.isAlphabetic.set(true);                                                                                   // 100
-				template.isLength64.set(true);                                                                                     // 101
-                                                                                                                       //
-				var _cheese = '';                                                                                                  // 103
-				while (_cheese.length < this.term.length) {                                                                        // 104
-					_cheese = R.append('_', _cheese);                                                                                 // 105
-				}                                                                                                                  //
-				_cheese = R.join(' ', _cheese);                                                                                    // 107
-				Session.set(TERM_CACHE, _cheese);                                                                                  // 108
-			}                                                                                                                   //
-		}                                                                                                                    //
-                                                                                                                       //
-		return keyupNameTerm;                                                                                                //
-	}()                                                                                                                   //
-});                                                                                                                    //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}}},"low":{"modes":{"modus_definition.html":function(){
+}}},"low":{"modes":{"template.modus_definition.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2281,68 +2680,63 @@ Template.trainer.events({                                                       
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
                                                                                                                        // 1
-Template.__checkName("modusDefinition");                                                                               // 2
-Template["modusDefinition"] = new Template("Template.modusDefinition", (function() {                                   // 3
+Template.__checkName("modusDefinitionLow");                                                                            // 2
+Template["modusDefinitionLow"] = new Template("Template.modusDefinitionLow", (function() {                             // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
-    "class": "jumbotron"                                                                                               // 6
-  }, "\n		", HTML.DIV({                                                                                                // 7
-    "class": "text-center media-middle"                                                                                // 8
-  }, "\n			", Blaze.If(function() {                                                                                    // 9
-    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 10
-  }, function() {                                                                                                      // 11
-    return HTML.SPAN({                                                                                                 // 12
-      "class": "label label-warning text-center"                                                                       // 13
-    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 14
-      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 15
+    "class": "row text-center"                                                                                         // 6
+  }, "\n		", HTML.P("\n			", Blaze.If(function() {                                                                     // 7
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 8
+  }, function() {                                                                                                      // 9
+    return HTML.SPAN({                                                                                                 // 10
+      "class": "flag animate-box fadeInUp animated"                                                                    // 11
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 12
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 13
+    }, function() {                                                                                                    // 14
+      return "Favoriten";                                                                                              // 15
     }, function() {                                                                                                    // 16
-      return "Favoriten";                                                                                              // 17
-    }, function() {                                                                                                    // 18
-      return "Nicht-Favoriten";                                                                                        // 19
-    }));                                                                                                               // 20
-  }), "\n				", HTML.H2("\n					", Blaze.View("lookup:term", function() {                                              // 21
-    return Spacebars.mustache(view.lookup("term"));                                                                    // 22
-  }), "\n				"), "\n		"), HTML.Raw("\n		<hr>\n		"), Blaze.Unless(function() {                                          // 23
-    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 24
-  }, function() {                                                                                                      // 25
-    return [ "\n		", HTML.DIV({                                                                                        // 26
-      "class": "text-center media-middle"                                                                              // 27
-    }, "\n			", HTML.DIV({                                                                                             // 28
-      "class": "btn-reveal"                                                                                            // 29
-    }, "\n				", HTML.I({                                                                                              // 30
-      "class": "fa fa-question fa-4x"                                                                                  // 31
-    }), HTML.SPAN({                                                                                                    // 32
-      "class": "label label-info"                                                                                      // 33
-    }, "Gesucht: Bedeutung"), "\n			"), "\n		"), "\n		" ];                                                             // 34
-  }, function() {                                                                                                      // 35
-    return [ "\n		", HTML.H3("\n			", HTML.OL("\n				", HTML.LI(Blaze.View("lookup:description", function() {          // 36
-      return Spacebars.mustache(view.lookup("description"));                                                           // 37
-    })), "\n			"), "\n		"), "\n		", HTML.DIV({                                                                         // 38
-      "class": "text-center"                                                                                           // 39
-    }, "\n			", HTML.DIV({                                                                                             // 40
-      "class": "btn-example",                                                                                          // 41
-      "data-toggle": "collapse",                                                                                       // 42
-      "data-target": "#example"                                                                                        // 43
-    }, "\n				", Blaze.Unless(function() {                                                                             // 44
-      return Spacebars.dataMustache(view.lookup("getSession"), "example");                                             // 45
-    }, function() {                                                                                                    // 46
-      return [ "\n					", HTML.I({                                                                                     // 47
-        "class": "fa fa-plus-square-o fa-4x"                                                                           // 48
-      }), "\n				" ];                                                                                                  // 49
-    }, function() {                                                                                                    // 50
-      return [ "\n					", HTML.I({                                                                                     // 51
-        "class": "fa fa-minus-square-o fa-4x"                                                                          // 52
-      }), "\n				" ];                                                                                                  // 53
-    }), "\n			"), "\n		"), "\n		", HTML.DIV({                                                                          // 54
-      id: "example",                                                                                                   // 55
-      "class": "collapse"                                                                                              // 56
-    }, "\n			", HTML.OL("\n				", HTML.LI("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "), "\n				", HTML.LI("Lorem ipsum dolor sit amet, consetetur sadipscing elitr. "), "\n			"), "\n		"), "\n		" ];
-  }), "\n	");                                                                                                          // 58
-}));                                                                                                                   // 59
-                                                                                                                       // 60
+      return "Nicht-Favoriten";                                                                                        // 17
+    }));                                                                                                               // 18
+  }), "\n		"), "\n		", HTML.P({                                                                                        // 19
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 20
+  }, "\n			", Blaze.View("lookup:wordClass", function() {                                                              // 21
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 22
+  }), "\n		"), "\n		", HTML.H2({                                                                                       // 23
+    "class": "trainer-title"                                                                                           // 24
+  }, Blaze.View("lookup:term", function() {                                                                            // 25
+    return Spacebars.mustache(view.lookup("term"));                                                                    // 26
+  }), Blaze.If(function() {                                                                                            // 27
+    return Spacebars.call(view.lookup("preposition"));                                                                 // 28
+  }, function() {                                                                                                      // 29
+    return [ " ", HTML.SPAN({                                                                                          // 30
+      "class": "trainer-preposition"                                                                                   // 31
+    }, HTML.I(Blaze.View("lookup:preposition", function() {                                                            // 32
+      return Spacebars.mustache(view.lookup("preposition"));                                                           // 33
+    }))) ];                                                                                                            // 34
+  })), HTML.Raw("\n		<!-- DEFINITION -->\n		"), Blaze.Unless(function() {                                              // 35
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 36
+  }, function() {                                                                                                      // 37
+    return [ "\n		", HTML.DIV({                                                                                        // 38
+      "class": "btn-reveal"                                                                                            // 39
+    }, "\n			", HTML.I({                                                                                               // 40
+      "class": "trainer-question fa fa-question fa-4x"                                                                 // 41
+    }), "\n			", HTML.Comment(' <div class="label label-info">Gesucht: Wort</div> '), "\n		"), "\n		" ];               // 42
+  }, function() {                                                                                                      // 43
+    return [ "\n		", HTML.DIV({                                                                                        // 44
+      "class": "trainer-definition flipInX animated"                                                                   // 45
+    }, "\n			", HTML.OL("\n				", Blaze.Each(function() {                                                              // 46
+      return Spacebars.call(view.lookup("definition"));                                                                // 47
+    }, function() {                                                                                                    // 48
+      return [ "\n				", HTML.LI(Blaze.View("lookup:.", function() {                                                   // 49
+        return Spacebars.mustache(view.lookup("."));                                                                   // 50
+      })), "\n				" ];                                                                                                 // 51
+    }), "\n			"), "\n		"), "\n		" ];                                                                                   // 52
+  }), "\n	");                                                                                                          // 53
+}));                                                                                                                   // 54
+                                                                                                                       // 55
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"modus_lesen.html":function(){
+},"template.modus_lesen.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2351,16 +2745,16 @@ Template["modusDefinition"] = new Template("Template.modusDefinition", (function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
                                                                                                                        // 1
-Template.__checkName("modusLesen");                                                                                    // 2
-Template["modusLesen"] = new Template("Template.modusLesen", (function() {                                             // 3
+Template.__checkName("modusLesenLow");                                                                                 // 2
+Template["modusLesenLow"] = new Template("Template.modusLesenLow", (function() {                                       // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
-    "class": "jumbotron"                                                                                               // 6
-  }, "\n		", Blaze.If(function() {                                                                                     // 7
+    "class": "row text-center"                                                                                         // 6
+  }, "\n			", HTML.P("\n				", Blaze.If(function() {                                                                   // 7
     return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 8
   }, function() {                                                                                                      // 9
     return HTML.SPAN({                                                                                                 // 10
-      "class": "label label-warning text-center"                                                                       // 11
+      "class": "flag animate-box fadeInUp animated"                                                                    // 11
     }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 12
       return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 13
     }, function() {                                                                                                    // 14
@@ -2368,48 +2762,52 @@ Template["modusLesen"] = new Template("Template.modusLesen", (function() {      
     }, function() {                                                                                                    // 16
       return "Nicht-Favoriten";                                                                                        // 17
     }));                                                                                                               // 18
-  }), "\n		", HTML.H2({                                                                                                // 19
-    "class": "text-center"                                                                                             // 20
-  }, "\n			", Blaze.View("lookup:term", function() {                                                                   // 21
-    return Spacebars.mustache(view.lookup("term"));                                                                    // 22
-  }), "\n			", Blaze.If(function() {                                                                                   // 23
-    return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                      // 24
-  }, function() {                                                                                                      // 25
-    return [ "\n				", HTML.DIV({                                                                                      // 26
-      "class": "btn-delete text-center"                                                                                // 27
-    }, "\n					", HTML.I({                                                                                             // 28
-      "class": "fa fa-trash-o fa-2x"                                                                                   // 29
-    }), "\n				"), "\n			" ];                                                                                          // 30
-  }, function() {                                                                                                      // 31
-    return [ "\n				", HTML.DIV({                                                                                      // 32
-      "class": "btn-insert text-center"                                                                                // 33
-    }, "\n						", HTML.I({                                                                                            // 34
-      "class": "fa fa-heart-o fa-2x"                                                                                   // 35
-    }), "\n				"), "\n			" ];                                                                                          // 36
-  }), "\n		"), HTML.Raw("\n		<hr>\n		"), HTML.H3("\n			", HTML.OL("\n				", HTML.LI(Blaze.View("lookup:description", function() {
-    return Spacebars.mustache(view.lookup("description"));                                                             // 38
-  })), "\n			"), "\n		"), "\n		", HTML.DIV({                                                                           // 39
-    "class": "text-center"                                                                                             // 40
-  }, "\n			", HTML.DIV({                                                                                               // 41
-    "class": "btn-example",                                                                                            // 42
-    "data-toggle": "collapse",                                                                                         // 43
-    "data-target": "#example"                                                                                          // 44
-  }, "\n				", Blaze.Unless(function() {                                                                               // 45
-    return Spacebars.dataMustache(view.lookup("getSession"), "example");                                               // 46
-  }, function() {                                                                                                      // 47
-    return [ "\n					", HTML.I({                                                                                       // 48
-      "class": "fa fa-plus-square-o fa-4x"                                                                             // 49
-    }), "\n				" ];                                                                                                    // 50
-  }, function() {                                                                                                      // 51
-    return [ "\n					", HTML.I({                                                                                       // 52
-      "class": "fa fa-minus-square-o fa-4x"                                                                            // 53
-    }), "\n				" ];                                                                                                    // 54
-  }), "\n			"), "\n		"), HTML.Raw('\n		<div id="example" class="collapse">\n			<ol>\n				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </li>\n				<li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr. </li>\n			</ol>\n		</div>\n	'));
-}));                                                                                                                   // 56
-                                                                                                                       // 57
+  }), "\n			"), "\n			", HTML.P("\n				", Blaze.If(function() {                                                        // 19
+    return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                      // 20
+  }, function() {                                                                                                      // 21
+    return [ "\n				", HTML.DIV({                                                                                      // 22
+      "class": "btn-delete fadeIn animated"                                                                            // 23
+    }, "\n					", HTML.I({                                                                                             // 24
+      "class": "fa fa-trash-o fa-4x"                                                                                   // 25
+    }), "\n				"), "\n				" ];                                                                                         // 26
+  }, function() {                                                                                                      // 27
+    return [ "\n				", HTML.DIV({                                                                                      // 28
+      "class": "btn-insert fadeIn animated"                                                                            // 29
+    }, "\n					", HTML.I({                                                                                             // 30
+      "class": "fa fa-heart-o fa-4x"                                                                                   // 31
+    }), "\n				"), "\n				" ];                                                                                         // 32
+  }), "\n			"), HTML.Raw("\n			<br>\n			"), HTML.P({                                                                   // 33
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 34
+  }, "\n				", Blaze.View("lookup:wordClass", function() {                                                             // 35
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 36
+  }), "\n			"), HTML.Raw("\n			<br>\n			"), HTML.H2({                                                                  // 37
+    "class": "trainer-title"                                                                                           // 38
+  }, Blaze.View("lookup:term", function() {                                                                            // 39
+    return Spacebars.mustache(view.lookup("term"));                                                                    // 40
+  }), Blaze.If(function() {                                                                                            // 41
+    return Spacebars.call(view.lookup("preposition"));                                                                 // 42
+  }, function() {                                                                                                      // 43
+    return [ " ", HTML.SPAN({                                                                                          // 44
+      "class": "trainer-preposition"                                                                                   // 45
+    }, HTML.I(Blaze.View("lookup:preposition", function() {                                                            // 46
+      return Spacebars.mustache(view.lookup("preposition"));                                                           // 47
+    }))) ];                                                                                                            // 48
+  })), HTML.Raw("\n			<br>\n			"), HTML.DIV({                                                                          // 49
+    "class": "trainer-definition"                                                                                      // 50
+  }, "\n				", HTML.OL("\n					", Blaze.Each(function() {                                                              // 51
+    return Spacebars.call(view.lookup("definition"));                                                                  // 52
+  }, function() {                                                                                                      // 53
+    return [ "\n					", HTML.LI(HTML.SPAN({                                                                            // 54
+      "class": "rwd-line"                                                                                              // 55
+    }, Blaze.View("lookup:.", function() {                                                                             // 56
+      return Spacebars.mustache(view.lookup("."));                                                                     // 57
+    })), "  "), "\n					" ];                                                                                           // 58
+  }), "\n				"), "\n			"), "\n		");                                                                                    // 59
+}));                                                                                                                   // 60
+                                                                                                                       // 61
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"modus_wort.html":function(){
+},"template.modus_wort.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2418,63 +2816,129 @@ Template["modusLesen"] = new Template("Template.modusLesen", (function() {      
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
                                                                                                                        // 1
-Template.__checkName("modusWort");                                                                                     // 2
-Template["modusWort"] = new Template("Template.modusWort", (function() {                                               // 3
+Template.__checkName("modusWortLow");                                                                                  // 2
+Template["modusWortLow"] = new Template("Template.modusWortLow", (function() {                                         // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
-    "class": "jumbotron"                                                                                               // 6
-  }, "\n		", HTML.DIV({                                                                                                // 7
-    "class": "text-center media-middle"                                                                                // 8
-  }, "\n			", Blaze.If(function() {                                                                                    // 9
-    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 10
-  }, function() {                                                                                                      // 11
-    return HTML.SPAN({                                                                                                 // 12
-      "class": "label label-warning text-center"                                                                       // 13
-    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 14
-      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 15
+    "class": "row text-center"                                                                                         // 6
+  }, "\n		", HTML.P("\n			", Blaze.If(function() {                                                                     // 7
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 8
+  }, function() {                                                                                                      // 9
+    return HTML.SPAN({                                                                                                 // 10
+      "class": "flag animate-box fadeInUp animated"                                                                    // 11
+    }, "Letzter Eintrag in ", Blaze.If(function() {                                                                    // 12
+      return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                    // 13
+    }, function() {                                                                                                    // 14
+      return "Favoriten";                                                                                              // 15
     }, function() {                                                                                                    // 16
-      return "Favoriten";                                                                                              // 17
-    }, function() {                                                                                                    // 18
-      return "Nicht-Favoriten";                                                                                        // 19
-    }));                                                                                                               // 20
-  }), "\n\n			", Blaze.Unless(function() {                                                                             // 21
-    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 22
-  }, function() {                                                                                                      // 23
-    return [ "\n			", HTML.DIV({                                                                                       // 24
-      "class": "btn-reveal"                                                                                            // 25
-    }, "\n				", HTML.I({                                                                                              // 26
-      "class": "fa fa-question fa-4x"                                                                                  // 27
-    }), HTML.SPAN({                                                                                                    // 28
-      "class": "label label-info"                                                                                      // 29
-    }, "Gesucht: Wort"), "\n			"), "\n			" ];                                                                          // 30
+      return "Nicht-Favoriten";                                                                                        // 17
+    }));                                                                                                               // 18
+  }), "\n		"), "\n		", HTML.P({                                                                                        // 19
+    "class": "trainer-word-class fadeInUp animated"                                                                    // 20
+  }, "\n			", Blaze.View("lookup:wordClass", function() {                                                              // 21
+    return Spacebars.mustache(view.lookup("wordClass"));                                                               // 22
+  }), "\n		"), HTML.Raw("\n		<!-- WORT -->\n		"), Blaze.Unless(function() {                                            // 23
+    return Spacebars.dataMustache(view.lookup("getSession"), "revealed");                                              // 24
+  }, function() {                                                                                                      // 25
+    return [ "\n		", HTML.DIV({                                                                                        // 26
+      "class": "btn-reveal"                                                                                            // 27
+    }, "\n			", HTML.I({                                                                                               // 28
+      "class": "trainer-question fa fa-question fa-4x"                                                                 // 29
+    }), "\n		"), "\n		" ];                                                                                             // 30
   }, function() {                                                                                                      // 31
-    return [ "\n				", HTML.H2("\n					", Blaze.View("lookup:term", function() {                                       // 32
-      return Spacebars.mustache(view.lookup("term"));                                                                  // 33
-    }), "\n				"), "\n			" ];                                                                                          // 34
-  }), "\n		"), HTML.Raw("\n\n		<hr>\n\n		"), HTML.H3("\n		", HTML.OL("\n			", HTML.LI(Blaze.View("lookup:description", function() {
-    return Spacebars.mustache(view.lookup("description"));                                                             // 36
-  })), "\n		"), "\n	"), "\n	", HTML.DIV({                                                                              // 37
-    "class": "text-center"                                                                                             // 38
-  }, "\n		", HTML.DIV({                                                                                                // 39
-    "class": "btn-example",                                                                                            // 40
-    "data-toggle": "collapse",                                                                                         // 41
-    "data-target": "#example"                                                                                          // 42
-  }, "\n			", Blaze.Unless(function() {                                                                                // 43
-    return Spacebars.dataMustache(view.lookup("getSession"), "example");                                               // 44
-  }, function() {                                                                                                      // 45
-    return [ "\n				", HTML.I({                                                                                        // 46
-      "class": "fa fa-plus-square-o fa-4x"                                                                             // 47
-    }), "\n			" ];                                                                                                     // 48
+    return [ "\n		", HTML.H2({                                                                                         // 32
+      "class": "trainer-title  bounceIn animated"                                                                      // 33
+    }, Blaze.View("lookup:term", function() {                                                                          // 34
+      return Spacebars.mustache(view.lookup("term"));                                                                  // 35
+    }), Blaze.If(function() {                                                                                          // 36
+      return Spacebars.call(view.lookup("preposition"));                                                               // 37
+    }, function() {                                                                                                    // 38
+      return [ " ", HTML.SPAN({                                                                                        // 39
+        "class": "trainer-preposition"                                                                                 // 40
+      }, HTML.I(Blaze.View("lookup:preposition", function() {                                                          // 41
+        return Spacebars.mustache(view.lookup("preposition"));                                                         // 42
+      }))) ];                                                                                                          // 43
+    })), " " ];                                                                                                        // 44
+  }), "\n\n		", HTML.DIV({                                                                                             // 45
+    "class": "trainer-definition"                                                                                      // 46
+  }, "\n			", HTML.OL("\n				", Blaze.Each(function() {                                                                // 47
+    return Spacebars.call(view.lookup("definition"));                                                                  // 48
   }, function() {                                                                                                      // 49
-    return [ "\n				", HTML.I({                                                                                        // 50
-      "class": "fa fa-minus-square-o fa-4x"                                                                            // 51
-    }), "\n			" ];                                                                                                     // 52
-  }), "\n		"), "\n	"), HTML.Raw('\n	<div id="example" class="collapse">\n		<h3>Beispiel:</h3>\n		<ol>\n			<li><h4>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</h4> </li>\n			<li><h4>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</h4> </li>\n		</ol>\n	</div>\n	'));
+    return [ "\n				", HTML.LI(Blaze.View("lookup:.", function() {                                                     // 50
+      return Spacebars.mustache(view.lookup("."));                                                                     // 51
+    })), "\n				" ];                                                                                                   // 52
+  }), "\n			"), "\n		"), "\n	");                                                                                       // 53
 }));                                                                                                                   // 54
                                                                                                                        // 55
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"low.html":function(){
+}},"template.backward.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/low/template.backward.js                                                                               //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("backwardLow");                                                                                   // 2
+Template["backwardLow"] = new Template("Template.backwardLow", (function() {                                           // 3
+  var view = this;                                                                                                     // 4
+  return Blaze.If(function() {                                                                                         // 5
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
+  }, function() {                                                                                                      // 7
+    return [ "\n	  	", HTML.I({                                                                                        // 8
+      "class": "fa fa-ban fa-4x"                                                                                       // 9
+    }), "\n	" ];                                                                                                       // 10
+  }, function() {                                                                                                      // 11
+    return [ "\n		", Spacebars.With(function() {                                                                       // 12
+      return Spacebars.call(view.lookup("entry"));                                                                     // 13
+    }, function() {                                                                                                    // 14
+      return [ "\n			", HTML.DIV({                                                                                     // 15
+        "class": "btn-backward"                                                                                        // 16
+      }, "\n				", HTML.I({                                                                                            // 17
+        "class": "fa fa-chevron-left fa-4x"                                                                            // 18
+      }), "\n			"), "\n		" ];                                                                                          // 19
+    }), "\n	" ];                                                                                                       // 20
+  });                                                                                                                  // 21
+}));                                                                                                                   // 22
+                                                                                                                       // 23
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.forward.js":function(){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// client/views/low/template.forward.js                                                                                //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+                                                                                                                       // 1
+Template.__checkName("forwardLow");                                                                                    // 2
+Template["forwardLow"] = new Template("Template.forwardLow", (function() {                                             // 3
+  var view = this;                                                                                                     // 4
+  return Blaze.If(function() {                                                                                         // 5
+    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
+  }, function() {                                                                                                      // 7
+    return [ "\n			", HTML.I({                                                                                         // 8
+      "class": "fa fa-ban fa-4x"                                                                                       // 9
+    }), "\n	" ];                                                                                                       // 10
+  }, function() {                                                                                                      // 11
+    return [ "\n		", Spacebars.With(function() {                                                                       // 12
+      return Spacebars.call(view.lookup("entry"));                                                                     // 13
+    }, function() {                                                                                                    // 14
+      return [ "\n			", HTML.DIV({                                                                                     // 15
+        "class": "btn-forward"                                                                                         // 16
+      }, "\n				", HTML.SPAN(HTML.I({                                                                                  // 17
+        "class": "fa fa-chevron-right fa-4x"                                                                           // 18
+      })), "\n			"), "\n		" ];                                                                                         // 19
+    }), "\n	" ];                                                                                                       // 20
+  });                                                                                                                  // 21
+}));                                                                                                                   // 22
+                                                                                                                       // 23
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"template.low.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2486,37 +2950,33 @@ Template["modusWort"] = new Template("Template.modusWort", (function() {        
 Template.__checkName("low");                                                                                           // 2
 Template["low"] = new Template("Template.low", (function() {                                                           // 3
   var view = this;                                                                                                     // 4
-  return [ HTML.DIV({                                                                                                  // 5
-    "class": "container"                                                                                               // 6
-  }, "\n\n		", HTML.Raw("<br>"), "\n		", HTML.Raw("<br>"), "\n		", HTML.DIV({                                          // 7
-    "class": "media"                                                                                                   // 8
-  }, "\n\n			", Spacebars.include(view.lookupTemplate("backward")), "\n\n			", HTML.DIV({                              // 9
-    "class": "media-body"                                                                                              // 10
-  }, "\n				", Blaze.If(function() {                                                                                   // 11
-    return Spacebars.call(view.templateInstance().subscriptionsReady());                                               // 12
-  }, function() {                                                                                                      // 13
-    return [ "\n					", Spacebars.With(function() {                                                                    // 14
-      return Spacebars.call(view.lookup("entry"));                                                                     // 15
-    }, function() {                                                                                                    // 16
-      return [ "\n						", Blaze.If(function() {                                                                       // 17
-        return Spacebars.dataMustache(view.lookup("getSession"), "lesen");                                             // 18
+  return [ HTML.SECTION({                                                                                              // 5
+    "class": "some-area fill-height-or-more"                                                                           // 6
+  }, "\n\n        ", Spacebars.include(view.lookupTemplate("backwardLow")), "\n        ", HTML.DIV("\n          ", Blaze.If(function() {
+    return Spacebars.call(view.templateInstance().subscriptionsReady());                                               // 8
+  }, function() {                                                                                                      // 9
+    return [ "\n            ", Spacebars.With(function() {                                                             // 10
+      return Spacebars.call(view.lookup("entry"));                                                                     // 11
+    }, function() {                                                                                                    // 12
+      return [ "\n              ", Blaze.If(function() {                                                               // 13
+        return Spacebars.dataMustache(view.lookup("getSession"), "lesen");                                             // 14
+      }, function() {                                                                                                  // 15
+        return [ "\n                ", Spacebars.include(view.lookupTemplate("modusLesenLow")), "\n              " ];  // 16
+      }), "\n              ", Blaze.If(function() {                                                                    // 17
+        return Spacebars.dataMustache(view.lookup("getSession"), "wort");                                              // 18
       }, function() {                                                                                                  // 19
-        return [ "\n							", Spacebars.include(view.lookupTemplate("modusLesen")), "\n						" ];                      // 20
-      }), "\n						", Blaze.If(function() {                                                                            // 21
-        return Spacebars.dataMustache(view.lookup("getSession"), "wort");                                              // 22
+        return [ "\n                ", Spacebars.include(view.lookupTemplate("modusWortLow")), "\n              " ];   // 20
+      }), "\n              ", Blaze.If(function() {                                                                    // 21
+        return Spacebars.dataMustache(view.lookup("getSession"), "definition");                                        // 22
       }, function() {                                                                                                  // 23
-        return [ "\n							", Spacebars.include(view.lookupTemplate("modusWort")), "\n						" ];                       // 24
-      }), "\n						", Blaze.If(function() {                                                                            // 25
-        return Spacebars.dataMustache(view.lookup("getSession"), "definition");                                        // 26
-      }, function() {                                                                                                  // 27
-        return [ "\n							", Spacebars.include(view.lookupTemplate("modusDefinition")), "\n						" ];                 // 28
-      }), "\n					" ];                                                                                                 // 29
-    }), "\n\n				" ];                                                                                                  // 30
-  }, function() {                                                                                                      // 31
-    return [ "\n					", Spacebars.include(view.lookupTemplate("loading")), "\n				" ];                                 // 32
-  }), "\n			"), "\n\n			", Spacebars.include(view.lookupTemplate("forward")), "\n\n		"), "\n	"), HTML.Raw("\n\n	<br>") ];
-}));                                                                                                                   // 34
-                                                                                                                       // 35
+        return [ "\n                ", Spacebars.include(view.lookupTemplate("modusDefinitionLow")), "\n              " ];
+      }), "\n\n              ", Spacebars.include(view.lookupTemplate("navLow")), "\n            " ];                  // 25
+    }), "\n\n          " ];                                                                                            // 26
+  }, function() {                                                                                                      // 27
+    return [ "\n            ", Spacebars.include(view.lookupTemplate("loading")), "\n          " ];                    // 28
+  }), "\n        "), "\n\n\n        ", Spacebars.include(view.lookupTemplate("forwardLow")), "\n\n  "), HTML.Raw('\n\n\n  <!-- <div class="jumbotron vertical-center">\n    <div class="container">\n      <h1>The easiest and powerful way</h1>\n      <div class="row">\n        <div class="col-md-7">\n          <div class="top-bg"></div>\n        </div>\n\n        <div class="col-md-5 iPhone-features">\n          <ul class="top-features">\n            <li>\n              <span><i class="fa fa-random simple_bg top-features-bg"></i></span>\n              <p><strong>Redirect</strong><br>Visitors where they converts more.</p>\n            </li>\n            <li>\n              <span><i class="fa fa-cogs simple_bg top-features-bg"></i></span>\n              <p><strong>Track</strong><br>Views, Clicks and Conversions.</p>\n            </li>\n            <li>\n              <span><i class="fa fa-check simple_bg top-features-bg"></i></span>\n              <p><strong>Check</strong><br>Constantly the status of your links.</p>\n            </li>\n            <li>\n              <span><i class="fa fa-users simple_bg top-features-bg"></i></span>\n              <p><strong>Collaborate</strong><br>With Customers, Partners and Co-Workers.</p>\n            </li>\n            <a href="pricing-and-signup.html" class="btn-primary btn h2 lightBlue get-Started-btn">GET STARTED</a>\n            <h6 class="get-Started-sub-btn">FREE VERSION AVAILABLE!</h6>\n          </ul>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <div class="parent-center-center-1">\n    <div class="parent-center-center-2">\n      <div class="parent-center-center-3">\n        <div class="child-center-center media">\n\n                {{> backwardLow }}\n\n                {{#if Template.subscriptionsReady}}\n                  {{#with entry}}\n                    {{#if getSession \'lesen\'}}\n                      {{> modusLesenLow}}\n                    {{/if}}\n                    {{#if getSession \'wort\'}}\n                      {{> modusWortLow}}\n                    {{/if}}\n                    {{#if getSession \'definition\'}}\n                      {{> modusDefinitionLow}}\n                    {{/if}}\n                  {{/with}}\n\n                {{else}}\n                  {{> loading}}\n                {{/if}}\n\n                {{> forwardLow }}\n\n        </div>\n      </div>\n    </div>\n  </div> -->') ];
+}));                                                                                                                   // 30
+                                                                                                                       // 31
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"low.js":function(){
@@ -2540,77 +3000,7 @@ Template.low.onCreated(function () {                                            
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"_shared":{"backward.html":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/_shared/template.backward.js                                                                           //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-                                                                                                                       // 1
-Template.__checkName("backward");                                                                                      // 2
-Template["backward"] = new Template("Template.backward", (function() {                                                 // 3
-  var view = this;                                                                                                     // 4
-  return Blaze.If(function() {                                                                                         // 5
-    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
-  }, function() {                                                                                                      // 7
-    return [ "\n		", HTML.DIV({                                                                                        // 8
-      "class": "media-left media-middle"                                                                               // 9
-    }, "\n			", HTML.I({                                                                                               // 10
-      "class": "fa fa-ban fa-4x"                                                                                       // 11
-    }), "\n		"), "\n	" ];                                                                                              // 12
-  }, function() {                                                                                                      // 13
-    return [ "\n		", Spacebars.With(function() {                                                                       // 14
-      return Spacebars.call(view.lookup("entry"));                                                                     // 15
-    }, function() {                                                                                                    // 16
-      return [ "\n			", HTML.DIV({                                                                                     // 17
-        "class": "media-left media-middle btn-backward"                                                                // 18
-      }, "\n				", HTML.I({                                                                                            // 19
-        "class": "fa fa-chevron-left fa-4x"                                                                            // 20
-      }), "\n			"), "\n		" ];                                                                                          // 21
-    }), "\n	" ];                                                                                                       // 22
-  });                                                                                                                  // 23
-}));                                                                                                                   // 24
-                                                                                                                       // 25
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-},"forward.html":function(){
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                                     //
-// client/views/_shared/template.forward.js                                                                            //
-//                                                                                                                     //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                                       //
-                                                                                                                       // 1
-Template.__checkName("forward");                                                                                       // 2
-Template["forward"] = new Template("Template.forward", (function() {                                                   // 3
-  var view = this;                                                                                                     // 4
-  return Blaze.If(function() {                                                                                         // 5
-    return Spacebars.call(view.lookup("lengthIsOne"));                                                                 // 6
-  }, function() {                                                                                                      // 7
-    return [ "\n		", HTML.DIV({                                                                                        // 8
-      "class": "media-right media-middle"                                                                              // 9
-    }, "\n			", HTML.I({                                                                                               // 10
-      "class": "fa fa-ban fa-4x"                                                                                       // 11
-    }), "\n		"), "\n	" ];                                                                                              // 12
-  }, function() {                                                                                                      // 13
-    return [ "\n		", Spacebars.With(function() {                                                                       // 14
-      return Spacebars.call(view.lookup("entry"));                                                                     // 15
-    }, function() {                                                                                                    // 16
-      return [ "\n			", HTML.DIV({                                                                                     // 17
-        "class": "media-right media-middle btn-forward"                                                                // 18
-      }, "\n				", HTML.I({                                                                                            // 19
-        "class": "fa fa-chevron-right fa-4x"                                                                           // 20
-      }), "\n			"), "\n		" ];                                                                                          // 21
-    }), "\n	" ];                                                                                                       // 22
-  });                                                                                                                  // 23
-}));                                                                                                                   // 24
-                                                                                                                       // 25
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}}},"layout":{"bar.html":function(){
+}}},"layout":{"template.bar.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2623,8 +3013,8 @@ Template.__checkName("bar");                                                    
 Template["bar"] = new Template("Template.bar", (function() {                                                           // 3
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
-    "class": "container fluid"                                                                                         // 6
-  }, "\n  ", HTML.A({                                                                                                  // 7
+    "class": "attention-mode"                                                                                          // 6
+  }, "\n        ", HTML.A({                                                                                            // 7
     href: function() {                                                                                                 // 8
       return Blaze.If(function() {                                                                                     // 9
         return Spacebars.dataMustache(view.lookup("getSession"), "attentionMode");                                     // 10
@@ -2636,36 +3026,32 @@ Template["bar"] = new Template("Template.bar", (function() {                    
         return "/low";                                                                                                 // 16
       });                                                                                                              // 17
     }                                                                                                                  // 18
-  }, "\n    ", HTML.NAV({                                                                                              // 19
+  }, "\n          ", HTML.NAV({                                                                                        // 19
     "class": function() {                                                                                              // 20
-      return [ "navbar navbar-default navbar-fixed-top ", Blaze.If(function() {                                        // 21
+      return [ "navbar navbar-fixed-top ", Blaze.If(function() {                                                       // 21
         return Spacebars.dataMustache(view.lookup("getSession"), "attentionMode");                                     // 22
       }, function() {                                                                                                  // 23
-        return "alert-success";                                                                                        // 24
+        return " attention-low ";                                                                                      // 24
       }, function() {                                                                                                  // 25
-        return "alert-info";                                                                                           // 26
-      }), " text-center attention-mode" ];                                                                             // 27
+        return " attention-high ";                                                                                     // 26
+      }), " text-center " ];                                                                                           // 27
     }                                                                                                                  // 28
-  }, "\n      ", HTML.DIV({                                                                                            // 29
-    "class": "container"                                                                                               // 30
-  }, "\n        ", HTML.DIV({                                                                                          // 31
-    "class": "text-center"                                                                                             // 32
-  }, "\n          ", Blaze.If(function() {                                                                             // 33
-    return Spacebars.dataMustache(view.lookup("getSession"), "attentionMode");                                         // 34
+  }, "\n                ", Blaze.If(function() {                                                                       // 29
+    return Spacebars.dataMustache(view.lookup("getSession"), "attentionMode");                                         // 30
+  }, function() {                                                                                                      // 31
+    return [ HTML.I({                                                                                                  // 32
+      "class": "fa fa-angle-up fa-4x"                                                                                  // 33
+    }), " " ];                                                                                                         // 34
   }, function() {                                                                                                      // 35
-    return [ HTML.I({                                                                                                  // 36
-      "class": "fa fa-angle-up fa-4x"                                                                                  // 37
+    return [ " ", HTML.I({                                                                                             // 36
+      "class": "fa fa-angle-down fa-4x"                                                                                // 37
     }), " " ];                                                                                                         // 38
-  }, function() {                                                                                                      // 39
-    return [ " ", HTML.I({                                                                                             // 40
-      "class": "fa fa-angle-down fa-4x"                                                                                // 41
-    }), " " ];                                                                                                         // 42
-  }), "\n        "), "\n      "), "\n    "), "\n  "), "\n");                                                           // 43
-}));                                                                                                                   // 44
-                                                                                                                       // 45
+  }), "\n          "), "\n        "), "\n    ");                                                                       // 39
+}));                                                                                                                   // 40
+                                                                                                                       // 41
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"footer.html":function(){
+},"template.footer.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2677,12 +3063,34 @@ Template["bar"] = new Template("Template.bar", (function() {                    
 Template.__checkName("footer");                                                                                        // 2
 Template["footer"] = new Template("Template.footer", (function() {                                                     // 3
   var view = this;                                                                                                     // 4
-  return HTML.Raw('<div id="footer">\n    <hr>\n    <p>\n      Chalimo Vokabeltrainer | <a href="#">FAQ</a>\n    </p>\n\n  </div>');
-}));                                                                                                                   // 6
-                                                                                                                       // 7
+  return HTML.FOOTER({                                                                                                 // 5
+    "class": "text-center"                                                                                             // 6
+  }, "\n    ", HTML.DIV({                                                                                              // 7
+    "class": function() {                                                                                              // 8
+      return [ "container footer-content ", Blaze.If(function() {                                                      // 9
+        return Spacebars.call(view.lookup("currentUser"));                                                             // 10
+      }, function() {                                                                                                  // 11
+        return "footer-border";                                                                                        // 12
+      }) ];                                                                                                            // 13
+    }                                                                                                                  // 14
+  }, "\n      Chalimo Vokabeltrainer | ", Blaze.If(function() {                                                        // 15
+    return Spacebars.call(view.lookup("currentUser"));                                                                 // 16
+  }, function() {                                                                                                      // 17
+    return [ " ", HTML.A({                                                                                             // 18
+      href: function() {                                                                                               // 19
+        return Spacebars.mustache(view.lookup("pathFor"), "faq");                                                      // 20
+      }                                                                                                                // 21
+    }, "Dokumentation"), " | " ];                                                                                      // 22
+  }), HTML.A({                                                                                                         // 23
+    href: function() {                                                                                                 // 24
+      return Spacebars.mustache(view.lookup("pathFor"), "disclaimer");                                                 // 25
+    }                                                                                                                  // 26
+  }, "Disclaimer"), "\n    "), "\n  ");                                                                                // 27
+}));                                                                                                                   // 28
+                                                                                                                       // 29
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"head.html":function(){
+},"template.head.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2699,7 +3107,7 @@ Meteor.startup(Template.body.renderToDocument);                                 
                                                                                                                        // 7
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"layout.html":function(){
+},"template.layout.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2782,7 +3190,7 @@ Template["layout"] = new Template("Template.layout", (function() {              
                                                                                                                        // 73
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav.html":function(){
+},"template.nav.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2794,89 +3202,83 @@ Template["layout"] = new Template("Template.layout", (function() {              
 Template.__checkName("nav");                                                                                           // 2
 Template["nav"] = new Template("Template.nav", (function() {                                                           // 3
   var view = this;                                                                                                     // 4
-  return HTML.DIV({                                                                                                    // 5
-    "class": "container"                                                                                               // 6
+  return HTML.NAV({                                                                                                    // 5
+    "class": "navbar navbar-inverse nav-justified buffer-bar"                                                          // 6
   }, "\n    ", HTML.DIV({                                                                                              // 7
-    "class": "row"                                                                                                     // 8
-  }, "\n      ", Spacebars.include(view.lookupTemplate("atNavButton")), " Logged in as: ", Blaze.If(function() {       // 9
-    return Spacebars.call(view.lookup("currentUser"));                                                                 // 10
-  }, function() {                                                                                                      // 11
-    return [ " ", Blaze.View("lookup:currentUserMail", function() {                                                    // 12
-      return Spacebars.mustache(view.lookup("currentUserMail"));                                                       // 13
-    }), " " ];                                                                                                         // 14
-  }), "\n    "), "\n    ", HTML.DIV({                                                                                  // 15
-    "class": "row"                                                                                                     // 16
-  }, "\n      ", HTML.UL({                                                                                             // 17
-    "class": "nav nav-tabs nav-justified"                                                                              // 18
-  }, "\n        ", HTML.LI({                                                                                           // 19
-    role: "presentation",                                                                                              // 20
-    "class": function() {                                                                                              // 21
-      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 22
-        regex: "index"                                                                                                 // 23
-      }));                                                                                                             // 24
-    }                                                                                                                  // 25
-  }, HTML.A({                                                                                                          // 26
-    href: function() {                                                                                                 // 27
-      return Spacebars.mustache(view.lookup("pathFor"), "index");                                                      // 28
-    }                                                                                                                  // 29
-  }, "Index")), "\n        ", HTML.LI({                                                                                // 30
-    role: "presentation",                                                                                              // 31
-    "class": function() {                                                                                              // 32
-      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 33
-        regex: "trainer"                                                                                               // 34
-      }));                                                                                                             // 35
-    }                                                                                                                  // 36
-  }, HTML.A({                                                                                                          // 37
-    href: function() {                                                                                                 // 38
-      return Spacebars.mustache(view.lookup("pathFor"), "trainer");                                                    // 39
-    }                                                                                                                  // 40
-  }, "Trainer")), "\n        ", HTML.LI({                                                                              // 41
-    role: "presentation",                                                                                              // 42
-    "class": function() {                                                                                              // 43
-      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 44
-        regex: "register"                                                                                              // 45
-      }));                                                                                                             // 46
+    "class": "container"                                                                                               // 8
+  }, "\n      ", HTML.DIV({                                                                                            // 9
+    "class": "navbar-header"                                                                                           // 10
+  }, "\n        ", HTML.Raw('<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">\n          <span class="sr-only">Toggle navigation</span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n        </button>'), "\n        ", Spacebars.include(view.lookupTemplate("atNavButton")), "\n      "), "\n      ", HTML.DIV({
+    style: "height: 1px;",                                                                                             // 12
+    "aria-expanded": "false",                                                                                          // 13
+    id: "navbar",                                                                                                      // 14
+    "class": "navbar-collapse collapse"                                                                                // 15
+  }, "\n        ", HTML.UL({                                                                                           // 16
+    "class": "nav navbar-nav  text-center"                                                                             // 17
+  }, "\n          ", HTML.LI({                                                                                         // 18
+    "class": function() {                                                                                              // 19
+      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 20
+        regex: "index"                                                                                                 // 21
+      }));                                                                                                             // 22
+    }                                                                                                                  // 23
+  }, HTML.A({                                                                                                          // 24
+    href: function() {                                                                                                 // 25
+      return Spacebars.mustache(view.lookup("pathFor"), "index");                                                      // 26
+    }                                                                                                                  // 27
+  }, "Index")), "\n          ", HTML.LI({                                                                              // 28
+    "class": function() {                                                                                              // 29
+      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 30
+        regex: "trainer"                                                                                               // 31
+      }));                                                                                                             // 32
+    }                                                                                                                  // 33
+  }, HTML.A({                                                                                                          // 34
+    href: function() {                                                                                                 // 35
+      return Spacebars.mustache(view.lookup("pathFor"), "trainer");                                                    // 36
+    }                                                                                                                  // 37
+  }, "Trainer")), "\n          ", HTML.LI({                                                                            // 38
+    "class": function() {                                                                                              // 39
+      return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                           // 40
+        regex: "register"                                                                                              // 41
+      }));                                                                                                             // 42
+    }                                                                                                                  // 43
+  }, HTML.A({                                                                                                          // 44
+    href: function() {                                                                                                 // 45
+      return Spacebars.mustache(view.lookup("pathFor"), "register");                                                   // 46
     }                                                                                                                  // 47
-  }, HTML.A({                                                                                                          // 48
-    href: function() {                                                                                                 // 49
-      return Spacebars.mustache(view.lookup("pathFor"), "register");                                                   // 50
-    }                                                                                                                  // 51
-  }, "Register")), "\n        ", Blaze.Unless(function() {                                                             // 52
-    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 53
-  }, function() {                                                                                                      // 54
-    return [ "\n        ", HTML.LI({                                                                                   // 55
-      role: "presentation",                                                                                            // 56
-      "class": function() {                                                                                            // 57
-        return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 58
-          regex: "fragebogen"                                                                                          // 59
-        }));                                                                                                           // 60
-      }                                                                                                                // 61
-    }, HTML.A({                                                                                                        // 62
-      href: function() {                                                                                               // 63
-        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 64
-      }                                                                                                                // 65
-    }, "Fragebogen")), "\n        " ];                                                                                 // 66
-  }), "\n        ", Blaze.If(function() {                                                                              // 67
-    return Spacebars.dataMustache(view.lookup("isInRole"), "admin");                                                   // 68
-  }, function() {                                                                                                      // 69
-    return [ "\n        ", HTML.LI({                                                                                   // 70
-      role: "presentation",                                                                                            // 71
-      "class": function() {                                                                                            // 72
-        return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 73
-          regex: "uebersicht"                                                                                          // 74
-        }));                                                                                                           // 75
-      }                                                                                                                // 76
-    }, HTML.A({                                                                                                        // 77
-      href: function() {                                                                                               // 78
-        return Spacebars.mustache(view.lookup("pathFor"), "uebersicht");                                               // 79
-      }                                                                                                                // 80
-    }, "Uebersicht")), "\n        " ];                                                                                 // 81
-  }), "\n      "), "\n    "), "\n  ");                                                                                 // 82
-}));                                                                                                                   // 83
-                                                                                                                       // 84
+  }, "Register")), "\n          ", Blaze.Unless(function() {                                                           // 48
+    return Spacebars.call(view.lookup("surveySubmitted"));                                                             // 49
+  }, function() {                                                                                                      // 50
+    return [ "\n          ", HTML.LI({                                                                                 // 51
+      "class": function() {                                                                                            // 52
+        return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 53
+          regex: "fragebogen"                                                                                          // 54
+        }));                                                                                                           // 55
+      }                                                                                                                // 56
+    }, HTML.A({                                                                                                        // 57
+      href: function() {                                                                                               // 58
+        return Spacebars.mustache(view.lookup("pathFor"), "fragebogen");                                               // 59
+      }                                                                                                                // 60
+    }, "Fragebogen")), "\n          " ];                                                                               // 61
+  }), " ", Blaze.If(function() {                                                                                       // 62
+    return Spacebars.dataMustache(view.lookup("isInRole"), "admin");                                                   // 63
+  }, function() {                                                                                                      // 64
+    return [ "\n          ", HTML.LI({                                                                                 // 65
+      "class": function() {                                                                                            // 66
+        return Spacebars.mustache(view.lookup("isActiveRoute"), Spacebars.kw({                                         // 67
+          regex: "verwaltung"                                                                                          // 68
+        }));                                                                                                           // 69
+      }                                                                                                                // 70
+    }, HTML.A({                                                                                                        // 71
+      href: function() {                                                                                               // 72
+        return Spacebars.mustache(view.lookup("pathFor"), "verwaltung");                                               // 73
+      }                                                                                                                // 74
+    }, "Verwaltung")), "\n          " ];                                                                               // 75
+  }), "\n        "), "\n      "), "\n    "), "\n  ");                                                                  // 76
+}));                                                                                                                   // 77
+                                                                                                                       // 78
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"navStatistics.html":function(){
+},"template.navStatistics.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2943,7 +3345,7 @@ Template["navStatistics"] = new Template("Template.navStatistics", (function() {
                                                                                                                        // 57
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_low.html":function(){
+},"template.nav_low.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2955,31 +3357,27 @@ Template["navStatistics"] = new Template("Template.navStatistics", (function() {
 Template.__checkName("navLow");                                                                                        // 2
 Template["navLow"] = new Template("Template.navLow", (function() {                                                     // 3
   var view = this;                                                                                                     // 4
-  return [ HTML.DIV({                                                                                                  // 5
-    "class": "text-center"                                                                                             // 6
-  }, "\n		", HTML.DIV({                                                                                                // 7
-    "class": "btn-low",                                                                                                // 8
-    "data-toggle": "collapse",                                                                                         // 9
-    "data-target": "#navLow"                                                                                           // 10
-  }, "\n			", Blaze.Unless(function() {                                                                                // 11
-    return Spacebars.dataMustache(view.lookup("getSession"), "navLow");                                                // 12
-  }, function() {                                                                                                      // 13
-    return [ "\n				", HTML.I({                                                                                        // 14
-      "class": "fa fa-bars fa-4x"                                                                                      // 15
-    }), "\n			" ];                                                                                                     // 16
-  }, function() {                                                                                                      // 17
-    return [ "\n				", HTML.I({                                                                                        // 18
-      "class": "fa fa-close fa-4x"                                                                                     // 19
-    }), "\n			" ];                                                                                                     // 20
-  }), "\n		"), "\n	"), "\n	", HTML.DIV({                                                                               // 21
-    id: "navLow",                                                                                                      // 22
-    "class": "collapse"                                                                                                // 23
-  }, "\n		", Spacebars.include(view.lookupTemplate("navMode")), "\n		", Spacebars.include(view.lookupTemplate("navSource")), "\n	") ];
-}));                                                                                                                   // 25
-                                                                                                                       // 26
+  return [ HTML.Raw("<br>\n	<br>\n	"), HTML.DIV({                                                                      // 5
+    "class": "row"                                                                                                     // 6
+  }, "\n		", HTML.Raw("<!-- Button trigger modal -->"), "\n		", HTML.Raw('<button type="button" class="btn btn-standard-2" data-toggle="modal" data-target="#settingsLow">\n			Einstellungen\n		</button>'), "\n		", HTML.Raw("<!-- Modal -->"), "\n		", HTML.DIV({
+    "class": "modal fade",                                                                                             // 8
+    id: "settingsLow",                                                                                                 // 9
+    tabindex: "-1",                                                                                                    // 10
+    role: "dialog",                                                                                                    // 11
+    "aria-labelledby": "settingsLowLabel"                                                                              // 12
+  }, "\n			", HTML.DIV({                                                                                               // 13
+    "class": "modal-dialog",                                                                                           // 14
+    role: "document"                                                                                                   // 15
+  }, "\n				", HTML.DIV({                                                                                              // 16
+    "class": "modal-content"                                                                                           // 17
+  }, "\n					", HTML.Raw('<div class="modal-header">\n						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n						<h4 class="modal-title control-label" id="settingsLowLabel">Einstellungen</h4>\n					</div>'), "\n					", HTML.DIV({
+    "class": "modal-body"                                                                                              // 19
+  }, "\n						", Spacebars.include(view.lookupTemplate("navMode")), "\n						", Spacebars.include(view.lookupTemplate("navSource")), "\n					"), "\n\n				"), "\n			"), "\n		"), "\n	") ];
+}));                                                                                                                   // 21
+                                                                                                                       // 22
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_mode.html":function(){
+},"template.nav_mode.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -2991,21 +3389,19 @@ Template["navLow"] = new Template("Template.navLow", (function() {              
 Template.__checkName("navMode");                                                                                       // 2
 Template["navMode"] = new Template("Template.navMode", (function() {                                                   // 3
   var view = this;                                                                                                     // 4
-  return [ HTML.Raw("<br>\n	<br>\n	"), HTML.DIV({                                                                      // 5
+  return HTML.DIV({                                                                                                    // 5
     "class": "row text-center"                                                                                         // 6
-  }, "\n		", HTML.Raw('<div class="col-sm-4"></div>'), "\n		", HTML.DIV({                                              // 7
-    "class": "col-sm-4"                                                                                                // 8
-  }, "\n			", HTML.BUTTON({                                                                                            // 9
-    type: "button",                                                                                                    // 10
-    "class": "btn btn-default btn-lg btn-block btn-mode"                                                               // 11
-  }, "Modus: ", Blaze.View("lookup:mode", function() {                                                                 // 12
-    return Spacebars.mustache(view.lookup("mode"));                                                                    // 13
-  })), "\n		"), "\n		", HTML.Raw('<div class="col-sm-4"></div>'), "\n	"), HTML.Raw("\n	<br>\n	<br>") ];                // 14
-}));                                                                                                                   // 15
-                                                                                                                       // 16
+  }, "\n			", HTML.BUTTON({                                                                                            // 7
+    type: "button",                                                                                                    // 8
+    "class": "btn btn-standard-2 btn-mode"                                                                             // 9
+  }, "Option: ", Blaze.View("lookup:mode", function() {                                                                // 10
+    return Spacebars.mustache(view.lookup("mode"));                                                                    // 11
+  })), "\n	");                                                                                                         // 12
+}));                                                                                                                   // 13
+                                                                                                                       // 14
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_mode_trainer.html":function(){
+},"template.nav_mode_trainer.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3017,12 +3413,52 @@ Template["navMode"] = new Template("Template.navMode", (function() {            
 Template.__checkName("navModeTrainer");                                                                                // 2
 Template["navModeTrainer"] = new Template("Template.navModeTrainer", (function() {                                     // 3
   var view = this;                                                                                                     // 4
-  return HTML.Raw('<br>\n	<br>\n	<div class="row text-center">\n		<div class="col-sm-12">\n			<div class="btn-group btn-group-lg" role="group">\n				<button type="button" class="btn btn-default btn-lg btn-lesen">Lesen</button>\n				<button type="button" class="btn btn-default btn-lg btn-wort">Wort</button>\n				<button type="button" class="btn btn-default btn-lg btn-definition">Definition</button>\n			</div>\n			<div class="btn-group btn-group-lg" role="group">\n				<button type="button" class="btn btn-default btn-lg btn-eingabe">Eingabe</button>\n			</div>\n		</div>\n		<br>\n		<br>\n		<h3><i class="fa fa-level-up fa-flip-horizontal"></i> Modus <i class="fa fa-level-up"></i></h3>\n	</div>');
-}));                                                                                                                   // 6
-                                                                                                                       // 7
+  return HTML.DIV({                                                                                                    // 5
+    "class": "row text-center"                                                                                         // 6
+  }, HTML.Raw('\n		<h5 class="widget-title">Option</h5>\n			'), HTML.UL({                                              // 7
+    "class": "list-inline"                                                                                             // 8
+  }, "\n				", HTML.LI(HTML.BUTTON({                                                                                   // 9
+    type: "button",                                                                                                    // 10
+    "class": function() {                                                                                              // 11
+      return [ "btn btn-lesen btn-standard-1 ", Blaze.If(function() {                                                  // 12
+        return Spacebars.dataMustache(view.lookup("getSession"), "lesen");                                             // 13
+      }, function() {                                                                                                  // 14
+        return "active";                                                                                               // 15
+      }) ];                                                                                                            // 16
+    }                                                                                                                  // 17
+  }, "Lesen")), "\n				", HTML.LI(HTML.BUTTON({                                                                        // 18
+    type: "button",                                                                                                    // 19
+    "class": function() {                                                                                              // 20
+      return [ "btn btn-wort btn-standard-1 ", Blaze.If(function() {                                                   // 21
+        return Spacebars.dataMustache(view.lookup("getSession"), "wort");                                              // 22
+      }, function() {                                                                                                  // 23
+        return "active";                                                                                               // 24
+      }) ];                                                                                                            // 25
+    }                                                                                                                  // 26
+  }, "Wort")), "\n				", HTML.LI(HTML.BUTTON({                                                                         // 27
+    type: "button",                                                                                                    // 28
+    "class": function() {                                                                                              // 29
+      return [ "btn btn-definition btn-standard-1 ", Blaze.If(function() {                                             // 30
+        return Spacebars.dataMustache(view.lookup("getSession"), "definition");                                        // 31
+      }, function() {                                                                                                  // 32
+        return "active";                                                                                               // 33
+      }) ];                                                                                                            // 34
+    }                                                                                                                  // 35
+  }, "Definition")), "\n				", HTML.LI(HTML.BUTTON({                                                                   // 36
+    type: "button",                                                                                                    // 37
+    "class": function() {                                                                                              // 38
+      return [ "btn btn-eingabe btn-standard-1 ", Blaze.If(function() {                                                // 39
+        return Spacebars.dataMustache(view.lookup("getSession"), "eingabe");                                           // 40
+      }, function() {                                                                                                  // 41
+        return "active";                                                                                               // 42
+      }) ];                                                                                                            // 43
+    }                                                                                                                  // 44
+  }, "Eingabe")), "\n			"), "\n	");                                                                                    // 45
+}));                                                                                                                   // 46
+                                                                                                                       // 47
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_overview.html":function(){
+},"template.nav_overview.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3066,7 +3502,7 @@ Template["navOverview"] = new Template("Template.navOverview", (function() {    
                                                                                                                        // 34
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_source.html":function(){
+},"template.nav_source.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3080,45 +3516,43 @@ Template["navSource"] = new Template("Template.navSource", (function() {        
   var view = this;                                                                                                     // 4
   return HTML.DIV({                                                                                                    // 5
     "class": "row text-center"                                                                                         // 6
-  }, HTML.Raw('\n			<div class="col-sm-4"></div>\n			'), HTML.DIV({                                                    // 7
-    "class": "col-sm-4"                                                                                                // 8
-  }, "\n				", HTML.BUTTON({                                                                                           // 9
-    type: "button",                                                                                                    // 10
-    "class": "btn btn-default btn-lg btn-block btn-source"                                                             // 11
-  }, "\n					Woerter aus: ", Blaze.View("lookup:source", function() {                                                  // 12
-    return Spacebars.mustache(view.lookup("source"));                                                                  // 13
-  }), "\n					", Blaze.If(function() {                                                                                 // 14
-    return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                      // 15
-  }, function() {                                                                                                      // 16
-    return [ "\n						", HTML.SPAN({                                                                                   // 17
-      "class": "label label-default"                                                                                   // 18
-    }, Blaze.View("lookup:lengthFav", function() {                                                                     // 19
-      return Spacebars.mustache(view.lookup("lengthFav"));                                                             // 20
-    })), "\n					" ];                                                                                                  // 21
-  }, function() {                                                                                                      // 22
-    return [ "\n						", HTML.SPAN({                                                                                   // 23
-      "class": "label label-default"                                                                                   // 24
-    }, Blaze.View("lookup:lengthNotFav", function() {                                                                  // 25
-      return Spacebars.mustache(view.lookup("lengthNotFav"));                                                          // 26
-    })), "\n					" ];                                                                                                  // 27
-  }), "\n				"), "\n				", Blaze.Unless(function() {                                                                   // 28
-    return Spacebars.call(view.lookup("lengthFav"));                                                                   // 29
-  }, function() {                                                                                                      // 30
-    return HTML.SPAN({                                                                                                 // 31
-      "class": "label label-warning"                                                                                   // 32
-    }, "Kein Eintrag in Favoritenliste");                                                                              // 33
-  }), "\n				", Blaze.Unless(function() {                                                                              // 34
-    return Spacebars.call(view.lookup("lengthNotFav"));                                                                // 35
-  }, function() {                                                                                                      // 36
-    return HTML.SPAN({                                                                                                 // 37
-      "class": "label label-warning"                                                                                   // 38
-    }, "Kein Eintrag in Nicht-Favoritenliste. Alle Woerter sind favorisiert.");                                        // 39
-  }), "\n			"), HTML.Raw('\n			<div class="col-sm-4"></div>\n		'));                                                    // 40
-}));                                                                                                                   // 41
-                                                                                                                       // 42
+  }, "\n				", HTML.BUTTON({                                                                                           // 7
+    type: "button",                                                                                                    // 8
+    "class": "btn btn-standard-2 btn-source"                                                                           // 9
+  }, "\n					Woerter aus: ", Blaze.View("lookup:source", function() {                                                  // 10
+    return Spacebars.mustache(view.lookup("source"));                                                                  // 11
+  }), "\n					", Blaze.If(function() {                                                                                 // 12
+    return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                      // 13
+  }, function() {                                                                                                      // 14
+    return [ "\n						", HTML.SPAN({                                                                                   // 15
+      "class": "label label-default"                                                                                   // 16
+    }, Blaze.View("lookup:getSession", function() {                                                                    // 17
+      return Spacebars.mustache(view.lookup("getSession"), "lengthFav");                                               // 18
+    })), "\n					" ];                                                                                                  // 19
+  }, function() {                                                                                                      // 20
+    return [ "\n						", HTML.SPAN({                                                                                   // 21
+      "class": "label label-default"                                                                                   // 22
+    }, Blaze.View("lookup:getSession", function() {                                                                    // 23
+      return Spacebars.mustache(view.lookup("getSession"), "lengthNotFav");                                            // 24
+    })), "\n					" ];                                                                                                  // 25
+  }), "\n				"), "\n				", Blaze.Unless(function() {                                                                   // 26
+    return Spacebars.dataMustache(view.lookup("getSession"), "lengthFav");                                             // 27
+  }, function() {                                                                                                      // 28
+    return HTML.SPAN({                                                                                                 // 29
+      "class": "label label-warning"                                                                                   // 30
+    }, "Kein Eintrag in Favoritenliste");                                                                              // 31
+  }), "\n				", Blaze.Unless(function() {                                                                              // 32
+    return Spacebars.dataMustache(view.lookup("getSession"), "lengthNotFav");                                          // 33
+  }, function() {                                                                                                      // 34
+    return HTML.SPAN({                                                                                                 // 35
+      "class": "label label-warning"                                                                                   // 36
+    }, "Kein Eintrag in Nicht-Favoritenliste. Alle Woerter sind favorisiert.");                                        // 37
+  }), "\n		");                                                                                                         // 38
+}));                                                                                                                   // 39
+                                                                                                                       // 40
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"nav_source_trainer.html":function(){
+},"template.nav_source_trainer.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3130,9 +3564,47 @@ Template["navSource"] = new Template("Template.navSource", (function() {        
 Template.__checkName("navSourceTrainer");                                                                              // 2
 Template["navSourceTrainer"] = new Template("Template.navSourceTrainer", (function() {                                 // 3
   var view = this;                                                                                                     // 4
-  return HTML.Raw('<br>\n	<div class="row text-center">\n		<h3><i class="fa fa-level-up fa-rotate-180"></i> Quelle <i class="fa fa-level-down"></i></h3>\n		<div class="col-sm-12">\n			<div class="btn-group btn-group-lg" role="group">\n				<button type="button" class="btn btn-default btn-lg btn-fav">Favouriten</button>\n				<button type="button" class="btn btn-default btn-lg btn-not-fav">Nicht-Favouriten</button>\n			</div>\n		</div>\n	</div>');
-}));                                                                                                                   // 6
-                                                                                                                       // 7
+  return HTML.DIV({                                                                                                    // 5
+    "class": "row text-center"                                                                                         // 6
+  }, HTML.Raw('\n		<h5 class="widget-title">Quelle</h5>\n		'), HTML.UL({                                               // 7
+    "class": "list-inline"                                                                                             // 8
+  }, "\n			", Blaze.If(function() {                                                                                    // 9
+    return Spacebars.dataMustache(view.lookup("getSession"), "lengthFav");                                             // 10
+  }, function() {                                                                                                      // 11
+    return [ "\n				", HTML.LI(HTML.BUTTON({                                                                           // 12
+      type: "button",                                                                                                  // 13
+      "class": function() {                                                                                            // 14
+        return [ "btn btn-source-fav btn-standard-1 ", Blaze.If(function() {                                           // 15
+          return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                // 16
+        }, function() {                                                                                                // 17
+          return "active";                                                                                             // 18
+        }) ];                                                                                                          // 19
+      }                                                                                                                // 20
+    }, "Favouriten ", HTML.SPAN({                                                                                      // 21
+      "class": "sup"                                                                                                   // 22
+    }, "(", Blaze.View("lookup:getSession", function() {                                                               // 23
+      return Spacebars.mustache(view.lookup("getSession"), "lengthFav");                                               // 24
+    }), ")"))), "\n			" ];                                                                                             // 25
+  }), "\n			", Blaze.If(function() {                                                                                   // 26
+    return Spacebars.dataMustache(view.lookup("getSession"), "lengthNotFav");                                          // 27
+  }, function() {                                                                                                      // 28
+    return [ "\n				", HTML.LI(HTML.BUTTON({                                                                           // 29
+      type: "button",                                                                                                  // 30
+      "class": function() {                                                                                            // 31
+        return [ "btn btn-source-not-fav btn-standard-1 ", Blaze.Unless(function() {                                   // 32
+          return Spacebars.dataMustache(view.lookup("getSession"), "sourceFavourites");                                // 33
+        }, function() {                                                                                                // 34
+          return "active";                                                                                             // 35
+        }) ];                                                                                                          // 36
+      }                                                                                                                // 37
+    }, "Nicht-Favouriten ", HTML.SPAN({                                                                                // 38
+      "class": "sup"                                                                                                   // 39
+    }, "(", Blaze.View("lookup:getSession", function() {                                                               // 40
+      return Spacebars.mustache(view.lookup("getSession"), "lengthNotFav");                                            // 41
+    }), ")"))), "\n			" ];                                                                                             // 42
+  }), "\n		"), "\n	");                                                                                                 // 43
+}));                                                                                                                   // 44
+                                                                                                                       // 45
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"_GLOBAL_HELPERS.js":function(){
@@ -3211,6 +3683,15 @@ Template.registerHelper("entry", function () {                                  
 	}                                                                                                                     //
 	return vocabulary[Session.get(COUNT_VIEWED)];                                                                         // 68
 });                                                                                                                    //
+                                                                                                                       //
+// NAV SOURCE                                                                                                          //
+Template.registerHelper("source", function () {                                                                        // 72
+	if (Session.get(SOURCE_FAV)) {                                                                                        // 73
+		return "Favoriten";                                                                                                  // 74
+	} else {                                                                                                              //
+		return "Nicht-Favoriten";                                                                                            // 76
+	}                                                                                                                     //
+});                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"__SESSIONS.js":function(){
@@ -3232,11 +3713,11 @@ Session.setDefault(LAST_PATH, '/');                                             
 SOURCE_FAV = 'sourceFavourites';                                                                                       // 9
 Session.setDefault(SOURCE_FAV, false);                                                                                 // 10
                                                                                                                        //
-RANDOM_FAV = 'randomFavourites';                                                                                       // 12
-Session.setDefault(RANDOM_FAV, false);                                                                                 // 13
-                                                                                                                       //
-RANDOM_NOT_FAV = 'randomNotFavourites';                                                                                // 15
-Session.setDefault(RANDOM_NOT_FAV, true);                                                                              // 16
+// RANDOM_FAV = 'randomFavourites';                                                                                    //
+// Session.setDefault(RANDOM_FAV, false);                                                                              //
+//                                                                                                                     //
+// RANDOM_NOT_FAV = 'randomNotFavourites';                                                                             //
+// Session.setDefault(RANDOM_NOT_FAV, true);                                                                           //
                                                                                                                        //
 LENGTH_FAV = 'lengthFav';                                                                                              // 18
 Session.setDefault(LENGTH_FAV, 0);                                                                                     // 19
@@ -3274,14 +3755,17 @@ Session.setDefault(NAV_MODE_TERM, false);                                       
 NAV_MODE_DEF = 'definition';                                                                                           // 51
 Session.setDefault(NAV_MODE_DEF, false);                                                                               // 52
                                                                                                                        //
-NAV_MODES = 'navModes';                                                                                                // 54
-Session.setDefault(NAV_MODES, [NAV_MODE_READ, NAV_MODE_TERM, NAV_MODE_DEF]);                                           // 55
+NAV_MODE_ENTER = 'eingabe';                                                                                            // 54
+Session.setDefault(NAV_MODE_ENTER, false);                                                                             // 55
                                                                                                                        //
-NAV_MODE_COUNT = 'navModeCount';                                                                                       // 57
-Session.setDefault(NAV_MODE_COUNT, 0);                                                                                 // 58
+NAV_MODES = 'navModes';                                                                                                // 57
+Session.setDefault(NAV_MODES, [NAV_MODE_READ, NAV_MODE_TERM, NAV_MODE_DEF]);                                           // 58
                                                                                                                        //
-NAV_LOW = 'navLow';                                                                                                    // 60
-Session.setDefault(NAV_LOW, false);                                                                                    // 61
+NAV_MODE_COUNT = 'navModeCount';                                                                                       // 60
+Session.setDefault(NAV_MODE_COUNT, 0);                                                                                 // 61
+                                                                                                                       //
+NAV_LOW = 'navLow';                                                                                                    // 63
+Session.setDefault(NAV_LOW, false);                                                                                    // 64
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"bar.js":function(){
@@ -3304,14 +3788,13 @@ Template.bar.events({                                                           
       var routePath = FlowRouter.current().path;                                                                       // 9
       Session.set(LAST_PATH, routePath);                                                                               // 10
                                                                                                                        //
-      // log                                                                                                           //
-      var deviceType = Darwin.device.type;                                                                             // 2
-      var devicePlatform = Darwin.device.platform;                                                                     // 14
-      var clickArea = 'bar';                                                                                           // 15
-      var mode = 'null';                                                                                               // 16
-      var attention = Session.get(ATTENTION_MODE);                                                                     // 17
+      // reset mode if set to 'eingabe'                                                                                //
+      if (Session.get(NAV_MODE_ENTER)) {                                                                               // 2
+        setModeTrainer(NAV_MODE_READ);                                                                                 // 14
+      };                                                                                                               //
                                                                                                                        //
-      Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                               // 19
+      // log                                                                                                           //
+      Log.detail('bar');                                                                                               // 2
     }                                                                                                                  //
                                                                                                                        //
     return clickAttentionMode;                                                                                         //
@@ -3350,166 +3833,127 @@ Template.layout.events({                                                        
 				document.getElementById("term").value = '';                                                                        // 21
 				if (document.getElementById("term").disabled === true) {                                                           // 22
 					document.getElementById("term").disabled = false;                                                                 // 23
+					document.getElementById("term").autofocus = true;                                                                 // 24
 				}                                                                                                                  //
+				document.getElementById("term").focus();                                                                           // 26
 			}                                                                                                                   //
+                                                                                                                       //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 12
-			var devicePlatform = Darwin.device.platform;                                                                        // 28
-			var clickArea = 'browse';                                                                                           // 29
-			var mode = void 0;                                                                                                  // 30
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 31
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 32
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 33
-			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 35
-					mode = 'eingabe';                                                                                                 // 36
-				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 38
-				}                                                                                                                  //
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 41
-			Meteor.call('dataWords', self);                                                                                     // 42
+			Log.detail('browse');                                                                                               // 12
+			Meteor.call('dataWords', self);                                                                                     // 32
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForwardClickBtnBackward;                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-backward': function () {                                                                                  // 45
+	'click .btn-backward': function () {                                                                                  // 35
 		function clickBtnBackward(event, template) {                                                                         //
-			var val = 0;                                                                                                        // 46
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 47
+			var val = 0;                                                                                                        // 36
+			if (Session.get(SOURCE_FAV)) {                                                                                      // 37
 				// reset to avoid going into negative numbers and be able to circle backwards                                      //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 49
-					val = Session.get(LENGTH_FAV) - 1;                                                                                // 50
-					Session.set(COUNT_VIEWED, val);                                                                                   // 51
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 39
+					val = Session.get(LENGTH_FAV) - 1;                                                                                // 40
+					Session.set(COUNT_VIEWED, val);                                                                                   // 41
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 53
-					Session.set(COUNT_VIEWED, val);                                                                                   // 54
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_FAV);                                                  // 43
+					Session.set(COUNT_VIEWED, val);                                                                                   // 44
 				}                                                                                                                  //
 			} else {                                                                                                            //
-				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 57
-					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 58
-					Session.set(COUNT_VIEWED, val);                                                                                   // 59
+				if (Session.get(COUNT_VIEWED) === 0) {                                                                             // 47
+					val = Session.get(LENGTH_NOT_FAV) - 1;                                                                            // 48
+					Session.set(COUNT_VIEWED, val);                                                                                   // 49
 				} else {                                                                                                           //
-					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 61
-					Session.set(COUNT_VIEWED, val);                                                                                   // 62
+					val = (Session.get(COUNT_VIEWED) - 1) % Session.get(LENGTH_NOT_FAV);                                              // 51
+					Session.set(COUNT_VIEWED, val);                                                                                   // 52
 				}                                                                                                                  //
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnBackward;                                                                                             //
 	}(),                                                                                                                  //
-	'click .btn-forward': function () {                                                                                   // 66
+	'click .btn-forward': function () {                                                                                   // 56
 		function clickBtnForward(event, template) {                                                                          //
-			var val = 0;                                                                                                        // 67
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 68
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 69
-				Session.set(COUNT_VIEWED, val);                                                                                    // 70
+			var val = 0;                                                                                                        // 57
+			if (Session.get(SOURCE_FAV)) {                                                                                      // 58
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                                   // 59
+				Session.set(COUNT_VIEWED, val);                                                                                    // 60
 			} else {                                                                                                            //
-				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 72
-				Session.set(COUNT_VIEWED, val);                                                                                    // 73
+				val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                               // 62
+				Session.set(COUNT_VIEWED, val);                                                                                    // 63
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnForward;                                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-reveal': function () {                                                                                    // 76
+	'click .btn-reveal': function () {                                                                                    // 66
 		function clickBtnReveal(event, template) {                                                                           //
-			if (!Session.get(REVEALED)) {                                                                                       // 77
-				Session.set(REVEALED, true);                                                                                       // 78
+			if (!Session.get(REVEALED)) {                                                                                       // 67
+				Session.set(REVEALED, true);                                                                                       // 68
 			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 80
-				if (document.getElementById("term").disabled === false) {                                                          // 81
-					document.getElementById("term").disabled = true;                                                                  // 82
+			if (document.getElementById("term")) {                                                                              // 70
+				if (document.getElementById("term").disabled === false) {                                                          // 71
+					document.getElementById("term").disabled = true;                                                                  // 72
 				}                                                                                                                  //
 			}                                                                                                                   //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 76
-			var devicePlatform = Darwin.device.platform;                                                                        // 87
-			var clickArea = 'reveal';                                                                                           // 88
-			var mode = void 0;                                                                                                  // 89
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 90
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 91
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 92
-			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 94
-					mode = 'eingabe';                                                                                                 // 95
-				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 97
-				}                                                                                                                  //
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 100
+			Log.detail('reveal');                                                                                               // 66
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnReveal;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-example': function () {                                                                                   // 102
+	'click .btn-example': function () {                                                                                   // 78
 		function clickBtnExample(event, template) {                                                                          //
-			var oldValue = Session.get(EXAMPLE) || false;                                                                       // 103
-			Session.set(EXAMPLE, !oldValue);                                                                                    // 104
+			var oldValue = Session.get(EXAMPLE) || false;                                                                       // 79
+			Session.set(EXAMPLE, !oldValue);                                                                                    // 80
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnExample;                                                                                              //
 	}(),                                                                                                                  //
-	'click .btn-insert, click .btn-delete': function () {                                                                 // 106
+	'click .btn-insert, click .btn-delete': function () {                                                                 // 82
 		function clickBtnInsertClickBtnDelete(event, template) {                                                             //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 108
-			var devicePlatform = Darwin.device.platform;                                                                        // 109
-			var clickArea = 'favDel';                                                                                           // 110
-			var mode = void 0;                                                                                                  // 111
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 112
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 113
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 114
-			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 116
-					mode = 'eingabe';                                                                                                 // 117
-				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 119
-				}                                                                                                                  //
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 122
+			Log.detail('favDel');                                                                                               // 84
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnInsertClickBtnDelete;                                                                                 //
 	}(),                                                                                                                  //
-	'click .btn-insert': function () {                                                                                    // 124
+	'click .btn-insert': function () {                                                                                    // 86
 		function clickBtnInsert(event, template) {                                                                           //
-			var self = this;                                                                                                    // 125
+			var self = this;                                                                                                    // 87
                                                                                                                        //
-			Meteor.call('insertFavourite', self._id);                                                                           // 127
+			Meteor.call('insertFavourite', self._id);                                                                           // 89
 			// simulate source mode button for register page                                                                    //
-			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 124
-				Session.set(SOURCE_FAV, false);                                                                                    // 130
+			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 86
+				Session.set(SOURCE_FAV, false);                                                                                    // 92
 			}                                                                                                                   //
                                                                                                                        //
 			// reset the COUNT VIEW when a list entry has been removed                                                          //
-			if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                     // 124
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 135
-				Session.set(COUNT_VIEWED, val);                                                                                    // 136
+			if (!Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_NOT_FAV) - 1) {                     // 86
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);                                           // 97
+				Session.set(COUNT_VIEWED, val);                                                                                    // 98
 			}                                                                                                                   //
-			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 138
-				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 139
+			if (Session.get(LENGTH_NOT_FAV) === 1) {                                                                            // 100
+				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 101
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnInsert;                                                                                               //
 	}(),                                                                                                                  //
-	'click .btn-delete': function () {                                                                                    // 143
+	'click .btn-delete': function () {                                                                                    // 105
 		function clickBtnDelete(event, template) {                                                                           //
-			var self = this;                                                                                                    // 144
+			var self = this;                                                                                                    // 106
                                                                                                                        //
-			Meteor.call('deleteFavourite', self._id);                                                                           // 146
+			Meteor.call('deleteFavourite', self._id);                                                                           // 108
 			// simulate source mode button for register page                                                                    //
-			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 143
-				Session.set(SOURCE_FAV, true);                                                                                     // 149
+			if (!Session.get(ATTENTION_MODE)) {                                                                                 // 105
+				Session.set(SOURCE_FAV, true);                                                                                     // 111
 			}                                                                                                                   //
                                                                                                                        //
-			if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 152
-				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 153
-				Session.set(COUNT_VIEWED, val);                                                                                    // 154
+			if (Session.get(SOURCE_FAV) && Session.get(COUNT_VIEWED) >= Session.get(LENGTH_FAV) - 1) {                          // 114
+				var val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);                                               // 115
+				Session.set(COUNT_VIEWED, val);                                                                                    // 116
 			}                                                                                                                   //
-			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 156
-				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 157
+			if (Session.get(LENGTH_FAV) === 1) {                                                                                // 118
+				Session.set(SOURCE_FAV, !Session.get(SOURCE_FAV));                                                                 // 119
 			}                                                                                                                   //
 		}                                                                                                                    //
                                                                                                                        //
@@ -3554,29 +3998,18 @@ Template.navMode.events({                                                       
 				Session.set(entry, false);                                                                                         // 5
 			});                                                                                                                 //
 			Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                             // 7
-                                                                                                                       //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 2
-			var devicePlatform = Darwin.device.platform;                                                                        // 11
-			var clickArea = 'mode';                                                                                             // 12
-			var mode = void 0;                                                                                                  // 13
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 14
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 15
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 16
-			} else {                                                                                                            //
-				mode = 'null';                                                                                                     // 18
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 20
+			Log.detail('mode');                                                                                                 // 2
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnMode;                                                                                                 //
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.navMode.helpers({                                                                                             // 24
-	mode: function () {                                                                                                   // 25
+Template.navMode.helpers({                                                                                             // 13
+	mode: function () {                                                                                                   // 14
 		function mode() {                                                                                                    //
-			return Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                         // 26
+			return Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                         // 15
 		}                                                                                                                    //
                                                                                                                        //
 		return mode;                                                                                                         //
@@ -3593,69 +4026,51 @@ Template.navMode.helpers({                                                      
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
 Template.navModeTrainer.events({                                                                                       // 1
-	'click .btn-mode': function () {                                                                                      // 2
-		function clickBtnMode() {                                                                                            //
-			Session.set(NAV_MODE_COUNT, (Session.get(NAV_MODE_COUNT) + 1) % Session.get(NAV_MODES).length);                     // 3
-			Session.get(NAV_MODES).forEach(function (entry) {                                                                   // 4
-				Session.set(entry, false);                                                                                         // 5
-			});                                                                                                                 //
-			Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                             // 7
-                                                                                                                       //
-			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 2
-			var devicePlatform = Darwin.device.platform;                                                                        // 11
-			var clickArea = 'mode';                                                                                             // 12
-			var mode = void 0;                                                                                                  // 13
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 14
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 15
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 16
-			} else {                                                                                                            //
-				mode = 'null';                                                                                                     // 18
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 20
-		}                                                                                                                    //
-                                                                                                                       //
-		return clickBtnMode;                                                                                                 //
-	}(),                                                                                                                  //
-	'click .btn-lesen': function () {                                                                                     // 22
+	'click .btn-lesen': function () {                                                                                     // 2
 		function clickBtnLesen() {                                                                                           //
-			Session.set(NAV_MODE_COUNT, R.indexOf(NAV_MODE_READ, Session.get(NAV_MODES)));                                      // 23
-			Session.get(NAV_MODES).forEach(function (entry) {                                                                   // 24
-				Session.set(entry, false);                                                                                         // 25
-			});                                                                                                                 //
-			Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                             // 27
+			setModeTrainer(NAV_MODE_READ);                                                                                      // 3
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnLesen;                                                                                                //
 	}(),                                                                                                                  //
-	'click .btn-wort': function () {                                                                                      // 29
+	'click .btn-wort': function () {                                                                                      // 5
 		function clickBtnWort() {                                                                                            //
-			Session.set(NAV_MODE_COUNT, R.indexOf(NAV_MODE_TERM, Session.get(NAV_MODES)));                                      // 30
-			Session.get(NAV_MODES).forEach(function (entry) {                                                                   // 31
-				Session.set(entry, false);                                                                                         // 32
-			});                                                                                                                 //
-			Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                             // 34
+			setModeTrainer(NAV_MODE_TERM);                                                                                      // 6
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnWort;                                                                                                 //
 	}(),                                                                                                                  //
-	'click .btn-definition': function () {                                                                                // 36
+	'click .btn-definition': function () {                                                                                // 8
 		function clickBtnDefinition() {                                                                                      //
-			Session.set(NAV_MODE_COUNT, R.indexOf(NAV_MODE_DEF, Session.get(NAV_MODES)));                                       // 37
-			Session.get(NAV_MODES).forEach(function (entry) {                                                                   // 38
-				Session.set(entry, false);                                                                                         // 39
-			});                                                                                                                 //
-			Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                             // 41
+			setModeTrainer(NAV_MODE_DEF);                                                                                       // 9
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnDefinition;                                                                                           //
 	}(),                                                                                                                  //
-	'click .btn-eingabe': function () {                                                                                   // 43
-		function clickBtnEingabe() {}                                                                                        //
+	'click .btn-eingabe': function () {                                                                                   // 11
+		function clickBtnEingabe() {                                                                                         //
+			Session.get(NAV_MODES).forEach(function (entry) {                                                                   // 12
+				Session.set(entry, false);                                                                                         // 13
+			});                                                                                                                 //
+			Session.set(NAV_MODE_ENTER, true);                                                                                  // 15
+			// log                                                                                                              //
+			Log.detail('mode');                                                                                                 // 11
+		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnEingabe;                                                                                              //
 	}()                                                                                                                   //
 });                                                                                                                    //
+                                                                                                                       //
+setModeTrainer = function setModeTrainer(mode) {                                                                       // 21
+	Session.set(NAV_MODE_COUNT, R.indexOf(mode, Session.get(NAV_MODES)));                                                 // 22
+	Session.get(NAV_MODES).forEach(function (entry) {                                                                     // 23
+		Session.set(entry, false);                                                                                           // 24
+	});                                                                                                                   //
+	Session.set(Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)], true);                                               // 26
+	Session.set(NAV_MODE_ENTER, false);                                                                                   // 27
+	// log                                                                                                                //
+	Log.detail('mode');                                                                                                   // 21
+};                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nav_source.js":function(){
@@ -3677,73 +4092,43 @@ Template.navSource.helpers({                                                    
 		}                                                                                                                    //
                                                                                                                        //
 		return source;                                                                                                       //
-	}(),                                                                                                                  //
-	lengthFav: function () {                                                                                              // 9
-		function lengthFav() {                                                                                               //
-			return Session.get(LENGTH_FAV);                                                                                     // 10
-		}                                                                                                                    //
-                                                                                                                       //
-		return lengthFav;                                                                                                    //
-	}(),                                                                                                                  //
-	lengthNotFav: function () {                                                                                           // 12
-		function lengthNotFav() {                                                                                            //
-			return Session.get(LENGTH_NOT_FAV);                                                                                 // 13
-		}                                                                                                                    //
-                                                                                                                       //
-		return lengthNotFav;                                                                                                 //
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Template.navSource.events({                                                                                            // 17
-	'click .btn-source': function () {                                                                                    // 18
+Template.navSource.events({                                                                                            // 11
+	'click .btn-source': function () {                                                                                    // 12
 		function clickBtnSource() {                                                                                          //
-			var oldValue = Session.get(SOURCE_FAV) || false;                                                                    // 19
+			var oldValue = Session.get(SOURCE_FAV) || false;                                                                    // 13
                                                                                                                        //
-			if (Session.get(REVEALED)) {                                                                                        // 21
-				Session.set(REVEALED, false);                                                                                      // 22
+			if (Session.get(REVEALED)) {                                                                                        // 15
+				Session.set(REVEALED, false);                                                                                      // 16
 			}                                                                                                                   //
-			if (Session.get(TERM_WRONG)) {                                                                                      // 24
-				Session.set(TERM_WRONG, false);                                                                                    // 25
+			if (Session.get(TERM_WRONG)) {                                                                                      // 18
+				Session.set(TERM_WRONG, false);                                                                                    // 19
 			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 27
-				document.getElementById("term").value = '';                                                                        // 28
-				if (document.getElementById("term").disabled === true) {                                                           // 29
-					document.getElementById("term").disabled = false;                                                                 // 30
+			if (document.getElementById("term")) {                                                                              // 21
+				document.getElementById("term").value = '';                                                                        // 22
+				if (document.getElementById("term").disabled === true) {                                                           // 23
+					document.getElementById("term").disabled = false;                                                                 // 24
 				}                                                                                                                  //
 			}                                                                                                                   //
                                                                                                                        //
 			// Button only switchable when there's at least on entry on a list                                                  //
-			if (Session.get(LENGTH_FAV) !== 0 && Session.get(LENGTH_NOT_FAV) !== 0) {                                           // 18
-				Session.set(SOURCE_FAV, !oldValue);                                                                                // 36
+			if (Session.get(LENGTH_FAV) !== 0 && Session.get(LENGTH_NOT_FAV) !== 0) {                                           // 12
+				Session.set(SOURCE_FAV, !oldValue);                                                                                // 30
 			}                                                                                                                   //
                                                                                                                        //
 			// reset counter range when switching between fav list and not-fav list                                             //
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 18
-				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                     // 41
-				Session.set(COUNT_VIEWED, val);                                                                                    // 42
+			if (Session.get(SOURCE_FAV)) {                                                                                      // 12
+				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                     // 35
+				Session.set(COUNT_VIEWED, val);                                                                                    // 36
 			} else {                                                                                                            //
-				var _val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                // 44
-				Session.set(COUNT_VIEWED, _val);                                                                                   // 45
+				var _val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                // 38
+				Session.set(COUNT_VIEWED, _val);                                                                                   // 39
 			}                                                                                                                   //
                                                                                                                        //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 18
-			var devicePlatform = Darwin.device.platform;                                                                        // 50
-			// ['favDel', 'browse', 'source', 'reveal']                                                                         //
-			var clickArea = 'source';                                                                                           // 18
-			// ['lesen', 'wort', 'definition', 'eingabe']                                                                       //
-			var mode = void 0;                                                                                                  // 18
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 55
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 56
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 57
-			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 59
-					mode = 'eingabe';                                                                                                 // 60
-				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 62
-				}                                                                                                                  //
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 65
+			Log.detail('source');                                                                                               // 12
 		}                                                                                                                    //
                                                                                                                        //
 		return clickBtnSource;                                                                                               //
@@ -3759,92 +4144,61 @@ Template.navSource.events({                                                     
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-Template.navSourceTrainer.helpers({                                                                                    // 1
-	source: function () {                                                                                                 // 2
-		function source() {                                                                                                  //
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 3
-				return "Favoriten";                                                                                                // 4
-			} else {                                                                                                            //
-				return "Nicht-Favoriten";                                                                                          // 6
+Template.navSourceTrainer.helpers({});                                                                                 // 1
+                                                                                                                       //
+Template.navSourceTrainer.events({                                                                                     // 5
+	'click .btn-source-fav, click .btn-source-not-fav': function () {                                                     // 6
+		function clickBtnSourceFavClickBtnSourceNotFav() {                                                                   //
+			if (Session.get(REVEALED)) {                                                                                        // 7
+				Session.set(REVEALED, false);                                                                                      // 8
 			}                                                                                                                   //
-		}                                                                                                                    //
-                                                                                                                       //
-		return source;                                                                                                       //
-	}(),                                                                                                                  //
-	lengthFav: function () {                                                                                              // 9
-		function lengthFav() {                                                                                               //
-			return Session.get(LENGTH_FAV);                                                                                     // 10
-		}                                                                                                                    //
-                                                                                                                       //
-		return lengthFav;                                                                                                    //
-	}(),                                                                                                                  //
-	lengthNotFav: function () {                                                                                           // 12
-		function lengthNotFav() {                                                                                            //
-			return Session.get(LENGTH_NOT_FAV);                                                                                 // 13
-		}                                                                                                                    //
-                                                                                                                       //
-		return lengthNotFav;                                                                                                 //
-	}()                                                                                                                   //
-});                                                                                                                    //
-                                                                                                                       //
-Template.navSourceTrainer.events({                                                                                     // 17
-	'click .btn-source': function () {                                                                                    // 18
-		function clickBtnSource() {                                                                                          //
-			var oldValue = Session.get(SOURCE_FAV) || false;                                                                    // 19
-                                                                                                                       //
-			if (Session.get(REVEALED)) {                                                                                        // 21
-				Session.set(REVEALED, false);                                                                                      // 22
+			if (Session.get(TERM_WRONG)) {                                                                                      // 10
+				Session.set(TERM_WRONG, false);                                                                                    // 11
 			}                                                                                                                   //
-			if (Session.get(TERM_WRONG)) {                                                                                      // 24
-				Session.set(TERM_WRONG, false);                                                                                    // 25
-			}                                                                                                                   //
-			if (document.getElementById("term")) {                                                                              // 27
-				document.getElementById("term").value = '';                                                                        // 28
-				if (document.getElementById("term").disabled === true) {                                                           // 29
-					document.getElementById("term").disabled = false;                                                                 // 30
+			if (document.getElementById("term")) {                                                                              // 13
+				document.getElementById("term").value = '';                                                                        // 14
+				if (document.getElementById("term").disabled === true) {                                                           // 15
+					document.getElementById("term").disabled = false;                                                                 // 16
 				}                                                                                                                  //
 			}                                                                                                                   //
-                                                                                                                       //
-			// Button only switchable when there's at least on entry on a list                                                  //
-			if (Session.get(LENGTH_FAV) !== 0 && Session.get(LENGTH_NOT_FAV) !== 0) {                                           // 18
-				Session.set(SOURCE_FAV, !oldValue);                                                                                // 36
-			}                                                                                                                   //
-                                                                                                                       //
-			// reset counter range when switching between fav list and not-fav list                                             //
-			if (Session.get(SOURCE_FAV)) {                                                                                      // 18
-				var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                     // 41
-				Session.set(COUNT_VIEWED, val);                                                                                    // 42
-			} else {                                                                                                            //
-				var _val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                // 44
-				Session.set(COUNT_VIEWED, _val);                                                                                   // 45
-			}                                                                                                                   //
-                                                                                                                       //
 			// log                                                                                                              //
-			var deviceType = Darwin.device.type;                                                                                // 18
-			var devicePlatform = Darwin.device.platform;                                                                        // 50
-			// ['favDel', 'browse', 'source', 'reveal']                                                                         //
-			var clickArea = 'source';                                                                                           // 18
-			// ['lesen', 'wort', 'definition', 'eingabe']                                                                       //
-			var mode = void 0;                                                                                                  // 18
-			var attention = Session.get(ATTENTION_MODE);                                                                        // 55
-			if (Session.get(ATTENTION_MODE)) {                                                                                  // 56
-				mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];                                                        // 57
-			} else {                                                                                                            //
-				if (FlowRouter.current().route.name === "eingabe") {                                                               // 59
-					mode = 'eingabe';                                                                                                 // 60
-				} else {                                                                                                           //
-					mode = 'null';                                                                                                    // 62
-				}                                                                                                                  //
-			}                                                                                                                   //
-			Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);                                  // 65
+			Log.detail('source');                                                                                               // 6
 		}                                                                                                                    //
                                                                                                                        //
-		return clickBtnSource;                                                                                               //
+		return clickBtnSourceFavClickBtnSourceNotFav;                                                                        //
+	}(),                                                                                                                  //
+	'click .btn-source-fav': function () {                                                                                // 22
+		function clickBtnSourceFav() {                                                                                       //
+			// Button only switchable when there's at least on entry on a list                                                  //
+			if (Session.get(LENGTH_FAV) !== 0) {                                                                                // 24
+				Session.set(SOURCE_FAV, true);                                                                                     // 25
+			}                                                                                                                   //
+			// reset counter range when switching between fav list and not-fav list                                             //
+			var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_FAV);                                                      // 22
+			Session.set(COUNT_VIEWED, val);                                                                                     // 29
+			console.log(Session.get(SOURCE_FAV));                                                                               // 30
+		}                                                                                                                    //
+                                                                                                                       //
+		return clickBtnSourceFav;                                                                                            //
+	}(),                                                                                                                  //
+	'click .btn-source-not-fav': function () {                                                                            // 32
+		function clickBtnSourceNotFav() {                                                                                    //
+			// Button only switchable when there's at least on entry on a list                                                  //
+			if (Session.get(LENGTH_NOT_FAV) !== 0) {                                                                            // 34
+				Session.set(SOURCE_FAV, false);                                                                                    // 35
+			}                                                                                                                   //
+			// reset counter range when switching between fav list and not-fav list                                             //
+			var val = Session.get(COUNT_VIEWED) % Session.get(LENGTH_NOT_FAV);                                                  // 32
+			Session.set(COUNT_VIEWED, val);                                                                                     // 39
+			console.log(Session.get(SOURCE_FAV));                                                                               // 40
+		}                                                                                                                    //
+                                                                                                                       //
+		return clickBtnSourceNotFav;                                                                                         //
 	}()                                                                                                                   //
 });                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}},"loading.html":function(){
+}},"template.loading.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3861,7 +4215,7 @@ Template["loading"] = new Template("Template.loading", (function() {            
                                                                                                                        // 7
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-},"page_not_found.html":function(){
+},"template.page_not_found.js":function(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                     //
@@ -3886,7 +4240,21 @@ Template["pageNotFound"] = new Template("Template.pageNotFound", (function() {  
 //                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
-Meteor.startup(function () {});                                                                                        // 1
+Meteor.startup(function () {                                                                                           // 1
+	WebFontConfig = {                                                                                                     // 2
+		google: {                                                                                                            // 3
+			families: ['Montserrat:400,700:latin', 'Roboto:400,300,700:latin', 'Playfair+Display:400,700,400italic:latin']      // 4
+		}                                                                                                                    //
+	};                                                                                                                    //
+	(function () {                                                                                                        // 7
+		var wf = document.createElement('script');                                                                           // 8
+		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';                                               // 9
+		wf.type = 'text/javascript';                                                                                         // 10
+		wf.async = 'true';                                                                                                   // 11
+		var s = document.getElementsByTagName('script')[0];                                                                  // 12
+		s.parentNode.insertBefore(wf, s);                                                                                    // 13
+	})();                                                                                                                 //
+});                                                                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }},"common":{"aux":{"aux.js":function(require,exports){
@@ -3915,6 +4283,39 @@ Meteor.startup(function () {});                                                 
         return Math.floor(Math.random() * (max - min + 1)) + min;                                                      //
     };                                                                                                                 //
 })(this.Aux = {});                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"log.js":function(require,exports){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                     //
+// common/aux/log.js                                                                                                   //
+//                                                                                                                     //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                       //
+(function (exports) {                                                                                                  // 1
+                                                                                                                       //
+	exports.detail = function (clickArea) {                                                                               // 3
+		// log                                                                                                               //
+		var modes = [NAV_MODE_READ, NAV_MODE_TERM, NAV_MODE_DEF, NAV_MODE_ENTER];                                            // 5
+		var currentRoute = FlowRouter.current().route.name;                                                                  // 6
+                                                                                                                       //
+		var deviceType = Darwin.device.type;                                                                                 // 8
+		var devicePlatform = Darwin.device.platform;                                                                         // 9
+		var route = FlowRouter.current().route.name;                                                                         // 10
+		var area = clickArea;                                                                                                // 11
+		var attention = Session.get(ATTENTION_MODE);                                                                         // 12
+		var mode = 'null';                                                                                                   // 13
+		if (currentRoute !== 'register') {                                                                                   // 14
+			modes.forEach(function (entry) {                                                                                    // 15
+				if (Session.get(entry)) {                                                                                          // 16
+					mode = entry;                                                                                                     // 17
+				}                                                                                                                  //
+			});                                                                                                                 //
+		};                                                                                                                   //
+		Meteor.call('dataDetail', deviceType, devicePlatform, route, area, mode, attention);                                 // 21
+	};                                                                                                                    //
+})(this.Log = {});                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"nvd3_extra.js":function(require,exports){
@@ -4067,18 +4468,19 @@ Data.Feedback.Schema = new SimpleSchema({                                       
 	},                                                                                                                    //
 	message: {                                                                                                            // 48
 		type: String,                                                                                                        // 49
-		max: 1000,                                                                                                           // 50
-		autoform: {                                                                                                          // 51
-			afFieldInput: {                                                                                                     // 52
-				type: "textarea"                                                                                                   // 53
+		label: 'Feedback-Nachricht',                                                                                         // 50
+		max: 1000,                                                                                                           // 51
+		autoform: {                                                                                                          // 52
+			afFieldInput: {                                                                                                     // 53
+				type: "textarea"                                                                                                   // 54
 			}                                                                                                                   //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	createdAt: {                                                                                                          // 57
-		type: Date,                                                                                                          // 58
-		autoValue: function () {                                                                                             // 59
-			function autoValue() {                                                                                              // 59
-				return new Date();                                                                                                 // 60
+	createdAt: {                                                                                                          // 58
+		type: Date,                                                                                                          // 59
+		autoValue: function () {                                                                                             // 60
+			function autoValue() {                                                                                              // 60
+				return new Date();                                                                                                 // 61
 			}                                                                                                                   //
                                                                                                                        //
 			return autoValue;                                                                                                   //
@@ -4086,8 +4488,7 @@ Data.Feedback.Schema = new SimpleSchema({                                       
 	}                                                                                                                     //
 });                                                                                                                    //
                                                                                                                        //
-Data.Survey.Schema = new SimpleSchema({                                                                                // 65
-	// GENERAL                                                                                                            //
+Data.Detail.Schema = new SimpleSchema({                                                                                // 66
 	userId: {                                                                                                             // 67
 		type: String,                                                                                                        // 68
 		autoValue: function () {                                                                                             // 69
@@ -4096,35 +4497,127 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}                                                                                                                   //
                                                                                                                        //
 			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	userMail: {                                                                                                           // 73
+		type: String,                                                                                                        // 74
+		autoValue: function () {                                                                                             // 75
+			function autoValue() {                                                                                              // 75
+				return Meteor.user().emails[0].address;                                                                            // 76
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	timestamp: {                                                                                                          // 79
+		type: Date,                                                                                                          // 80
+		autoValue: function () {                                                                                             // 81
+			function autoValue() {                                                                                              // 81
+				return new Date();                                                                                                 // 82
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	deviceType: {                                                                                                         // 85
+		type: String                                                                                                         // 86
+	},                                                                                                                    //
+	devicePlatform: {                                                                                                     // 88
+		type: String                                                                                                         // 89
+	},                                                                                                                    //
+	route: {                                                                                                              // 91
+		type: String                                                                                                         // 92
+	},                                                                                                                    //
+	clickArea: {                                                                                                          // 94
+		type: String,                                                                                                        // 95
+		allowedValues: ['bar', 'mode', 'source', 'favDel', 'browse', 'reveal']                                               // 96
+	},                                                                                                                    //
+	mode: {                                                                                                               // 98
+		type: String,                                                                                                        // 99
+		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']                                                    // 100
+	},                                                                                                                    //
+	attention: {                                                                                                          // 102
+		type: Boolean                                                                                                        // 103
+	}                                                                                                                     //
+});                                                                                                                    //
+                                                                                                                       //
+Data.Words.Schema = new SimpleSchema({                                                                                 // 107
+	userId: {                                                                                                             // 108
+		type: String,                                                                                                        // 109
+		autoValue: function () {                                                                                             // 110
+			function autoValue() {                                                                                              // 110
+				return this.userId;                                                                                                // 111
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	},                                                                                                                    //
+	vocabularyId: {                                                                                                       // 114
+		type: String                                                                                                         // 115
+	},                                                                                                                    //
+	vocabularyName: {                                                                                                     // 117
+		type: String                                                                                                         // 118
+	},                                                                                                                    //
+	viewed: {                                                                                                             // 120
+		type: Number                                                                                                         // 121
+	},                                                                                                                    //
+	createdAt: {                                                                                                          // 123
+		type: Date,                                                                                                          // 124
+		autoValue: function () {                                                                                             // 125
+			function autoValue() {                                                                                              // 125
+				return new Date();                                                                                                 // 126
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	}                                                                                                                     //
+});                                                                                                                    //
+                                                                                                                       //
+Data.Survey.Schema = new SimpleSchema({                                                                                // 131
+	// GENERAL                                                                                                            //
+	userId: {                                                                                                             // 133
+		type: String,                                                                                                        // 134
+		autoValue: function () {                                                                                             // 135
+			function autoValue() {                                                                                              // 135
+				return this.userId;                                                                                                // 136
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
 		}(),                                                                                                                 //
-		autoform: {                                                                                                          // 72
-			type: "hidden",                                                                                                     // 73
-			label: false                                                                                                        // 74
+		autoform: {                                                                                                          // 138
+			type: "hidden",                                                                                                     // 139
+			label: false                                                                                                        // 140
 		}                                                                                                                    //
 	},                                                                                                                    //
-	age: {                                                                                                                // 77
-		type: Number,                                                                                                        // 78
-		label: 'Dein Alter',                                                                                                 // 79
-		min: 18,                                                                                                             // 80
-		max: 99                                                                                                              // 81
+	age: {                                                                                                                // 143
+		type: Number,                                                                                                        // 144
+		label: 'Dein Alter',                                                                                                 // 145
+		min: 18,                                                                                                             // 146
+		max: 99                                                                                                              // 147
 	},                                                                                                                    //
                                                                                                                        //
-	previousExperience: {                                                                                                 // 84
-		type: String,                                                                                                        // 85
-		label: 'Wie steht es um deine Vorerfahrung mit digitalen Vokabeltrainern?',                                          // 86
-		autoform: {                                                                                                          // 87
-			type: "select-radio-inline",                                                                                        // 88
-			options: function () {                                                                                              // 89
-				function options() {                                                                                               // 89
-					return [{                                                                                                         // 90
-						label: "gar keine",                                                                                              // 91
-						value: "keine"                                                                                                   // 92
+	previousExperience: {                                                                                                 // 150
+		type: String,                                                                                                        // 151
+		label: 'Ich verfuege ueber Vorerfahrung mit digitalen Vokabeltrainern.',                                             // 152
+		autoform: {                                                                                                          // 153
+			type: "select-radio-inline",                                                                                        // 154
+			options: function () {                                                                                              // 155
+				function options() {                                                                                               // 155
+					return [{                                                                                                         // 156
+						label: "trifft zu",                                                                                              // 157
+						value: "trifftZu"                                                                                                // 158
 					}, {                                                                                                              //
-						label: "mal probiert",                                                                                           // 94
-						value: "probiert"                                                                                                // 95
+						label: "trifft eher zu",                                                                                         // 160
+						value: "trifftEherZu"                                                                                            // 161
 					}, {                                                                                                              //
-						label: "nutze ich regelmaessig",                                                                                 // 97
-						value: "regelmaessig"                                                                                            // 98
+						label: "teils-teils",                                                                                            // 163
+						value: "teilsTeils"                                                                                              // 164
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 166
+						value: "trifftEherNichtZu"                                                                                       // 167
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 169
+						value: "trifftNichtZu"                                                                                           // 170
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4132,22 +4625,28 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	learningCurve: {                                                                                                      // 103
-		type: String,                                                                                                        // 104
-		label: 'Wie ist dir die Einarbeitung in die App gefallen?',                                                          // 105
-		autoform: {                                                                                                          // 106
-			type: "select-radio-inline",                                                                                        // 107
-			options: function () {                                                                                              // 108
-				function options() {                                                                                               // 108
-					return [{                                                                                                         // 109
-						label: "Leicht",                                                                                                 // 110
-						value: "leicht"                                                                                                  // 111
+	learningCurve: {                                                                                                      // 175
+		type: String,                                                                                                        // 176
+		label: 'Die Einarbeitung in den Fremdworttrainer ist mir leicht gefallen.',                                          // 177
+		autoform: {                                                                                                          // 178
+			type: "select-radio-inline",                                                                                        // 179
+			options: function () {                                                                                              // 180
+				function options() {                                                                                               // 180
+					return [{                                                                                                         // 181
+						label: "trifft zu",                                                                                              // 182
+						value: "trifftZu"                                                                                                // 183
 					}, {                                                                                                              //
-						label: "Mittel",                                                                                                 // 113
-						value: "mittel"                                                                                                  // 114
+						label: "trifft eher zu",                                                                                         // 185
+						value: "trifftEherZu"                                                                                            // 186
 					}, {                                                                                                              //
-						label: "Schwer",                                                                                                 // 116
-						value: "schwer"                                                                                                  // 117
+						label: "teils-teils",                                                                                            // 188
+						value: "teilsTeils"                                                                                              // 189
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 191
+						value: "trifftEherNichtZu"                                                                                       // 192
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 194
+						value: "trifftNichtZu"                                                                                           // 195
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4155,19 +4654,28 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	everydayUse: {                                                                                                        // 122
-		type: String,                                                                                                        // 123
-		label: 'Konntest du den Gebrauch der App muehelos in deinen Alltag integrieren?',                                    // 124
-		autoform: {                                                                                                          // 125
-			type: "select-radio-inline",                                                                                        // 126
-			options: function () {                                                                                              // 127
-				function options() {                                                                                               // 127
-					return [{                                                                                                         // 128
-						label: "Ja",                                                                                                     // 129
-						value: "ja"                                                                                                      // 130
+	everydayUse: {                                                                                                        // 200
+		type: String,                                                                                                        // 201
+		label: 'Den Gebrauch der App konnte ich muehelos in meinen Alltag integrieren.',                                     // 202
+		autoform: {                                                                                                          // 203
+			type: "select-radio-inline",                                                                                        // 204
+			options: function () {                                                                                              // 205
+				function options() {                                                                                               // 205
+					return [{                                                                                                         // 206
+						label: "trifft zu",                                                                                              // 207
+						value: "trifftZu"                                                                                                // 208
 					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 132
-						value: "nein"                                                                                                    // 133
+						label: "trifft eher zu",                                                                                         // 210
+						value: "trifftEherZu"                                                                                            // 211
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 213
+						value: "teilsTeils"                                                                                              // 214
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 216
+						value: "trifftEherNichtZu"                                                                                       // 217
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 219
+						value: "trifftNichtZu"                                                                                           // 220
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4175,32 +4683,39 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	everydayUseText: {                                                                                                    // 138
-		type: String,                                                                                                        // 139
-		max: 1000,                                                                                                           // 140
-		label: 'Weshalb?',                                                                                                   // 141
-		autoform: {                                                                                                          // 142
-			afFieldInput: {                                                                                                     // 143
-				type: "textarea"                                                                                                   // 144
+	everydayUseText: {                                                                                                    // 225
+		type: String,                                                                                                        // 226
+		max: 1000,                                                                                                           // 227
+		optional: true,                                                                                                      // 228
+		label: 'Aus folgendem Grund (optional):',                                                                            // 229
+		autoform: {                                                                                                          // 230
+			afFieldInput: {                                                                                                     // 231
+				type: "textarea"                                                                                                   // 232
 			}                                                                                                                   //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	usability: {                                                                                                          // 148
-		type: String,                                                                                                        // 149
-		label: 'Wie kommst du mit der Bedienung der App zurecht?',                                                           // 150
-		autoform: {                                                                                                          // 151
-			type: "select-radio-inline",                                                                                        // 152
-			options: function () {                                                                                              // 153
-				function options() {                                                                                               // 153
-					return [{                                                                                                         // 154
-						label: "gar nicht",                                                                                              // 155
-						value: "nicht"                                                                                                   // 156
+	usability: {                                                                                                          // 236
+		type: String,                                                                                                        // 237
+		label: 'Mit der Bedienung der App zurecht komme ich prima zurecht.',                                                 // 238
+		autoform: {                                                                                                          // 239
+			type: "select-radio-inline",                                                                                        // 240
+			options: function () {                                                                                              // 241
+				function options() {                                                                                               // 241
+					return [{                                                                                                         // 242
+						label: "trifft zu",                                                                                              // 243
+						value: "trifftZu"                                                                                                // 244
 					}, {                                                                                                              //
-						label: "ok",                                                                                                     // 158
-						value: "ok"                                                                                                      // 159
+						label: "trifft eher zu",                                                                                         // 246
+						value: "trifftEherZu"                                                                                            // 247
 					}, {                                                                                                              //
-						label: "super",                                                                                                  // 161
-						value: "super"                                                                                                   // 162
+						label: "teils-teils",                                                                                            // 249
+						value: "teilsTeils"                                                                                              // 250
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 252
+						value: "trifftEherNichtZu"                                                                                       // 253
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 255
+						value: "trifftNichtZu"                                                                                           // 256
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4208,142 +4723,41 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	usabilityText: {                                                                                                      // 167
-		type: String,                                                                                                        // 168
-		max: 1000,                                                                                                           // 169
-		label: 'Teile deine Ideen zur Bedienung (optional)',                                                                 // 170
-		optional: true,                                                                                                      // 171
-		autoform: {                                                                                                          // 172
-			afFieldInput: {                                                                                                     // 173
-				type: "textarea"                                                                                                   // 174
+	usabilityText: {                                                                                                      // 261
+		type: String,                                                                                                        // 262
+		max: 1000,                                                                                                           // 263
+		optional: true,                                                                                                      // 264
+		label: 'Aus folgendem Grund (optional):',                                                                            // 265
+		optional: true,                                                                                                      // 266
+		autoform: {                                                                                                          // 267
+			afFieldInput: {                                                                                                     // 268
+				type: "textarea"                                                                                                   // 269
 			}                                                                                                                   //
 		}                                                                                                                    //
 	},                                                                                                                    //
 	// NUTZUNGSVERHALTEN                                                                                                  //
-	deviceMobile: {                                                                                                       // 179
-		type: String,                                                                                                        // 180
-		label: 'Mobile:',                                                                                                    // 181
-		autoform: {                                                                                                          // 182
-			type: "select-radio-inline",                                                                                        // 183
-			options: function () {                                                                                              // 184
-				function options() {                                                                                               // 184
-					return [{                                                                                                         // 185
-						label: "Ja",                                                                                                     // 186
-						value: "ja"                                                                                                      // 187
-					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 189
-						value: "nein"                                                                                                    // 190
-					}];                                                                                                               //
-				}                                                                                                                  //
-                                                                                                                       //
-				return options;                                                                                                    //
-			}()                                                                                                                 //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	deviceTablet: {                                                                                                       // 195
-		type: String,                                                                                                        // 196
-		label: 'Tablet:',                                                                                                    // 197
-		autoform: {                                                                                                          // 198
-			type: "select-radio-inline",                                                                                        // 199
-			options: function () {                                                                                              // 200
-				function options() {                                                                                               // 200
-					return [{                                                                                                         // 201
-						label: "Ja",                                                                                                     // 202
-						value: "ja"                                                                                                      // 203
-					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 205
-						value: "nein"                                                                                                    // 206
-					}];                                                                                                               //
-				}                                                                                                                  //
-                                                                                                                       //
-				return options;                                                                                                    //
-			}()                                                                                                                 //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	deviceDesktop: {                                                                                                      // 211
-		type: String,                                                                                                        // 212
-		label: 'Desktop:',                                                                                                   // 213
-		autoform: {                                                                                                          // 214
-			type: "select-radio-inline",                                                                                        // 215
-			options: function () {                                                                                              // 216
-				function options() {                                                                                               // 216
-					return [{                                                                                                         // 217
-						label: "Ja",                                                                                                     // 218
-						value: "ja"                                                                                                      // 219
-					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 221
-						value: "nein"                                                                                                    // 222
-					}];                                                                                                               //
-				}                                                                                                                  //
-                                                                                                                       //
-				return options;                                                                                                    //
-			}()                                                                                                                 //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	deviceBehavior: {                                                                                                     // 227
-		type: String,                                                                                                        // 228
-		max: 1000,                                                                                                           // 229
-		label: 'Falls du mehrere Endgeraete benutzt hast um die App aufzurufen: Inwiefern hat sich dein Nutzungsverhalten unterschieden?',
-		optional: false,                                                                                                     // 231
-		autoform: {                                                                                                          // 232
-			afFieldInput: {                                                                                                     // 233
-				type: "textarea"                                                                                                   // 234
-			}                                                                                                                   //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	favouriteMode: {                                                                                                      // 238
-		type: String,                                                                                                        // 239
-		label: 'Welchen Trainermodus hast du am liebsten genutzt?',                                                          // 240
-		autoform: {                                                                                                          // 241
-			type: "select-radio-inline",                                                                                        // 242
-			options: function () {                                                                                              // 243
-				function options() {                                                                                               // 243
-					return [{                                                                                                         // 244
-						label: "Lesen",                                                                                                  // 245
-						value: "lesen"                                                                                                   // 246
-					}, {                                                                                                              //
-						label: "Wort",                                                                                                   // 248
-						value: "wort"                                                                                                    // 249
-					}, {                                                                                                              //
-						label: "Definition",                                                                                             // 251
-						value: "definition"                                                                                              // 252
-					}, {                                                                                                              //
-						label: "Texteingabe",                                                                                            // 254
-						value: "eingabe"                                                                                                 // 255
-					}, {                                                                                                              //
-						label: "Register",                                                                                               // 257
-						value: "register"                                                                                                // 258
-					}];                                                                                                               //
-				}                                                                                                                  //
-                                                                                                                       //
-				return options;                                                                                                    //
-			}()                                                                                                                 //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	favouriteModeText: {                                                                                                  // 263
-		type: String,                                                                                                        // 264
-		max: 1000,                                                                                                           // 265
-		label: 'Weshalb?',                                                                                                   // 266
-		optional: false,                                                                                                     // 267
-		autoform: {                                                                                                          // 268
-			afFieldInput: {                                                                                                     // 269
-				type: "textarea"                                                                                                   // 270
-			}                                                                                                                   //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	attentionBenefit: {                                                                                                   // 274
+	deviceMobile: {                                                                                                       // 274
 		type: String,                                                                                                        // 275
-		label: 'Hat dir die Moeglichkeit, das UI kontextorientiert zu veraendern, gefallen?',                                // 276
+		label: '... Mobile Endgeraet (z.B. Smartphone, kein Laptop) aufgerufen.',                                            // 276
 		autoform: {                                                                                                          // 277
 			type: "select-radio-inline",                                                                                        // 278
 			options: function () {                                                                                              // 279
 				function options() {                                                                                               // 279
 					return [{                                                                                                         // 280
-						label: "Ja",                                                                                                     // 281
-						value: "ja"                                                                                                      // 282
+						label: "trifft zu",                                                                                              // 281
+						value: "trifftZu"                                                                                                // 282
 					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 284
-						value: "nein"                                                                                                    // 285
+						label: "trifft eher zu",                                                                                         // 284
+						value: "trifftEherZu"                                                                                            // 285
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 287
+						value: "teilsTeils"                                                                                              // 288
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 290
+						value: "trifftEherNichtZu"                                                                                       // 291
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 293
+						value: "trifftNichtZu"                                                                                           // 294
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4351,19 +4765,28 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	attentionBehavior: {                                                                                                  // 290
-		type: String,                                                                                                        // 291
-		label: 'Hat die Moeglichkeit, das UI kontextorientiert zu veraendern, dein Nutzungsverhalten beeinflusst?',          // 292
-		autoform: {                                                                                                          // 293
-			type: "select-radio-inline",                                                                                        // 294
-			options: function () {                                                                                              // 295
-				function options() {                                                                                               // 295
-					return [{                                                                                                         // 296
-						label: "Ja",                                                                                                     // 297
-						value: "ja"                                                                                                      // 298
+	deviceTablet: {                                                                                                       // 299
+		type: String,                                                                                                        // 300
+		label: '... Tablet Endgeraet aufgerufen.',                                                                           // 301
+		autoform: {                                                                                                          // 302
+			type: "select-radio-inline",                                                                                        // 303
+			options: function () {                                                                                              // 304
+				function options() {                                                                                               // 304
+					return [{                                                                                                         // 305
+						label: "trifft zu",                                                                                              // 306
+						value: "trifftZu"                                                                                                // 307
 					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 300
-						value: "nein"                                                                                                    // 301
+						label: "trifft eher zu",                                                                                         // 309
+						value: "trifftEherZu"                                                                                            // 310
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 312
+						value: "teilsTeils"                                                                                              // 313
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 315
+						value: "trifftEherNichtZu"                                                                                       // 316
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 318
+						value: "trifftNichtZu"                                                                                           // 319
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4371,39 +4794,28 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	attentionBehaviorText: {                                                                                              // 306
-		type: String,                                                                                                        // 307
-		max: 1000,                                                                                                           // 308
-		label: 'Weshalb?',                                                                                                   // 309
-		autoform: {                                                                                                          // 310
-			afFieldInput: {                                                                                                     // 311
-				type: "textarea"                                                                                                   // 312
-			}                                                                                                                   //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	attentionSituation: {                                                                                                 // 316
-		type: String,                                                                                                        // 317
-		label: 'Wann, wo und in welcher Situation hast du beschlossen, das UI zu wechseln? (Beispiel)',                      // 318
-		optional: false,                                                                                                     // 319
-		autoform: {                                                                                                          // 320
-			afFieldInput: {                                                                                                     // 321
-				type: "textarea"                                                                                                   // 322
-			}                                                                                                                   //
-		}                                                                                                                    //
-	},                                                                                                                    //
-	attentionUse: {                                                                                                       // 326
-		type: String,                                                                                                        // 327
-		label: 'Siehst du generell einen Vorteil in der Moeglichkeit das UI kontextorientiert anzupassen?',                  // 328
-		autoform: {                                                                                                          // 329
-			type: "select-radio-inline",                                                                                        // 330
-			options: function () {                                                                                              // 331
-				function options() {                                                                                               // 331
-					return [{                                                                                                         // 332
-						label: "Ja",                                                                                                     // 333
-						value: "ja"                                                                                                      // 334
+	deviceDesktop: {                                                                                                      // 324
+		type: String,                                                                                                        // 325
+		label: '... Desktop Endgeraet (z.B. Laptop, Desktop PC) aufgerufen.',                                                // 326
+		autoform: {                                                                                                          // 327
+			type: "select-radio-inline",                                                                                        // 328
+			options: function () {                                                                                              // 329
+				function options() {                                                                                               // 329
+					return [{                                                                                                         // 330
+						label: "trifft zu",                                                                                              // 331
+						value: "trifftZu"                                                                                                // 332
 					}, {                                                                                                              //
-						label: "Nein",                                                                                                   // 336
-						value: "nein"                                                                                                    // 337
+						label: "trifft eher zu",                                                                                         // 334
+						value: "trifftEherZu"                                                                                            // 335
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 337
+						value: "teilsTeils"                                                                                              // 338
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 340
+						value: "trifftEherNichtZu"                                                                                       // 341
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 343
+						value: "trifftNichtZu"                                                                                           // 344
 					}];                                                                                                               //
 				}                                                                                                                  //
                                                                                                                        //
@@ -4411,108 +4823,228 @@ Data.Survey.Schema = new SimpleSchema({                                         
 			}()                                                                                                                 //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	attentionUseText: {                                                                                                   // 342
-		type: String,                                                                                                        // 343
-		max: 1000,                                                                                                           // 344
-		label: 'Weshalb?',                                                                                                   // 345
-		optional: false,                                                                                                     // 346
-		autoform: {                                                                                                          // 347
-			afFieldInput: {                                                                                                     // 348
-				type: "textarea"                                                                                                   // 349
+	deviceBehavior: {                                                                                                     // 349
+		type: String,                                                                                                        // 350
+		max: 1000,                                                                                                           // 351
+		optional: true,                                                                                                      // 352
+		label: 'Aus folgendem Grund (optional):',                                                                            // 353
+		autoform: {                                                                                                          // 354
+			afFieldInput: {                                                                                                     // 355
+				type: "textarea"                                                                                                   // 356
 			}                                                                                                                   //
 		}                                                                                                                    //
 	},                                                                                                                    //
-	prospects: {                                                                                                          // 353
-		type: String,                                                                                                        // 354
-		max: 1000,                                                                                                           // 355
-		label: 'Welche alternativen Anwendungsgebiete fuer ein kontextsensitives UI kannst du dir vorstellen?',              // 356
-		optional: false,                                                                                                     // 357
-		autoform: {                                                                                                          // 358
-			afFieldInput: {                                                                                                     // 359
-				type: "textarea"                                                                                                   // 360
+	favouriteMode: {                                                                                                      // 360
+		type: String,                                                                                                        // 361
+		label: 'Folgenden Trainingsmodus habe ich am liebsten genutzt:',                                                     // 362
+		autoform: {                                                                                                          // 363
+			type: "select-radio-inline",                                                                                        // 364
+			options: function () {                                                                                              // 365
+				function options() {                                                                                               // 365
+					return [{                                                                                                         // 366
+						label: "Lesen",                                                                                                  // 367
+						value: "lesen"                                                                                                   // 368
+					}, {                                                                                                              //
+						label: "Wort",                                                                                                   // 370
+						value: "wort"                                                                                                    // 371
+					}, {                                                                                                              //
+						label: "Definition",                                                                                             // 373
+						value: "definition"                                                                                              // 374
+					}, {                                                                                                              //
+						label: "Texteingabe",                                                                                            // 376
+						value: "eingabe"                                                                                                 // 377
+					}, {                                                                                                              //
+						label: "Lesen im Register",                                                                                      // 379
+						value: "register"                                                                                                // 380
+					}, {                                                                                                              //
+						label: "Weiss ich nicht",                                                                                        // 382
+						value: "ka"                                                                                                      // 383
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	favouriteModeText: {                                                                                                  // 388
+		type: String,                                                                                                        // 389
+		max: 1000,                                                                                                           // 390
+		optional: true,                                                                                                      // 391
+		label: 'Aus folgendem Grund (optional):',                                                                            // 392
+		autoform: {                                                                                                          // 393
+			afFieldInput: {                                                                                                     // 394
+				type: "textarea"                                                                                                   // 395
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	modeEnter: {                                                                                                          // 399
+		type: String,                                                                                                        // 400
+		label: 'Die Texteingabe-Option habe ich im Kompaktmodus vermisst.',                                                  // 401
+		autoform: {                                                                                                          // 402
+			type: "select-radio-inline",                                                                                        // 403
+			options: function () {                                                                                              // 404
+				function options() {                                                                                               // 404
+					return [{                                                                                                         // 405
+						label: "trifft zu",                                                                                              // 406
+						value: "trifftZu"                                                                                                // 407
+					}, {                                                                                                              //
+						label: "trifft eher zu",                                                                                         // 409
+						value: "trifftEherZu"                                                                                            // 410
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 412
+						value: "teilsTeils"                                                                                              // 413
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 415
+						value: "trifftEherNichtZu"                                                                                       // 416
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 418
+						value: "trifftNichtZu"                                                                                           // 419
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBenefit: {                                                                                                   // 424
+		type: String,                                                                                                        // 425
+		label: 'Mir hat die Moeglichkeit, in den Kompaktmodus zu wechseln, gefallen.',                                       // 426
+		autoform: {                                                                                                          // 427
+			type: "select-radio-inline",                                                                                        // 428
+			options: function () {                                                                                              // 429
+				function options() {                                                                                               // 429
+					return [{                                                                                                         // 430
+						label: "trifft zu",                                                                                              // 431
+						value: "trifftZu"                                                                                                // 432
+					}, {                                                                                                              //
+						label: "trifft eher zu",                                                                                         // 434
+						value: "trifftEherZu"                                                                                            // 435
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 437
+						value: "teilsTeils"                                                                                              // 438
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 440
+						value: "trifftEherNichtZu"                                                                                       // 441
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 443
+						value: "trifftNichtZu"                                                                                           // 444
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBehavior: {                                                                                                  // 449
+		type: String,                                                                                                        // 450
+		label: 'Die Moeglichkeit, den Kompaktmodus zu nutzen, hat mein Nutzungsverhalten der App beeinflusst.',              // 451
+		autoform: {                                                                                                          // 452
+			type: "select-radio-inline",                                                                                        // 453
+			options: function () {                                                                                              // 454
+				function options() {                                                                                               // 454
+					return [{                                                                                                         // 455
+						label: "trifft zu",                                                                                              // 456
+						value: "trifftZu"                                                                                                // 457
+					}, {                                                                                                              //
+						label: "trifft eher zu",                                                                                         // 459
+						value: "trifftEherZu"                                                                                            // 460
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 462
+						value: "teilsTeils"                                                                                              // 463
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 465
+						value: "trifftEherNichtZu"                                                                                       // 466
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 468
+						value: "trifftNichtZu"                                                                                           // 469
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionBehaviorText: {                                                                                              // 474
+		type: String,                                                                                                        // 475
+		max: 1000,                                                                                                           // 476
+		label: 'Aus folgendem Grund (optional):',                                                                            // 477
+		optional: true,                                                                                                      // 478
+		autoform: {                                                                                                          // 479
+			afFieldInput: {                                                                                                     // 480
+				type: "textarea"                                                                                                   // 481
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionSituation: {                                                                                                 // 485
+		type: String,                                                                                                        // 486
+		max: 1000,                                                                                                           // 487
+		label: 'In welcher Situation hast du beschlossen, das UI zu wechseln und warum? (Beispiel)',                         // 488
+		optional: true,                                                                                                      // 489
+		autoform: {                                                                                                          // 490
+			afFieldInput: {                                                                                                     // 491
+				type: "textarea"                                                                                                   // 492
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionUse: {                                                                                                       // 496
+		type: String,                                                                                                        // 497
+		label: 'Ich sehe generell einen klaren Vorteil in der Moeglichkeit die Benutzeroberflaeche kontextorientiert anzupassen und wuerde mir die Moeglichkeit auch fuer andere Apps wuenschen.',
+		autoform: {                                                                                                          // 499
+			type: "select-radio-inline",                                                                                        // 500
+			options: function () {                                                                                              // 501
+				function options() {                                                                                               // 501
+					return [{                                                                                                         // 502
+						label: "trifft zu",                                                                                              // 503
+						value: "trifftZu"                                                                                                // 504
+					}, {                                                                                                              //
+						label: "trifft eher zu",                                                                                         // 506
+						value: "trifftEherZu"                                                                                            // 507
+					}, {                                                                                                              //
+						label: "teils-teils",                                                                                            // 509
+						value: "teilsTeils"                                                                                              // 510
+					}, {                                                                                                              //
+						label: "trifft eher nicht zu",                                                                                   // 512
+						value: "trifftEherNichtZu"                                                                                       // 513
+					}, {                                                                                                              //
+						label: "trifft nicht zu",                                                                                        // 515
+						value: "trifftNichtZu"                                                                                           // 516
+					}];                                                                                                               //
+				}                                                                                                                  //
+                                                                                                                       //
+				return options;                                                                                                    //
+			}()                                                                                                                 //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	attentionUseText: {                                                                                                   // 521
+		type: String,                                                                                                        // 522
+		max: 1000,                                                                                                           // 523
+		label: 'Aus folgendem Grund (optional):',                                                                            // 524
+		optional: true,                                                                                                      // 525
+		autoform: {                                                                                                          // 526
+			afFieldInput: {                                                                                                     // 527
+				type: "textarea"                                                                                                   // 528
+			}                                                                                                                   //
+		}                                                                                                                    //
+	},                                                                                                                    //
+	prospects: {                                                                                                          // 532
+		type: String,                                                                                                        // 533
+		max: 1000,                                                                                                           // 534
+		optional: true,                                                                                                      // 535
+		label: 'Sonstige Anmerkungen',                                                                                       // 536
+		autoform: {                                                                                                          // 537
+			afFieldInput: {                                                                                                     // 538
+				type: "textarea"                                                                                                   // 539
 			}                                                                                                                   //
 		}                                                                                                                    //
 	}                                                                                                                     //
                                                                                                                        //
 });                                                                                                                    //
                                                                                                                        //
-Data.Detail.Schema = new SimpleSchema({                                                                                // 367
-	userId: {                                                                                                             // 368
-		type: String,                                                                                                        // 369
-		autoValue: function () {                                                                                             // 370
-			function autoValue() {                                                                                              // 370
-				return this.userId;                                                                                                // 371
-			}                                                                                                                   //
-                                                                                                                       //
-			return autoValue;                                                                                                   //
-		}()                                                                                                                  //
-	},                                                                                                                    //
-	timestamp: {                                                                                                          // 374
-		type: Date,                                                                                                          // 375
-		autoValue: function () {                                                                                             // 376
-			function autoValue() {                                                                                              // 376
-				return new Date();                                                                                                 // 377
-			}                                                                                                                   //
-                                                                                                                       //
-			return autoValue;                                                                                                   //
-		}()                                                                                                                  //
-	},                                                                                                                    //
-	deviceType: {                                                                                                         // 380
-		type: String                                                                                                         // 381
-	},                                                                                                                    //
-	devicePlatform: {                                                                                                     // 383
-		type: String                                                                                                         // 384
-	},                                                                                                                    //
-	clickArea: {                                                                                                          // 386
-		type: String,                                                                                                        // 387
-		allowedValues: ['favDel', 'browse', 'source', 'reveal', 'bar', 'mode']                                               // 388
-	},                                                                                                                    //
-	mode: {                                                                                                               // 390
-		type: String,                                                                                                        // 391
-		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']                                                    // 392
-	},                                                                                                                    //
-	attention: {                                                                                                          // 394
-		type: Boolean                                                                                                        // 395
-	}                                                                                                                     //
-});                                                                                                                    //
-                                                                                                                       //
-Data.Words.Schema = new SimpleSchema({                                                                                 // 399
-	userId: {                                                                                                             // 400
-		type: String,                                                                                                        // 401
-		autoValue: function () {                                                                                             // 402
-			function autoValue() {                                                                                              // 402
-				return this.userId;                                                                                                // 403
-			}                                                                                                                   //
-                                                                                                                       //
-			return autoValue;                                                                                                   //
-		}()                                                                                                                  //
-	},                                                                                                                    //
-	vocabularyId: {                                                                                                       // 406
-		type: String                                                                                                         // 407
-	},                                                                                                                    //
-	vocabularyName: {                                                                                                     // 409
-		type: String                                                                                                         // 410
-	},                                                                                                                    //
-	viewed: {                                                                                                             // 412
-		type: Number                                                                                                         // 413
-	},                                                                                                                    //
-	createdAt: {                                                                                                          // 415
-		type: Date,                                                                                                          // 416
-		autoValue: function () {                                                                                             // 417
-			function autoValue() {                                                                                              // 417
-				return new Date();                                                                                                 // 418
-			}                                                                                                                   //
-                                                                                                                       //
-			return autoValue;                                                                                                   //
-		}()                                                                                                                  //
-	}                                                                                                                     //
-});                                                                                                                    //
-                                                                                                                       //
-Data.Detail.attachSchema(Data.Detail.Schema);                                                                          // 423
-Data.Words.attachSchema(Data.Words.Schema);                                                                            // 424
-Data.Survey.attachSchema(Data.Survey.Schema);                                                                          // 425
-Data.Feedback.attachSchema(Data.Feedback.Schema);                                                                      // 426
-Data.Status.attachSchema(Data.Status.Schema);                                                                          // 427
+Data.Detail.attachSchema(Data.Detail.Schema);                                                                          // 547
+Data.Words.attachSchema(Data.Words.Schema);                                                                            // 548
+Data.Survey.attachSchema(Data.Survey.Schema);                                                                          // 549
+Data.Feedback.attachSchema(Data.Feedback.Schema);                                                                      // 550
+Data.Status.attachSchema(Data.Status.Schema);                                                                          // 551
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"favourites.js":function(){
@@ -4638,31 +5170,32 @@ UserExt.attachSchema(UserExt.Schema);                                           
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                        //
 Vocabulary = new Mongo.Collection('vocabulary', {});                                                                   // 1
+TermDay = new Mongo.Collection('termDay', {});                                                                         // 2
                                                                                                                        //
-if (Meteor.isServer) {                                                                                                 // 3
-	Vocabulary._ensureIndex({                                                                                             // 4
-		term: 1,                                                                                                             // 5
-		description: 1                                                                                                       // 6
+if (Meteor.isServer) {                                                                                                 // 4
+	Vocabulary._ensureIndex({                                                                                             // 5
+		term: 1,                                                                                                             // 6
+		description: 1                                                                                                       // 7
 	});                                                                                                                   //
 }                                                                                                                      //
                                                                                                                        //
-Vocabulary.allow({                                                                                                     // 10
-	insert: function () {                                                                                                 // 11
-		function insert() {                                                                                                  // 11
+Vocabulary.allow({                                                                                                     // 11
+	insert: function () {                                                                                                 // 12
+		function insert() {                                                                                                  // 12
 			return false;                                                                                                       //
 		}                                                                                                                    //
                                                                                                                        //
 		return insert;                                                                                                       //
 	}(),                                                                                                                  //
-	update: function () {                                                                                                 // 12
-		function update() {                                                                                                  // 12
+	update: function () {                                                                                                 // 13
+		function update() {                                                                                                  // 13
 			return false;                                                                                                       //
 		}                                                                                                                    //
                                                                                                                        //
 		return update;                                                                                                       //
 	}(),                                                                                                                  //
-	remove: function () {                                                                                                 // 13
-		function remove() {                                                                                                  // 13
+	remove: function () {                                                                                                 // 14
+		function remove() {                                                                                                  // 14
 			return false;                                                                                                       //
 		}                                                                                                                    //
                                                                                                                        //
@@ -4670,23 +5203,23 @@ Vocabulary.allow({                                                              
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-Vocabulary.deny({                                                                                                      // 16
-	insert: function () {                                                                                                 // 17
-		function insert() {                                                                                                  // 17
+Vocabulary.deny({                                                                                                      // 17
+	insert: function () {                                                                                                 // 18
+		function insert() {                                                                                                  // 18
 			return true;                                                                                                        //
 		}                                                                                                                    //
                                                                                                                        //
 		return insert;                                                                                                       //
 	}(),                                                                                                                  //
-	update: function () {                                                                                                 // 18
-		function update() {                                                                                                  // 18
+	update: function () {                                                                                                 // 19
+		function update() {                                                                                                  // 19
 			return true;                                                                                                        //
 		}                                                                                                                    //
                                                                                                                        //
 		return update;                                                                                                       //
 	}(),                                                                                                                  //
-	remove: function () {                                                                                                 // 19
-		function remove() {                                                                                                  // 19
+	remove: function () {                                                                                                 // 20
+		function remove() {                                                                                                  // 20
 			return true;                                                                                                        //
 		}                                                                                                                    //
                                                                                                                        //
@@ -4694,17 +5227,46 @@ Vocabulary.deny({                                                               
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-var VocabularySchema = new SimpleSchema({                                                                              // 22
-	term: {                                                                                                               // 23
-		type: String,                                                                                                        // 24
-		regEx: /^[a-zA-Z]+$/                                                                                                 // 25
+var VocabularySchema = new SimpleSchema({                                                                              // 23
+	term: {                                                                                                               // 24
+		type: String,                                                                                                        // 25
+		regEx: /^[a-zA-Z]*$/                                                                                                 // 26
 	},                                                                                                                    //
-	description: {                                                                                                        // 27
-		type: String                                                                                                         // 28
+	preposition: {                                                                                                        // 28
+		type: String,                                                                                                        // 29
+		allowedValues: ['der', 'die', 'das'],                                                                                // 30
+		optional: true                                                                                                       // 31
+	},                                                                                                                    //
+	wordClass: {                                                                                                          // 33
+		type: String,                                                                                                        // 34
+		allowedValues: ['Nomen', 'Verb', 'Adjektiv']                                                                         // 35
+	},                                                                                                                    //
+	definition: {                                                                                                         // 37
+		type: [String]                                                                                                       // 38
 	}                                                                                                                     //
 });                                                                                                                    //
                                                                                                                        //
-Vocabulary.attachSchema(VocabularySchema);                                                                             // 32
+var TermDaySchema = new SimpleSchema({                                                                                 // 42
+	userId: {                                                                                                             // 43
+		type: String                                                                                                         // 44
+	},                                                                                                                    //
+	vocabularyId: {                                                                                                       // 46
+		type: String                                                                                                         // 47
+	},                                                                                                                    //
+	timestamp: {                                                                                                          // 49
+		type: Date,                                                                                                          // 50
+		autoValue: function () {                                                                                             // 51
+			function autoValue() {                                                                                              // 51
+				return new Date();                                                                                                 // 52
+			}                                                                                                                   //
+                                                                                                                       //
+			return autoValue;                                                                                                   //
+		}()                                                                                                                  //
+	}                                                                                                                     //
+});                                                                                                                    //
+                                                                                                                       //
+Vocabulary.attachSchema(VocabularySchema);                                                                             // 57
+TermDay.attachSchema(TermDaySchema);                                                                                   // 58
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }},"config":{"accounts_t9n.js":function(){
@@ -4730,7 +5292,15 @@ AdminConfig = {                                                                 
 	name: 'Chalimo',                                                                                                      // 2
 	adminEmails: ['bla@bla.org'],                                                                                         // 3
 	collections: {                                                                                                        // 4
-		Vocabulary: {}                                                                                                       // 6
+		Vocabulary: {                                                                                                        // 5
+			tableColumns: [{                                                                                                    // 6
+				label: 'Wort',                                                                                                     // 7
+				name: 'term'                                                                                                       // 8
+			}, {                                                                                                                //
+				label: 'Wortklasse',                                                                                               // 10
+				name: 'wordClass'                                                                                                  // 11
+			}]                                                                                                                  //
+		}                                                                                                                    //
 	}                                                                                                                     //
 };                                                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4849,23 +5419,23 @@ highRoutes.route('/', {                                                         
 			BlazeLayout.render('layout', {                                                                                      // 55
 				bar: "bar",                                                                                                        // 56
 				nav: "nav",                                                                                                        // 57
-				main: "index"                                                                                                      // 58
+				main: "index",                                                                                                     // 58
+				footer: "footer"                                                                                                   // 59
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}()                                                                                                                   //
 });                                                                                                                    //
-highRoutes.route('/trainer', {                                                                                         // 62
-	name: "trainer",                                                                                                      // 63
-	action: function () {                                                                                                 // 64
-		function action(params, queryParams) {                                                                               // 64
-			BlazeLayout.render('layout', {                                                                                      // 65
-				bar: "bar",                                                                                                        // 66
-				nav: "nav",                                                                                                        // 67
-				navModeTrainer: "navModeTrainer",                                                                                  // 68
-				main: "trainer",                                                                                                   // 69
-				navSource: "navSourceTrainer"                                                                                      // 70
+highRoutes.route('/faq', {                                                                                             // 63
+	name: "faq",                                                                                                          // 64
+	action: function () {                                                                                                 // 65
+		function action(params, queryParams) {                                                                               // 65
+			BlazeLayout.render('layout', {                                                                                      // 66
+				bar: "bar",                                                                                                        // 67
+				nav: "nav",                                                                                                        // 68
+				main: "faq",                                                                                                       // 69
+				footer: "footer"                                                                                                   // 70
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
@@ -4873,181 +5443,207 @@ highRoutes.route('/trainer', {                                                  
 	}()                                                                                                                   //
 });                                                                                                                    //
                                                                                                                        //
-highRoutes.route('/register/:id', {                                                                                    // 75
-	name: "vokabelDetail",                                                                                                // 76
+highRoutes.route('/trainer', {                                                                                         // 75
+	name: "trainer",                                                                                                      // 76
 	action: function () {                                                                                                 // 77
 		function action(params, queryParams) {                                                                               // 77
 			BlazeLayout.render('layout', {                                                                                      // 78
 				bar: "bar",                                                                                                        // 79
 				nav: "nav",                                                                                                        // 80
-				main: "vokabelDetail"                                                                                              // 81
+				main: "trainer",                                                                                                   // 81
+				footer: "footer"                                                                                                   // 82
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}()                                                                                                                   //
 });                                                                                                                    //
-highRoutes.route('/register', {                                                                                        // 85
-	name: "register",                                                                                                     // 86
-	action: function () {                                                                                                 // 87
-		function action(params, queryParams) {                                                                               // 87
-			BlazeLayout.render('layout', {                                                                                      // 88
-				bar: "bar",                                                                                                        // 89
-				nav: "nav",                                                                                                        // 90
-				main: "register"                                                                                                   // 91
+                                                                                                                       //
+highRoutes.route('/register/:id', {                                                                                    // 87
+	name: "vokabelDetail",                                                                                                // 88
+	action: function () {                                                                                                 // 89
+		function action(params, queryParams) {                                                                               // 89
+			BlazeLayout.render('layout', {                                                                                      // 90
+				bar: "bar",                                                                                                        // 91
+				nav: "nav",                                                                                                        // 92
+				main: "vokabelDetail",                                                                                             // 93
+				footer: "footer"                                                                                                   // 94
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}()                                                                                                                   //
 });                                                                                                                    //
-highRoutes.route('/uebersicht', {                                                                                      // 95
-	name: "uebersicht",                                                                                                   // 96
-	action: function () {                                                                                                 // 97
-		function action(params, queryParams) {                                                                               // 97
-			FlowRouter.redirect('/uebersicht/feedback');                                                                        // 98
+highRoutes.route('/register', {                                                                                        // 98
+	name: "register",                                                                                                     // 99
+	action: function () {                                                                                                 // 100
+		function action(params, queryParams) {                                                                               // 100
+			BlazeLayout.render('layout', {                                                                                      // 101
+				bar: "bar",                                                                                                        // 102
+				nav: "nav",                                                                                                        // 103
+				main: "register",                                                                                                  // 104
+				footer: "footer"                                                                                                   // 105
+			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
-	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 100
+	}()                                                                                                                   //
 });                                                                                                                    //
-highRoutes.route('/uebersicht/statistik', {                                                                            // 102
-	name: "statistik",                                                                                                    // 103
-	action: function () {                                                                                                 // 104
-		function action(params, queryParams) {                                                                               // 104
-			FlowRouter.redirect('/uebersicht/statistik/total');                                                                 // 105
-		}                                                                                                                    //
-                                                                                                                       //
-		return action;                                                                                                       //
-	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 107
-});                                                                                                                    //
-highRoutes.route('/uebersicht/statistik/device', {                                                                     // 109
-	name: "device",                                                                                                       // 110
+highRoutes.route('/verwaltung', {                                                                                      // 109
+	name: "verwaltung",                                                                                                   // 110
 	action: function () {                                                                                                 // 111
 		function action(params, queryParams) {                                                                               // 111
-			BlazeLayout.render('layout', {                                                                                      // 112
-				bar: "bar",                                                                                                        // 113
-				nav: "nav",                                                                                                        // 114
-				navOverview: "navOverview",                                                                                        // 115
-				navStatistics: "navStatistics",                                                                                    // 116
-				main: "device"                                                                                                     // 117
+			FlowRouter.redirect('/verwaltung/feedback');                                                                        // 112
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}(),                                                                                                                  //
+	triggersEnter: [checkAdmin]                                                                                           // 114
+});                                                                                                                    //
+highRoutes.route('/verwaltung/statistik', {                                                                            // 116
+	name: "statistik",                                                                                                    // 117
+	action: function () {                                                                                                 // 118
+		function action(params, queryParams) {                                                                               // 118
+			FlowRouter.redirect('/verwaltung/statistik/total');                                                                 // 119
+		}                                                                                                                    //
+                                                                                                                       //
+		return action;                                                                                                       //
+	}(),                                                                                                                  //
+	triggersEnter: [checkAdmin]                                                                                           // 121
+});                                                                                                                    //
+highRoutes.route('/verwaltung/statistik/device', {                                                                     // 123
+	name: "device",                                                                                                       // 124
+	action: function () {                                                                                                 // 125
+		function action(params, queryParams) {                                                                               // 125
+			BlazeLayout.render('layout', {                                                                                      // 126
+				bar: "bar",                                                                                                        // 127
+				nav: "nav",                                                                                                        // 128
+				navOverview: "navOverview",                                                                                        // 129
+				navStatistics: "navStatistics",                                                                                    // 130
+				main: "device",                                                                                                    // 131
+				footer: "footer"                                                                                                   // 132
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 120
+	triggersEnter: [checkAdmin]                                                                                           // 135
 });                                                                                                                    //
-highRoutes.route('/uebersicht/statistik/mode', {                                                                       // 122
-	name: "mode",                                                                                                         // 123
-	action: function () {                                                                                                 // 124
-		function action(params, queryParams) {                                                                               // 124
-			BlazeLayout.render('layout', {                                                                                      // 125
-				bar: "bar",                                                                                                        // 126
-				nav: "nav",                                                                                                        // 127
-				navOverview: "navOverview",                                                                                        // 128
-				navStatistics: "navStatistics",                                                                                    // 129
-				main: "mode"                                                                                                       // 130
+highRoutes.route('/verwaltung/statistik/mode', {                                                                       // 137
+	name: "mode",                                                                                                         // 138
+	action: function () {                                                                                                 // 139
+		function action(params, queryParams) {                                                                               // 139
+			BlazeLayout.render('layout', {                                                                                      // 140
+				bar: "bar",                                                                                                        // 141
+				nav: "nav",                                                                                                        // 142
+				navOverview: "navOverview",                                                                                        // 143
+				navStatistics: "navStatistics",                                                                                    // 144
+				main: "mode",                                                                                                      // 145
+				footer: "footer"                                                                                                   // 146
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 133
+	triggersEnter: [checkAdmin]                                                                                           // 149
 });                                                                                                                    //
-highRoutes.route('/uebersicht/statistik/status', {                                                                     // 135
-	name: "status",                                                                                                       // 136
-	action: function () {                                                                                                 // 137
-		function action(params, queryParams) {                                                                               // 137
-			BlazeLayout.render('layout', {                                                                                      // 138
-				bar: "bar",                                                                                                        // 139
-				nav: "nav",                                                                                                        // 140
-				navOverview: "navOverview",                                                                                        // 141
-				navStatistics: "navStatistics",                                                                                    // 142
-				main: "status"                                                                                                     // 143
+highRoutes.route('/verwaltung/statistik/status', {                                                                     // 151
+	name: "status",                                                                                                       // 152
+	action: function () {                                                                                                 // 153
+		function action(params, queryParams) {                                                                               // 153
+			BlazeLayout.render('layout', {                                                                                      // 154
+				bar: "bar",                                                                                                        // 155
+				nav: "nav",                                                                                                        // 156
+				navOverview: "navOverview",                                                                                        // 157
+				navStatistics: "navStatistics",                                                                                    // 158
+				main: "status",                                                                                                    // 159
+				footer: "footer"                                                                                                   // 160
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 146
+	triggersEnter: [checkAdmin]                                                                                           // 163
 });                                                                                                                    //
-highRoutes.route('/uebersicht/statistik/total', {                                                                      // 148
-	name: "total",                                                                                                        // 149
-	action: function () {                                                                                                 // 150
-		function action(params, queryParams) {                                                                               // 150
-			BlazeLayout.render('layout', {                                                                                      // 151
-				bar: "bar",                                                                                                        // 152
-				nav: "nav",                                                                                                        // 153
-				navOverview: "navOverview",                                                                                        // 154
-				navStatistics: "navStatistics",                                                                                    // 155
-				main: "total"                                                                                                      // 156
+highRoutes.route('/verwaltung/statistik/total', {                                                                      // 165
+	name: "total",                                                                                                        // 166
+	action: function () {                                                                                                 // 167
+		function action(params, queryParams) {                                                                               // 167
+			BlazeLayout.render('layout', {                                                                                      // 168
+				bar: "bar",                                                                                                        // 169
+				nav: "nav",                                                                                                        // 170
+				navOverview: "navOverview",                                                                                        // 171
+				navStatistics: "navStatistics",                                                                                    // 172
+				main: "total",                                                                                                     // 173
+				footer: "footer"                                                                                                   // 174
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 159
+	triggersEnter: [checkAdmin]                                                                                           // 177
 });                                                                                                                    //
                                                                                                                        //
-highRoutes.route('/uebersicht/feedback', {                                                                             // 162
-	name: "feedback",                                                                                                     // 163
-	action: function () {                                                                                                 // 164
-		function action(params, queryParams) {                                                                               // 164
-			BlazeLayout.render('layout', {                                                                                      // 165
-				bar: "bar",                                                                                                        // 166
-				nav: "nav",                                                                                                        // 167
-				navOverview: "navOverview",                                                                                        // 168
-				main: "feedback"                                                                                                   // 169
+highRoutes.route('/verwaltung/feedback', {                                                                             // 180
+	name: "feedback",                                                                                                     // 181
+	action: function () {                                                                                                 // 182
+		function action(params, queryParams) {                                                                               // 182
+			BlazeLayout.render('layout', {                                                                                      // 183
+				bar: "bar",                                                                                                        // 184
+				nav: "nav",                                                                                                        // 185
+				navOverview: "navOverview",                                                                                        // 186
+				main: "feedback",                                                                                                  // 187
+				footer: "footer"                                                                                                   // 188
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: [checkAdmin]                                                                                           // 172
+	triggersEnter: [checkAdmin]                                                                                           // 191
 });                                                                                                                    //
-highRoutes.route('/fragebogen', {                                                                                      // 174
-	name: "fragebogen",                                                                                                   // 175
-	triggersEnter: [checkSurveySubmitted],                                                                                // 176
-	action: function () {                                                                                                 // 177
-		function action(params, queryParams) {                                                                               // 177
-			BlazeLayout.render('layout', {                                                                                      // 178
-				bar: "bar",                                                                                                        // 179
-				nav: "nav",                                                                                                        // 180
-				main: "fragebogen"                                                                                                 // 181
+highRoutes.route('/fragebogen', {                                                                                      // 193
+	name: "fragebogen",                                                                                                   // 194
+	triggersEnter: [checkSurveySubmitted],                                                                                // 195
+	action: function () {                                                                                                 // 196
+		function action(params, queryParams) {                                                                               // 196
+			BlazeLayout.render('layout', {                                                                                      // 197
+				bar: "bar",                                                                                                        // 198
+				nav: "nav",                                                                                                        // 199
+				main: "fragebogen",                                                                                                // 200
+				footer: "footer"                                                                                                   // 201
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: []                                                                                                     // 184
+	triggersEnter: []                                                                                                     // 204
 });                                                                                                                    //
                                                                                                                        //
-lowRoutes.route('/low', {                                                                                              // 187
-	name: "low",                                                                                                          // 188
-	action: function () {                                                                                                 // 189
-		function action(params, queryParams) {                                                                               // 189
-			BlazeLayout.render('layout', {                                                                                      // 190
-				bar: "bar",                                                                                                        // 191
-				main: "low",                                                                                                       // 192
-				navSource: "navLow"                                                                                                // 193
-			});                                                                                                                 //
+lowRoutes.route('/low', {                                                                                              // 207
+	name: "low",                                                                                                          // 208
+	action: function () {                                                                                                 // 209
+		function action(params, queryParams) {                                                                               // 209
+			BlazeLayout.render('layout', {                                                                                      // 210
+				bar: "bar",                                                                                                        // 211
+				main: "low"                                                                                                        // 212
+				// ,                                                                                                               //
+				// navSource: "navLow"                                                                                             //
+			});                                                                                                                 // 210
 		}                                                                                                                    //
                                                                                                                        //
 		return action;                                                                                                       //
 	}(),                                                                                                                  //
-	triggersEnter: []                                                                                                     // 196
+	triggersEnter: []                                                                                                     // 217
 });                                                                                                                    //
                                                                                                                        //
-FlowRouter.notFound = {                                                                                                // 199
-	name: "notFound",                                                                                                     // 200
-	action: function () {                                                                                                 // 201
-		function action(params, queryParams) {                                                                               // 201
-			BlazeLayout.render('layout', {                                                                                      // 202
-				footer: "footer",                                                                                                  // 203
-				main: "pageNotFound"                                                                                               // 204
+FlowRouter.notFound = {                                                                                                // 220
+	name: "notFound",                                                                                                     // 221
+	action: function () {                                                                                                 // 222
+		function action(params, queryParams) {                                                                               // 222
+			BlazeLayout.render('layout', {                                                                                      // 223
+				footer: "footer",                                                                                                  // 224
+				main: "pageNotFound",                                                                                              // 225
+				footer: "footer"                                                                                                   // 226
 			});                                                                                                                 //
 		}                                                                                                                    //
                                                                                                                        //
@@ -5056,73 +5652,82 @@ FlowRouter.notFound = {                                                         
 };                                                                                                                     //
                                                                                                                        //
 //Routes                                                                                                               //
-AccountsTemplates.configureRoute('changePwd');                                                                         // 211
+AccountsTemplates.configureRoute('changePwd');                                                                         // 233
 // AccountsTemplates.configureRoute('forgotPwd');                                                                      //
-AccountsTemplates.configureRoute('resetPwd');                                                                          // 213
-AccountsTemplates.configureRoute('signIn');                                                                            // 214
-AccountsTemplates.configureRoute('signUp');                                                                            // 215
+AccountsTemplates.configureRoute('resetPwd');                                                                          // 235
+AccountsTemplates.configureRoute('signIn');                                                                            // 236
+AccountsTemplates.configureRoute('signUp');                                                                            // 237
 // AccountsTemplates.configureRoute('verifyEmail');                                                                    //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }}},{"extensions":[".js",".json",".html",".css"]});
-require("./client/views/high/uebersicht/charts/device/device.html");
-require("./client/views/high/uebersicht/charts/mode/chart_bar_modes.html");
-require("./client/views/high/uebersicht/charts/mode/mode.html");
-require("./client/views/high/uebersicht/charts/status/chart_line_online_user.html");
-require("./client/views/high/uebersicht/charts/status/status.html");
-require("./client/views/high/uebersicht/charts/total/chart_bar_clicks_per_day.html");
-require("./client/views/high/uebersicht/charts/total/chart_pie_attention.html");
-require("./client/views/high/uebersicht/charts/total/total.html");
-require("./client/views/high/index/charts/wordsAll.html");
-require("./client/views/high/index/charts/wordsUser.html");
-require("./client/views/high/uebersicht/charts/chart_multibar_attention.html");
-require("./client/views/high/fragebogen/fragebogen.html");
-require("./client/views/high/index/feedback.html");
-require("./client/views/high/index/hello.html");
-require("./client/views/high/index/index.html");
-require("./client/views/high/register/letter_collapse.html");
-require("./client/views/high/register/letter_list.html");
-require("./client/views/high/register/register.html");
-require("./client/views/high/register/vokabel_detail.html");
-require("./client/views/high/trainer/trainer.html");
-require("./client/views/high/uebersicht/feedback.html");
-require("./client/views/low/modes/modus_definition.html");
-require("./client/views/low/modes/modus_lesen.html");
-require("./client/views/low/modes/modus_wort.html");
-require("./client/views/_shared/backward.html");
-require("./client/views/_shared/forward.html");
-require("./client/views/low/low.html");
-require("./client/layout/bar.html");
-require("./client/layout/footer.html");
-require("./client/layout/head.html");
-require("./client/layout/layout.html");
-require("./client/layout/nav.html");
-require("./client/layout/navStatistics.html");
-require("./client/layout/nav_low.html");
-require("./client/layout/nav_mode.html");
-require("./client/layout/nav_mode_trainer.html");
-require("./client/layout/nav_overview.html");
-require("./client/layout/nav_source.html");
-require("./client/layout/nav_source_trainer.html");
-require("./client/loading.html");
-require("./client/page_not_found.html");
-require("./client/views/high/uebersicht/charts/mode/chart_bar_modes.js");
-require("./client/views/high/uebersicht/charts/mode/mode.js");
-require("./client/views/high/uebersicht/charts/status/chart_line_online_user.js");
-require("./client/views/high/uebersicht/charts/status/status.js");
-require("./client/views/high/uebersicht/charts/total/chart_bar_clicks_per_day.js");
-require("./client/views/high/uebersicht/charts/total/chart_pie_attention.js");
-require("./client/views/high/uebersicht/charts/total/total.js");
-require("./client/views/high/index/charts/wordsAll.js");
-require("./client/views/high/index/charts/wordsUser.js");
-require("./client/views/high/uebersicht/charts/chart_multibar_attention.js");
+require("./client/views/high/verwaltung/charts/device/template.device.js");
+require("./client/views/high/verwaltung/charts/mode/template.chart_bar_modes.js");
+require("./client/views/high/verwaltung/charts/mode/template.mode.js");
+require("./client/views/high/verwaltung/charts/status/template.chart_line_online_user.js");
+require("./client/views/high/verwaltung/charts/status/template.status.js");
+require("./client/views/high/verwaltung/charts/total/template.chart_bar_clicks_per_day.js");
+require("./client/views/high/verwaltung/charts/total/template.chart_pie_attention.js");
+require("./client/views/high/verwaltung/charts/total/template.total.js");
+require("./client/views/high/index/components/template.faqWidget.js");
+require("./client/views/high/index/components/template.feedback.js");
+require("./client/views/high/index/components/template.term_day.js");
+require("./client/views/high/index/components/template.wordsAll.js");
+require("./client/views/high/index/components/template.wordsUser.js");
+require("./client/views/high/trainer/modes/template.modus_definition.js");
+require("./client/views/high/trainer/modes/template.modus_eingabe.js");
+require("./client/views/high/trainer/modes/template.modus_lesen.js");
+require("./client/views/high/trainer/modes/template.modus_wort.js");
+require("./client/views/high/verwaltung/charts/template.chart_multibar_attention.js");
+require("./client/views/high/faq/template.faq.js");
+require("./client/views/high/fragebogen/template.fragebogen.js");
+require("./client/views/high/index/template.index.js");
+require("./client/views/high/register/template.letter_collapse.js");
+require("./client/views/high/register/template.letter_list.js");
+require("./client/views/high/register/template.register.js");
+require("./client/views/high/register/template.register_entry.js");
+require("./client/views/high/register/template.vokabel_detail.js");
+require("./client/views/high/trainer/template.backward.js");
+require("./client/views/high/trainer/template.forward.js");
+require("./client/views/high/trainer/template.trainer.js");
+require("./client/views/high/verwaltung/template.feedback.js");
+require("./client/views/low/modes/template.modus_definition.js");
+require("./client/views/low/modes/template.modus_lesen.js");
+require("./client/views/low/modes/template.modus_wort.js");
+require("./client/views/low/template.backward.js");
+require("./client/views/low/template.forward.js");
+require("./client/views/low/template.low.js");
+require("./client/layout/template.bar.js");
+require("./client/layout/template.footer.js");
+require("./client/layout/template.head.js");
+require("./client/layout/template.layout.js");
+require("./client/layout/template.nav.js");
+require("./client/layout/template.navStatistics.js");
+require("./client/layout/template.nav_low.js");
+require("./client/layout/template.nav_mode.js");
+require("./client/layout/template.nav_mode_trainer.js");
+require("./client/layout/template.nav_overview.js");
+require("./client/layout/template.nav_source.js");
+require("./client/layout/template.nav_source_trainer.js");
+require("./client/template.loading.js");
+require("./client/template.page_not_found.js");
+require("./client/views/high/verwaltung/charts/mode/chart_bar_modes.js");
+require("./client/views/high/verwaltung/charts/mode/mode.js");
+require("./client/views/high/verwaltung/charts/status/chart_line_online_user.js");
+require("./client/views/high/verwaltung/charts/status/status.js");
+require("./client/views/high/verwaltung/charts/total/chart_bar_clicks_per_day.js");
+require("./client/views/high/verwaltung/charts/total/chart_pie_attention.js");
+require("./client/views/high/verwaltung/charts/total/total.js");
+require("./client/views/high/index/components/feedback.js");
+require("./client/views/high/index/components/term_day.js");
+require("./client/views/high/index/components/wordsAll.js");
+require("./client/views/high/index/components/wordsUser.js");
+require("./client/views/high/verwaltung/charts/chart_multibar_attention.js");
 require("./client/views/high/fragebogen/fragebogen.js");
-require("./client/views/high/index/feedback.js");
-require("./client/views/high/index/hello.js");
 require("./client/views/high/register/register.js");
 require("./client/views/high/register/vokabel_detail.js");
 require("./client/views/high/trainer/trainer.js");
-require("./client/views/high/uebersicht/feedback.js");
+require("./client/views/high/verwaltung/feedback.js");
 require("./client/views/low/low.js");
 require("./client/layout/_GLOBAL_HELPERS.js");
 require("./client/layout/__SESSIONS.js");
@@ -5134,6 +5739,7 @@ require("./client/layout/nav_mode_trainer.js");
 require("./client/layout/nav_source.js");
 require("./client/layout/nav_source_trainer.js");
 require("./common/aux/aux.js");
+require("./common/aux/log.js");
 require("./common/aux/nvd3_extra.js");
 require("./common/aux/validation.js");
 require("./common/collections/data.js");

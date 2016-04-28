@@ -53,11 +53,21 @@ Template.trainer.events({
 						Session.set(TERM_WRONG, false);
 					}
 					Session.set(TERM_RIGHT, true);
+					event.target.disabled = true;
 
 					setTimeout(() => {
 						Session.set(REVEALED, false);
 						Session.set(TERM_RIGHT, false);
-						event.target.value = "";
+						// disable after correct term and autofocus input field for the next word
+						if (event.target) {
+							event.target.disabled = false;
+							event.target.value = '';
+							if (event.target.disabled === true) {
+								event.target.disabled = false;
+								event.target.autofocus = true;
+							}
+							event.target.focus();
+						}
 
 						let val = 0;
 						if (Session.get(RANDOM_FAV)) {
@@ -68,7 +78,7 @@ Template.trainer.events({
 							Session.set(COUNT_VIEWED, val);
 						}
 
-					}, 1000);
+					}, 2000);
 				} else {
 					Session.set(TERM_WRONG, true);
 

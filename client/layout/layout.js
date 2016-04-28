@@ -21,24 +21,14 @@ Template.layout.events({
 			document.getElementById("term").value = '';
 			if (document.getElementById("term").disabled === true) {
 				document.getElementById("term").disabled = false;
+				document.getElementById("term").autofocus = true;
 			}
+			document.getElementById("term").focus();
 		}
+
+		
 		// log
-		let deviceType = Darwin.device.type;
-		let devicePlatform = Darwin.device.platform;
-		let clickArea = 'browse';
-		let mode;
-		let attention = Session.get(ATTENTION_MODE);
-		if (Session.get(ATTENTION_MODE)) {
-			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
-		} else {
-			if (FlowRouter.current().route.name === "eingabe") {
-				mode = 'eingabe';
-			} else {
-				mode = 'null';
-			}
-		}
-		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+		Log.detail('browse');
 		Meteor.call('dataWords', self);
 
 	},
@@ -83,43 +73,15 @@ Template.layout.events({
 			}
 		}
 		// log
-		let deviceType = Darwin.device.type;
-		let devicePlatform = Darwin.device.platform;
-		let clickArea = 'reveal';
-		let mode;
-		let attention = Session.get(ATTENTION_MODE);
-		if (Session.get(ATTENTION_MODE)) {
-			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
-		} else {
-			if (FlowRouter.current().route.name === "eingabe") {
-				mode = 'eingabe';
-			} else {
-				mode = 'null';
-			}
-		}
-		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+		Log.detail('reveal');
 	},
 	'click .btn-example' (event, template) {
 		let oldValue = Session.get(EXAMPLE) || false;
-    Session.set(EXAMPLE, !oldValue);
+		Session.set(EXAMPLE, !oldValue);
 	},
 	'click .btn-insert, click .btn-delete' (event, template) {
 		// log
-		let deviceType = Darwin.device.type;
-		let devicePlatform = Darwin.device.platform;
-		let clickArea = 'favDel';
-		let mode;
-		let attention = Session.get(ATTENTION_MODE);
-		if (Session.get(ATTENTION_MODE)) {
-			mode = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
-		} else {
-			if (FlowRouter.current().route.name === "eingabe") {
-				mode = 'eingabe';
-			} else {
-				mode = 'null';
-			}
-		}
-		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+		Log.detail('favDel');
 	},
 	'click .btn-insert' (event, template) {
 		let self = this;

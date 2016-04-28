@@ -1,0 +1,40 @@
+<template name="modusLesen">
+	<div class="jumbotron">
+
+		<div class="row">
+			<div class="media">
+				<div class="media-body">
+					{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+				</div>
+				<div class="media-right">
+					{{#if getSession "sourceFavourites"}}
+					<div class="btn-delete fadeInLeft animated">
+						<i class="fa fa-trash-o fa-4x"></i>
+					</div>
+					{{else}}
+					<div class="btn-insert fadeInLeft animated">
+						<i class="fa fa-heart-o fa-4x"></i>
+					</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="text-center">
+				<p class="trainer-word-class fadeInUp animated">
+					{{ wordClass }}
+				</p>
+				<h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
+				<div class="trainer-definition">
+					<ol>
+						{{#each definition}}
+						<li>{{this}}</li>
+						{{/each}}
+					</ol>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</template>

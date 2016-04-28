@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////
+//                                                                      //
+// This is a generated file. You can view the original                  //
+// source in your browser if your browser supports source maps.         //
+// Source maps are supported by all recent versions of Chrome, Safari,  //
+// and Firefox, and by Internet Explorer 11.                            //
+//                                                                      //
+//////////////////////////////////////////////////////////////////////////
+
+
 (function () {
 
 /* Imports */
@@ -2336,9 +2346,9 @@ Blaze.renderWithData = function (content, data, parentElement, nextNode, parentV
 };                                                                                                                     // 670
                                                                                                                        // 671
 /**                                                                                                                    // 672
- * @summary Removes a rendered View from the DOM, stopping all reactive updates and event listeners on it.             // 673
+ * @summary Removes a rendered View from the DOM, stopping all reactive updates and event listeners on it. Also destroys the Blaze.Template instance associated with the view.
  * @locus Client                                                                                                       // 674
- * @param {Blaze.View} renderedView The return value from `Blaze.render` or `Blaze.renderWithData`.                    // 675
+ * @param {Blaze.View} renderedView The return value from `Blaze.render` or `Blaze.renderWithData`, or the `view` property of a Blaze.Template instance. Calling `Blaze.remove(Template.instance().view)` from within a template event handler will destroy the view as well as that template and trigger the template's `onDestroyed` handlers.
  */                                                                                                                    // 676
 Blaze.remove = function (view) {                                                                                       // 677
   if (! (view && (view._domrange instanceof Blaze._DOMRange)))                                                         // 678

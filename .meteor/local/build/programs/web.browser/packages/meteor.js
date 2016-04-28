@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////
+//                                                                      //
+// This is a generated file. You can view the original                  //
+// source in your browser if your browser supports source maps.         //
+// Source maps are supported by all recent versions of Chrome, Safari,  //
+// and Firefox, and by Internet Explorer 11.                            //
+//                                                                      //
+//////////////////////////////////////////////////////////////////////////
+
+
 (function () {
 
 /* Imports */
@@ -512,11 +522,18 @@ _.extend(Meteor, {                                                              
   // Tracker.afterFlush or Node's nextTick (in practice). Then tests can do:                              // 64
   //    callSomethingThatDefersSomeWork();                                                                // 65
   //    Meteor.defer(expect(somethingThatValidatesThatTheWorkHappened));                                  // 66
-  defer: function (f) {                                                                                   // 67
-    Meteor._setImmediate(bindAndCatch("defer callback", f));                                              // 68
-  }                                                                                                       // 69
-});                                                                                                       // 70
-                                                                                                          // 71
+                                                                                                          // 67
+  /**                                                                                                     // 68
+   * @memberOf Meteor                                                                                     // 69
+   * @summary Defer execution of a function to run asynchronously in the background (similar to `Meteor.setTimeout(func, 0)`.
+   * @locus Anywhere                                                                                      // 71
+   * @param {Function} func The function to run                                                           // 72
+   */                                                                                                     // 73
+  defer: function (f) {                                                                                   // 74
+    Meteor._setImmediate(bindAndCatch("defer callback", f));                                              // 75
+  }                                                                                                       // 76
+});                                                                                                       // 77
+                                                                                                          // 78
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }).call(this);

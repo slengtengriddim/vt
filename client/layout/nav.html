@@ -1,22 +1,27 @@
 <template name="nav">
-
-  <div class="container">
-    <div class="row">
-      {{> atNavButton}} Logged in as: {{#if currentUser}} {{ currentUserMail }} {{/if}}
+  <nav class="navbar navbar-inverse nav-justified buffer-bar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        {{> atNavButton}}
+      </div>
+      <div style="height: 1px;" aria-expanded="false" id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav  text-center">
+          <li class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
+          <li class="{{isActiveRoute regex='trainer'}}"><a href="{{pathFor 'trainer'}}">Trainer</a></li>
+          <li class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
+          {{#unless surveySubmitted}}
+          <li class="{{isActiveRoute regex='fragebogen'}}"><a href="{{pathFor 'fragebogen'}}">Fragebogen</a></li>
+          {{/unless}} {{#if isInRole 'admin'}}
+          <li class="{{isActiveRoute regex='verwaltung'}}"><a href="{{pathFor 'verwaltung'}}">Verwaltung</a></li>
+          {{/if}}
+        </ul>
+      </div>
     </div>
-    <div class="row">
-      <ul class="nav nav-tabs nav-justified">
-        <li role="presentation" class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
-        <li role="presentation" class="{{isActiveRoute regex='trainer'}}"><a href="{{pathFor 'trainer'}}">Trainer</a></li>
-        <li role="presentation" class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
-        {{#unless surveySubmitted}}
-        <li role="presentation" class="{{isActiveRoute regex='fragebogen'}}"><a href="{{pathFor 'fragebogen'}}">Fragebogen</a></li>
-        {{/unless}}
-        {{#if isInRole 'admin'}}
-        <li role="presentation" class="{{isActiveRoute regex='uebersicht'}}"><a href="{{pathFor 'uebersicht'}}">Uebersicht</a></li>
-        {{/if}}
-      </ul>
-    </div>
-  </div>
-
+  </nav>
 </template>

@@ -1,13 +1,10 @@
 <template name="bar">
-<div class="container fluid">
-  <a href="{{#if getSession "attentionMode"}}{{getSession "lastPath"}}{{else}}/low{{/if}}">
-    <nav class="navbar navbar-default navbar-fixed-top {{#if getSession "attentionMode"}}alert-success{{else}}alert-info{{/if}} text-center attention-mode">
-      <div class="container">
-        <div class="text-center">
-          {{#if getSession "attentionMode"}}<i class="fa fa-angle-up fa-4x"></i> {{else}} <i class="fa fa-angle-down fa-4x"></i> {{/if}}
-        </div>
-      </div>
-    </nav>
-  </a>
-</div>
+    <div class="attention-mode">
+        <a href="{{#if getSession "attentionMode"}}{{getSession "lastPath"}}{{else}}/low{{/if}}">
+          <nav class="navbar navbar-fixed-top {{#if getSession "attentionMode"}} attention-low {{else}} attention-high {{/if}} text-center ">
+                {{#if getSession "attentionMode"}}<i class="fa fa-angle-up fa-4x"></i> {{else}} <i class="fa fa-angle-down fa-4x"></i> {{/if}}
+          </nav>
+        </a>
+    </div>
+
 </template>

@@ -55,19 +55,31 @@ highRoutes.route('/', {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "index"
+			main: "index",
+			footer:"footer"
 		});
 	}
 });
+highRoutes.route('/faq', {
+	name: "faq",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			main: "faq",
+			footer:"footer"
+		});
+	}
+});
+
 highRoutes.route('/trainer', {
 	name: "trainer",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			navModeTrainer: "navModeTrainer",
 			main: "trainer",
-			navSource: "navSourceTrainer"
+			footer:"footer"
 		});
 	}
 });
@@ -78,7 +90,8 @@ highRoutes.route('/register/:id', {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "vokabelDetail"
+			main: "vokabelDetail",
+			footer:"footer"
 		});
 	}
 });
@@ -88,25 +101,26 @@ highRoutes.route('/register', {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "register"
+			main: "register",
+			footer:"footer"
 		});
 	}
 });
-highRoutes.route('/uebersicht', {
-	name: "uebersicht",
+highRoutes.route('/verwaltung', {
+	name: "verwaltung",
 	action: function(params, queryParams) {
-		FlowRouter.redirect('/uebersicht/feedback');
+		FlowRouter.redirect('/verwaltung/feedback');
 	},
 	triggersEnter: [checkAdmin]
 });
-highRoutes.route('/uebersicht/statistik', {
+highRoutes.route('/verwaltung/statistik', {
 	name: "statistik",
 	action: function(params, queryParams) {
-		FlowRouter.redirect('/uebersicht/statistik/total');
+		FlowRouter.redirect('/verwaltung/statistik/total');
 	},
 	triggersEnter: [checkAdmin]
 });
-highRoutes.route('/uebersicht/statistik/device', {
+highRoutes.route('/verwaltung/statistik/device', {
 	name: "device",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
@@ -114,12 +128,13 @@ highRoutes.route('/uebersicht/statistik/device', {
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "device"
+			main: "device",
+			footer:"footer"
 		});
 	},
 	triggersEnter: [checkAdmin]
 });
-highRoutes.route('/uebersicht/statistik/mode', {
+highRoutes.route('/verwaltung/statistik/mode', {
 	name: "mode",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
@@ -127,12 +142,13 @@ highRoutes.route('/uebersicht/statistik/mode', {
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "mode"
+			main: "mode",
+			footer:"footer"
 		});
 	},
 	triggersEnter: [checkAdmin]
 });
-highRoutes.route('/uebersicht/statistik/status', {
+highRoutes.route('/verwaltung/statistik/status', {
 	name: "status",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
@@ -140,12 +156,13 @@ highRoutes.route('/uebersicht/statistik/status', {
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "status"
+			main: "status",
+			footer:"footer"
 		});
 	},
 	triggersEnter: [checkAdmin]
 });
-highRoutes.route('/uebersicht/statistik/total', {
+highRoutes.route('/verwaltung/statistik/total', {
 	name: "total",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
@@ -153,20 +170,22 @@ highRoutes.route('/uebersicht/statistik/total', {
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "total"
+			main: "total",
+			footer:"footer"
 		});
 	},
 	triggersEnter: [checkAdmin]
 });
 
-highRoutes.route('/uebersicht/feedback', {
+highRoutes.route('/verwaltung/feedback', {
 	name: "feedback",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
-			main: "feedback"
+			main: "feedback",
+			footer:"footer"
 		});
 	},
 	triggersEnter: [checkAdmin]
@@ -178,7 +197,8 @@ highRoutes.route('/fragebogen', {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "fragebogen"
+			main: "fragebogen",
+			footer:"footer"
 		});
 	},
 	triggersEnter: []
@@ -189,8 +209,9 @@ lowRoutes.route('/low', {
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
-			main: "low",
-			navSource: "navLow"
+			main: "low"
+			// ,
+			// navSource: "navLow"
 		});
 	},
 	triggersEnter: []
@@ -201,7 +222,8 @@ FlowRouter.notFound = {
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			footer: "footer",
-			main: "pageNotFound"
+			main: "pageNotFound",
+			footer:"footer"
 		});
 	}
 };

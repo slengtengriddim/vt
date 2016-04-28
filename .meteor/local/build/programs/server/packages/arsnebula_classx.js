@@ -206,3 +206,5 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
+
+//# sourceMappingURL=arsnebula_classx.js.map

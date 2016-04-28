@@ -1,5 +1,5 @@
 <template name="fragebogen">
-	<div class="container">
+	<div class="container survey">
 		<h1>Fragebogen</h1>
 		<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->
 		{{#autoForm collection="Data.Survey" id="insertSurveyForm" type="insert"}}
@@ -16,7 +16,7 @@
 		{{> afQuickField name='usabilityText'}}
 
 		<legend>Nutzung</legend>
-		Von welchen Endgeraeten aus hast du die App genutzt?
+		Ich habe die App am haeufigsten ueber ein ...
 		{{> afQuickField name='deviceMobile'}}
 		{{> afQuickField name='deviceTablet'}}
 		{{> afQuickField name='deviceDesktop'}}
@@ -24,6 +24,7 @@
 		<hr>
 		{{> afQuickField name='favouriteMode'}}
 		{{> afQuickField name='favouriteModeText'}}
+		{{> afQuickField name='modeEnter'}}
 		<hr>
 		{{> afQuickField name='attentionBenefit'}}
 		<hr>
@@ -39,7 +40,10 @@
 	</fieldset>
 
 		<div>
-			<button type="submit" class="btn btn-primary">Abschicken</button>
+			<p class="category-definition">
+				Du kannst den Fragebogen nur einmal abschicken.
+			</p> <br>
+			<button type="submit" class="btn btn-standard-1">Abschicken</button>
 		</div>
 		{{/autoForm}}
 	</div>

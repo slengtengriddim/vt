@@ -5,12 +5,6 @@ Template.navSource.helpers({
 		} else {
 			return "Nicht-Favoriten";
 		}
-	},
-	lengthFav() {
-		return Session.get(LENGTH_FAV);
-	},
-	lengthNotFav() {
-		return Session.get(LENGTH_NOT_FAV);
 	}
 });
 
@@ -46,22 +40,6 @@ Template.navSource.events({
 		}
 
 		// log
-		let deviceType = Darwin.device.type;
-		let devicePlatform = Darwin.device.platform;
-		// ['favDel', 'browse', 'source', 'reveal']
-		let clickArea = 'source';
-		// ['lesen', 'wort', 'definition', 'eingabe']
-		let mode;
-		let attention = Session.get(ATTENTION_MODE);
-		if (Session.get(ATTENTION_MODE)) {
-			mode  = Session.get(NAV_MODES)[Session.get(NAV_MODE_COUNT)];
-		} else {
-			if (FlowRouter.current().route.name === "eingabe") {
-					mode  = 'eingabe';
-			} else {
-					mode  = 'null';
-			}
-		}
-		Meteor.call('dataDetail', deviceType, devicePlatform, clickArea, mode, attention);
+		Log.detail('source');
 	}
 });

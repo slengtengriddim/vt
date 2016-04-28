@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////
+//                                                                      //
+// This is a generated file. You can view the original                  //
+// source in your browser if your browser supports source maps.         //
+// Source maps are supported by all recent versions of Chrome, Safari,  //
+// and Firefox, and by Internet Explorer 11.                            //
+//                                                                      //
+//////////////////////////////////////////////////////////////////////////
+
+
 (function () {
 
 /* Imports */
@@ -401,63 +411,56 @@ options.fallback = function (id, dir, error) {                             // 11
   // some arbitrary location on the file system), and we only really need  // 16
   // the fallback for dependencies installed in node_modules directories.  // 17
   if (topLevelIdPattern.test(id)) {                                        // 18
-    var parts = id.split("/");                                             // 19
-    if (parts.length === 2 &&                                              // 20
-        parts[0] === "meteor" &&                                           // 21
-        hasOwn.call(Package, parts[1])) {                                  // 22
-      return Package[parts[1]];                                            // 23
-    }                                                                      // 24
-                                                                           // 25
-    if (typeof Npm === "object" &&                                         // 26
-        typeof Npm.require === "function") {                               // 27
-      return Npm.require(id);                                              // 28
-    }                                                                      // 29
-  }                                                                        // 30
-                                                                           // 31
-  throw error;                                                             // 32
-};                                                                         // 33
-                                                                           // 34
-if (Meteor.isServer) {                                                     // 35
-  // Defining Module.prototype.useNode allows the module system to         // 36
-  // delegate evaluation to Node, unless useNode returns false.            // 37
-  (options.Module = function Module(id) {                                  // 38
-    // Same as the default Module constructor implementation.              // 39
-    this.id = id;                                                          // 40
-    this.children = [];                                                    // 41
-  }).prototype.useNode = function () {                                     // 42
-    if (typeof npmRequire !== "function") {                                // 43
-      // Can't use Node if npmRequire is not defined.                      // 44
-      return false;                                                        // 45
-    }                                                                      // 46
-                                                                           // 47
-    var parts = this.id.split("/");                                        // 48
-    var start = 0;                                                         // 49
-    if (parts[start] === "") ++start;                                      // 50
-    if (parts[start] === "node_modules" &&                                 // 51
-        parts[start + 1] === "meteor") {                                   // 52
-      start += 2;                                                          // 53
-    }                                                                      // 54
-                                                                           // 55
-    if (parts.indexOf("node_modules", start) < 0) {                        // 56
-      // Don't try to use Node for modules that aren't in node_modules     // 57
-      // directories.                                                      // 58
-      return false;                                                        // 59
-    }                                                                      // 60
-                                                                           // 61
-    try {                                                                  // 62
-      npmRequire.resolve(this.id);                                         // 63
-    } catch (e) {                                                          // 64
-      return false;                                                        // 65
-    }                                                                      // 66
-                                                                           // 67
-    this.exports = npmRequire(this.id);                                    // 68
-                                                                           // 69
-    return true;                                                           // 70
-  };                                                                       // 71
-}                                                                          // 72
-                                                                           // 73
-meteorInstall = makeInstaller(options);                                    // 74
-                                                                           // 75
+    if (typeof Npm === "object" &&                                         // 19
+        typeof Npm.require === "function") {                               // 20
+      return Npm.require(id);                                              // 21
+    }                                                                      // 22
+  }                                                                        // 23
+                                                                           // 24
+  throw error;                                                             // 25
+};                                                                         // 26
+                                                                           // 27
+if (Meteor.isServer) {                                                     // 28
+  // Defining Module.prototype.useNode allows the module system to         // 29
+  // delegate evaluation to Node, unless useNode returns false.            // 30
+  (options.Module = function Module(id) {                                  // 31
+    // Same as the default Module constructor implementation.              // 32
+    this.id = id;                                                          // 33
+    this.children = [];                                                    // 34
+  }).prototype.useNode = function () {                                     // 35
+    if (typeof npmRequire !== "function") {                                // 36
+      // Can't use Node if npmRequire is not defined.                      // 37
+      return false;                                                        // 38
+    }                                                                      // 39
+                                                                           // 40
+    var parts = this.id.split("/");                                        // 41
+    var start = 0;                                                         // 42
+    if (parts[start] === "") ++start;                                      // 43
+    if (parts[start] === "node_modules" &&                                 // 44
+        parts[start + 1] === "meteor") {                                   // 45
+      start += 2;                                                          // 46
+    }                                                                      // 47
+                                                                           // 48
+    if (parts.indexOf("node_modules", start) < 0) {                        // 49
+      // Don't try to use Node for modules that aren't in node_modules     // 50
+      // directories.                                                      // 51
+      return false;                                                        // 52
+    }                                                                      // 53
+                                                                           // 54
+    try {                                                                  // 55
+      npmRequire.resolve(this.id);                                         // 56
+    } catch (e) {                                                          // 57
+      return false;                                                        // 58
+    }                                                                      // 59
+                                                                           // 60
+    this.exports = npmRequire(this.id);                                    // 61
+                                                                           // 62
+    return true;                                                           // 63
+  };                                                                       // 64
+}                                                                          // 65
+                                                                           // 66
+meteorInstall = makeInstaller(options);                                    // 67
+                                                                           // 68
 /////////////////////////////////////////////////////////////////////////////
 
 }).call(this);

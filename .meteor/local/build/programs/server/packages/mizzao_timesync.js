@@ -49,3 +49,5 @@ if (typeof Package === 'undefined') Package = {};
 Package['mizzao:timesync'] = {};
 
 })();
+
+//# sourceMappingURL=mizzao_timesync.js.map

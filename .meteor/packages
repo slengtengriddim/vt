@@ -28,7 +28,6 @@ mizzao:user-status
 accounts-password
 service-configuration
 useraccounts:bootstrap
-twbs:bootstrap
 zimme:active-route
 
 alanning:roles
@@ -52,7 +51,10 @@ standard-minifier-js
 d3js:d3
 nvd3:nvd3
 
-# goltfisch:hotjar
-# momentjs:moment
 arsnebula:darwin
 sach:flow-db-admin
+
+natestrauser:animate-css
+webtempest:animate
+fourseven:scss
+twbs:bootstrap

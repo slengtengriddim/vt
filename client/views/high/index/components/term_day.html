@@ -1,0 +1,19 @@
+<template name="termDay">
+	<br>
+		<div class="text-center">
+			<p class="categories">
+				Dein Wort des Tages
+			</p>
+			{{#with termDay}}
+				<h2 class="category-title">{{ term }}</h2>
+				<div class="category-definition">
+					<ol>
+						{{#each definition}}
+						<li>{{this}}</li>
+						{{/each}}
+					</ol>
+				</div>
+				<h2><i class="fa fa-heart-o"></i></h2>
+			{{/with}}
+		</div>
+	</template>

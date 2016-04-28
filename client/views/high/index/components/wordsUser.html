@@ -1,0 +1,17 @@
+<template name="wordsUser">
+		<h5 class="widget-title">Top 5 Persoenlich</h5>
+		<div class="widget">
+			{{#if top5}}
+				<ul>
+					{{#each top5}}
+					<li>{{vocabularyName}}</li>
+					{{/each}}
+				</ul>
+			{{else}}
+				<div class="categories text-center">
+					Nicht genuegend Daten. Benutz' mich. <br><br>
+				</div>
+			{{/if}}
+		</div>
+
+</template>

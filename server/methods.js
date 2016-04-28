@@ -27,10 +27,11 @@ Meteor.methods({
 			}
 		});
 	},
-	dataDetail(deviceType, devicePlatform, clickArea, mode, attention){
+	dataDetail(deviceType, devicePlatform, route, clickArea, mode, attention) {
 		Data.Detail.insert({
 			deviceType: deviceType,
 			devicePlatform: devicePlatform,
+			route: route,
 			clickArea: clickArea,
 			mode: mode,
 			attention: attention

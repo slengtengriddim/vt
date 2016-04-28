@@ -1,0 +1,11 @@
+<template name="backwardLow">
+	{{#if lengthIsOne}}
+	  	<i class="fa fa-ban fa-4x"></i>
+	{{else}}
+		{{#with entry}}
+			<div class="btn-backward">
+				<i class="fa fa-chevron-left fa-4x"></i>
+			</div>
+		{{/with}}
+	{{/if}}
+</template>

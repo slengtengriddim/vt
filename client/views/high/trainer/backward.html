@@ -1,0 +1,13 @@
+<template name="backward">
+	{{#if lengthIsOne}}
+		<div class="media-left media-middle">
+			<i class="fa fa-ban fa-2x"></i>
+		</div>
+	{{else}}
+		{{#with entry}}
+			<div class="media-left media-middle btn-backward">
+				<i class="fa fa-chevron-left fa-4x"></i>
+			</div>
+		{{/with}}
+	{{/if}}
+</template>

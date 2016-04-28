@@ -47,6 +47,7 @@ Data.Feedback.Schema = new SimpleSchema({
 	},
 	message: {
 	    type: String,
+			label: 'Feedback-Nachricht',
 			max: 1000,
 	    autoform: {
 	      afFieldInput: {
@@ -62,313 +63,17 @@ Data.Feedback.Schema = new SimpleSchema({
 	}
 });
 
-Data.Survey.Schema = new SimpleSchema({
-	// GENERAL
-	userId: {
-		type: String,
-		autoValue: function() {
-			return this.userId;
-		},
-		autoform: {
-      type: "hidden",
-      label: false
-    }
-	},
-	age: {
-		type: Number,
-		label: 'Dein Alter',
-		min: 18,
-		max: 99
-	 }
-	,
-	previousExperience: {
-		type: String,
-		label: 'Wie steht es um deine Vorerfahrung mit digitalen Vokabeltrainern?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "gar keine",
-					value: "keine"
-				}, {
-					label: "mal probiert",
-					value: "probiert"
-				}, {
-					label: "nutze ich regelmaessig",
-					value: "regelmaessig"
-				}];
-			}
-		}
-	},
-	learningCurve: {
-		type: String,
-		label: 'Wie ist dir die Einarbeitung in die App gefallen?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Leicht",
-					value: "leicht"
-				}, {
-					label: "Mittel",
-					value: "mittel"
-				}, {
-					label: "Schwer",
-					value: "schwer"
-				}];
-			}
-		}
-	},
-	everydayUse: {
-		type: String,
-		label: 'Konntest du den Gebrauch der App muehelos in deinen Alltag integrieren?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	everydayUseText: {
-		type: String,
-		max: 1000,
-		label: 'Weshalb?',
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	usability: {
-		type: String,
-		label: 'Wie kommst du mit der Bedienung der App zurecht?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "gar nicht",
-					value: "nicht"
-				}, {
-					label: "ok",
-					value: "ok"
-				}, {
-					label: "super",
-					value: "super"
-				}];
-			}
-		}
-	},
-	usabilityText: {
-		type: String,
-		max: 1000,
-		label: 'Teile deine Ideen zur Bedienung (optional)',
-		optional: true,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	// NUTZUNGSVERHALTEN
-	deviceMobile: {
-		type: String,
-		label: 'Mobile:',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	deviceTablet: {
-		type: String,
-		label: 'Tablet:',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	deviceDesktop: {
-		type: String,
-		label: 'Desktop:',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	deviceBehavior: {
-		type: String,
-		max: 1000,
-		label: 'Falls du mehrere Endgeraete benutzt hast um die App aufzurufen: Inwiefern hat sich dein Nutzungsverhalten unterschieden?',
-		optional: false,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	favouriteMode: {
-		type: String,
-		label: 'Welchen Trainermodus hast du am liebsten genutzt?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Lesen",
-					value: "lesen"
-				}, {
-					label: "Wort",
-					value: "wort"
-				}, {
-					label: "Definition",
-					value: "definition"
-				}, {
-					label: "Texteingabe",
-					value: "eingabe"
-				}, {
-					label: "Register",
-					value: "register"
-				}];
-			}
-		}
-	},
-	favouriteModeText: {
-		type: String,
-		max: 1000,
-		label: 'Weshalb?',
-		optional: false,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	attentionBenefit: {
-		type: String,
-		label: 'Hat dir die Moeglichkeit, das UI kontextorientiert zu veraendern, gefallen?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	attentionBehavior: {
-		type: String,
-		label: 'Hat die Moeglichkeit, das UI kontextorientiert zu veraendern, dein Nutzungsverhalten beeinflusst?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	attentionBehaviorText: {
-		type: String,
-		max: 1000,
-		label: 'Weshalb?',
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	attentionSituation: {
-		type: String,
-		label: 'Wann, wo und in welcher Situation hast du beschlossen, das UI zu wechseln? (Beispiel)',
-		optional: false,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	attentionUse: {
-		type: String,
-		label: 'Siehst du generell einen Vorteil in der Moeglichkeit das UI kontextorientiert anzupassen?',
-		autoform: {
-			type: "select-radio-inline",
-			options: function() {
-				return [{
-					label: "Ja",
-					value: "ja"
-				}, {
-					label: "Nein",
-					value: "nein"
-				}];
-			}
-		}
-	},
-	attentionUseText: {
-		type: String,
-		max: 1000,
-		label: 'Weshalb?',
-		optional: false,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	prospects: {
-			type: String,
-			max: 1000,
-			label: 'Welche alternativen Anwendungsgebiete fuer ein kontextsensitives UI kannst du dir vorstellen?',
-			optional: false,
-			autoform: {
-				afFieldInput: {
-					type: "textarea"
-				}
-			}
-		}
-
-});
-
 Data.Detail.Schema = new SimpleSchema({
 	userId: {
 		type: String,
 		autoValue: function() {
 			return this.userId;
+		}
+	},
+	userMail: {
+		type: String,
+		autoValue: function() {
+			return Meteor.user().emails[0].address;
 		}
 	},
 	timestamp: {
@@ -383,9 +88,12 @@ Data.Detail.Schema = new SimpleSchema({
 	devicePlatform: {
 		type: String
 	},
+	route: {
+		type: String
+	},
 	clickArea: {
 		type: String,
-		allowedValues: ['favDel', 'browse', 'source', 'reveal', 'bar', 'mode']
+		allowedValues: ['bar', 'mode', 'source', 'favDel', 'browse', 'reveal']
 	},
 	mode: {
 		type: String,
@@ -419,6 +127,422 @@ Data.Words.Schema = new SimpleSchema({
 		}
 	}
 });
+
+Data.Survey.Schema = new SimpleSchema({
+	// GENERAL
+	userId: {
+		type: String,
+		autoValue: function() {
+			return this.userId;
+		},
+		autoform: {
+      type: "hidden",
+      label: false
+    }
+	},
+	age: {
+		type: Number,
+		label: 'Dein Alter',
+		min: 18,
+		max: 99
+	 }
+	,
+	previousExperience: {
+		type: String,
+		label: 'Ich verfuege ueber Vorerfahrung mit digitalen Vokabeltrainern.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	learningCurve: {
+		type: String,
+		label: 'Die Einarbeitung in den Fremdworttrainer ist mir leicht gefallen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	everydayUse: {
+		type: String,
+		label: 'Den Gebrauch der App konnte ich muehelos in meinen Alltag integrieren.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	everydayUseText: {
+		type: String,
+		max: 1000,
+		optional: true,
+		label: 'Aus folgendem Grund (optional):',
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	usability: {
+		type: String,
+		label: 'Mit der Bedienung der App zurecht komme ich prima zurecht.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	usabilityText: {
+		type: String,
+		max: 1000,
+		optional: true,
+		label: 'Aus folgendem Grund (optional):',
+		optional: true,
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	// NUTZUNGSVERHALTEN
+	deviceMobile: {
+		type: String,
+		label: '... Mobile Endgeraet (z.B. Smartphone, kein Laptop) aufgerufen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	deviceTablet: {
+		type: String,
+		label: '... Tablet Endgeraet aufgerufen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	deviceDesktop: {
+		type: String,
+		label: '... Desktop Endgeraet (z.B. Laptop, Desktop PC) aufgerufen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	deviceBehavior: {
+		type: String,
+		max: 1000,
+		optional: true,
+		label: 'Aus folgendem Grund (optional):',
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	favouriteMode: {
+		type: String,
+		label: 'Folgenden Trainingsmodus habe ich am liebsten genutzt:',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "Lesen",
+					value: "lesen"
+				}, {
+					label: "Wort",
+					value: "wort"
+				}, {
+					label: "Definition",
+					value: "definition"
+				}, {
+					label: "Texteingabe",
+					value: "eingabe"
+				}, {
+					label: "Lesen im Register",
+					value: "register"
+				}, {
+					label: "Weiss ich nicht",
+					value: "ka"
+				}];
+			}
+		}
+	},
+	favouriteModeText: {
+		type: String,
+		max: 1000,
+		optional: true,
+		label: 'Aus folgendem Grund (optional):',
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	modeEnter: {
+		type: String,
+		label: 'Die Texteingabe-Option habe ich im Kompaktmodus vermisst.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	attentionBenefit: {
+		type: String,
+		label: 'Mir hat die Moeglichkeit, in den Kompaktmodus zu wechseln, gefallen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	attentionBehavior: {
+		type: String,
+		label: 'Die Moeglichkeit, den Kompaktmodus zu nutzen, hat mein Nutzungsverhalten der App beeinflusst.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	attentionBehaviorText: {
+		type: String,
+		max: 1000,
+		label: 'Aus folgendem Grund (optional):',
+		optional: true,
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	attentionSituation: {
+		type: String,
+		max: 1000,
+		label: 'In welcher Situation hast du beschlossen, das UI zu wechseln und warum? (Beispiel)',
+		optional: true,
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	attentionUse: {
+		type: String,
+		label: 'Ich sehe generell einen klaren Vorteil in der Moeglichkeit die Benutzeroberflaeche kontextorientiert anzupassen und wuerde mir die Moeglichkeit auch fuer andere Apps wuenschen.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: "trifftZu"
+				}, {
+					label: "trifft eher zu",
+					value: "trifftEherZu"
+				}, {
+					label: "teils-teils",
+					value: "teilsTeils"
+				}, {
+					label: "trifft eher nicht zu",
+					value: "trifftEherNichtZu"
+				}, {
+					label: "trifft nicht zu",
+					value: "trifftNichtZu"
+				}];
+			}
+		}
+	},
+	attentionUseText: {
+		type: String,
+		max: 1000,
+		label: 'Aus folgendem Grund (optional):',
+		optional: true,
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	prospects: {
+			type: String,
+			max: 1000,
+			optional: true,
+			label: 'Sonstige Anmerkungen',
+			autoform: {
+				afFieldInput: {
+					type: "textarea"
+				}
+			}
+		}
+
+});
+
 
 Data.Detail.attachSchema(Data.Detail.Schema);
 Data.Words.attachSchema(Data.Words.Schema);

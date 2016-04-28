@@ -1,0 +1,42 @@
+<template name="modusWort">
+	<div class="jumbotron">
+
+		<div class="row">
+			<div class="media">
+				<div class="media-body">
+					{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
+				</div>
+				<div class="media-right">
+					<div class="i-transparent">
+						<i class="fa fa-minus fa-4x"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="text-center">
+				<p class="trainer-word-class fadeInUp animated">
+					{{ wordClass }}
+				</p>
+				<!-- WORT -->
+				{{#unless getSession "revealed"}}
+					<div class="btn-reveal">
+						<i class="trainer-question fa fa-question fa-4x"></i>
+					</div>
+				{{else}}
+						<h2 class="trainer-title  bounceIn animated">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
+				{{/unless}}
+
+				<div class="trainer-definition">
+					<ol>
+						{{#each definition}}
+						<li>{{this}}</li>
+						{{/each}}
+					</ol>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</template>

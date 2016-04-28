@@ -1,37 +1,97 @@
 <template name="low">
 
-  <div class="container">
+  <section class="some-area fill-height-or-more">
 
-		<br>
-		<br>
-		<div class="media">
+        {{> backwardLow }}
+        <div>
+          {{#if Template.subscriptionsReady}}
+            {{#with entry}}
+              {{#if getSession 'lesen'}}
+                {{> modusLesenLow}}
+              {{/if}}
+              {{#if getSession 'wort'}}
+                {{> modusWortLow}}
+              {{/if}}
+              {{#if getSession 'definition'}}
+                {{> modusDefinitionLow}}
+              {{/if}}
 
-			{{> backward }}
+              {{> navLow }}
+            {{/with}}
 
-			<div class="media-body">
-				{{#if Template.subscriptionsReady}}
-					{{#with entry}}
-						{{#if getSession 'lesen'}}
-							{{> modusLesen}}
-						{{/if}}
-						{{#if getSession 'wort'}}
-							{{> modusWort}}
-						{{/if}}
-						{{#if getSession 'definition'}}
-							{{> modusDefinition}}
-						{{/if}}
-					{{/with}}
+          {{else}}
+            {{> loading}}
+          {{/if}}
+        </div>
 
-				{{else}}
-					{{> loading}}
-				{{/if}}
-			</div>
 
-			{{> forward }}
+        {{> forwardLow }}
 
-		</div>
-	</div>
+  </section>
 
-	<br>
 
+  <!-- <div class="jumbotron vertical-center">
+    <div class="container">
+      <h1>The easiest and powerful way</h1>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="top-bg"></div>
+        </div>
+
+        <div class="col-md-5 iPhone-features">
+          <ul class="top-features">
+            <li>
+              <span><i class="fa fa-random simple_bg top-features-bg"></i></span>
+              <p><strong>Redirect</strong><br>Visitors where they converts more.</p>
+            </li>
+            <li>
+              <span><i class="fa fa-cogs simple_bg top-features-bg"></i></span>
+              <p><strong>Track</strong><br>Views, Clicks and Conversions.</p>
+            </li>
+            <li>
+              <span><i class="fa fa-check simple_bg top-features-bg"></i></span>
+              <p><strong>Check</strong><br>Constantly the status of your links.</p>
+            </li>
+            <li>
+              <span><i class="fa fa-users simple_bg top-features-bg"></i></span>
+              <p><strong>Collaborate</strong><br>With Customers, Partners and Co-Workers.</p>
+            </li>
+            <a href="pricing-and-signup.html" class="btn-primary btn h2 lightBlue get-Started-btn">GET STARTED</a>
+            <h6 class="get-Started-sub-btn">FREE VERSION AVAILABLE!</h6>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="parent-center-center-1">
+    <div class="parent-center-center-2">
+      <div class="parent-center-center-3">
+        <div class="child-center-center media">
+
+                {{> backwardLow }}
+
+                {{#if Template.subscriptionsReady}}
+                  {{#with entry}}
+                    {{#if getSession 'lesen'}}
+                      {{> modusLesenLow}}
+                    {{/if}}
+                    {{#if getSession 'wort'}}
+                      {{> modusWortLow}}
+                    {{/if}}
+                    {{#if getSession 'definition'}}
+                      {{> modusDefinitionLow}}
+                    {{/if}}
+                  {{/with}}
+
+                {{else}}
+                  {{> loading}}
+                {{/if}}
+
+                {{> forwardLow }}
+
+        </div>
+      </div>
+    </div>
+  </div> -->
 </template>

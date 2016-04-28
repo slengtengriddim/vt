@@ -36,7 +36,7 @@ Template.register.helpers({
 		return Session.get(LENGTH_NOT_FAV) < 5;
 	},
 	vocabulary() {
-		// Sort and group entries by letter and create a new array of iterable objects for cascaded template iteration
+		// Sort and group entries by letter and create a new array of iterable objects for a cascaded template iteration
 		let vocabularyIndexed = [];
 		vocabularyIndexed.fav = [];
 		vocabularyIndexed.notFav = [];

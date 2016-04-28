@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"faqWidget\");\nTemplate[\"faqWidget\"] = new Template(\"Template.faqWidget\", (function() {\n  var view = this;\n  return \"faq\";\n}));\n","bodyAttrs":{}}

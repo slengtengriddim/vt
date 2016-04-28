@@ -1,9 +1,7 @@
 <template name="footer">
-  <div id="footer">
-    <hr>
-    <p>
-      Chalimo Vokabeltrainer | <a href="#">FAQ</a>
-    </p>
-
-  </div>
+  <footer class="text-center">
+    <div class="container footer-content {{#if currentUser}}footer-border{{/if}}">
+      Chalimo Vokabeltrainer | {{#if currentUser}} <a href="{{pathFor 'faq'}}">Dokumentation</a> | {{/if}}<a href="{{pathFor 'disclaimer'}}">Disclaimer</a>
+    </div>
+  </footer>
 </template>

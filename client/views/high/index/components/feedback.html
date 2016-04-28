@@ -1,0 +1,13 @@
+<template name="feedbackClient">
+<div class="">
+  {{#autoForm collection="Data.Feedback" id="insertFeedbackForm" type="insert"}}
+  <fieldset>
+    {{> afQuickField name="message"}}
+    <div>
+      <button type="submit" class="btn btn-standard-1">Senden</button>
+      <button type="reset" class="btn btn-standard-1">Zuruecksetzen</button>
+    </div>
+  </fieldset>
+  {{/autoForm}}
+</div>
+</template>

@@ -67,3 +67,12 @@ Template.registerHelper("entry", function() {
 	}
 	return vocabulary[Session.get(COUNT_VIEWED)];
 });
+
+// NAV SOURCE
+Template.registerHelper("source", function() {
+	if (Session.get(SOURCE_FAV)) {
+		return "Favoriten";
+	} else {
+		return "Nicht-Favoriten";
+	}
+});

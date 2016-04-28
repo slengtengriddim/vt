@@ -1,0 +1,27 @@
+<template name="registerEntry">
+	<li class="story clearfix">
+		<div class="media">
+			<div class="media-body story-body">
+
+					<h3 class="title">{{term}} <i class="preposition">{{preposition}}</i></h3>
+					<span class="definition">
+						<ol>
+							{{#each definition}}
+							<li>{{this}}</li>
+							{{/each}}
+						</ol>
+					</span>
+
+			</div>
+			{{#if isFavourite this._id}}
+				<div class="media-right media-middle btn-delete">
+						<i class="fa fa-trash-o fa-4x"></i>
+				</div>
+			{{else}}
+				<div class="media-right media-middle btn-insert">
+						<i class="fa fa-heart-o fa-4x"></i>
+				</div>
+			{{/if}}
+		</div>
+	</li>
+</template>
