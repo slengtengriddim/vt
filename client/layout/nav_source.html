@@ -1,14 +1,25 @@
 <template name="navSource">
-		<div class="row text-center">
-				<button type="button" class="btn btn-standard-2 btn-source">
-					Woerter aus: {{source}}
-					{{#if getSession 'sourceFavourites'}}
-						<span class="label label-default">{{getSession "lengthFav"}}</span>
-					{{else}}
-						<span class="label label-default">{{getSession "lengthNotFav"}}</span>
-					{{/if}}
-				</button>
-				{{#unless getSession "lengthFav"}}<span class="label label-warning">Kein Eintrag in Favoritenliste</span>{{/unless}}
-				{{#unless getSession "lengthNotFav"}}<span class="label label-warning">Kein Eintrag in Nicht-Favoritenliste. Alle Woerter sind favorisiert.</span>{{/unless}}
+	<br>
+		<div class="text-center spaced">
+			<h3>Quelle</h3>
+			<button class="ui fluid huge button btn-source active primary">
+				{{#if getSession 'navSourceAll'}}
+					<i class="icon empty heart"></i><i class="icon plus"></i><i class="icon heart"></i> Alle
+				{{/if}}
+				{{#if getSession 'navSourceNotFav'}}
+					<i class="icon empty heart"></i> Alle ohne Favoriten
+					<span class="ui label">{{getSession "lengthNotFav"}}</span>
+				{{/if}}
+				{{#if getSession 'navSourceFav'}}
+					<i class="icon heart"></i> Favoriten
+					<span class="ui label">{{getSession "lengthFav"}}</span>
+				{{/if}}
+			</button>
+			{{#unless getSession "lengthFav"}}
+			<div class="ui red message text-center">
+				Keine Favoriten gespeichert.
+			</div>
+			{{/unless}}
 		</div>
+
 </template>

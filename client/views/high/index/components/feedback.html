@@ -1,11 +1,16 @@
 <template name="feedbackClient">
-<div class="">
+  <p>
+    Feedback
+  </p>
+  <h2>Hier hast du die Möglichkeit uns zwischendurch Rückmeldung zu geben.</h2>
+  <p class="meta">Ansonsten kannst du dich auch am Ende Testlaufs im Fragebogen äußern.</p>
+<div>
   {{#autoForm collection="Data.Feedback" id="insertFeedbackForm" type="insert"}}
   <fieldset>
     {{> afQuickField name="message"}}
     <div>
-      <button type="submit" class="btn btn-standard-1">Senden</button>
-      <button type="reset" class="btn btn-standard-1">Zuruecksetzen</button>
+      <button type="submit" class="ui large primary button">Senden</button>
+      <button type="reset" class="ui large button">Zurücksetzen</button>
     </div>
   </fieldset>
   {{/autoForm}}

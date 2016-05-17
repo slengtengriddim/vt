@@ -24,10 +24,13 @@ check
 
 anti:fake
 mizzao:user-status
+mizzao:timesync
 
 accounts-password
 service-configuration
-useraccounts:bootstrap
+# twbs:bootstrap
+# useraccounts:bootstrap
+useraccounts:semantic-ui
 zimme:active-route
 
 alanning:roles
@@ -39,6 +42,7 @@ kadira:flow-router
 
 aldeed:collection2
 aldeed:autoform
+fabienb4:autoform-semantic-ui
 fastclick
 
 chrismbeckett:toastr
@@ -56,5 +60,9 @@ sach:flow-db-admin
 
 natestrauser:animate-css
 webtempest:animate
-fourseven:scss
-twbs:bootstrap
+# fourseven:scss
+semantic:ui
+flemay:less-autoprefixer
+ficshelf:media-query
+# okgrow:analytics
+# astronomerio:core

@@ -1,14 +1,15 @@
 <template name="feedback">
+	{{#if Template.subscriptionsReady}}
 	<div class="container">
 		<div class="row">
 			<h4>online: {{usersCountOnline}} von {{usersCount}} </h4>
 			{{#each users}}
-				<span class="label {{labelClass}}">{{email}}</span>
+				<span class="ui label {{labelClass}}">{{email}}</span>
 			{{/each}}
 			<hr>
 			<h4>Fragebogen abgeschickt: {{usersSurveySubmittedCount}} von {{usersCount}} </h4>
 			{{#each usersSurveySubmitted}}
-				<span class="label label-primary">{{userMail}}</span>
+				<span class="ui label green">{{userMail}}</span>
 			{{/each}}
 			<hr>
 		</div>
@@ -16,12 +17,16 @@
 		<h1>Feedback</h1>
 
 		{{#each feedback}}
-		<div class="panel panel-default">
-			<div class="panel-heading">{{ userMail }} | {{ createdAt }}</div>
-			<div class="panel-body">
+		<div class="column">
+			<div class="ui top attached block header">{{ userMail }} | {{ createdAt }}</div>
+			<div class="ui bottom attached segment">
 				{{ message }}
 			</div>
 		</div>
+		<br>
 		{{/each}}
 	</div>
+	{{else}}
+		{{> loading}}
+	{{/if}}
 </template>

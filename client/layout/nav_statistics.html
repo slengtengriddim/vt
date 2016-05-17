@@ -1,0 +1,34 @@
+<template name="navStatistics">
+
+  <div class="ui container">
+
+    <div class="ui fluid eight item menu">
+      <a class="{{isActiveRoute regex='statLOD'}} item" href="{{pathFor 'statLOD'}}">
+        LOD
+      </a>
+      <a class="{{isActiveRoute regex='statFav'}} item" href="{{pathFor 'statFav'}}">
+        Fav
+      </a>
+      <a class="{{isActiveRoute regex='statBrowse'}} item" href="{{pathFor 'statBrowse'}}">
+        Browse
+      </a>
+      <a class="{{isActiveRoute regex='statDevice'}} item" href="{{pathFor 'statDevice'}}">
+        Device
+      </a>
+      <a class="{{isActiveRoute regex='statMethod'}} item" href="{{pathFor 'statMethod'}}">
+        Method
+      </a>
+      <a class="{{isActiveRoute regex='statUsers'}} item" href="{{pathFor 'statUsers'}}">
+        Users
+      </a>
+      <a class="{{isActiveRoute regex='statAttention'}} item" href="{{pathFor 'statAttention'}}">
+        CM
+      </a>
+      <a class="{{isActiveRoute regex='statTotal'}} item" href="{{pathFor 'statTotal'}}">
+        Total
+      </a>
+    </div>
+
+  </div>
+
+</template>

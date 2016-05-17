@@ -1,51 +1,105 @@
 <template name="trainer">
-	<div class="container">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container accordion">
+	  <div class="{{#if getSession 'settingsTrainer'}}active{{/if}} ui header title btn-settings-trainer">
+	    <i class="dropdown blue icon"></i>
+	    Einstellungen
+	  </div>
+	  <div class="{{#if getSession 'settingsTrainer'}}active fadeInDown animated {{/if}} content ">
+
+			<div class="ui container nav-trainer">
+				<div class="ui three column  very relaxed stackable grid">
+					<div class="column">
+						{{> navModeTrainer }}
+					</div>
+					<div class="ui vertical divider">
+						und
+					</div>
+					<div class="column">
+						{{> navSourceTrainer }}
+					</div>
+					<div class="ui vertical divider">
+						und
+					</div>
+					<div class="column">
+						{{> navOrderTrainer }}
+					</div>
+				</div>
+			</div>
+
+	  </div>
+	</div>
+	<div class="ui container divider"></div>
+	{{/if}}
+
+{{#if Template.subscriptionsReady}}
+
 		<br>
-		<div class="row text-center">
-			<div class="col-sm-6">
-				{{> navModeTrainer }}
-			</div>
-			<div class="col-sm-6">
-				{{> navSourceTrainer }}
-			</div>
+
+<div class="ui container centered grid">
+	<div class="row">
+		<div class="three wide column">
+
+			{{> backward }}
+
 		</div>
-		<br>
-		<div class="row">
+		<div class="ten wide column">
+
+			{{> trainerContent}}
+
+			{{#if lengthIsOne}}
+				<div class="ui orange message text-center">
+						<span class="flag animate-box fadeInUp animated">
+							{{#if getSession 'navSourceFav'}}
+								<h3>Letzter Favorit <i class="icon frown"></i></h3>
+							{{/if}}
+							{{#if getSession 'navSourceNotFav'}}
+								<h3>Letzter Begriff der nicht favorisiert ist.</h3>
+							{{/if}}
+						</span>
+				</div>
+			{{/if}}
+
 			{{#unless isAlphabetic}}
-				<p class="alert alert-warning">Tipp: Das gesuchte Wort enthaelt nur Zeichen des Alphabets (a - Z). Keine Leer- und Sonderzeichen.</p>
+				<p class="ui orange message">Tipp: Das gesuchte Wort enthaelt nur Zeichen des Alphabets (a - Z). Keine Leer- und Sonderzeichen.</p>
 			{{/unless}}
 			{{#unless isLength64}}
-				<p class="alert alert-warning">Tipp: Das gesuchte Wort enthaelt nicht mehr als 64 Zeichen.</p>
+				<p class="ui orange message">Tipp: Das gesuchte Wort enthaelt nicht mehr als 64 Zeichen.</p>
 			{{/unless}}
 
-			<div class="media">
+		</div>
+		<div class="three wide column">
 
-				{{> backward }}
+		{{> forward }}
 
-				<div class="media-body">
-					{{#if Template.subscriptionsReady}}
-						{{#with entry}}
-							{{#if getSession 'lesen'}}
-								{{> modusLesen}}
-							{{/if}}
-							{{#if getSession 'wort'}}
-								{{> modusWort}}
-							{{/if}}
-							{{#if getSession 'definition'}}
-								{{> modusDefinition}}
-							{{/if}}
-							{{#if getSession 'eingabe'}}
-								{{> modusEingabe }}
-							{{/if}}
-						{{/with}}
-					{{else}}
-						{{> loading}}
-					{{/if}}
-				</div>
-
-				{{> forward }}
-
-			</div>
 		</div>
 	</div>
+</div>
+{{else}}
+	{{> loading}}
+{{/if}}
+
+</template>
+
+<template name="trainerContent">
+
+		{{#if Template.subscriptionsReady}}
+			{{#with entry}}
+				{{#if getSession 'lesen'}}
+					{{> modusLesen}}
+				{{/if}}
+				{{#if getSession 'wort'}}
+					{{> modusWort}}
+				{{/if}}
+				{{#if getSession 'definition'}}
+					{{> modusDefinition}}
+				{{/if}}
+				{{#if getSession 'eingabe'}}
+					{{> modusEingabe }}
+				{{/if}}
+			{{/with}}
+		{{else}}
+			{{> loading}}
+		{{/if}}
+
 </template>

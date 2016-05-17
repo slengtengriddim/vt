@@ -1,37 +1,81 @@
 //  Session variables
 
+// SURVEY
+
+TIME_NOW = 'timeNow';
+
+UNLOCK_START = 'unlockStart';
+Session.setDefault(UNLOCK_START, 1463487120 * 1000);
+
+UNLOCK_END = 'unlockEnd';
+Session.setDefault(UNLOCK_END, 1463498040 * 1000);
+
+SURVEY_UNLOCKED = 'surveyUnlocked';
+Session.setDefault(SURVEY_UNLOCKED, false);
+
+// ATTENTION BAR
+
 ATTENTION_MODE = 'attentionMode';
 Session.setDefault(ATTENTION_MODE, false);
 
 LAST_PATH = 'lastPath';
 Session.setDefault(LAST_PATH, '/');
 
-SOURCE_FAV = 'sourceFavourites';
+
+// SOURCES
+
+NAV_SOURCE_FAV = 'navSourceFav';
+Session.setDefault(NAV_SOURCE_FAV, false);
+
+NAV_SOURCE_ALL = 'navSourceAll';
+Session.setDefault(NAV_SOURCE_ALL, true);
+
+NAV_SOURCE_NOT_FAV = 'navSourceNotFav';
+Session.setDefault(NAV_SOURCE_NOT_FAV, false);
+
+NAV_SOURCES = 'navSources';
+Session.setDefault(NAV_SOURCES, [NAV_SOURCE_ALL]);
+
+NAV_SOURCE_COUNT = 'sourceCount';
+Session.setDefault(NAV_SOURCE_COUNT, 0);
+
+// ORDER
+
+NAV_ORDER_RANDOM = 'navOrderRandom';
+Session.setDefault(NAV_ORDER_RANDOM, true);
+
+// BROWSE WORDS
+
+SOURCE_FAV = 'sourceFav';
 Session.setDefault(SOURCE_FAV, false);
 
-// RANDOM_FAV = 'randomFavourites';
-// Session.setDefault(RANDOM_FAV, false);
-//
-// RANDOM_NOT_FAV = 'randomNotFavourites';
-// Session.setDefault(RANDOM_NOT_FAV, true);
+BROWSE_FORWARD = 'browseForward';
+Session.setDefault(BROWSE_FORWARD, true);
+
+INDEX_BROWSE = 'indexBrowse';
+Session.setDefault(INDEX_BROWSE, 0);
 
 LENGTH_FAV = 'lengthFav';
 Session.setDefault(LENGTH_FAV, 0);
 
-LENGTH_NOT_FAV = 'lengthNotFav';
-Session.setDefault(LENGTH_NOT_FAV, 0);
+LENGTH_ALL = 'lengthAll';
+Session.setDefault(LENGTH_ALL, 0);
 
-COUNT_VIEWED = 'countViewed';
-Session.setDefault(COUNT_VIEWED, 0);
+LENGTH_NOT_FAV = 'lengthNotFav';
+Session.setDefault(LENGTH_ALL, 0);
+
+// EXTRA
 
 REVEALED = 'revealed';
 Session.setDefault(REVEALED, false);
 
-EXAMPLE = 'example';
-Session.setDefault(EXAMPLE, false);
+SETTINGS_TRAINER = 'settingsTrainer';
+Session.setDefault(SETTINGS_TRAINER, true);
 
-TERM_WRONG = 'termWrong';
-Session.setDefault(TERM_WRONG, false);
+// EINGABE
+
+INPUT_OCCURED = 'inputOccured';
+Session.setDefault(INPUT_OCCURED, false);
 
 TERM_RIGHT = 'termRight';
 Session.setDefault(TERM_RIGHT, false);
@@ -41,6 +85,8 @@ Session.setDefault(TERM_CACHE, '');
 
 COUNT_LETTERS_MATCH = 'countLettersMatch';
 Session.setDefault(COUNT_LETTERS_MATCH, 0);
+
+// MODES
 
 NAV_MODE_READ = 'lesen';
 Session.setDefault(NAV_MODE_READ, true);

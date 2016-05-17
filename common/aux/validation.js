@@ -1,6 +1,6 @@
 (function(exports) {
 	exports.isAlphabetic = value => {
-		const filter = /^[a-zA-Z]+$/;
+		const filter = /^[a-zA-ZäöüÄÖÜß]+$/;
 		if (filter.test(value)) {
 			return true;
 		}

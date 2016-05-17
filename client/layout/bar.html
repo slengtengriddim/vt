@@ -1,10 +1,11 @@
 <template name="bar">
-    <div class="attention-mode">
-        <a href="{{#if getSession "attentionMode"}}{{getSession "lastPath"}}{{else}}/low{{/if}}">
-          <nav class="navbar navbar-fixed-top {{#if getSession "attentionMode"}} attention-low {{else}} attention-high {{/if}} text-center ">
-                {{#if getSession "attentionMode"}}<i class="fa fa-angle-up fa-4x"></i> {{else}} <i class="fa fa-angle-down fa-4x"></i> {{/if}}
-          </nav>
-        </a>
+
+  <div class="row">
+    <div class="ui bar {{#if getSession "attentionMode"}}olive{{else}}orange{{/if}} one item inverted fixed menu attention-mode">
+      <a class="item center aligned" href="{{#if getSession "attentionMode"}}{{getSession "lastPath"}}{{else}}/low{{/if}}">
+        {{#if getSession "attentionMode"}}<i class="fa fa-angle-up fa-4x"></i>{{else}}<i class="fa fa-angle-down fa-4x"></i> {{/if}}
+      </a>
     </div>
+  </div>
 
 </template>

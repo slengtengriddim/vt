@@ -1,0 +1,27 @@
+<template name="statMethod">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Usage behaviour of the four different training methods</h1>
+	</div>
+	<div class="ui grid">
+		<div class="sixteen wide column">
+			{{> lineMethodPerAttentionPerDayPerDevice}}
+		</div>
+		<div class="sixteen wide column">
+			{{> multiBarMethodPerAttentionPerDay}}
+		</div>
+		<div class="sixteen wide column">
+			{{> lineEnterMethodsPerDayPerDevice}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> multiBarEnterperDevicePerDay}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> pieClicksPerMethod}}
+			{{> pieClicksPerMethodTrainer}}
+			{{> pieClicksPerMethodLow}}
+		</div>
+		<h3>TODO: Method per selected users per day per device</h3>
+	</div>
+	{{else}} {{> loading}} {{/if}}
+</template>

@@ -1,11 +1,96 @@
 <template name="backwardLow">
 	{{#if lengthIsOne}}
-	  	<i class="fa fa-ban fa-4x"></i>
+		{{> stopLow}}
 	{{else}}
 		{{#with entry}}
-			<div class="btn-backward">
-				<i class="fa fa-chevron-left fa-4x"></i>
-			</div>
+				{{#if getSession 'navOrderRandom'}}
+					{{> stopLow}}
+				{{else}}
+
+				{{#if screensize_small}}
+					{{> backwardLowSmall}}
+				{{/if}}
+				{{#if screensize_medium}}
+					{{> backwardLowSmall}}
+				{{/if}}
+				{{#if screensize_large}}
+					{{> backwardLowLarge}}
+				{{/if}}
+				{{#if screensize_xlarge}}
+					{{> backwardLowLarge}}
+				{{/if}}
+				{{#if screensize_xxlarge}}
+					{{> backwardLowLarge}}
+				{{/if}}
+
+				{{/if}}
 		{{/with}}
 	{{/if}}
+</template>
+
+
+<template name="backwardLowSmall">
+	<div class="btn-browse-low gradient-left-to-right btn-backward">
+		<div class="ui row low">
+			<div class="ui icon header low">
+				<i class="step backward icon"></i>
+				<div class="content"></div>
+			</div>
+		</div>
+		{{#if getSession 'navOrderRandom'}}
+			<div class="ui row low center aligned">
+				<div class="ui header">
+					<i class="random icon low"></i>
+				</div>
+			</div>
+		{{else}}
+			<div class="ui row low center aligned">
+				<div class="ui header">
+					<i class="long arrow left icon low"></i>
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="backwardLowLarge">
+	<div class="btn-browse-low gradient-left-to-right btn-backward">
+		<div class="ui row low">
+			<div class="ui icon header low">
+				<i class="step backward icon"></i>
+				<div class="content">
+					ZURÜCK
+				</div>
+			</div>
+		</div>
+		<div class="ui row low">
+			<div class="ui header">
+				<i class="long arrow left icon low"></i>
+				<div class="content">
+					<div class="sub header low">A - Z</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="stopLow">
+	<div class="btn-ban-low">
+		<div class="ui row low">
+			<div class="ui icon header low disabled">
+				<i class="ban icon"></i>
+				<div class="content">
+					{{#if screensize_large}}
+						STOP
+					{{/if}}
+					{{#if screensize_xlarge}}
+						STOP
+					{{/if}}
+					{{#if screensize_xxlarge}}
+						STOP
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

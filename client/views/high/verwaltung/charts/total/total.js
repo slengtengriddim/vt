@@ -1,10 +1,10 @@
-Template.total.onCreated(() => {
+Template.statTotal.onCreated(() => {
 	let template = Template.instance();
 	template.subscribe('dataDetail');
 	template.subscribe('user');
 });
 
-Template.total.helpers({
+Template.statTotal.helpers({
 	dataPointsCount() {
 		return Data.Detail.find({}).count();
 	}

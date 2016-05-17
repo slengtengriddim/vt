@@ -1,11 +1,11 @@
 <template name="navModeTrainer">
-	<div class="row text-center">
-		<h5 class="widget-title">Option</h5>
-			<ul class="list-inline">
-				<li><button type="button" class="btn btn-lesen btn-standard-1 {{#if getSession "lesen"}}active{{/if}}">Lesen</button></li>
-				<li><button type="button" class="btn btn-wort btn-standard-1 {{#if getSession "wort"}}active{{/if}}">Wort</button></li>
-				<li><button type="button" class="btn btn-definition btn-standard-1 {{#if getSession "definition"}}active{{/if}}">Definition</button></li>
-				<li><button type="button" class="btn btn-eingabe btn-standard-1 {{#if getSession "eingabe"}}active{{/if}}">Eingabe</button></li>
-			</ul>
-	</div>
+		<br>
+		<div class="text-center spaced">
+			<h3>Methode</h3>
+			<button class="ui fluid large button btn-lesen {{#if getSession "lesen"}}active primary{{/if}}"><i class="icon book"></i> Lesen</button>
+			<button class="ui fluid large button btn-wort {{#if getSession "wort"}}active primary{{/if}}"><i class="icon adjust"></i> Rate Wort</button>
+			<button class="ui fluid large button btn-definition {{#if getSession "definition"}}active primary{{/if}}"><i class="icon adjust horizontally flipped"></i> Rate Definition</button>
+			<button class="ui fluid large button btn-eingabe {{#if getSession "eingabe"}}active primary{{/if}}"><i class="icon terminal"></i> Eingabetest</button>
+		</div>
+
 </template>

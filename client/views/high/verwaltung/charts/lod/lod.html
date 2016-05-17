@@ -1,0 +1,23 @@
+<template name="statLOD">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Corelation between the menu structures' level of detail and user activity</h1>
+	</div>
+		<div class="ui grid">
+			<div class="ui sixteen wide column">
+				{{> multiBarLODPerDay}}
+			</div>
+			<div class="ui sixteen wide column">
+				{{> lineLODPerDayPerDevice}}
+			</div>
+			<div class="ui sixteen wide column">
+				{{> pieLOD }}
+			</div>
+		</div>
+
+		<h3>TODO: LOD per selected users</h3>
+
+	{{else}}
+		{{> loading}}
+	{{/if}}
+</template>

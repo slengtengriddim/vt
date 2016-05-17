@@ -1,0 +1,32 @@
+<template name="entry">
+	<!-- <blockquote> -->
+	<div class="item register-item">
+		<div class="ui icon big">
+			{{#if isFav this._id}}
+				<div class="btn-register btn-delete fadeIn animated">
+						<i class="icon red heart big"></i>
+				</div>
+			{{else}}
+				<div class="btn-register btn-insert fadeIn animated">
+						<i class="icon red empty heart big"></i>
+				</div>
+			{{/if}}
+		</div>
+		<div class="content middle aligned">
+			<div class="header">
+				{{term}} <i> {{preposition}}</i>
+			</div>
+			<div class="meta">
+				{{ wordClass }}
+			</div>
+			<div class="ui ordered list">
+				{{#each definition}}
+					<div class="item">
+						{{this}}
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	<!-- </blockquote> -->
+</template>

@@ -1,12 +1,26 @@
 <template name="wordsAll">
-	{{#if top5}}
-		<h5 class="widget-title">Top 5 Insgesamt</h5>
-		<div class="widget">
-			<ul>
+	{{#if Template.subscriptionsReady}}
+		{{#if top5}}
+			<h4 class="ui horizontal divider header">
+				<i class="users icon"></i>
+				Gesamt Top 5
+			</h4>
 				{{#each top5}}
-				<li>{{term}}</li>
+					<p class="top5">
+						<div class="ui horizontal statistic">
+						  <div class="value">
+						    {{convertIndex @index}}
+						  </div>
+						  <div class="label">
+						    {{term}}
+						  </div>
+						</div>
+					</p>
 				{{/each}}
-			</ul>
-		</div>
+
+		{{/if}}
+	{{else}}
+		{{> loading}}
 	{{/if}}
+
 </template>

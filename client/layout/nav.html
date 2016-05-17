@@ -1,27 +1,20 @@
 <template name="nav">
-  <nav class="navbar navbar-inverse nav-justified buffer-bar">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        {{> atNavButton}}
-      </div>
-      <div style="height: 1px;" aria-expanded="false" id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav  text-center">
-          <li class="{{isActiveRoute regex='index'}}"><a href="{{pathFor 'index'}}">Index</a></li>
-          <li class="{{isActiveRoute regex='trainer'}}"><a href="{{pathFor 'trainer'}}">Trainer</a></li>
-          <li class="{{isActiveRoute regex='register'}}"><a href="{{pathFor 'register'}}">Register</a></li>
-          {{#unless surveySubmitted}}
-          <li class="{{isActiveRoute regex='fragebogen'}}"><a href="{{pathFor 'fragebogen'}}">Fragebogen</a></li>
-          {{/unless}} {{#if isInRole 'admin'}}
-          <li class="{{isActiveRoute regex='verwaltung'}}"><a href="{{pathFor 'verwaltung'}}">Verwaltung</a></li>
+
+  <div class="ui inverted segment">
+    <div class="ui container nav-main">
+      <div class="row">
+        <div class="ui inverted fluid {{#if surveySubmitted}}three{{else}}four{{/if}} item large menu">
+          <a class="item {{isActiveRoute regex='index'}}" href="{{pathFor 'index'}}">Start</a>
+          <a class="item {{isActiveRoute regex='trainer'}}" href="{{pathFor 'trainer'}}">Trainer</a>
+          <a class="item {{isActiveRoute regex='register'}}" href="{{pathFor 'register'}}">Register</a>
+          {{#if getSession "surveyUnlocked"}}
+            {{#unless surveySubmitted}}
+              <a class="item {{isActiveRoute regex='fragebogen'}}" href="{{pathFor 'fragebogen'}}">Fragebogen</a>
+            {{/unless}}
           {{/if}}
-        </ul>
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
+
 </template>

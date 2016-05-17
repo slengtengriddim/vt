@@ -1,13 +1,30 @@
 <template name="navLow">
-	<br>
-	<br>
 	<div class="row">
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-standard-2" data-toggle="modal" data-target="#settingsLow">
-			Einstellungen
-		</button>
+		<div class="btn-settings-low">
+			<div id="call-modal-settings" class="ui icon header low btn-browse-low">
+				<i class="setting icon"></i>
+				<div class="content">
+					EINSTELLUNGEN
+				</div>
+			</div>
+		</div>
+
+
+		<div id="modal-settings" class="ui basic modal">
+		  <i class="close big icon fluid"></i>
+		  <div class="header">
+		    Einstellungen
+		  </div>
+			<div class="content">
+				{{> navMode }}
+				{{> navSource }}
+				{{> navOrderTrainer }}
+		  </div>
+		</div>
+
 		<!-- Modal -->
-		<div class="modal fade" id="settingsLow" tabindex="-1" role="dialog" aria-labelledby="settingsLowLabel">
+		<!-- <div class="modal fade" id="settingsLow" tabindex="-1" role="dialog" aria-labelledby="settingsLowLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -17,11 +34,12 @@
 					<div class="modal-body">
 						{{> navMode }}
 						{{> navSource }}
+						{{> navOrderTrainer }}
 					</div>
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 

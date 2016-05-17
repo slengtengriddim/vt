@@ -1,8 +1,8 @@
 // Options
 AccountsTemplates.configure({
-  defaultLayout: 'layout',
+  defaultLayout: 'layoutAccount',
   defaultLayoutRegions: {
-    footer: 'footer'
+    // footer: 'footer'
   },
   defaultContentRegion: 'main',
   showForgotPasswordLink: false,

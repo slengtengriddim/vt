@@ -1,0 +1,22 @@
+<template name="statAttention">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Wie wird der Kompaktmodus genutzt?</h1>
+	</div>
+	<div class="ui grid">
+		<div class="ui sixteen wide column">
+			{{> multiBarClicksPerAttentionPerDay}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> lineClicksPerAttentionPerDayPerDevice}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> multiBarClicksPerAttentionPerDayPerDevice}}
+		</div>
+		<div class="ui sixteen wide column">
+				{{> pieClicksPerAttention }}
+		</div>
+		<h3>TODO: Attention per selected users</h3>
+	</div>
+	{{else}} {{> loading}} {{/if}}
+</template>

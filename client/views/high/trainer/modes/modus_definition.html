@@ -1,42 +1,41 @@
 <template name="modusDefinition">
-	<div class="jumbotron">
 
-		<div class="row">
-			<div class="media">
-				<div class="media-body">
-					{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
-				</div>
-				<div class="media-right">
-					<div class="i-transparent">
-						<i class="fa fa-minus fa-4x"></i>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="ui center aligned segment">
 
-		<div class="row">
-			<div class="text-center">
-				<p class="trainer-word-class fadeInUp animated">
+					<br>
+					<h1 class="fadeIn animated">{{ term }}{{#if preposition}} <i>{{ preposition }}</i>{{/if}}</h1>
+
+				<br>
+				<div class="ui horizontal divider fadeInUp animated">
 					{{ wordClass }}
-				</p>
-				<h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
-				<!-- DEFINITION -->
+				</div>
+				<br>
 				{{#unless getSession "revealed"}}
-					<div class="btn-reveal">
-						<i class="trainer-question fa fa-question fa-4x"></i>
-						<!-- <div class="label label-info">Gesucht: Wort</div> -->
-					</div>
+
+				<button class="ui icon header button btn-reveal">
+						<i class="question icon"></i>
+						<div class="content">
+							LÖSUNG ANZEIGEN
+						</div>
+				</button>
+				<br>
 				{{else}}
-					<div class="trainer-definition flipInX animated">
-						<ol>
-							{{#each definition}}
-							<li>{{this}}</li>
-							{{/each}}
-						</ol>
+					<div class="ui selection list fadeIn animated">
+						{{#each definition}}
+						<div class="left aligned">
+							<div class="ui small horizontal statistic">
+								<div class="value low">
+									{{convertIndex @index}}
+								</div>
+								<div class="trainer-definition high">
+									{{this}}
+								</div>
+							</div>
+						</div>
+						{{/each}}
 					</div>
 				{{/unless}}
-			</div>
-		</div>
-
+				<br>
 	</div>
+
 </template>

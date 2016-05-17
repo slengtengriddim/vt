@@ -1,0 +1,9 @@
+<template name="navOrderTrainer">
+	<br>
+		<div class="text-center spaced">
+			<h3>Reihenfolge</h3>
+			<button class="ui fluid {{#if getSession "attentionMode"}}huge{{else}}large{{/if}} button btn-order active primary">
+				{{#if getSession "navOrderRandom"}}<i class="icon random"></i> Zufall{{else}}<i class="icon long arrow right"></i> Alphabet{{/if}}
+			</button>
+		</div>
+</template>

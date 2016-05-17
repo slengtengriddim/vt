@@ -1,6 +1,6 @@
 AdminConfig = {
 	name: 'Chalimo',
-	adminEmails: ['bla@bla.org'],
+	adminEmails: ['bla@bla.org', 'cedric.quintes@openmailbox.org'],
 	collections: {
 		Vocabulary: {
 			tableColumns: [{

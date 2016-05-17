@@ -1,5 +1,17 @@
 <template name="navMode">
-	<div class="row text-center">
-			<button type="button" class="btn btn-standard-2 btn-mode">Option: {{mode}}</button>
-	</div>
+	<br>
+		<div class="text-center spaced">
+			<h3>Methode</h3>
+			<button class="ui fluid huge button btn-mode active primary">
+			{{#if getSession 'lesen'}}
+				<i class="icon book"></i> Lesen
+			{{/if}}
+			{{#if getSession 'wort'}}
+				<i class="icon adjust"></i> Rate Wort
+			{{/if}}
+			{{#if getSession 'definition'}}
+				<i class="icon adjust horizontally flipped"></i> Rate Definition
+			{{/if}}
+			</button>
+		</div>
 </template>

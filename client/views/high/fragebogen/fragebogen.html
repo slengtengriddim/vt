@@ -1,50 +1,62 @@
 <template name="fragebogen">
-	<div class="container survey">
-		<h1>Fragebogen</h1>
-		<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->
-		{{#autoForm collection="Data.Survey" id="insertSurveyForm" type="insert"}}
-		<fieldset>
-		<legend>Allgemein</legend>
-		{{> afQuickField name='age'}}
-		{{> afQuickField name='previousExperience'}}
-		{{> afQuickField name='learningCurve'}}
-		<hr>
-		{{> afQuickField name='everydayUse'}}
-		{{> afQuickField name='everydayUseText'}}
-		<hr>
-		{{> afQuickField name='usability'}}
-		{{> afQuickField name='usabilityText'}}
+	{{#if getSession "surveyUnlocked"}}
+		{{#unless surveySubmitted}}
+			<div class="container survey">
+				<h1>Fragebogen</h1>
+				<!-- {{> quickForm collection="Data.Survey" id="insertSurveyForm" type="insert"}} -->
+				{{#autoForm collection="Data.Survey" id="insertSurveyForm" type="insert"}}
+				<fieldset>
+				<br>
+				<h2>Allgemein</h2>
+				<br>
+				{{> afQuickField name='age'}}
+				{{> afQuickField name='gender'}}
+				{{> afQuickField name='previousExperience'}}
+				{{> afQuickField name='learningCurve'}}
+				<hr>
+				{{> afQuickField name='everydayUse'}}
+				{{> afQuickField name='everydayUseText'}}
+				<hr>
+				{{> afQuickField name='usability'}}
+				{{> afQuickField name='usabilityText'}}
+				<br>
+				<h2>Nutzung</h2>
+				<br>
+				<label>Ich habe die App häufig über ein ...</label>
+				{{> afQuickField name='deviceMobile'}}
+				{{> afQuickField name='deviceTablet'}}
+				{{> afQuickField name='deviceDesktop'}}
+				{{> afQuickField name='deviceBehavior'}}
+				<hr>
+				{{> afQuickField name='favouriteMode'}}
+				{{> afQuickField name='favouriteModeText'}}
+				{{> afQuickField name='modeEnter'}}
+				<hr>
+				{{> afQuickField name='attentionBenefit'}}
+				{{> afQuickField name='attentionEasy'}}
+				{{> afQuickField name='attentionFast'}}
+				{{> afQuickField name='attentionOften'}}
+				<hr>
+				{{> afQuickField name='attentionSituation'}}
+				<hr>
+				{{> afQuickField name='attentionUse'}}
+				{{> afQuickField name='attentionUseText'}}
+				{{> afQuickField name='attentionOthers'}}
+				{{> afQuickField name='attentionOthersText'}}
+				<hr>
+				{{> afQuickField name='prospects'}}
 
-		<legend>Nutzung</legend>
-		Ich habe die App am haeufigsten ueber ein ...
-		{{> afQuickField name='deviceMobile'}}
-		{{> afQuickField name='deviceTablet'}}
-		{{> afQuickField name='deviceDesktop'}}
-		{{> afQuickField name='deviceBehavior'}}
-		<hr>
-		{{> afQuickField name='favouriteMode'}}
-		{{> afQuickField name='favouriteModeText'}}
-		{{> afQuickField name='modeEnter'}}
-		<hr>
-		{{> afQuickField name='attentionBenefit'}}
-		<hr>
-		{{> afQuickField name='attentionBehavior'}}
-		{{> afQuickField name='attentionBehaviorText'}}
-		<hr>
-		{{> afQuickField name='attentionSituation'}}
-		<hr>
-		{{> afQuickField name='attentionUse'}}
-		{{> afQuickField name='attentionUseText'}}
-		<hr>
-		{{> afQuickField name='prospects'}}
-	</fieldset>
+				{{> afQuickField name='surveyAcknowledged'}}
+			</fieldset>
 
-		<div>
-			<p class="category-definition">
-				Du kannst den Fragebogen nur einmal abschicken.
-			</p> <br>
-			<button type="submit" class="btn btn-standard-1">Abschicken</button>
-		</div>
-		{{/autoForm}}
-	</div>
+				<div>
+					 <br>
+					<button type="submit" class="ui positive large button">Abschicken</button>
+				</div>
+				{{/autoForm}}
+			</div>
+		{{/unless}}
+	{{else}}
+		{{> pageNotFound }}
+	{{/if}}
 </template>

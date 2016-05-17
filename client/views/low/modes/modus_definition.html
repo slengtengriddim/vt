@@ -1,26 +1,41 @@
 <template name="modusDefinitionLow">
-	<div class="row text-center">
-		<p>
-			{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
-		</p>
-		<p class="trainer-word-class fadeInUp animated">
-			{{ wordClass }}
-		</p>
-		<h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
-		<!-- DEFINITION -->
-		{{#unless getSession "revealed"}}
-		<div class="btn-reveal">
-			<i class="trainer-question fa fa-question fa-4x"></i>
-			<!-- <div class="label label-info">Gesucht: Wort</div> -->
-		</div>
-		{{else}}
-		<div class="trainer-definition flipInX animated">
-			<ol>
-				{{#each definition}}
-				<li>{{this}}</li>
-				{{/each}}
-			</ol>
-		</div>
-		{{/unless}}
+
+	<div>
+		<br>
+		<h1 class="low">{{ term }}{{#if preposition}} <i>{{ preposition }}</i>{{/if}}</h1>
+		<br>
 	</div>
+	<div class="ui horizontal divider low fadeInUp animated">
+		{{ wordClass }}
+	</div>
+	{{#unless getSession "revealed"}}
+		<br>
+		<div class="ui icon header low btn-browse-low btn-reveal">
+			<i class="question low middle icon"></i>
+			<br>
+			<div class="low middle content">
+				LÖSUNG ANZEIGEN
+			</div>
+		</div>
+	{{else}}
+		<div class="fadeIn animated">
+			<br>
+			<div class="ui selection list">
+				{{#each definition}}
+				<div class="left aligned">
+					<div class="ui small horizontal statistic">
+						<div class="value low">
+							{{convertIndex @index}}
+						</div>
+						<div class="trainer-definition low">
+							{{this}}
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	{{/unless}}
+
+
 </template>

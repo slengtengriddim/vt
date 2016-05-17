@@ -1,13 +1,63 @@
 <template name="forward">
-	{{#if lengthIsOne}}
-		<div class="media-right media-middle">
-			<i class="fa fa-ban fa-2x"></i>
-		</div>
-	{{else}}
-		{{#with entry}}
-			<div class="media-right media-middle btn-forward">
-				<i class="fa fa-chevron-right fa-4x"></i>
+	<div class="row">
+		{{#if lengthIsOne}}
+			<div class="text-center spaced">
+				<button class="ui icon header button disabled">
+						<i class="ban icon"></i>
+				</button>
 			</div>
-		{{/with}}
+		{{else}}
+			{{#with entry}}
+				<div class="text-center spaced btn-forward">
+					{{#if screensize_small}}
+						{{> forwardSmall}}
+					{{/if}}
+					{{#if screensize_medium}}
+						{{> forwardSmall}}
+					{{/if}}
+					{{#if screensize_large}}
+						{{> forwardLarge}}
+					{{/if}}
+					{{#if screensize_xlarge}}
+						{{> forwardLarge}}
+					{{/if}}
+					{{#if screensize_xxlarge}}
+						{{> forwardLarge}}
+					{{/if}}
+				</div>
+			{{/with}}
+		{{/if}}
+	</div>
+</template>
+
+
+<template name="forwardSmall">
+	<button class="ui icon huge button">
+		<i class="step forward icon big"></i>
+		{{#if getSession 'navOrderRandom'}}
+			<h5>zufällig</h5>
+		{{else}}
+			<h5>A - Z</h5>
+		{{/if}}
+	</button>
+</template>
+
+<template name="forwardLarge">
+	{{#if getSession 'navOrderRandom'}}
+	<button class="ui icon header button">
+			<i class="step forward icon"></i>
+			<div class="content">
+				WEITER
+				<div class="sub header">zufällig</div>
+			</div>
+	</button>
+	{{else}}
+	<button class="ui icon header button">
+			<i class="step forward icon"></i>
+			<div class="content">
+				WEITER
+				<div class="sub header">A - Z</div>
+			</div>
+	</button>
 	{{/if}}
 </template>

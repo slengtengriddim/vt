@@ -1,7 +1,19 @@
 <template name="footer">
-  <footer class="text-center">
-    <div class="container footer-content {{#if currentUser}}footer-border{{/if}}">
+  <!-- <footer class="text-center">
+    <div class=" {{#if currentUser}}footer-border{{/if}}">
       Chalimo Vokabeltrainer | {{#if currentUser}} <a href="{{pathFor 'faq'}}">Dokumentation</a> | {{/if}}<a href="{{pathFor 'disclaimer'}}">Disclaimer</a>
     </div>
-  </footer>
+  </footer> -->
+
+	<div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+
+      <div class="ui section divider"></div>
+      <div class="ui horizontal small divided link list">
+        <a class="item" href="{{pathFor 'doc'}}">Dokumentation</a>
+        <a class="item" href="{{pathFor 'law'}}">Rechtsausschluss</a>
+        <a class="item" href="{{pathFor 'impressum'}}">Impressum</a>
+      </div>
+    </div>
+  </div>
 </template>

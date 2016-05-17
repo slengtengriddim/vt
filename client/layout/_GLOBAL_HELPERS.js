@@ -1,4 +1,4 @@
-Meteor.subscribe("userExt");
+Meteor.subscribe("dataSurveyUser");
 // Global helpers
 
 // e.g. {{getSession "posX"}} in Template
@@ -12,7 +12,13 @@ Template.registerHelper('isOwner', function() {
 	return this.userId == Meteor.userId();
 });
 Template.registerHelper('surveySubmitted', function() {
-	let query = UserExt.findOne({userId: Meteor.userId(), surveySubmitted: true});
+	let query = Data.Survey.findOne({
+		userId: Meteor.userId()
+	}, {
+		fields: {
+			'userId': 1
+		}
+	});
 	if (query) {
 		return true;
 	} else {
@@ -20,10 +26,14 @@ Template.registerHelper('surveySubmitted', function() {
 	}
 });
 Template.registerHelper("lengthIsOne", function() {
-	return (Session.get(LENGTH_FAV) === 1) && Session.get(SOURCE_FAV) ||
-		(Session.get(LENGTH_NOT_FAV) === 1) && !Session.get(SOURCE_FAV);
+	if ((Session.get(NAV_SOURCE_FAV) && Session.get(LENGTH_FAV) <= 1) ||
+		(Session.get(NAV_SOURCE_NOT_FAV) && Session.get(LENGTH_NOT_FAV) <= 1)) {
+		return true;
+	} else {
+		return false;
+	}
 });
-Template.registerHelper("isFavourite", function(vocabularyId) {
+Template.registerHelper("isFav", function(vocabularyId) {
 	let favEntry = Favourites.findOne({
 		vocabularyId: vocabularyId
 	});
@@ -48,24 +58,29 @@ Template.registerHelper("favourites", function() {
 	}
 });
 Template.registerHelper("entry", function() {
-	let currentUserId = this.userId;
-	let favIds = R.pluck('vocabularyId')(Favourites.find().fetch());
-	let vocabulary = [];
+	let currentUserId = Meteor.userId();
+	let favIds = R.pluck('vocabularyId')(Favourites.find({
+		userId: currentUserId
+	}).fetch());
+	let all = Vocabulary.find().fetch();
+	let fav = Vocabulary.find({
+		_id: {
+			$in: favIds
+		}
+	}).fetch();
+	let notFav = Vocabulary.find({
+		_id: {
+			$nin: favIds
+		}
+	}).fetch();
 
-	if (Session.get(SOURCE_FAV)) {
-		vocabulary = Vocabulary.find({
-			_id: {
-				$in: favIds
-			}
-		}).fetch();
+	if (Session.get(NAV_SOURCE_FAV)) {
+		return fav[Session.get(INDEX_BROWSE)];
+	} else if (Session.get(NAV_SOURCE_NOT_FAV)) {
+		return notFav[Session.get(INDEX_BROWSE)];
 	} else {
-		vocabulary = Vocabulary.find({
-			_id: {
-				$nin: favIds
-			}
-		}).fetch();
+		return all[Session.get(INDEX_BROWSE)];
 	}
-	return vocabulary[Session.get(COUNT_VIEWED)];
 });
 
 // NAV SOURCE
@@ -73,6 +88,10 @@ Template.registerHelper("source", function() {
 	if (Session.get(SOURCE_FAV)) {
 		return "Favoriten";
 	} else {
-		return "Nicht-Favoriten";
+		return "Alle";
 	}
+});
+
+Template.registerHelper("convertIndex", function(index) {
+	return index + 1;
 });

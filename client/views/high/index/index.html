@@ -1,51 +1,58 @@
 <template name="index">
 
-  <div class="container">
-    <div class="row">
-    <span class="categories">{{#if currentUser}}Angemeldet als: {{currentUserMail}} {{/if}}</span>
-    </div>
-    <div class="row">
-      {{#unless surveySubmitted}}
-      <br>
-      <div class="archive-box">
-        <p>
-          Bitte fuelle den Fragebogen aus. Du hast bis zum 03. Juli 2016 dafuer Zeit. Nur mit ausgefuellten Fragebogen ist deine Teilnahme gueltig.
-        </p>
-        <a class="btn btn-standard-1 btn-question" href="{{pathFor 'fragebogen'}}">Fragebogen</a>
+  <div class="ui container">
+    <div class="ui one column grid">
+      <div class="column">
+        <div class="ui labeled button logout" tabindex="0">
+          {{> atNavButton}}
+          <div class="ui basic label">
+                    {{#if currentUser}}Angemeldet als: {{currentUserMail}} {{/if}}
+                  </div>
+        </div>
+        {{#if isInRole 'admin'}}
+        <a class="{{isActiveRoute regex='verwaltung'}}" href="{{pathFor 'verwaltung'}}">
+          <button class="ui button">Verwaltung</button>
+        </a>
+        {{/if}}
       </div>
-      {{/unless}}
-      <br>
 
     </div>
-    <div class="row">
-      {{> termDay }}
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="row offset-1">
-          {{> faqWidget}}
-        </div>
-        <div class="row offset-1">
-          {{> feedbackClient}}
-        </div>
-      </div>
-      <div class="col-sm-4 ">
-        <p class="categories text-center">
-          Beliebte Woerter
-        </p>
-        <div class="row">
-          {{> wordsUser }}
-        </div>
-        <div class="row">
-          {{> wordsAll }}
-        </div>
-      </div>
-    </div>
-
-    <br>
-
   </div>
+
+  <br>
+  <br>
+
+  {{#if getSession "surveyUnlocked"}}
+    {{#unless surveySubmitted}}
+      <div class="ui container two column stackable grid">
+        <div class="ten wide column center aligned">
+          {{> termDay}}
+        </div>
+        <div class="six wide column">
+          {{> msgFragebogen}}
+        </div>
+      </div>
+      {{else}}
+      <div class="ui text container">
+        {{> termDay}}
+      </div>
+    {{/unless}}
+  {{/if}}
+    <div class="ui container two column stackable grid">
+      <div class="ten wide column">
+        {{> docWidget}}
+
+      </div>
+      <div class="six wide column">
+
+        {{> wordsAll}}
+        {{> wordsUser}}
+      </div>
+    </div>
+    <div class="ui container one column grid">
+      <div class="sixteen wide column">
+        {{> feedbackClient}}
+      </div>
+    </div>
 
 </template>

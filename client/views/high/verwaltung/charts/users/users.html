@@ -1,0 +1,21 @@
+<template name="statUsers">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Users</h1>
+	</div>
+	<div class="ui grid">
+		<div class="ui sixteen wide column">
+			{{> lineUsersPerDay }}
+		</div>
+		<!-- <div class="ui sixteen wide column">
+			{{> chartLineOnlineUser }}
+		</div> -->
+		<div class="ui sixteen wide column">
+			{{> pieClicksPerUser}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> pieAVGPerUserPerDevice}}
+		</div>
+	</div>
+	{{else}} {{> loading}} {{/if}}
+</template>

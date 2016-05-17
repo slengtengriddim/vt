@@ -1,5 +1,5 @@
 SimpleSchema.messages({
-  required: "[label] wird benoetigt.",
+  required: "Hier wird eine Eingabe benoetigt.",
   minString: "[label] muss mindestens [min] Zeichen enthalten.",
   maxString: "[label] darf nicht mehr als [max] Zeichen enthalten.",
   minNumber: "[label] muss mindestens [min] sein.",
@@ -10,7 +10,7 @@ SimpleSchema.messages({
   minCount: "You must specify at least [minCount] values",
   maxCount: "You cannot specify more than [maxCount] values",
   noDecimal: "[label] muss eine gerade Zahl sein.",
-  notAllowed: "[value] kein zulaessiger Wert.",
+  notAllowed: "Bitte bestaetigen.",
   expectedString: "[label] muss eine Zeichenkette sein.",
   expectedNumber: "[label] muss eine Zahl sein.",
   expectedBoolean: "[label] muss ein Bool-Wert sein.",

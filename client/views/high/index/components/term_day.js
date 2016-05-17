@@ -1,6 +1,7 @@
 Template.termDay.onCreated(() => {
 	let template = Template.instance();
 	template.subscribe('vocabularyAll');
+		template.subscribe('ownedFavourites');
 	template.subscribe('termDay');
 });
 

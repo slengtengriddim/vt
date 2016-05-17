@@ -1,37 +1,70 @@
 Meteor.publish("user", function() {
-  return Meteor.users.find({});
-});
-Meteor.publish("userExt", function() {
-	let currentUserId = this.userId;
-	let data = UserExt.find({userId: this.userId});
-	if (data) {
-		return data;
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		return Meteor.users.find({});
+	} else {
+		// user not authorized. do not publish secrets
+		this.stop();
+		return;
 	}
-	return this.ready();
 });
-Meteor.publish("userExtAll", function() {
+Meteor.publish("dataSurvey", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		let data = Data.Survey.find({}, {
+			fields: {
+				'userId': 1
+			}
+		});
+		if (data) {
+			return data;
+		}
+		return this.ready();
+	} else {
+		// user not authorized. do not publish secrets
+		this.stop();
+		return;
+	}
+});
+Meteor.publish("dataSurveyUser", function() {
 	let currentUserId = this.userId;
-	let data = UserExt.find({});
+	let data = Data.Survey.find({
+		userId: currentUserId
+	}, {
+		fields: {
+			'userId': 1
+		}
+	});
 	if (data) {
 		return data;
 	}
 	return this.ready();
 });
 Meteor.publish("userStatus", function() {
-	let data = Data.Status.find({});
-	if (data) {
-		return data;
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		let data = Data.Status.find({});
+		if (data) {
+			return data;
+		}
+		return this.ready();
+	} else {
+		// user not authorized. do not publish secrets
+		this.stop();
+		return;
 	}
-	return this.ready();
-});
-Meteor.publish("feedback", function() {
-	let data = Data.Feedback.find({});
-	if (data) {
-		return data;
-	}
-	return this.ready();
 });
 
+Meteor.publish("feedback", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		let data = Data.Feedback.find({});
+		if (data) {
+			return data;
+		}
+		return this.ready();
+	} else {
+		// user not authorized. do not publish secrets
+		this.stop();
+		return;
+	}
+});
 
 //  search query
 Meteor.publish('vocabularyRegister', function(search) {
@@ -49,10 +82,14 @@ Meteor.publish('vocabularyRegister', function(search) {
 			$or: [{
 				term: regex
 			}, {
-				description: regex
+				definition: regex
+			}, {
+				preposition: regex
+			}, {
+				wordClass: regex
 			}]
 		};
-		projection.limit = 0;
+		projection.limit = 100;
 	}
 	return Vocabulary.find(query, projection);
 });
@@ -106,9 +143,15 @@ Meteor.publish('dataWords', function() {
 });
 
 Meteor.publish('dataDetail', function() {
-	let data = Data.Detail.find({});
-	if (data) {
-		return data;
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		let data = Data.Detail.find({});
+		if (data) {
+			return data;
+		}
+		return this.ready();
+	} else {
+		// user not authorized. do not publish secrets
+		this.stop();
+		return;
 	}
-	return this.ready();
 });

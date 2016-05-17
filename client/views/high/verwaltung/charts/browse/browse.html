@@ -1,0 +1,19 @@
+<template name="statBrowse">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Browsing behaviour in variations 'compact mode' and 'trainer'</h1>
+	</div>
+	<div class="ui grid">
+		<div class="sixteen wide column">
+			{{> multiBarBrowsePerVariantPerDay}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> lineBrowsePerVariantPerDayPerDevice}}
+		</div>
+		<div class="ui sixteen wide column">
+			{{> pieBrowsePerVariant }}
+		</div>
+		<h3>TODO: Browse per selected users</h3>
+	</div>
+	{{else}} {{> loading}} {{/if}}
+</template>

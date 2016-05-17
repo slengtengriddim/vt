@@ -1,4 +1,4 @@
-(function(exports) {
+(function(exports) {    
 	/**
  * Randomize array element order in-place.
  * Using Durstenfeld shuffle algorithm.

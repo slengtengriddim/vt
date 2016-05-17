@@ -6,9 +6,6 @@ Template.trainer.onCreated(() => {
 	template.autorun(() => {
 		template.subscribe('vocabularyAll'); // Vocabulary.find()
 		template.subscribe('ownedFavourites'); // Favourites.find()
-
-		Session.set(LENGTH_FAV, Favourites.find().count());
-		Session.set(LENGTH_NOT_FAV, Vocabulary.find().count() - Favourites.find().count());
 	});
 });
 
@@ -18,15 +15,24 @@ Template.trainer.helpers({
 	},
 	isLength64() {
 		return Template.instance().isLength64.get();
-	},
-	termPercent() {
-		return Math.floor((Session.get(COUNT_LETTERS_MATCH) / this.term.length) * 100);
 	}
 });
 
 Template.trainer.events({
+	'click .btn-settings-trainer' (event, template) {
+		let oldValue = Session.get(SETTINGS_TRAINER) || false;
+		Session.set(SETTINGS_TRAINER, !oldValue);
+		console.log(Session.get(SETTINGS_TRAINER));
+
+		// log
+	Log.detail();
+	},
 	'keyup [name="term"]' (event, template) {
 		let value = event.target.value.toLowerCase();
+
+		if(! Session.get(INPUT_OCCURED)) {
+			Session.set(INPUT_OCCURED, true);
+		}
 
 		if (value !== '') {
 			// check if string is valid
@@ -49,15 +55,18 @@ Template.trainer.events({
 				let term = this.term.toLowerCase();
 
 				if (term === value) {
-					if (Session.get(TERM_WRONG)) {
-						Session.set(TERM_WRONG, false);
+					if (! Session.get(REVEALED)) {
+						Session.set(REVEALED, true);
 					}
-					Session.set(TERM_RIGHT, true);
+					if (! Session.get(TERM_RIGHT)) {
+						Session.set(TERM_RIGHT, true);
+					}
 					event.target.disabled = true;
 
 					setTimeout(() => {
 						Session.set(REVEALED, false);
 						Session.set(TERM_RIGHT, false);
+						Session.set(INPUT_OCCURED, false);
 						// disable after correct term and autofocus input field for the next word
 						if (event.target) {
 							event.target.disabled = false;
@@ -68,19 +77,12 @@ Template.trainer.events({
 							}
 							event.target.focus();
 						}
-
-						let val = 0;
-						if (Session.get(RANDOM_FAV)) {
-							val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_FAV);
-							Session.set(COUNT_VIEWED, val);
-						} else {
-							val = (Session.get(COUNT_VIEWED) + 1) % Session.get(LENGTH_NOT_FAV);
-							Session.set(COUNT_VIEWED, val);
-						}
-
+						// log
+						Log.detail();
+						Entry.setNext();
 					}, 2000);
 				} else {
-					Session.set(TERM_WRONG, true);
+					Session.set(TERM_RIGHT, false);
 
 					let termArray = R.split('', term);
 					let f = (x, y) => {
@@ -96,8 +98,8 @@ Template.trainer.events({
 						cheese = R.append('_', cheese);
 					}
 
-					let countMatch = term.length - R.filter(R.equals('_'), cheese).length;
-					Session.set(COUNT_LETTERS_MATCH, countMatch);
+					// let countMatch = term.length - R.filter(R.equals('_'), cheese).length;
+					// Session.set(COUNT_LETTERS_MATCH, countMatch);
 
 					cheese = R.join(' ', cheese);
 					Session.set(TERM_CACHE, cheese);

@@ -308,7 +308,7 @@
       "path": "packages/useraccounts_flow-routing.js"
     },
     {
-      "path": "packages/useraccounts_bootstrap.js"
+      "path": "packages/useraccounts_semantic-ui.js"
     },
     {
       "sourceMap": "packages/zimme_active-route.js.map",
@@ -348,6 +348,9 @@
     {
       "sourceMap": "packages/aldeed_autoform.js.map",
       "path": "packages/aldeed_autoform.js"
+    },
+    {
+      "path": "packages/fabienb4_autoform-semantic-ui.js"
     },
     {
       "path": "packages/fastclick.js"
@@ -436,10 +439,13 @@
       "path": "packages/webtempest_animate.js"
     },
     {
-      "path": "packages/fourseven_scss.js"
+      "path": "packages/semantic_ui.js"
     },
     {
-      "path": "packages/twbs_bootstrap.js"
+      "path": "packages/flemay_less-autoprefixer.js"
+    },
+    {
+      "path": "packages/ficshelf_media-query.js"
     },
     {
       "path": "packages/hot-code-push.js"

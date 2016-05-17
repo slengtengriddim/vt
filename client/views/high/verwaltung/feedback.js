@@ -1,8 +1,8 @@
 Template.feedback.onCreated(() => {
 	let template = Template.instance();
-	template.subscribe('feedback');
 	template.subscribe('user');
-	template.subscribe('userExtAll');
+	template.subscribe('feedback');
+	template.subscribe('dataSurvey');
 });
 
 Template.feedback.helpers({
@@ -28,20 +28,16 @@ Template.feedback.helpers({
 			"status.online": true
 		});
 		if (userOnline) {
-			return "label-success";
+			return "green";
 		} else {
-			return "label-default";
+			return "grey";
 		};
 	},
 	usersSurveySubmitted() {
-		return UserExt.find({
-			"surveySubmitted": true
-		});
+		return Data.Survey.find({});
 	},
 	usersSurveySubmittedCount() {
-		return UserExt.find({
-			"surveySubmitted": true
-		}).count();
+		return Data.Survey.find({}).count();
 	},
 	feedback() {
 		return Data.Feedback.find({}, {

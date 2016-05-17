@@ -1,19 +1,49 @@
 <template name="termDay">
-	<br>
-		<div class="text-center">
-			<p class="categories">
-				Dein Wort des Tages
-			</p>
-			{{#with termDay}}
-				<h2 class="category-title">{{ term }}</h2>
-				<div class="category-definition">
-					<ol>
-						{{#each definition}}
-						<li>{{this}}</li>
-						{{/each}}
-					</ol>
+	{{#if Template.subscriptionsReady}}
+
+			<h2>DEIN WORT DES TAGES</h2>
+
+			{{#if termDay}}
+				{{#with termDay}}
+				<div>
+					<br>
+					<h1>{{ term }}{{#if preposition}} <i>{{ preposition }}</i>{{/if}}</h1>
 				</div>
-				<h2><i class="fa fa-heart-o"></i></h2>
-			{{/with}}
-		</div>
-	</template>
+				<br>
+				<div class="ui horizontal divider fadeInUp animated">
+					{{ wordClass }}
+				</div>
+				<div>
+					<div class="ui selection list">
+						{{#each definition}}
+						<div class="left aligned">
+							<div class="ui small horizontal statistic">
+								<div class="value low">
+									{{convertIndex @index}}
+								</div>
+								<div class="trainer-definition">
+									{{this}}
+								</div>
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+					{{#if isFav this._id}}
+						<div class="btn btn-delete flipInY animated">
+							<i class="heart icon huge red"></i>
+						</div>
+					{{else}}
+						<div class="btn btn-insert flipInY animated">
+							<i class="empty heart icon huge red"></i>
+						</div>
+					{{/if}}
+				{{/with}}
+			{{else}}
+				<h1>Ups!</h1>
+			{{/if}}
+
+	{{else}}
+		{{> loading}}
+	{{/if}}
+</template>

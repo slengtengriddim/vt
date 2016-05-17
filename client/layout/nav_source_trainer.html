@@ -1,13 +1,26 @@
 <template name="navSourceTrainer">
-	<div class="row text-center">
-		<h5 class="widget-title">Quelle</h5>
-		<ul class="list-inline">
-			{{#if getSession "lengthFav"}}
-				<li><button type="button" class="btn btn-source-fav btn-standard-1 {{#if getSession "sourceFavourites"}}active{{/if}}">Favouriten <span class="sup">({{getSession "lengthFav"}})</span></button></li>
-			{{/if}}
+	<br>
+	<div class="text-center spaced">
+		<h3>Quelle</h3>
+
+		<button class="ui fluid large button btn-source-all {{#if getSession "navSourceAll"}}active primary{{/if}}"><i class="icon empty heart"></i><i class="icon plus"></i><i class="icon heart"></i> Alle</button>
+		{{#if getSession "lengthFav"}}
+		<button class="ui fluid large button btn-source-fav {{#if getSession "navSourceFav"}}active primary{{/if}}">
+			<i class="icon heart"></i>
+				Favoriten
+				<span class="ui label">{{getSession "lengthFav"}}</span>
+		</button>
+
 			{{#if getSession "lengthNotFav"}}
-				<li><button type="button" class="btn btn-source-not-fav btn-standard-1 {{#unless getSession "sourceFavourites"}}active{{/unless}}">Nicht-Favouriten <span class="sup">({{getSession "lengthNotFav"}})</span></button></li>
+			<button class="ui fluid large button btn-source-not-fav {{#if getSession "navSourceNotFav"}}active primary{{/if}}">
+				<i class="icon empty heart"></i>
+				Alle ohne Favoriten
+				<div class="ui label">{{getSession "lengthNotFav"}}</div>
+			</button>
 			{{/if}}
-		</ul>
+
+		{{/if}}
+
 	</div>
+
 </template>

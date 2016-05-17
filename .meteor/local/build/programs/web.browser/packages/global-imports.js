@@ -16,6 +16,7 @@ check = Package.check.check;
 Match = Package.check.Match;
 Fake = Package['anti:fake'].Fake;
 UserStatus = Package['mizzao:user-status'].UserStatus;
+TimeSync = Package['mizzao:timesync'].TimeSync;
 ServiceConfiguration = Package['service-configuration'].ServiceConfiguration;
 ActiveRoute = Package['zimme:active-route'].ActiveRoute;
 Roles = Package['alanning:roles'].Roles;

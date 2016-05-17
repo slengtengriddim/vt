@@ -4,7 +4,6 @@ Template.bar.events({
     Session.set(ATTENTION_MODE, !oldValue);
 
     Session.set(NAV_LOW, false);
-    Session.set(EXAMPLE, false);
 
     let routePath = FlowRouter.current().path;
     Session.set(LAST_PATH, routePath);
@@ -15,6 +14,6 @@ Template.bar.events({
     };
 
     // log
-		Log.detail('bar');
+		Log.detail();
   }
 });

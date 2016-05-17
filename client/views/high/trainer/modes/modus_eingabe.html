@@ -1,54 +1,90 @@
 <template name="modusEingabe">
 
-	<div class="jumbotron">
+	<div class="ui center aligned segment">
 
-		{{#if lengthIsOne}}<span class="label label-warning text-center">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
 
-		<div class="media">
-			<div class="media-left btn-reveal">
-					{{#unless getSession 'revealed'}}
-						{{#unless getSession 'termRight'}}
-							<i class="trainer-question fa fa-question fa-4x"></i>
-						{{else}}
-							<i class="trainer-exclamation fa fa-thumbs-o-up fa-4x"></i>
-						{{/unless}}
-					{{else}}
-						<i class="trainer-exclamation fa fa-exclamation fa-4x"></i>
-					{{/unless}}
-			</div>
-			<div class="media-body media-middle">
+<!-- <button class="ui header button btn-reveal">
+		<i class="help icon"></i>
+		<div class="content">
+			LOESUNG ANZEIGEN
+		</div>
+</button> -->
+
 				{{#unless getSession 'revealed'}}
-					{{#if getSession 'termWrong'}}
-					<!-- <h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2> -->
-						<p class="categories">Bisher richtig:</p>
-						<h2 class="trainer-title">{{getSession 'termCache'}}</h2>
-					{{/if}}
-					{{#if getSession 'termRight'}}
-						<p class="categories fadeIn animated">Richtig!</p>
-						<h2 class="trainer-title fadeIn animated">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
-					{{/if}}
+					{{#unless getSession 'termRight'}}
+						<div class="btn-delay btn-reveal ui corner blue massive label">
+							<div class="flipInY animated">
+								<i class="help icon"></i>
+							</div>
+						</div>
+					{{else}}
+						<div class="btn-delay ui corner blue massive label">
+							<div class="flipInY animated">
+								<i class="thumbs up icon"></i>
+							</div>
+						</div>
+					{{/unless}}
 				{{else}}
-				<p class="categories fadeIn animated">{{wordClass}}</p>
-				<h2 class="trainer-title fadeIn animated">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
+					<div class="btn-delay ui corner blue massive label">
+						<div class="flipInY animated">
+							<i class="warning icon"></i>
+						</div>
+					</div>
 				{{/unless}}
-			</div>
-		</div>
 
-		<div class="input-group-lg form-wrapper">
-					<input autofocus type="text" name="term" id="term" class="form-control" placeholder="Das gesuchte Wort lautet..." >
+
+
+				{{#unless getSession 'revealed'}}
+					{{#unless getSession 'termRight'}}
+						<p class="fadeIn animated">Bisher richtig:</p>
+						<h2 class="fadeIn animated term-cache">
+							{{#if getSession 'inputOccured'}}
+								{{getSession 'termCache'}}
+							{{else}}
+								{{ termCacheEmpty this.term }}
+							{{/if}}
+						</h2>
+					{{/unless}}
+				{{else}}
+					{{#unless getSession 'termRight'}}
+						<p class="fadeIn animated">Die Lösung lautet:</p>
+					{{else}}
+						<p class="fadeIn animated">Richtig!</p>
+
+					{{/unless}}
+					<h2 class="fadeIn animated">{{ term }}{{#if preposition}}<i> {{ preposition }}</i>{{/if}}</h2>
+				{{/unless}}
+
+		<br>
+		<div class="ui fluid input">
+			<input autofocus type="text" name="term" id="term" placeholder="Was ist..." >
 		</div>
 
 		<br>
-		<br>
-		<div class="text-center ">
-			<div class="trainer-definition flipInX animated">
-				<ol>
-					{{#each definition}}
-					<li>{{this}}</li>
-					{{/each}}
-				</ol>
-			</div>
+		<div class="ui horizontal divider fadeInUp animated">
+			{{ wordClass }}
 		</div>
+
+		<div>
+			<br>
+			<div class="ui selection list">
+				{{#each definition}}
+				<div class="left aligned">
+					<div class="ui small horizontal statistic">
+						<div class="value low">
+							{{convertIndex @index}}
+						</div>
+						<div class="trainer-definition high">
+							{{this}}
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+			<br>
+		</div>
+
+
 	</div>
 
 </template>

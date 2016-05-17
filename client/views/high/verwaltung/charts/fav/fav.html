@@ -1,0 +1,21 @@
+<template name="statFav">
+	{{#if Template.subscriptionsReady}}
+	<div class="ui container">
+		<h1>Favourising behaviour in varations 'compact mode', 'trainer' and 'register'</h1>
+	</div>
+		<div class="ui grid">
+			<div class="ui sixteen wide column">
+				{{> multiBarFavsPerVariantPerDay}}
+			</div>
+			<div class="ui sixteen wide column">
+				{{> lineFavPerVariantPerDayPerDevice}}
+			</div>
+			<div class="ui sixteen wide column">
+				{{> pieFavsPerVariant }}
+			</div>
+		</div>
+		<h3>TODO: FAV per selected users</h3>
+	{{else}}
+		{{> loading}}
+	{{/if}}
+</template>

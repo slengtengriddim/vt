@@ -1,11 +1,104 @@
 <template name="forwardLow">
 	{{#if lengthIsOne}}
-			<i class="fa fa-ban fa-4x"></i>
+		<div class="btn-ban-low">
+			<div class="ui row low">
+				<div class="ui icon header low disabled">
+					<i class="ban icon"></i>
+					<div class="content">
+						{{#if screensize_large}}
+							STOP
+						{{/if}}
+						{{#if screensize_xlarge}}
+							STOP
+						{{/if}}
+						{{#if screensize_xxlarge}}
+							STOP
+						{{/if}}
+					</div>
+				</div>
+			</div>
+		</div>
 	{{else}}
 		{{#with entry}}
-			<div class="btn-forward">
-				<span><i class="fa fa-chevron-right fa-4x"></i></span>
+			<div class="btn-browse-low gradient-right-to-left btn-forward">
+
+				{{#if screensize_small}}
+					{{> forwardLowSmall}}
+				{{/if}}
+				{{#if screensize_medium}}
+					{{> forwardLowSmall}}
+				{{/if}}
+				{{#if screensize_large}}
+					{{> forwardLowLarge}}
+				{{/if}}
+				{{#if screensize_xlarge}}
+					{{> forwardLowLarge}}
+				{{/if}}
+				{{#if screensize_xxlarge}}
+					{{> forwardLowLarge}}
+				{{/if}}
+
 			</div>
 		{{/with}}
+	{{/if}}
+</template>
+
+<template name="forwardLowSmall">
+	<div class="ui row low">
+		<div class="ui icon header low">
+			<i class="step forward icon"></i>
+			<div class="content"></div>
+		</div>
+	</div>
+	{{#if getSession 'navOrderRandom'}}
+		<div class="ui row low center aligned">
+			<div class="ui header">
+				<i class="mini random icon low"></i>
+			</div>
+		</div>
+	{{else}}
+		<div class="ui row low center aligned">
+			<div class="ui header">
+				<i class="long arrow right icon low"></i>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="forwardLowLarge">
+	{{#if getSession 'navOrderRandom'}}
+		<div class="ui row low">
+			<div class="ui icon header low">
+				<i class="step forward icon"></i>
+				<div class="content">
+			WEITER
+				</div>
+			</div>
+		</div>
+		<div class="ui row low">
+			<div class="ui header">
+				<i class="random icon low"></i>
+				<div class="content">
+					<div class="sub header low">zufällig</div>
+				</div>
+			</div>
+		</div>
+	{{else}}
+	<div class="ui row low">
+		<div class="ui icon header low">
+			<i class="step forward icon"></i>
+			<div class="content">
+		WEITER
+			</div>
+		</div>
+	</div>
+	<div class="ui row low">
+		<div class="ui header">
+			<i class="long arrow right icon low"></i>
+			<div class="content">
+				<div class="sub header low">A - Z</div>
+			</div>
+		</div>
+	</div>
 	{{/if}}
 </template>

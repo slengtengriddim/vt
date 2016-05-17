@@ -17,20 +17,31 @@ resetSession = () => {
 	Session.set(TERM_WRONG, false);
 };
 
-checkAdmin	= () => {
-	if (! Roles.userIsInRole(Meteor.userId(), 'admin')) {
-		// FlowRouter.redirect('/notFound');
-	}
-};
+// checkAdmin = () => {
+// 	console.log(Meteor.userId());
+// 	console.log(Roles.userIsInRole(Meteor.userId(), 'admin'));
+// 	console.log(Roles.subscription.ready());
+// 	if (!Roles.userIsInRole(Meteor.userId(), 'admin')) {
+// 		console.log(Roles.userIsInRole(Meteor.userId(), 'admin'));
+// 		FlowRouter.redirect('/notFound');
+// 	}
+// };
 
 checkSurveySubmitted = () => {
-	let query = UserExt.findOne({userId: Meteor.userId(), surveySubmitted: true});
+	let query = UserExt.findOne({
+		userId: Meteor.userId(),
+		surveySubmitted: true
+	});
 	if (query) {
 		FlowRouter.redirect('/');
 	}
 };
 
-FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);
+d3Reset = () => {
+	window.onresize = null;
+}
+
+FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn, d3Reset]);
 
 // *** ROUTE GROUPS
 
@@ -56,18 +67,40 @@ highRoutes.route('/', {
 			bar: "bar",
 			nav: "nav",
 			main: "index",
-			footer:"footer"
+			footer: "footer"
 		});
 	}
 });
-highRoutes.route('/faq', {
-	name: "faq",
+highRoutes.route('/doc', {
+	name: "doc",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
-			main: "faq",
-			footer:"footer"
+			main: "doc",
+			footer: "footer"
+		});
+	}
+});
+highRoutes.route('/law', {
+	name: "law",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			main: "law",
+			footer: "footer"
+		});
+	}
+});
+highRoutes.route('/impressum', {
+	name: "impressum",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layout', {
+			bar: "bar",
+			nav: "nav",
+			main: "impressum",
+			footer: "footer"
 		});
 	}
 });
@@ -79,22 +112,11 @@ highRoutes.route('/trainer', {
 			bar: "bar",
 			nav: "nav",
 			main: "trainer",
-			footer:"footer"
+			footer: "footer"
 		});
 	}
 });
 
-highRoutes.route('/register/:id', {
-	name: "vokabelDetail",
-	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
-			bar: "bar",
-			nav: "nav",
-			main: "vokabelDetail",
-			footer:"footer"
-		});
-	}
-});
 highRoutes.route('/register', {
 	name: "register",
 	action: function(params, queryParams) {
@@ -102,7 +124,7 @@ highRoutes.route('/register', {
 			bar: "bar",
 			nav: "nav",
 			main: "register",
-			footer:"footer"
+			footer: "footer"
 		});
 	}
 });
@@ -111,94 +133,156 @@ highRoutes.route('/verwaltung', {
 	action: function(params, queryParams) {
 		FlowRouter.redirect('/verwaltung/feedback');
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
 highRoutes.route('/verwaltung/statistik', {
 	name: "statistik",
 	action: function(params, queryParams) {
-		FlowRouter.redirect('/verwaltung/statistik/total');
+		FlowRouter.redirect('/verwaltung/statistik/statTotal');
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
-highRoutes.route('/verwaltung/statistik/device', {
-	name: "device",
+
+
+// VERWALTUNG
+
+highRoutes.route('/verwaltung/statistik/statTotal', {
+	name: "statTotal",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
+		BlazeLayout.render('layoutAdmin', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "device",
-			footer:"footer"
+			main: "statTotal",
+			footer: "footer"
 		});
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
-highRoutes.route('/verwaltung/statistik/mode', {
-	name: "mode",
+highRoutes.route('/verwaltung/statistik/statDevice', {
+	name: "statDevice",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
+		BlazeLayout.render('layoutAdmin', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "mode",
-			footer:"footer"
+			main: "statDevice",
+			footer: "footer"
 		});
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
-highRoutes.route('/verwaltung/statistik/status', {
-	name: "status",
+highRoutes.route('/verwaltung/statistik/statMethod', {
+	name: "statMethod",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
+		BlazeLayout.render('layoutAdmin', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "status",
-			footer:"footer"
+			main: "statMethod",
+			footer: "footer"
 		});
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
-highRoutes.route('/verwaltung/statistik/total', {
-	name: "total",
+highRoutes.route('/verwaltung/statistik/statUsers', {
+	name: "statUsers",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
+		BlazeLayout.render('layoutAdmin', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
 			navStatistics: "navStatistics",
-			main: "total",
-			footer:"footer"
+			main: "statUsers",
+			footer: "footer"
 		});
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
+highRoutes.route('/verwaltung/statistik/statAttention', {
+	name: "statAttention",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layoutAdmin', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "statAttention",
+			footer: "footer"
+		});
+	},
+	triggersEnter: []
+});
+highRoutes.route('/verwaltung/statistik/statBrowse', {
+	name: "statBrowse",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layoutAdmin', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "statBrowse",
+			footer: "footer"
+		});
+	},
+	triggersEnter: []
+});
+highRoutes.route('/verwaltung/statistik/statFav', {
+	name: "statFav",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layoutAdmin', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "statFav",
+			footer: "footer"
+		});
+	},
+	triggersEnter: []
+});
+highRoutes.route('/verwaltung/statistik/statLOD', {
+	name: "statLOD",
+	action: function(params, queryParams) {
+		BlazeLayout.render('layoutAdmin', {
+			bar: "bar",
+			nav: "nav",
+			navOverview: "navOverview",
+			navStatistics: "navStatistics",
+			main: "statLOD",
+			footer: "footer"
+		});
+	},
+	triggersEnter: []
+});
+
+
 
 highRoutes.route('/verwaltung/feedback', {
 	name: "feedback",
 	action: function(params, queryParams) {
-		BlazeLayout.render('layout', {
+		BlazeLayout.render('layoutAdmin', {
 			bar: "bar",
 			nav: "nav",
 			navOverview: "navOverview",
 			main: "feedback",
-			footer:"footer"
+			footer: "footer"
 		});
 	},
-	triggersEnter: [checkAdmin]
+	triggersEnter: []
 });
 highRoutes.route('/fragebogen', {
 	name: "fragebogen",
-	triggersEnter:[checkSurveySubmitted],
+	triggersEnter: [checkSurveySubmitted],
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			nav: "nav",
 			main: "fragebogen",
-			footer:"footer"
+			footer: "footer"
 		});
 	},
 	triggersEnter: []
@@ -210,8 +294,6 @@ lowRoutes.route('/low', {
 		BlazeLayout.render('layout', {
 			bar: "bar",
 			main: "low"
-			// ,
-			// navSource: "navLow"
 		});
 	},
 	triggersEnter: []
@@ -221,9 +303,7 @@ FlowRouter.notFound = {
 	name: "notFound",
 	action: function(params, queryParams) {
 		BlazeLayout.render('layout', {
-			footer: "footer",
-			main: "pageNotFound",
-			footer:"footer"
+			main: "pageNotFound"
 		});
 	}
 };

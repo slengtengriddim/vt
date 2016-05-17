@@ -4,7 +4,9 @@ TermDay = new Mongo.Collection('termDay', {});
 if (Meteor.isServer) {
 	Vocabulary._ensureIndex({
 		term: 1,
-		description: 1
+		definition: 1,
+		preposition: 1,
+		wordClass: 1
 	});
 }
 
@@ -23,7 +25,7 @@ Vocabulary.deny({
 let VocabularySchema = new SimpleSchema({
 	term: {
 		type: String,
-		regEx: /^[a-zA-Z]*$/
+		regEx: /^[a-zA-ZäöüÄÖÜß]*$/
 	},
 	preposition: {
 		type: String,

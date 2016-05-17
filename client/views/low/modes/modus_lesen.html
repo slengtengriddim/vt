@@ -1,34 +1,42 @@
 <template name="modusLesenLow">
 
-		<div class="row text-center">
-			<p>
-				{{#if lengthIsOne}}<span class="flag animate-box fadeInUp animated">Letzter Eintrag in {{#if getSession "sourceFavourites"}}Favoriten{{else}}Nicht-Favoriten{{/if}}</span>{{/if}}
-			</p>
-			<p>
-				{{#if getSession "sourceFavourites"}}
-				<div class="btn-delete fadeIn animated">
-					<i class="fa fa-trash-o fa-4x"></i>
-				</div>
-				{{else}}
-				<div class="btn-insert fadeIn animated">
-					<i class="fa fa-heart-o fa-4x"></i>
-				</div>
-				{{/if}}
-			</p>
+				<p>
+					{{#if isFav this._id}}
+					<div class="button btn-red btn-delete flipInY animated">
+						<i class="icon-fav-{{_id}} fa fa-heart fa-4x"></i>
+					</div>
+					{{else}}
+					<div class="button btn-red btn-insert flipInY animated">
+						<i class="icon-not-fav-{{_id}} fa fa-heart-o fa-4x"></i>
+					</div>
+					{{/if}}
+				</p>
 			<br>
-			<p class="trainer-word-class fadeInUp animated">
-				{{ wordClass }}
-			</p>
 			<br>
-			<h2 class="trainer-title">{{ term }}{{#if preposition}} <span class="trainer-preposition"><i>{{ preposition }}</i></span>{{/if}}</h2>
-			<br>
-			<div class="trainer-definition">
-				<ol>
-					{{#each definition}}
-					<li><span class="rwd-line">{{this}}</span>  </li>
-					{{/each}}
-				</ol>
-			</div>
-		</div>
 
+			<div>
+				<br>
+				<h1 class="low">{{ term }}{{#if preposition}} <i>{{ preposition }}</i>{{/if}}</h1>
+				<br>
+			</div>
+			<div class="ui horizontal divider low fadeInUp animated">
+				{{ wordClass }}
+			</div>
+			<div>
+				<br>
+				<div class="ui selection list">
+					{{#each definition}}
+					<div class="left aligned">
+						<div class="ui small horizontal statistic">
+							<div class="value low">
+								{{convertIndex @index}}
+							</div>
+							<div class="trainer-definition low">
+								{{this}}
+							</div>
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
 </template>

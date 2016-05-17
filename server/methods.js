@@ -7,8 +7,12 @@ Meteor.methods({
 	},
 	insertFavourite(vocabularyId) {
 		check(vocabularyId, String);
-		Favourites.insert({
+		Favourites.upsert({
 			vocabularyId: vocabularyId
+		}, {
+			$setOnInsert: {
+				vocabularyId: vocabularyId
+			}
 		});
 	},
 	dataWords(obj) {
@@ -27,25 +31,21 @@ Meteor.methods({
 			}
 		});
 	},
-	dataDetail(deviceType, devicePlatform, route, clickArea, mode, attention) {
+	dataDetail(deviceType, devicePlatform, route, mode, settingsTrainer, heartClicked) {
+		// console.log(deviceType);
+		// console.log(devicePlatform);
+		// console.log(route);
+		// console.log(mode);
+		// console.log(attention);
+		// console.log(settingsTrainer);
+
 		Data.Detail.insert({
 			deviceType: deviceType,
 			devicePlatform: devicePlatform,
 			route: route,
-			clickArea: clickArea,
 			mode: mode,
-			attention: attention
+			settingsTrainer: settingsTrainer,
+			heartClicked: heartClicked
 		})
-	},
-	surveySubmitted() {
-		UserExt.upsert({
-			userId: this.userId
-		}, {
-			$setOnInsert: {
-				userId: this.userId,
-				surveySubmitted: true
-			}
-		});
 	}
-
 });

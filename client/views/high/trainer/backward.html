@@ -1,13 +1,56 @@
 <template name="backward">
-	{{#if lengthIsOne}}
-		<div class="media-left media-middle">
-			<i class="fa fa-ban fa-2x"></i>
+	<div class="row">
+		{{#if lengthIsOne}}
+		<div class="text-center spaced">
+			<button class="ui icon header button disabled">
+					<i class="ban icon"></i>
+			</button>
 		</div>
-	{{else}}
-		{{#with entry}}
-			<div class="media-left media-middle btn-backward">
-				<i class="fa fa-chevron-left fa-4x"></i>
+		{{else}}
+			{{#unless getSession 'navOrderRandom'}}
+				{{#with entry}}
+					<div class="text-center spaced btn-backward">
+						{{#if screensize_small}}
+							{{> backwardSmall}}
+						{{/if}}
+						{{#if screensize_medium}}
+							{{> backwardSmall}}
+						{{/if}}
+						{{#if screensize_large}}
+							{{> backwardLarge}}
+						{{/if}}
+						{{#if screensize_xlarge}}
+							{{> backwardLarge}}
+						{{/if}}
+						{{#if screensize_xxlarge}}
+							{{> backwardLarge}}
+						{{/if}}
+					</div>
+				{{/with}}
+			{{else}}
+			<div class="text-center spaced">
+				<button class="ui icon header button disabled">
+						<i class="ban icon"></i>
+				</button>
 			</div>
-		{{/with}}
-	{{/if}}
+			{{/unless}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="backwardSmall">
+	<button class="ui icon huge button">
+		<i class="step backward icon big"></i>
+			<h5>A - Z</h5>
+	</button>
+</template>
+
+<template name="backwardLarge">
+	<button class="ui icon header button">
+			<i class="step backward icon"></i>
+			<div class="content">
+				ZURÜCK
+				<div class="sub header">A - Z</div>
+			</div>
+	</button>
 </template>

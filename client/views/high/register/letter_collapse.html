@@ -1,25 +1,38 @@
 <template name="letterCollapse">
-  <div class="panel-body">
+
+  <div class="ui divided items">
     {{#each entries}}
-      {{> registerEntry }}
+      <div class="item register-item">
+        <div class="ui icon big">
+          {{#if isFav this._id}}
+            <div class="btn-register btn-delete fadeIn animated">
+                <i class="icon red heart big"></i>
+            </div>
+          {{else}}
+            <div class="btn-register btn-insert fadeIn animated">
+                <i class="icon red empty heart big"></i>
+            </div>
+          {{/if}}
+        </div>
+        <div class="content middle aligned">
+          <div class="header">
+            {{term}} <i> {{preposition}}</i>
+          </div>
+          <div class="meta">
+            {{ wordClass }}
+          </div>
+          <div class="ui ordered list">
+            {{#each definition}}
+              <div class="item">
+                {{this}}
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
     {{/each}}
   </div>
+
+
+
 </template>
-
-<!--
-<div class="media">
-  <div class="media-body story-body">
-
-      <h2 class="register-title">{{ term }}</h2>
-
-  </div>
-  {{#if isFavourite this._id}}
-    <div class="media-right media-middle btn-delete">
-        <i class="fa fa-trash-o fa-4x"></i>
-    </div>
-  {{else}}
-    <div class="media-right media-middle btn-insert">
-        <i class="fa fa-heart-o fa-4x"></i>
-    </div>
-  {{/if}}
-</div> -->

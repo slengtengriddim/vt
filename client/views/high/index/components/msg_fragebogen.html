@@ -1,0 +1,13 @@
+<template name="msgFragebogen">
+	<div class="ui">
+		{{#if getSession "surveyUnlocked"}} {{#unless surveySubmitted}}
+		<div class="ui error message">
+			<div class="header">
+				Bitte fülle den Fragebogen aus.
+			</div>
+			<p>Du hast bis zum {{ unlockEnd }} dafür Zeit. Nur mit ausgefülltem Fragebogen können wir deine Daten vollständig auswerten.</p>
+			<a class="ui button positive" href="{{pathFor 'fragebogen'}}">Zum Fragebogen</a>
+		</div>
+		{{/unless}} {{/if}}
+	</div>
+</template>

@@ -1,3 +1,5 @@
+SimpleSchema.debug = false;
+
 Data = {};
 Data.Detail = new Mongo.Collection('dataDetail', {});
 Data.Words = new Mongo.Collection('dataWords', {});
@@ -18,6 +20,9 @@ Data.Feedback.allow({
 
 Data.Status.Schema = new SimpleSchema({
 	userId: {
+		type: String
+	},
+	userMail: {
 		type: String
 	},
 	timestamp: {
@@ -47,7 +52,7 @@ Data.Feedback.Schema = new SimpleSchema({
 	},
 	message: {
 	    type: String,
-			label: 'Feedback-Nachricht',
+			label: 'Deine Nachricht',
 			max: 1000,
 	    autoform: {
 	      afFieldInput: {
@@ -91,15 +96,14 @@ Data.Detail.Schema = new SimpleSchema({
 	route: {
 		type: String
 	},
-	clickArea: {
-		type: String,
-		allowedValues: ['bar', 'mode', 'source', 'favDel', 'browse', 'reveal']
-	},
 	mode: {
 		type: String,
 		allowedValues: ['lesen', 'wort', 'definition', 'eingabe', 'null']
 	},
-	attention: {
+	settingsTrainer: {
+		type: Boolean
+	},
+	heartClicked: {
 		type: Boolean
 	}
 });
@@ -140,84 +144,102 @@ Data.Survey.Schema = new SimpleSchema({
       label: false
     }
 	},
+	userMail: {
+		type: String,
+		autoValue: function() {
+			return Meteor.user().emails[0].address;
+		}
+	},
 	age: {
 		type: Number,
 		label: 'Dein Alter',
 		min: 18,
 		max: 99
-	 }
-	,
+	 },
+	 gender: {
+    type: String,
+		label: 'Dein Geschlecht',
+    autoform: {
+      type: "select-radio-inline",
+      options: function () {
+        return [
+          {label: "weiblich", value: "female"},
+          {label: "männlich", value: "male"}
+        ];
+      }
+    }
+  },
 	previousExperience: {
 		type: String,
-		label: 'Ich verfuege ueber Vorerfahrung mit digitalen Vokabeltrainern.',
+		label: 'Ich verfüge über Vorerfahrung mit digitalen Vokabeltrainern.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
 	learningCurve: {
 		type: String,
-		label: 'Die Einarbeitung in den Fremdworttrainer ist mir leicht gefallen.',
+		label: 'Die Einarbeitung in die App war für mich mühelos.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
 	everydayUse: {
 		type: String,
-		label: 'Den Gebrauch der App konnte ich muehelos in meinen Alltag integrieren.',
+		label: 'Den Gebrauch der App kann ich mühelos in meinen Alltag integrieren.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
@@ -235,25 +257,25 @@ Data.Survey.Schema = new SimpleSchema({
 	},
 	usability: {
 		type: String,
-		label: 'Mit der Bedienung der App zurecht komme ich prima zurecht.',
+		label: 'Mit der Bedienung der App komme ich mühelos zurecht.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
@@ -273,75 +295,75 @@ Data.Survey.Schema = new SimpleSchema({
 	// NUTZUNGSVERHALTEN
 	deviceMobile: {
 		type: String,
-		label: '... Mobile Endgeraet (z.B. Smartphone, kein Laptop) aufgerufen.',
+		label: '... mobiles Endgerät (z.B. Smartphone, kein Laptop) aufgerufen.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
 	deviceTablet: {
 		type: String,
-		label: '... Tablet Endgeraet aufgerufen.',
+		label: '... Tablet Endgerät aufgerufen.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
 	deviceDesktop: {
 		type: String,
-		label: '... Desktop Endgeraet (z.B. Laptop, Desktop PC) aufgerufen.',
+		label: '... Desktop Endgerät (z.B. Laptop, Desktop PC) aufgerufen.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
@@ -359,7 +381,7 @@ Data.Survey.Schema = new SimpleSchema({
 	},
 	favouriteMode: {
 		type: String,
-		label: 'Folgenden Trainingsmodus habe ich am liebsten genutzt:',
+		label: 'Folgende Trainingsmethode habe ich am liebsten genutzt:',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
@@ -367,16 +389,16 @@ Data.Survey.Schema = new SimpleSchema({
 					label: "Lesen",
 					value: "lesen"
 				}, {
-					label: "Wort",
+					label: "Rate Wort",
 					value: "wort"
 				}, {
-					label: "Definition",
+					label: "Rate Definition",
 					value: "definition"
 				}, {
-					label: "Texteingabe",
+					label: "Eingabetest",
 					value: "eingabe"
 				}, {
-					label: "Lesen im Register",
+					label: "Keine Methode sondern das Register",
 					value: "register"
 				}, {
 					label: "Weiss ich nicht",
@@ -398,80 +420,166 @@ Data.Survey.Schema = new SimpleSchema({
 	},
 	modeEnter: {
 		type: String,
-		label: 'Die Texteingabe-Option habe ich im Kompaktmodus vermisst.',
+		label: "Die Methode 'Eingabetest' habe ich im Kompaktmodus vermisst.",
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
 	attentionBenefit: {
 		type: String,
-		label: 'Mir hat die Moeglichkeit, in den Kompaktmodus zu wechseln, gefallen.',
+		label: 'Mir hat das Konzept des Kompaktmodus gefallen.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
-	attentionBehavior: {
+	attentionEasy: {
 		type: String,
-		label: 'Die Moeglichkeit, den Kompaktmodus zu nutzen, hat mein Nutzungsverhalten der App beeinflusst.',
+		label: 'Ich kann mühelos in den Kompaktmodus wechseln.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
-	attentionBehaviorText: {
+	attentionFast: {
+		type: String,
+		label: 'Ich kann schnell in den Kompaktmodus wechseln.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: 5
+				}, {
+					label: "trifft eher zu",
+					value: 4
+				}, {
+					label: "teils-teils",
+					value: 3
+				}, {
+					label: "trifft eher nicht zu",
+					value: 2
+				}, {
+					label: "trifft nicht zu",
+					value: 1
+				}];
+			}
+		}
+	},
+	attentionOften: {
+		type: String,
+		label: 'Ich verwende den Kompaktmodus häufig.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: 5
+				}, {
+					label: "trifft eher zu",
+					value: 4
+				}, {
+					label: "teils-teils",
+					value: 3
+				}, {
+					label: "trifft eher nicht zu",
+					value: 2
+				}, {
+					label: "trifft nicht zu",
+					value: 1
+				}];
+			}
+		}
+	},
+	attentionSituation: {
+		type: String,
+		max: 1000,
+		label: 'Beschreibe eine Beispielsituation, in der du beschlossen hast, in den Kompaktmodus zu wechseln.',
+		optional: true,
+		autoform: {
+			afFieldInput: {
+				type: "textarea"
+			}
+		}
+	},
+	attentionUse: {
+		type: String,
+		label: 'Unabhängig von dieser App finde ich das Konzept, die Benutzeroberfläche kontextorientiert anzupassen, sinnvoll.',
+		autoform: {
+			type: "select-radio-inline",
+			options: function() {
+				return [{
+					label: "trifft zu",
+					value: 5
+				}, {
+					label: "trifft eher zu",
+					value: 4
+				}, {
+					label: "teils-teils",
+					value: 3
+				}, {
+					label: "trifft eher nicht zu",
+					value: 2
+				}, {
+					label: "trifft nicht zu",
+					value: 1
+				}];
+			}
+		}
+	},
+	attentionUseText: {
 		type: String,
 		max: 1000,
 		label: 'Aus folgendem Grund (optional):',
@@ -482,43 +590,32 @@ Data.Survey.Schema = new SimpleSchema({
 			}
 		}
 	},
-	attentionSituation: {
+	attentionOthers: {
 		type: String,
-		max: 1000,
-		label: 'In welcher Situation hast du beschlossen, das UI zu wechseln und warum? (Beispiel)',
-		optional: true,
-		autoform: {
-			afFieldInput: {
-				type: "textarea"
-			}
-		}
-	},
-	attentionUse: {
-		type: String,
-		label: 'Ich sehe generell einen klaren Vorteil in der Moeglichkeit die Benutzeroberflaeche kontextorientiert anzupassen und wuerde mir die Moeglichkeit auch fuer andere Apps wuenschen.',
+		label: 'Ich würde mir das Konzept, die Benutzeroberfläche kontextorientiert anzupassen, auch fuer andere Apps wünschen.',
 		autoform: {
 			type: "select-radio-inline",
 			options: function() {
 				return [{
 					label: "trifft zu",
-					value: "trifftZu"
+					value: 5
 				}, {
 					label: "trifft eher zu",
-					value: "trifftEherZu"
+					value: 4
 				}, {
 					label: "teils-teils",
-					value: "teilsTeils"
+					value: 3
 				}, {
 					label: "trifft eher nicht zu",
-					value: "trifftEherNichtZu"
+					value: 2
 				}, {
 					label: "trifft nicht zu",
-					value: "trifftNichtZu"
+					value: 1
 				}];
 			}
 		}
 	},
-	attentionUseText: {
+	attentionOthersText: {
 		type: String,
 		max: 1000,
 		label: 'Aus folgendem Grund (optional):',
@@ -539,7 +636,18 @@ Data.Survey.Schema = new SimpleSchema({
 					type: "textarea"
 				}
 			}
-		}
+		},
+		surveyAcknowledged: {
+    type: Boolean,
+		label: "Mir ist bewusst, dass ich den Fragenbogen nur einmal abschicken kann.",
+    optional: false,
+		allowedValues: [true],
+    autoform: {
+      afFieldInput: {
+        type: "boolean-checkbox"
+      }
+    }
+  }
 
 });
 
